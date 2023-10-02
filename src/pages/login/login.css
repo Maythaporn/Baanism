@@ -1,0 +1,87 @@
+body {
+    font-family: 'Prompt', sans-serif;
+  }
+  
+  html {
+      height: 100%;
+      margin: 0;
+  }
+  
+  .app {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+  }
+  
+  .blue-box-login {
+      width: 500px;
+      height: 500px;
+      background-color: #03128E;
+      color: #fff;
+      text-align: center;
+      line-height: 200px;
+      font-size: 24px;
+      border-radius: 20px 0 0 20px;
+      position: relative;
+      overflow: hidden;
+      border-right: none;
+      border: 1px solid #D9D9D9;
+      box-sizing: border-box;
+  }
+  
+  .white-box-login {
+    width: 500px;
+    height: 500px;
+    background-color: #fff; 
+    color: #000;
+    text-align: center;
+    line-height: 200px;
+    font-size: 24px;
+    border-radius: 0 20px 20px 0;
+    position: relative;
+    border-left: none;
+    overflow: hidden;
+    border: 1px solid #D9D9D9;
+    box-sizing: border-box;
+  }
+  
+  .blue-box-login img {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+  }
+  
+  .head-login {
+      font-family: 'Prompt', sans-serif;
+      font-size: 24px;
+      text-align: left;
+      margin-left: 50px;
+      font-weight: lighter;
+      display: block;
+      margin-top: 70px;
+      line-height: 3.5;
+  }
+  
+  .forgot-password-button {
+    font-family: 'Prompt', sans-serif;
+    background-color: transparent;
+    color: rgb(190, 190, 190); /* สีข้อความ */
+    border: none;
+    font-size: 14px;
+    text-decoration: underline; /* เพิ่มขีดเส้นใต้ข้อความ */
+    cursor: pointer;
+    margin-left: 330px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: block; /* กำหนดประเภทแสดงผลเป็น block */
+    line-height: 1;
+  }
+  
+  .forgot-password-button:hover {
+    font-family: 'Prompt', sans-serif;
+    text-decoration: none; /* ลบขีดเส้นใต้ข้อความเมื่อชี้ตัวเมาส์ */
+  }
+  

@@ -75,12 +75,16 @@ export default function Header() {
             </li>
             <li>
               <button className='lineButton' onClick={btnLogin} >
-                ลงชื่อเข้าใช้งาน
+              <Link to='/login'>
+              ลงชื่อเข้าใช้งาน
+              </Link>
               </button>
             </li>
             <li>
               <button className='solidButton' onClick={btnRegister} >
-                ลงทะเบียน
+              <Link to='/register'>
+              ลงชื่อเข้าใช้งาน
+              </Link>
               </button>
             </li>
           </ul>
