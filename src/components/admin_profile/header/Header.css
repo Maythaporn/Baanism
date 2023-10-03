@@ -1,0 +1,66 @@
+/* Header.css */
+.topnav {
+  overflow: hidden;
+  background-color: white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 60px;
+}
+
+.topnav a {
+  color: #100F0D;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  font-family: 'Prompt', sans-serif;
+}
+
+.icon {
+  display: none;
+  color: #03128E;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 24px;
+}
+
+/* Add this CSS for mobile menu */
+.menu-links {
+  display: none;
+  flex-direction: column;
+  background-color: white;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+}
+
+.menu-links a {
+  padding: 14px 16px;
+  text-decoration: none;
+  color: #100F0D;
+  font-size: 17px;
+  text-align: center;
+  font-family: 'Prompt', sans-serif;
+}
+
+/* Add a class to control mobile menu display */
+.mobile-menu-open .menu-links {
+  display: flex;
+}
+
+/* Style for the responsive class */
+.responsive .icon {
+  display: block;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {
+    display: none;
+  }
+
+  .icon {
+    display: block;
+  }
+}
