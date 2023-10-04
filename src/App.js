@@ -17,6 +17,10 @@ import User from "./components/user_profile/project/Project";
 import User_header from "./components/user_profile/header/Profile-header";
 import User_footer from "./components/user_profile/footer/Profile-footer";
 
+import Admin from "./components/admin_profile/project/Admin-Project";
+import Admin_header from "./components/admin_profile/header/Admin-header";
+import Admin_footer from "./components/admin_profile/footer/Profile-footer";
+
 
 
 function App() {
@@ -81,7 +85,13 @@ function App() {
         <User_footer />
         
       </>} />
-      
+
+      <Route path="/admin" element={<>
+        <Admin_header />
+        <Admin />
+        <Admin_footer />
+        
+      </>} />
       </Routes>
 
       <MessengerCustomerChat

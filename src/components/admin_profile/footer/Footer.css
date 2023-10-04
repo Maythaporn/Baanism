@@ -4,20 +4,14 @@
   height: 100px;
   background-color: #03128E;
   justify-content: space-evenly;
-  padding-top: 40px;
+
+  color: white;
+  font-family: "Prompt", sans-serif;
+  font-size: 13px;
+
   flex-wrap: wrap; /* Add this line to wrap items on smaller screens */
 }
 
-.word {
-  color: white;
-  font-family: "Prompt", sans-serif;
-  font-size: 15px;
-}
-
-/* Adjust spacing for small screens */
-.word.mobile-menu-link {
-  margin: 5px;
-}
 
 /* Media query for responsiveness */
 @media screen and (max-width: 768px) {

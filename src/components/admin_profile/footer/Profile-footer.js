@@ -5,15 +5,15 @@ import { Link } from 'react-router-dom';
 export default function Footer() {
   return (
     <nav className="footer">
-      <p className='word'>Copyright © 2023 BAANISM Co., Ltd. All rights reserved.</p>
+      Copyright © 2023 BAANISM Co., Ltd. All rights reserved.
       <Link to="/">
-        <p className="word">นโยบายการใช้งาน</p>
+        นโยบายการใช้งาน
       </Link>
       <Link to="/">
-        <p className="word">ติดต่อสอบถาม</p>
+        ติดต่อสอบถาม
       </Link>
       <Link to="/">
-        <p className="word">เงื่อนไขการใช้งาน</p>
+        เงื่อนไขการใช้งาน
       </Link>
     </nav>
   );

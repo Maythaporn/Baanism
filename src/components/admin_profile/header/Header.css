@@ -1,66 +1,130 @@
-/* Header.css */
-.topnav {
-  overflow: hidden;
-  background-color: white;
+.logoStyle{
+  width: 252px;
+  height: 60px; 
+}
+
+nav{
   display: flex;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
   height: 60px;
+  padding-right: 50px;
 }
 
-.topnav a {
-  color: #100F0D;
-  text-align: center;
-  padding: 14px 16px;
+.navBar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navBar li{
+  list-style: none;
+  padding: 0 20px;
+  position: relative;
+}
+
+.navBar li a{
   text-decoration: none;
-  font-size: 17px;
-  font-family: 'Prompt', sans-serif;
+  font-size: 1.3rem;
+  /* font-weight: 600; */
+  color: 100F0D;
 }
 
-.icon {
-  display: none;
-  color: #03128E;
-  cursor: pointer;
-  padding: 14px 16px;
-  font-size: 24px;
+.navBar li a:hover{
+  color: #100F0D;
 }
 
-/* Add this CSS for mobile menu */
-.menu-links {
+.navBar li a:hover::after{
+  content: "";
+  width: 30%;
+  height: 2.5px;
+  background-color: #fff;
+  position: absolute;
+  bottom: -6px;
+  left: 35%;
+}
+
+.navbar {
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
+  padding: 1rem 2rem;
+  font-family: "Prompt", sans-serif;
+  font-size: 15px;
+  /* background-color: #fff;
+  color: #fff; */
+}
+
+.nav-toggle {
   display: none;
   flex-direction: column;
-  background-color: white;
+  cursor: pointer;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  margin: 3px 0;
+  background-color: #03128E;
+  transition: 0.4s;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+
+.nav-links.open {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   top: 60px;
-  left: 0;
   right: 0;
+  background-color: #f1f1f1;
+  width: 50%;
+  height: 100vh;
+  z-index: 1;
+  transition: 0.4s ease;
 }
 
-.menu-links a {
-  padding: 14px 16px;
-  text-decoration: none;
+.nav-links.open li{
+  padding: 1.3rem 0;
+}
+
+.nav-links.open li a:hover{
   color: #100F0D;
-  font-size: 17px;
-  text-align: center;
-  font-family: 'Prompt', sans-serif;
 }
 
-/* Add a class to control mobile menu display */
-.mobile-menu-open .menu-links {
-  display: flex;
+.nav-links.open li a:hover::after{
+  content: "";
+  width: 50%;
+  height: 2.5px;
+  background-color: #100F0D;
+  position: absolute;
+  bottom: 10px;
+  right: 0;
+  left: 25%;
 }
 
-/* Style for the responsive class */
-.responsive .icon {
-  display: block;
+.nav-links.open .lineButton{
+  background-color: #f1f1f1;
 }
 
-@media screen and (max-width: 600px) {
-  .topnav a:not(:first-child) {
+.nav-links.open .lineButton:hover{
+  background-color: #f1f1f1;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
     display: none;
   }
 
-  .icon {
-    display: block;
+  .navBar {
+    flex-direction: column;
   }
 }
