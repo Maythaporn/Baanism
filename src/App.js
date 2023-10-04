@@ -13,6 +13,9 @@ import Forgot from "./pages/forgot/forgot";
 import Register from "./pages/register/register";
 import Login from "./pages/login/login";
 
+import User from "./components/user_profile/project/Project";
+import User_header from "./components/user_profile/header/Profile-header";
+import User_footer from "./components/user_profile/footer/Profile-footer";
 
 
 
@@ -20,46 +23,64 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <Header />
       <Routes>
         {/* Default route */}
         <Route path="/" element={<>
+          <Header />
           <Intro />
           <About />
           <HomeGURU />
+          <Footer />
         </>} />
 
         {/* About's route */}
         <Route path="/about" element={<>
+          <Header />
           <About />
           <HomeGURU />
+          <Footer />
         </>} />
 
         {/* Home's route */}
         <Route path="/homecontent" element={<>
+          <Header />
           <HomeGURU />
+          <Footer />
         </>} />
         {/* register's route */}
         <Route path="/register" element={<>
+          <Header />
           <Register />
+          <Footer />
         </>} />
         {/* register's route */}
         <Route path="/forgot-password" element={<>
+          <Header />
           <Forgot />
+          <Footer />
         </>} />
         {/* login's route */}
         <Route path="/login" element={<>
+          <Header />
           <Login />
+          <Footer />
         </>} />
-      </Routes>
+
+           
+      <Route path="/user" element={<>
+        <User_header />
+        <User />
+        <User_footer />
+        
+      </>} />
       
+      </Routes>
 
       <MessengerCustomerChat
         pageId="2369383416447624"
         appId="320035067349586"
       />
 
-      <Footer />
     </ThemeProvider>
   );
 }
