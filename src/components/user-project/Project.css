@@ -111,7 +111,7 @@
 
 
 @media (max-width: 768px) {
-  .container {
+  .Usercontainer {
     flex-direction: column; /* Stack items vertically */
   }
   .sidebar {

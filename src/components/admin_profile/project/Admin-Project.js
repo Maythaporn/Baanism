@@ -5,8 +5,6 @@ import 'react-icons/fa';
 import { FaCamera, FaHistory, FaRegAddressBook, FaUserCircle } from 'react-icons/fa';
 import { FaFile } from 'react-icons/fa';
 import { FaUser} from 'react-icons/fa';
-import { FaCashRegister } from 'react-icons/fa';
-import { FaIdCard } from 'react-icons/fa';
 
 function Project() {
   const [isMobile, setIsMobile] = useState(false);
@@ -46,7 +44,7 @@ function Project() {
           </div>
           <br />
 
-          <div className="select2-button">
+          <div className="select-button">
             <FaHistory size={isMobile ? 10 : 17} color="grey" className="button-icon" /> อัพเดต Home GURU Content
           </div>
           <br />

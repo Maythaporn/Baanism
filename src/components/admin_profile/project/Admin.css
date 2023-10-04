@@ -84,17 +84,7 @@
   transition: background-color 0.3s; /* Add a smooth transition effect */
 }
 
-.select2-button{
-  border-radius: 10px;
-  background-color: white;
-  font-size: 12px;
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
-  width: 200px;
-  height: 32px;
-  align-items: center;
 
-}
 
 .select-button{
   border-radius: 10px;
@@ -123,7 +113,7 @@
 
 
 @media (max-width: 768px) {
-  .container {
+  .Admincontainer {
     flex-direction: column; /* Stack items vertically */
   }
   .sidebar {
