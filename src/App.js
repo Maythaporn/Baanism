@@ -13,13 +13,13 @@ import Forgot from "./pages/forgot/forgot";
 import Register from "./pages/register/register";
 import Login from "./pages/login/login";
 
-import User from "./components/user_profile/project/Project";
-import User_header from "./components/user_profile/header/Profile-header";
-import User_footer from "./components/user_profile/footer/Profile-footer";
+import User from "./components/user-project/User-Project";
+import User_header from "./components/user-header/User-header";
+import User_footer from "./components/user-footer/User-footer";
 
 import Admin from "./components/admin_profile/project/Admin-Project";
 import Admin_header from "./components/admin_profile/header/Admin-header";
-import Admin_footer from "./components/admin_profile/footer/Profile-footer";
+import Admin_footer from "./components/admin_profile/footer/Admin-footer";
 
 
 
@@ -87,9 +87,9 @@ function App() {
       </>} />
 
       <Route path="/admin" element={<>
-        <Admin_header />
+        <Admin_header/>
         <Admin />
-        <Admin_footer />
+        <Admin_footer/>
         
       </>} />
       </Routes>
