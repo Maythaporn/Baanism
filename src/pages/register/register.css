@@ -1,0 +1,74 @@
+body {
+    font-family: 'Prompt', sans-serif;
+}
+
+html {
+    height: 100%;
+    margin: 0;
+}
+
+.app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.blue-box-register {
+    width: 500px;
+    height: 700px;
+    background-color: #03128E;
+    color: #fff;
+    text-align: center;
+    line-height: 200px;
+    font-size: 24px;
+    border-radius: 20px 0 0 20px;
+    position: relative;
+    overflow: hidden;
+    /* เพิ่ม overflow: hidden เพื่อทำให้กรอบสีดำเข้ากับกล่อง */
+    border-right: none;
+    /* ไม่มีกรอบทางด้านขวา */
+    border: 1px solid #D9D9D9;
+    /* เพิ่มกรอบสีดำรอบกล่อง */
+    box-sizing: border-box;
+    /* ให้ขอบอยู่ภายในขนาดกล่อง */
+}
+
+.white-box-register {
+    width: 500px;
+    height: 700px;
+    background-color: #fff; 
+    color: #000;
+    text-align: center;
+    line-height: 200px;
+    font-size: 24px;
+    border-radius: 0 20px 20px 0;
+    position: relative;
+    border-left: none;
+    /* ไม่มีกรอบทางด้านขวา */
+    overflow: hidden;
+    /* เพิ่ม overflow: hidden เพื่อทำให้กรอบสีดำเข้ากับกล่อง */
+    border: 1px solid #D9D9D9;
+    /* เพิ่มกรอบสีดำรอบกล่อง */
+    box-sizing: border-box;
+    /* ให้ขอบอยู่ภายในขนาดกล่อง */
+}
+
+.blue-box-register img {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+}
+
+.head-register {
+    font-family: 'Prompt', sans-serif;
+    font-size: 24px;
+    text-align: left;
+    margin-left: 50px;
+    font-weight: lighter;
+    display: block;
+    margin-top: 70px;
+    line-height: 3.5;
+}

@@ -5,42 +5,83 @@ import { theme } from "./theme/theme";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import Intro from "./components/intro/Intro";
-import About from "./components/about/About"; 
-import HomeGURU from "./components/homecontent/HomeGURU"; 
+import About from "./components/about/About";
+import HomeGURU from "./components/homecontent/HomeGURU";
 
 import MessengerCustomerChat from './react-messenger-customer-chat';
-import Register from "./components/register/Register";
-import Login from "./components/login/Login";
+import Forgot from "./pages/forgot/forgot";
+import Register from "./pages/register/register";
+import Login from "./pages/login/login";
+
+import User from "./components/user_profile/project/Project";
+import User_header from "./components/user_profile/header/Profile-header";
+import User_footer from "./components/user_profile/footer/Profile-footer";
+
+
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <Header />
       <Routes>
         {/* Default route */}
         <Route path="/" element={<>
+          <Header />
           <Intro />
           <About />
           <HomeGURU />
-        </>} />
-        
-        {/* About's route */}
-        <Route path="/about" element={<>
-          <About />
-          <HomeGURU />
+          <Footer />
         </>} />
 
-             {/* Home's route */}
-             <Route path="/homecontent" element={<>
+        {/* About's route */}
+        <Route path="/about" element={<>
+          <Header />
+          <About />
           <HomeGURU />
+          <Footer />
         </>} />
+
+        {/* Home's route */}
+        <Route path="/homecontent" element={<>
+          <Header />
+          <HomeGURU />
+          <Footer />
+        </>} />
+
         {/* register's route */}
         <Route path="/register" element={<>
-          <Register/>
-        </>}/>
+          <Header />
+          <Register />
+          <Footer />
+        </>} />
+        {/* register's route */}
+        <Route path="/forgot-password" element={<>
+          <Header />
+          <Forgot />
+          <Footer />
+        </>} />
+
+
+        {/* forgot's route */}
+        {/* <Route path="/forgot-password" element={<>
+          <Forgot />
+        </>} /> */}
+
         {/* login's route */}
-        <Route path="/login" element={<><Login/></>}/>
+        <Route path="/login" element={<>
+          <Header />
+          <Login />
+          <Footer />
+        </>} />
+
+           
+      <Route path="/user" element={<>
+        <User_header />
+        <User />
+        <User_footer />
+        
+      </>} />
+      
       </Routes>
 
       <MessengerCustomerChat
@@ -48,7 +89,6 @@ function App() {
         appId="320035067349586"
       />
 
-      <Footer />
     </ThemeProvider>
   );
 }

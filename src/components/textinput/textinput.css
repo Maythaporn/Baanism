@@ -1,0 +1,30 @@
+/* TextInput.css */
+
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center; /* เพิ่ม align-items เพื่อให้ TextInput ตรงกลางของจอในแนวคอลัมน์ */
+    justify-content: center; /* เพิ่ม justify-content เพื่อให้ TextInput ตรงกลางของจอในแนวคอลัมน์ */
+}
+
+.text-input {
+    width: 400px;
+    height: 50px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    font-size: 16px;
+    margin-top: 2px;
+    margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+    font-family: 'Prompt', sans-serif;
+}
+
+.text-input::placeholder {
+    color: #999;
+}
+
+.text-input:focus {
+    border-color: #007bff;
+}
+
