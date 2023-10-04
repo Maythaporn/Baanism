@@ -47,6 +47,7 @@ function App() {
           <HomeGURU />
           <Footer />
         </>} />
+
         {/* register's route */}
         <Route path="/register" element={<>
           <Header />
@@ -59,6 +60,13 @@ function App() {
           <Forgot />
           <Footer />
         </>} />
+
+
+        {/* forgot's route */}
+        {/* <Route path="/forgot-password" element={<>
+          <Forgot />
+        </>} /> */}
+
         {/* login's route */}
         <Route path="/login" element={<>
           <Header />
