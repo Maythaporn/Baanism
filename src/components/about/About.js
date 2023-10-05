@@ -167,8 +167,9 @@ function Intro() {
 
         </div>
       </div>
-
-      <Gallery />
+      <div className="gallery-container">
+        <Gallery />
+      </div>
     </>
   );
 }

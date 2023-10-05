@@ -1,0 +1,72 @@
+.project-container {
+    font-family: 'prompt', sans-serif;
+    font-size: 16px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    min-height: 180px;
+    width: 90%;
+    border: 1px solid gray;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px grey;
+    margin-top: 50px;
+}
+
+.project-container p {
+    color: #000;
+}
+
+.info-left {
+    padding: 25px;
+    max-width: 70%;
+    /* border: 1px solid gray; */
+}
+
+.info-right {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* border: 1px solid gray; */
+}
+
+.project-title {
+    font-size: 22px;
+    padding-bottom: 15px;
+}
+
+.edit-btn {
+    font-family: 'prompt', sans-serif;
+    font-size: 16px;
+    border: none;
+    background: none;
+}
+
+.space {
+    margin: 0 8px;
+    padding: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .project-container {
+        margin-top: 30px;
+        width: 95%;
+        display: flex;
+        flex-direction: column;
+        min-height: 250px;
+    }
+    .info-left {
+        max-width: 100%;
+    }
+    .info-right {
+        font-size: 14px;
+        padding: 0 20px;
+        margin-bottom: 10px;
+        max-width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+    .edit-btn{
+        font-size: 14px;
+    }
+}
