@@ -22,39 +22,31 @@ import Admin_header from "./components/admin_profile/header/Admin-header";
 import Admin_footer from "./components/admin_profile/footer/Admin-footer";
 
 import User_confirm from "./components/user_confirm/User_confirm";
-import Profile_edit from "./components/profile-edit/Profile_edit";
-import Estimate from "./components/estimate/Estimate";
-function App() {
-   return (
-      <ThemeProvider theme={theme}>
-         <GlobalStyles />
-         <Routes>
-            {/* Default route */}
-            <Route
-               path="/"
-               element={
-                  <>
-                     <Header />
-                     <Intro />
-                     <About />
-                     <HomeGURU />
-                     <Footer />
-                  </>
-               }
-            />
+import Profile_edit from "./components/profile-edit/Profile_edit"
 
-            {/* About's route */}
-            <Route
-               path="/about"
-               element={
-                  <>
-                     <Header />
-                     <About />
-                     <HomeGURU />
-                     {/* <Footer /> */}
-                  </>
-               }
-            />
+import LpFooter from "./components/landingPageFooter/lpFooter";
+
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <Routes>
+        {/* Default route */}
+        <Route path="/" element={<>
+          <Header />
+          <Intro />
+          <About />
+          <HomeGURU />
+          <LpFooter />
+        </>} />
+
+        {/* About's route */}
+        <Route path="/about" element={<>
+          <Header />
+          <About />
+          <HomeGURU />
+          {/* <Footer /> */}
+        </>} />
 
             {/* Home's route */}
             <Route
@@ -73,7 +65,7 @@ function App() {
                element={
                   <>
                      <Header />
-                     <Estimate />
+                     {/* <Estimate /> */}
                      {/* <Footer /> */}
                   </>
                }
