@@ -10,7 +10,7 @@ import Button from "../../components/button/button";
 function Register() {
 
     const navigate = useNavigate();
-  
+
     const btnConfirm = () => {
         navigate('/user'); // put ur page after /
     }
@@ -35,7 +35,7 @@ function Register() {
                 <TextInput placeholder="รหัสผ่าน" />
                 <TextInput placeholder="ยืนยันรหัสผ่าน" />
                 <Link to='/user'>
-                    <button className='confirmbutton' onClick={btnConfirm}>
+                    <button className='confirm-button' onClick={btnConfirm}>
                         สมัครสมาชิก
                     </button>
                 </Link>

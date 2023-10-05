@@ -27,11 +27,10 @@ function Login() {
                 <h1 class="head-login">กรอกข้อมูลเข้าสู่ระบบ</h1>
                 <TextInput placeholder="เบอร์โทรศัพท์" />
                 <TextInput placeholder="รหัสผ่าน" />
-                <Link to='/user-edit'>
-                    <button className='loginbutton' onClick={btnEdit}>
+                <Link to="/forgot-password" className="forgot-password-button">ลืมรหัสผ่าน</Link>
+                    <button className='login-button' onClick={btnEdit}>
                         เข้าสู่ระบบ
                     </button>
-                </Link>
             </div>
         </div>
     );

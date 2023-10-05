@@ -3,8 +3,13 @@ import "./forgot.css";
 import logoIcon from '../../assets/images/logo_withbg.png';
 import TextInput from '../../components/textinput/textinput.js';
 import Button from '../../components/button/button.js';
+import { Link, Routes, Route, useNavigate } from 'react-router-dom';
 
 function Forgot() {
+    const navigate = useNavigate();
+    const btnForgot = () => {
+        navigate('/'); // put ur page after /
+    }
     return (
         <div className="app">
             <div className="blue-box-forgot">
@@ -21,7 +26,9 @@ function Forgot() {
                 <p class='content-text'>กรุณากรอกหมายเลขโทรศัพท์หรือที่อยู่อีเมลของคุณ</p>
                 <p class='last-text'>คุณจะได้รับลิงค์สำหรับสร้างรหัสผ่านใหม่ทางอีเมล</p>
                 <TextInput placeholder="เบอร์โทรศัพท์ หรือ อีเมล" />
-                <Button name="รีเซ็ตรหัสผ่าน" />
+                <button className="reset-button" onClick={btnForgot}>
+                        รีเซตรหัสผ่าน
+                    </button>
             </div>
         </div>
     );

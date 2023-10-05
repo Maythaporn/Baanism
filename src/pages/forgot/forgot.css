@@ -80,3 +80,23 @@ html {
     display: block;
     line-height: 1.5;
 }
+
+.reset-button {
+    font-family: 'Prompt', sans-serif;
+    border-radius: 5px;
+    background-color: #038E7F;
+    font-size: 15px;
+    color: white;
+    width: 400px;
+    height: 40px;
+    margin-left: 50px;
+    margin-top: 20px;
+    display: block;
+  }
+  
+.reset-button:hover {
+    color: #038E7F;
+    background-color: #fff;
+    border: 3px solid #038E7F;
+    
+  }
