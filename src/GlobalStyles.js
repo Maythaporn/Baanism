@@ -18,14 +18,14 @@ export const GlobalStyles = createGlobalStyle`
     color: ${(props) => props.theme.Grayish};
   }
 
-  button, a{
-    border-radius: 0.2rem; 
-    cursor: pointer;
-    transition: 1s;
-    :hover {
-      transition: 0.5s;
-      background-color: transparent;}
-  }
+  // button, a{
+  //   border-radius: 0.2rem; 
+  //   cursor: pointer;
+  //   transition: 1s;
+  //   :hover {
+  //     transition: 0.5s;
+  //     background-color: transparent;}
+  // }
 
   * {
     margin: 0;

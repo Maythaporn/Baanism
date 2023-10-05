@@ -4,6 +4,7 @@ import logoIcon from '../../assets/images/logo_withbg.png';
 import TextInput from '../../components/textinput/textinput.js';
 // import Button from '../../components/button/button.js';
 import { Link, Routes, Route, useNavigate } from 'react-router-dom';
+import Button from "../../components/button/button";
 
 
 function Register() {
@@ -26,7 +27,7 @@ function Register() {
                 />
             </div>
             <div className="white-box-register">
-                <h1 class="head-register">สมัครสมาชิก</h1>
+                <h1 className="head-register">สมัครสมาชิก</h1>
                 <TextInput placeholder="ชื่อจริง" />
                 <TextInput placeholder="นามสกุล" />
                 <TextInput placeholder="เบอร์โทรศัพท์" />

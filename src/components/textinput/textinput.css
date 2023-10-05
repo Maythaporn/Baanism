@@ -1,6 +1,6 @@
 /* TextInput.css */
 
-.input-container {
+.input-container1 {
     position: relative;
     display: flex;
     align-items: center; /* เพิ่ม align-items เพื่อให้ TextInput ตรงกลางของจอในแนวคอลัมน์ */

@@ -3,7 +3,7 @@ import './textinput.css'; // นำเข้าไฟล์ CSS
 
 function TextInput(props) {
     return (
-        <div className="input-container">
+        <div className="input-container1">
             <input
                 type="text"
                 className="text-input"
