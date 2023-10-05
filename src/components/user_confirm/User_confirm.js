@@ -52,18 +52,18 @@ function Confirm(props) {
             case "myProjects":
                 return (
                     <div>
-                        <div className="profilebar"></div>
+                        <div className="Profilebar"></div>
                     </div>
                 );
             case "Payment":
                 return (
-                    <div className="profilebar"></div>
+                    <div className="Profilebar"></div>
                 );
             case "UserInfo":
                 return (
-                    <div className="profilebar">
+                    <div className="Profilebar">
                         <div className="input-container">
-                            <div className="left-input">
+                            {/* <div className="left-input"> */}
                                 <input
                                     type="text"
                                     className="ConfirmInput-input"
@@ -107,9 +107,9 @@ function Confirm(props) {
                                     <option value="option3">ปทุมธานี</option>
                                 </select>
                                 <div className="dropdown-arrow"></div>
-                            </div>
+                            
 
-                            <div className="right-input">
+                            {/* <div className="right-input"> */}
                                 <input
                                     type="text"
                                     className="ConfirmInput-input"
@@ -127,9 +127,6 @@ function Confirm(props) {
                                     placeholder="Code"
                                 />
 
-
-
-                            </div>
 
                             <Link to='/user-edit'>
                                 <button className='setdatabutton' onClick={btnEdit}>
