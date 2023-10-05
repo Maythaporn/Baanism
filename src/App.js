@@ -23,6 +23,8 @@ import Admin_footer from "./components/admin_profile/footer/Admin-footer";
 
 import User_confirm from "./components/user_confirm/User_confirm";
 import Profile_edit from "./components/profile-edit/Profile_edit"
+
+import lpFooter from "./components/landingPageFooter/lpFooter";
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -34,7 +36,7 @@ function App() {
           <Intro />
           <About />
           <HomeGURU />
-          {/* <Footer /> */}
+          <lpFooter />
         </>} />
 
         {/* About's route */}

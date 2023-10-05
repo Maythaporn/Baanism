@@ -6,13 +6,13 @@ import logo from './../../assets/images/logo-footer.png';
 import 'font-awesome/css/font-awesome.min.css';
 import { Link } from 'react-router-dom';
 
-
-
-
 export default function Footer() {
   return (
     <nav className="footer">
-      Copyright © 2023 BAANISM Co., Ltd. All rights reserved.
+      <Link to="/">
+        <img src={logo} alt="baanism-logo" className="logoStyle" />
+      </Link>
+      <p>Copyright © 2023 BAANISM Co., Ltd. All rights reserved.</p>
       
     </nav>
   );
