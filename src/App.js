@@ -23,8 +23,6 @@ import Admin_footer from "./components/admin_profile/footer/Admin-footer";
 
 import User_confirm from "./components/user_confirm/User_confirm";
 import Profile_edit from "./components/profile-edit/Profile_edit"
-
-
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -36,7 +34,7 @@ function App() {
           <Intro />
           <About />
           <HomeGURU />
-          {/* <Footer /> */}
+          <Footer />
         </>} />
 
         {/* About's route */}
@@ -44,38 +42,42 @@ function App() {
           <Header />
           <About />
           <HomeGURU />
-          <Footer />
+          {/* <Footer /> */}
         </>} />
 
         {/* Home's route */}
         <Route path="/homecontent" element={<>
           <Header />
           <HomeGURU />
-          <Footer />
+          {/* <Footer /> */}
         </>} />
 
         {/* register's route */}
         <Route path="/register" element={<>
           <Header />
           <Register />
-          <Footer />
+          {/* <Footer /> */}
         </>} />
-        {/* register's route */}
         <Route path="/forgot-password" element={<>
           <Header />
           <Forgot />
-          <Footer />
+          {/* <Footer /> */}
         </>} />
 
+        
+
+        {/* forgot's route */}
+        {/* <Route path="/forgot-password" element={<>
+          <Forgot />
+        </>} /> */}
 
         {/* login's route */}
         <Route path="/login" element={<>
           <Header />
           <Login />
-          <Footer />
+          {/* <Footer /> */}
         </>} />
 
-           
       <Route path="/user" element={<>
         <User_header />
         <User_confirm />
@@ -96,6 +98,8 @@ function App() {
         
       </>} />
       </Routes>
+
+      
 
       <MessengerCustomerChat
         pageId="2369383416447624"
