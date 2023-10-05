@@ -84,4 +84,26 @@ body {
     font-family: 'Prompt', sans-serif;
     text-decoration: none; /* ลบขีดเส้นใต้ข้อความเมื่อชี้ตัวเมาส์ */
   }
+
+
+  /*เพิ่มจากหวาน*/
+
+.loginbutton {
+  font-family: 'Prompt', sans-serif;
+  border-radius: 5px;
+  background-color: #038E7F;
+  font-size: 15px;
+  color: white;
+  width: 400px;
+  height: 40px;
+  margin-left: 50px;
+  margin-top: 20px;
+  display: block;
+}
+
+.loginbutton:hover {
+  font-size: 15px;
+  font-family: 'Prompt', sans-serif;
+  
+}
   
