@@ -1,4 +1,5 @@
 .logoStyle{
+    display: flex;
     width: 262px;
     height: 60px; 
 }
@@ -28,4 +29,13 @@
 .copyright{
     font-size: 14px;
     padding: 10px 0 0 0;
+}
+
+@media screen and (max-width: 768px) {
+    .address{
+        font-size: 15px;
+    }
+    .copyright{
+        font-size: 10px;
+    }
 }
