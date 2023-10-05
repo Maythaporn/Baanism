@@ -72,3 +72,26 @@ html {
     margin-top: 70px;
     line-height: 3.5;
 }
+
+
+
+/*เพิ่มจากหวาน*/
+
+.confirmbutton {
+    font-family: 'Prompt', sans-serif;
+    border-radius: 5px;
+    background-color: #038E7F;
+    font-size: 15px;
+    color: white;
+    width: 400px;
+    height: 40px;
+    margin-left: 50px;
+    margin-top: 20px;
+    display: block;
+}
+
+.confirmbutton:hover {
+    font-size: 15px;
+    font-family: 'Prompt', sans-serif;
+    
+}

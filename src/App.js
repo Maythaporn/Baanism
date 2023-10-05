@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router , Routes, Route, Link } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./GlobalStyles";
 import { theme } from "./theme/theme";
@@ -21,8 +21,8 @@ import Admin from "./components/admin_profile/project/Admin-Project";
 import Admin_header from "./components/admin_profile/header/Admin-header";
 import Admin_footer from "./components/admin_profile/footer/Admin-footer";
 
-
-
+import User_confirm from "./components/user_confirm/User_confirm";
+import Profile_edit from "./components/profile-edit/Profile_edit"
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -65,6 +65,7 @@ function App() {
           <Footer />
         </>} />
 
+        
 
         {/* forgot's route */}
         {/* <Route path="/forgot-password" element={<>
@@ -81,11 +82,17 @@ function App() {
            
       <Route path="/user" element={<>
         <User_header />
-        <User />
+        <User_confirm />
         <User_footer />
-        
       </>} />
 
+      <Route path="/user_edit" element={<>
+        <User_header />
+        <Profile_edit />
+        <User_footer />
+      </>} />
+
+      
       <Route path="/admin" element={<>
         <Admin_header/>
         <Admin />
