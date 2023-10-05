@@ -13,13 +13,21 @@ export default function lpFooter(){
                     <img src={logo} alt="baanism-logo" className="logoStyle" />
                 </Link>
                 <div className='iconBtn'>
-                    <Link>
-                        <FaFacebook color="white" size={40}/>
-                    </Link>
-                    <FaLine color="white" size={40}/>
-                    <FaTiktok color="white" size={40}/>
-                    <FaEnvelope color="white" size={40}/>
-                    <FaPhone color="white" size={40}/>
+                    <a href="https://www.facebook.com/BAANISM" target="_blank" rel="noopener noreferrer">
+                        <FaFacebook color="white" size={40} />
+                    </a>
+                    <a href="https://lin.ee/dKPfd2C2" target="_blank" rel="noopener noreferrer">
+                        <FaLine color="white" size={40}/>
+                    </a>
+                    <a href="https://www.tiktok.com/@baanism" target="_blank" rel="noopener noreferrer">
+                        <FaTiktok color="white" size={40}/>
+                    </a>
+                    <a href="mailto:contact.baanism@gmail.com" target="_blank" rel="noopener noreferrer">
+                        <FaEnvelope color="white" size={40}/>
+                    </a>
+                    <a href="tel:+66850556352" target="_blank" rel="noopener noreferrer">
+                        <FaPhone color="white" size={40}/>
+                    </a>
                 </div>
                 <p className='address'>23/198 คณาสิริ รังสิตคลอง 2 ถ.เสมาฟ้าคราม ต.คูคต อ.ลําลูกกา ปทุมธานี 12130 ประเทศไทย (+66) 085-055-6352</p>
                 <p className='copyright'>Copyright © 2023 BAANISM Co., Ltd. All rights reserved.</p>
