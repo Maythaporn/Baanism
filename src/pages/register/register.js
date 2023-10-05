@@ -2,9 +2,18 @@ import React from "react";
 import "./register.css";
 import logoIcon from '../../assets/images/logo_withbg.png';
 import TextInput from '../../components/textinput/textinput.js';
-import Button from '../../components/button/button.js';
+// import Button from '../../components/button/button.js';
+import { Link, Routes, Route, useNavigate } from 'react-router-dom';
+
 
 function Register() {
+
+    const navigate = useNavigate();
+  
+    const btnConfirm = () => {
+        navigate('/user'); // put ur page after /
+    }
+
     return (
         <div className="app">
             <div className="blue-box-register">
@@ -24,7 +33,11 @@ function Register() {
                 <TextInput placeholder="อีเมล" />
                 <TextInput placeholder="รหัสผ่าน" />
                 <TextInput placeholder="ยืนยันรหัสผ่าน" />
-                <Button name="สมัครสมาชิก" />
+                <Link to='/user'>
+                    <button className='confirmbutton' onClick={btnConfirm}>
+                        สมัครสมาชิก
+                    </button>
+                </Link>
             </div>
         </div>
     );
