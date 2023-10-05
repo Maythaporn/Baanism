@@ -107,7 +107,7 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link className='lineButton custom-link' onClick={btnLogin} to='/login'>
+              <Link className='lineButton custom-link' onClick={btnRegister} to='/Register'>
                 ลงทะเบียน
               </Link>
             </li>
