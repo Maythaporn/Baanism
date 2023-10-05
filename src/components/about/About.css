@@ -216,3 +216,7 @@ h2{
   font-size: 50px;
   color: #100F0D; /* Adjust the margin-bottom as needed for spacing */
 }
+
+.gallery-container{
+  background: radial-gradient(at top right,rgb(189, 189, 255),rgb(243, 243, 255),white);
+}

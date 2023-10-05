@@ -13,14 +13,14 @@ const Gallery = () => {
         <>
             <h2 className='title-gallery'>ผลงานที่ผ่านมา</h2>
             <div className="gallery">
-                <div className='box'><img src={gallery1} /></div>
-                <div className='box'><img src={gallery2} /></div>
-                <div className='box'><img src={gallery3} /></div>
-                <div className='box'><img src={gallery4} /></div>
-                <div className='box'><img src={gallery8} /></div>
-                <div className='box'><img src={gallery5} /></div>
-                <div className='box'><img src={gallery6} /></div>
-                <div className='box'><img src={gallery7} /></div>
+                <div className='box'><img src={gallery1} alt='baanism past work'/></div>
+                <div className='box'><img src={gallery2} alt='baanism past work'/></div>
+                <div className='box'><img src={gallery3} alt='baanism past work'/></div>
+                <div className='box'><img src={gallery4} alt='baanism past work'/></div>
+                <div className='box'><img src={gallery8} alt='baanism past work'/></div>
+                <div className='box'><img src={gallery5} alt='baanism past work'/></div>
+                <div className='box'><img src={gallery6} alt='baanism past work'/></div>
+                <div className='box'><img src={gallery7} alt='baanism past work'/></div>
             </div>
         </>
         

@@ -1,16 +1,17 @@
 
 .HomeGURUContainer {
+  padding-top: 40px;
   height: 740px;
   margin: 0 auto; /* Added "px" units to the margin values */
-  background-color: white; /* Use "url()" for background-image */
   background-size: cover; /* Ensure the background image covers the container */
   background-repeat: no-repeat; /* Prevent background image repetition */
 
 }
 
 .HomeGURUContent {
+  font-family: 'prompt', sans-serif;
   color: black; /* Take up remaining space */
-  margin-left: 100px;
+  padding-left: 100px;
   font-size: 40px;
 }
 
@@ -24,4 +25,11 @@
   height: 450px;
   overflow: hidden;
   /* border: 1px solid black; */
+}
+
+@media screen and (max-width: 580px) {
+  .HomeGURUContent {
+    text-align: center;
+    padding-left: 0;
+  }
 }

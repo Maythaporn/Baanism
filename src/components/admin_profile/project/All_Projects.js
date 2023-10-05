@@ -1,0 +1,31 @@
+import './All_Projects.css'
+
+const All_Projects = () => {
+    const data = [
+        { id: 1, title: "ต่อเติม", type: "", address: "หมู่บ้าน , เขต/อำเถอ , จังหวัด , รหัสไปรษณี aaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+        {id: 2, title: "ต่อเติม", type: "", address: "หมู่บ้าน , เขต/อำเถอ , จังหวัด , รหัสไปรษณี"},
+    ]
+    return (
+        <>
+            {data.map((e) => (
+                <div className="project-container" key={e.id}>
+                    <div className='info-left'>
+                        <p className='project-title'>{e.title}</p>
+                        <p>ประเภทห้อง : {e.type}</p>
+                        <p>สถานที่ : {e.address}</p>
+                    </div>
+                    <div className='info-right'>
+                        <p>สถานะ : รอการติดต่อกลับ</p>
+                        <div className='edit'>
+                            <button className='edit-btn'>แก้ไขข้อมูล</button>
+                            <span className='space'>|</span>
+                            <button className='edit-btn'>ลบโครงการ</button>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </>
+    )
+}
+
+export default All_Projects

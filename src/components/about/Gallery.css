@@ -35,3 +35,10 @@
 .gallery .box:nth-child(8){
     grid-column: span 2;
 }
+
+@media screen and (max-width: 820px) {
+    .gallery{
+        width: 95vw;
+        grid-gap: 8px;
+    }
+}
