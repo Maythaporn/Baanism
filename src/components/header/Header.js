@@ -102,14 +102,18 @@ export default function Header() {
               </Link>
             </li> */}
             <li>
-              <Link className='lineButton' onClick={btnLogin} to='/login'>
-                ลงชื่อเข้าใช้งาน
-              </Link>
+              <button className='lineButton'>
+                <Link onClick={btnLogin} to='/login'>
+                  ลงชื่อเข้าใช้งาน
+                </Link>
+              </button>
             </li>
             <li>
-              <Link className='lineButton custom-link' onClick={btnRegister} to='/Register'>
-                ลงทะเบียน
-              </Link>
+              <button className='solidButton'>
+                <Link onClick={btnRegister} to='/Register'>
+                  ลงทะเบียน
+                </Link>
+              </button>
             </li>
           </ul>
         </div>
