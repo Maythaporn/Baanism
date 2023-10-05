@@ -41,9 +41,9 @@ export default function Header() {
   return (
     <>
       <nav className={`navbar ${isNavOpen ? 'active' : ''}`}>
-        <Link to="/">
-          <img src={logo} alt="baanism-logo" className="logoStyle" />
-        </Link>
+        {/* <Link to="/">
+          <img src={logo} alt="baanism-logo" className="logoStyleF" />
+        </Link> */}
 
         <div className="nav-toggle" onClick={toggleNav}>
           <div className="bar"></div>
@@ -51,8 +51,11 @@ export default function Header() {
           <div className="bar"></div>
         </div>
 
-        <div className={`nav-links ${isNavOpen ? 'open' : ''}`}>
-          <ul className='navBar'>
+        <div className='left-side'>
+        <Link to="/">
+          <img src={logo} alt="baanism-logo" className="logoStyle" />
+        </Link>
+        <ul className='navBar'>
             <li>
               <Link to="/about">
                 เกี่ยวกับเรา
@@ -60,7 +63,7 @@ export default function Header() {
             </li>
             <li>
               <Link to='/homecontent'>
-                Home GURU Content
+                Home GURU
               </Link>
             </li>
             <li>
@@ -73,19 +76,40 @@ export default function Header() {
                 ติดต่อเรา
               </Link>
             </li>
-            <li>
-              <button className='lineButton' onClick={btnLogin} >
-              <Link to='/login'>
-              ลงชื่อเข้าใช้งาน
+          </ul>
+        </div>
+
+        <div className={`nav-links ${isNavOpen ? 'open' : ''}`}>
+          <ul className='navBar'>
+            {/* <li>
+              <Link to="/about">
+                เกี่ยวกับเรา
               </Link>
-              </button>
             </li>
             <li>
-              <button className='solidButton' onClick={btnRegister} >
-              <Link to='/register'>
-              ลงชื่อเข้าใช้งาน
+              <Link to='/homecontent'>
+                Home GURU
               </Link>
-              </button>
+            </li>
+            <li>
+              <Link to='/'>
+                ประเมินราคา
+              </Link>
+            </li>
+            <li>
+              <Link to='/'>
+                ติดต่อเรา
+              </Link>
+            </li> */}
+            <li>
+              <Link className='lineButton custom-link' onClick={btnLogin} to='/login'>
+                ลงชื่อเข้าใช้งาน
+              </Link>
+            </li>
+            <li>
+              <Link className='lineButton custom-link' onClick={btnLogin} to='/login'>
+                ลงทะเบียน
+              </Link>
             </li>
           </ul>
         </div>

@@ -3,19 +3,31 @@
   height: 60px; 
 }
 
+.logoStyleF{
+  width: 252px;
+  height: 60px; 
+}
+
+.left-side{
+  display: flex;
+  flex-direction: row;
+}
 nav{
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: #fff;
   height: 60px;
+  width: 100%;
   padding-right: 50px;
+  position: fixed;
 }
 
 .navBar{
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .navBar li{
@@ -46,6 +58,21 @@ nav{
 }
 
 .lineButton{
+  border: 3px solid #038E7F;
+  border-radius: 12px;
+  background-color: none;
+  font-size: 1.3rem;
+  color: #100F0D;
+  
+}
+
+.custom-link {
+  width: 180px;
+  height: 40px;
+  /* Add other styles as needed */
+}
+
+/* .lineButton{
   border: 3px solid #038E7F;
   border-radius: 12px;
   background-color: #fff;
@@ -85,7 +112,7 @@ nav{
   background-color: #038E7F;
 
   color: white;
-}
+} */
 
 .navbar {
   /* display: flex;
@@ -166,5 +193,13 @@ nav{
 
   .navBar {
     flex-direction: column;
+  }
+
+  .logoStyle{
+    display: none;
+  }
+
+  .left-side{
+    display: none;
   }
 }
