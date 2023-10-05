@@ -37,32 +37,4 @@ export default function Header() {
          window.removeEventListener("resize", handleResize);
       };
    }, []);
-
-   return (
-      <nav className="navBarContainer">
-         <Link to="/">
-            <img src={logo} alt="baanism-logo" className="logoStyle" />
-         </Link>
-         <div className="headerMenu">
-            <Link to="/about">เกี่ยวกับเรา</Link>
-            <Link to="/homecontent" className="space">
-               Home GURU Content
-            </Link>
-            <Link to="/estimate" className="space">
-               ประเมินราคา
-            </Link>
-            <Link to="/contact" className="space">
-               ติดต่อเรา
-            </Link>
-         </div>
-         <div className="headerButton">
-            <Link>
-               <button className="lineButton">ลงชื่อเข้าใช้งาน</button>
-            </Link>
-            <Link>
-               <button className="solidButton">ลงทะเบียน</button>
-            </Link>
-         </div>
-      </nav>
-   );
 }

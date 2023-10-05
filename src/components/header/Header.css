@@ -72,7 +72,7 @@ nav{
   /* Add other styles as needed */
 }
 
-/* .lineButton{
+ .lineButton{
   border: 3px solid #038E7F;
   border-radius: 12px;
   background-color: #fff;
@@ -85,13 +85,13 @@ nav{
   height: 40px;
 }
 
-.lineButton:hover{
+/* .lineButton:hover{
   border: 3px solid #038E7F;
   border-radius: 12px;
   background-color: #fff;
 
   color: #100F0D;
-}
+} */
 
 .solidButton{
   border: 3px solid #038E7F;
@@ -106,13 +106,13 @@ nav{
   height: 40px;
 }
 
-.solidButton:hover{
+/* .solidButton:hover{
   border: 3px solid #038E7F;
   border-radius: 12px;
   background-color: #038E7F;
 
   color: white;
-} */
+}  */
 
 .navbar {
   /* display: flex;
@@ -189,6 +189,10 @@ nav{
 
   .nav-links {
     display: none;
+  }
+
+  .nav-links.open{
+    z-index: 1000;
   }
 
   .navBar {
