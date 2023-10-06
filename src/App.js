@@ -111,16 +111,11 @@ function App() {
                 }
             />
 
-            <Route
-                path="/user"
-                element={
-                  <>
-                      <User_header />
-                      <User_confirm />
-                      <User_footer />
-                  </>
-                }
-            />
+      <Route path="/user" element={<>
+        <User_header />
+        <User_confirm />
+        <User_footer />
+      </>} />
 
             <Route
                 path="/user_edit"

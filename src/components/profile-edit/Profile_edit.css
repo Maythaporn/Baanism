@@ -2,7 +2,6 @@
     background-image: url("./../../assets/images/bg-information.png"); /* Path to your background image */
     background-size: cover; /* Adjust as needed */
     background-repeat: repeat; /* Adjust as needed */
-    
     /* Other background properties can be added here */
     flex-direction: row;
     justify-content:space-evenly; 
@@ -11,7 +10,6 @@
   
     width: 100%;
   }
-  
   
   .sidebar{
       margin-top: 50px;
@@ -129,15 +127,15 @@
 
 
 /*หวาน เพิ่ม comfirm info */
-.ConfirmContainer {
+/* .ConfirmContainer {
     background-image: url("./../../assets/images/bg-information.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-color: rgba(255, 255, 255, 0.5);
     position: relative;
-    padding: 20px; /* Add padding for spacing */
+    padding: 20px; 
     border-radius: 10px;
-}
+} */
 
 .input-container {
     display: flex;
@@ -174,21 +172,6 @@
     padding: 10;
     
   }
-
-  .rectangle-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .rectangle {
-    width: 200px;
-    height: 100px;
-    background-color: white;
-    border-radius: 10px; /* Adjust this value for desired roundness */
-    border: 1px solid black; 
-  } 
 
 
   .pressed-button {
