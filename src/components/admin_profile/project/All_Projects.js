@@ -15,7 +15,7 @@ const All_Projects = () => {
                         <p>สถานที่ : {e.address}</p>
                     </div>
                     <div className='info-right'>
-                        <p>สถานะ : รอการติดต่อกลับ</p>
+                        <p>สถานะ : <span class="status"></span>รอการติดต่อกลับ</p>
                         <div className='edit'>
                             <button className='edit-btn'>แก้ไขข้อมูล</button>
                             <span className='space'>|</span>

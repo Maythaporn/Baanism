@@ -8,8 +8,7 @@
 }
 
 .content-info img {
-  max-width: 80%;
-  width: 280px;
+  width: 90%;
   object-fit: cover;
   margin: 0 auto;
   margin-bottom: 25px;

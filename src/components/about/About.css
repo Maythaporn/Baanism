@@ -5,7 +5,7 @@
   background-repeat: no-repeat; /* Prevent background image repetition */
   /*background: url("../../assets/images/blue\ gradiant-topleft.png"), rgb(255, 255, 255);
    background-position: 0% 0%; */
-  background: radial-gradient(at top left,rgb(189, 189, 255),rgb(243, 243, 255),white);
+  background: radial-gradient(at top left,rgb(189, 189, 255),white ,white);
   background-size: cover;
   display: grid ;
   grid-template-columns: 1fr 1fr;
@@ -117,7 +117,7 @@ h2{
   justify-content: center;
   padding-left: 300px;
   padding-top: 150px;
-  background: radial-gradient(at bottom right,rgb(189, 189, 255),rgb(243, 243, 255),white);
+  background: radial-gradient(at bottom right,rgb(189, 189, 255),white ,white);
 }
 
 .op-content-container1{
@@ -218,5 +218,5 @@ h2{
 }
 
 .gallery-container{
-  background: radial-gradient(at top right,rgb(189, 189, 255),rgb(243, 243, 255),white);
+  background: radial-gradient(at top right,rgb(189, 189, 255),white,white);
 }
