@@ -42,7 +42,7 @@ export default function Header() {
     <>
       <nav className={`navbar ${isNavOpen ? 'active' : ''}`}>
         <Link to="/">
-          <img src={logo} alt="baanism-logo" className="logoStyleF" />
+          <img src={logo} alt="baanism-logo" className="logoStyle" />
         </Link>
 
         <div className="nav-toggle" onClick={toggleNav}>
@@ -50,34 +50,6 @@ export default function Header() {
           <div className="bar"></div>
           <div className="bar"></div>
         </div>
-
-        {/* <div className='left-side'>
-        <Link to="/">
-          <img src={logo} alt="baanism-logo" className="logoStyle" />
-        </Link>
-        <ul className='navBar'>
-            <li>
-              <Link to="/about">
-                เกี่ยวกับเรา
-              </Link>
-            </li>
-            <li>
-              <Link to='/homecontent'>
-                Home GURU
-              </Link>
-            </li>
-            <li>
-              <Link to='/'>
-                ประเมินราคา
-              </Link>
-            </li>
-            <li>
-              <Link to='/'>
-                ติดต่อเรา
-              </Link>
-            </li>
-          </ul>
-        </div> */}
 
         <div className={`nav-links ${isNavOpen ? 'open' : ''}`}>
           <ul className='navBar'>
@@ -102,18 +74,28 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <button className='lineButton'>
+              <div className='lineButton'>
                 <Link onClick={btnLogin} to='/login'>
                   ลงชื่อเข้าใช้งาน
                 </Link>
-              </button>
+              </div>
+              {/* <div className='lineButton'>
+                <Link onClick={btnLogin} to='/login'>
+                  ลงชื่อเข้าใช้งาน
+                </Link>
+              </div> */}
             </li>
             <li>
-              <button className='solidButton'>
+              <div className='solidButton'>
+                <Link onClick={btnRegister} to='/register'>
+                  ลงทะเบียน
+                </Link>
+              </div>
+              {/* <div className='solidButton'>
                 <Link onClick={btnRegister} to='/Register'>
                   ลงทะเบียน
                 </Link>
-              </button>
+              </div> */}
             </li>
           </ul>
         </div>
