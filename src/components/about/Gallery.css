@@ -20,24 +20,24 @@
     object-fit: cover;
 }
 
-.gallery .box:nth-child(1){
+.gallery .box:nth-child(1) {
     grid-row: span 2;
 }
 
-.gallery .box:nth-child(3){
+.gallery .box:nth-child(3) {
     grid-column: span 2;
 }
 
-.gallery .box:nth-child(6){
+.gallery .box:nth-child(6) {
     grid-column: span 2;
 }
 
-.gallery .box:nth-child(8){
+.gallery .box:nth-child(8) {
     grid-column: span 2;
 }
 
 @media screen and (max-width: 820px) {
-    .gallery{
+    .gallery {
         width: 90vw;
         grid-gap: 5px;
     }

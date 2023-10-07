@@ -17,7 +17,7 @@ function Intro() {
     <div className="HomeGURUContainer">
       <h2 className="HomeGURUContent">ความรู้เรื่องต่อเติมบ้าน</h2>
       <div className="content">
-      {data.map((e) => {
+        {data.map((e) => {
           return <ContentInfo {...e} />
         })}
       </div>
