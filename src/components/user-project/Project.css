@@ -28,13 +28,12 @@
     flex-wrap: nowrap;
 
     align-items: center;
-
 }
 
 .profilebar{
   margin-top: 50px;
   margin-bottom: 50px;
-  margin-right: 2rem;
+
 
   width: 1000px;
   height: 700px;
@@ -48,6 +47,12 @@
   flex-wrap: nowrap;
 
   align-items: center;
+
+  padding-top: 40px;
+
+  font-size: 50px;
+  font-family: 'Prompt', sans-serif;
+  color: #e1e1e1;
 
 }
 
@@ -96,6 +101,25 @@
 
 }
 
+.addproject{
+  margin-left: 45rem;
+}
+
+.adproject-button{
+  border-radius: 10px;
+  background-color: #038E7F;
+  font-size: 15px;
+  font-family: 'Prompt', sans-serif;
+  color: white;
+  width: 150px;
+  height: 32px;
+  align-items: center;
+  text-align: center;
+
+  padding-top: 3px;
+
+}
+
 .user-icon{
   margin-top: 20px;
 }
@@ -120,6 +144,12 @@
   }
   .profilebar {
     margin-left: 10px;
-    width: 95%; /* Full width */
+    width: 95%;
+    font-size: 30px;
+    align-items: center; /* Full width */
+    text-align: center;
+  }
+  .addproject{
+    margin-right: 45rem;
   }
 }
