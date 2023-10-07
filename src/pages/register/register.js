@@ -3,7 +3,8 @@ import "./register.css";
 import logoIcon from '../../assets/images/logo_withbg.png';
 import TextInput from '../../components/textinput/textinput.js';
 // import Button from '../../components/button/button.js';
-import { Link, Routes, Route, useNavigate } from 'react-router-dom';
+import { useNavigate,} from 'react-router-dom';
+import { useState } from "react";
 import Button from "../../components/button/button";
 
 
@@ -11,8 +12,14 @@ function Register() {
 
     const navigate = useNavigate();
 
+    const [isTermsChecked, setIsTermsChecked] = useState(false); // State for checkbox
+
     const btnConfirm = () => {
-        navigate('/user'); // put ur page after /
+        if (!isTermsChecked) {
+            alert('โปรดยอมรับข้อกำหนดและเงื่อนไขก่อนการสมัครสมาชิก');
+            return;
+        }
+        navigate('/user'); // Navigate to your page
     }
 
     return (
@@ -34,11 +41,25 @@ function Register() {
                 <TextInput placeholder="อีเมล" />
                 <TextInput placeholder="รหัสผ่าน" />
                 <TextInput placeholder="ยืนยันรหัสผ่าน" />
-                <Link to='/user'>
-                    <button className='confirm-button' onClick={btnConfirm}>
+                <div className="terms-condition">
+                <input 
+                        type="checkbox" 
+                        id="terms" 
+                        name="terms"
+                        checked={isTermsChecked} 
+                        onChange={e => setIsTermsChecked(e.target.checked)} 
+                        required 
+                    />
+                    <div className ="terms-text">
+                    <label htmlFor="terms">ข้อกำหนดและเงื่อนไข</label>
+                    </div>
+                </div>
+                <button 
+                    className='confirm-button' 
+                    onClick={btnConfirm}
+                >
                         สมัครสมาชิก
                     </button>
-                </Link>
             </div>
         </div>
     );
