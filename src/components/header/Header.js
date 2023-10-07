@@ -4,39 +4,39 @@ import { Link, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
 export default function Header() {
-   const navigate = useNavigate();
-   const [isNavOpen, setIsNavOpen] = useState(false);
+    const navigate = useNavigate();
+    const [isNavOpen, setIsNavOpen] = useState(false);
 
-   const toggleNav = () => {
+    const toggleNav = () => {
       setIsNavOpen(!isNavOpen);
-   };
+    };
 
-   const btnRegister = () => {
+    const btnRegister = () => {
       navigate("/register");
-   };
+    };
 
-   const btnLogin = () => {
+    const btnLogin = () => {
       navigate("/login");
-   };
+    };
 
-   const closeNav = () => {
+    const closeNav = () => {
       setIsNavOpen(false);
-   };
+    };
 
-   useEffect(() => {
+    useEffect(() => {
       const handleResize = () => {
-         if (window.innerWidth >= 769) {
+          if (window.innerWidth >= 769) {
             closeNav(); // Close the navigation when the screen size is 769px or more
-         }
+          }
       };
 
       window.addEventListener("resize", handleResize);
 
       // Clean up the event listener when the component unmounts
       return () => {
-         window.removeEventListener("resize", handleResize);
+          window.removeEventListener("resize", handleResize);
       };
-   }, []);
+    }, []);
 
   return (
     <>
@@ -64,38 +64,24 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link to='/'>
+              <Link to='/estimate'>
                 ประเมินราคา
               </Link>
             </li>
             <li>
-              <Link to='/'>
+              <Link to='/contact'>
                 ติดต่อเรา
               </Link>
             </li>
             <li>
-              <div className='lineButton'>
-                <Link onClick={btnLogin} to='/login'>
+              <div className='lineButton' onClick={btnLogin} to='/login'>
                   ลงชื่อเข้าใช้งาน
-                </Link>
               </div>
-              {/* <div className='lineButton'>
-                <Link onClick={btnLogin} to='/login'>
-                  ลงชื่อเข้าใช้งาน
-                </Link>
-              </div> */}
             </li>
             <li>
-              <div className='solidButton'>
-                <Link onClick={btnRegister} to='/register'>
+              <div className='solidButton' onClick={btnRegister} to='/register'>
                   ลงทะเบียน
-                </Link>
               </div>
-              {/* <div className='solidButton'>
-                <Link onClick={btnRegister} to='/Register'>
-                  ลงทะเบียน
-                </Link>
-              </div> */}
             </li>
           </ul>
         </div>
