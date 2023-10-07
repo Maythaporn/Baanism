@@ -116,6 +116,10 @@ nav{
 }
 
 @media screen and (max-width: 768px) {
+  .logoStyle{
+    width: 200px;
+    margin-right: 5px;
+  }
   .nav-toggle {
     display: flex;
   }

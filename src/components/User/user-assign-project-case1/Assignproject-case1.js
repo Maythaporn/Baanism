@@ -199,7 +199,8 @@ function Assign1(props) {
               )}
             </div>
           </div>
-          <div className="column1">
+
+          <div className="column3">
             <div
               className={`dropdown-input${
                 isOptionNULLSelected ? "-expanded" : ""
