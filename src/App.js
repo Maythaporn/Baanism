@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./GlobalStyles";
 import { theme } from "./theme/theme";
+
 import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
 import Intro from "./components/intro/Intro";
 import About from "./components/about/About";
 import HomeGURU from "./components/homecontent/HomeGURU";
@@ -22,83 +22,76 @@ import Admin_header from "./components/admin_profile/header/Admin-header";
 import Admin_footer from "./components/admin_profile/footer/Admin-footer";
 
 import User_confirm from "./components/user_confirm/User_confirm";
-import Profile_edit from "./components/profile-edit/Profile_edit";
-import Estimate from "./components/estimate/Estimate";
+import Profile_edit from "./components/profile-edit/Profile_edit"
+
+import LpFooter from "./components/landingPageFooter/lpFooter";
+import Estimate from "./components/estimate/Estimate"
+
 function App() {
-   return (
-      <ThemeProvider theme={theme}>
-         <GlobalStyles />
-         <Routes>
-            {/* Default route */}
-            <Route
-               path="/"
-               element={
-                  <>
-                     <Header />
-                     <Intro />
-                     <About />
-                     <HomeGURU />
-                     <Footer />
-                  </>
-               }
-            />
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <Routes>
+        {/* Default route */}
+        <Route path="/" element={<>
+          <Header />
+          <Intro />
+          <About />
+          <HomeGURU />
+          <LpFooter />
+        </>} />
 
-            {/* About's route */}
-            <Route
-               path="/about"
-               element={
-                  <>
-                     <Header />
-                     <About />
-                     <HomeGURU />
-                     {/* <Footer /> */}
-                  </>
-               }
-            />
+        {/* About's route */}
+        <Route path="/about" element={<>
+          <Header />
+          <About />
+          <HomeGURU />
+          <LpFooter />
+        </>} />
 
             {/* Home's route */}
             <Route
-               path="/homecontent"
-               element={
+                path="/homecontent"
+                element={
                   <>
-                     <Header />
-                     <HomeGURU />
-                     {/* <Footer /> */}
+                      <Header />
+                      <HomeGURU />
+                      <LpFooter />
                   </>
-               }
+                }
             />
             {/* Home's route */}
             <Route
-               path="/estimate"
-               element={
+                path="/estimate"
+                element={
                   <>
-                     <Header />
-                     <Estimate />
-                     {/* <Footer /> */}
+                      <Header />
+                      <Estimate /> 
+                      <LpFooter />
                   </>
-               }
+                }
             />
 
             {/* register's route */}
             <Route
-               path="/register"
-               element={
+                path="/register"
+                element={
                   <>
-                     <Header />
-                     <Register />
-                     {/* <Footer /> */}
+                      <Header />
+                      <Register />
+                      <LpFooter />
                   </>
-               }
+                }
             />
             <Route
-               path="/forgot-password"
-               element={
+                path="/forgot-password"
+                element={
                   <>
-                     <Header />
-                     <Forgot />
-                     {/* <Footer /> */}
+                      <Header />
+                      <Forgot />
+                      <LpFooter />
                   </>
-               }
+                }
             />
 
             {/* forgot's route */}
@@ -108,56 +101,51 @@ function App() {
 
             {/* login's route */}
             <Route
-               path="/login"
-               element={
+                path="/login"
+                element={
                   <>
-                     <Header />
-                     <Login />
-                     {/* <Footer /> */}
+                      <Header />
+                      <Login />
+                      <LpFooter />
                   </>
-               }
+                }
+            />
+
+      <Route path="/user" element={<>
+        <User_header />
+        <User_confirm />
+        <User_footer />
+      </>} />
+
+            <Route
+                path="/user_edit"
+                element={
+                  <>
+                      <User_header />
+                      <Profile_edit />
+                      <User_footer />
+                  </>
+                }
             />
 
             <Route
-               path="/user"
-               element={
+                path="/admin"
+                element={
                   <>
-                     <User_header />
-                     <User_confirm />
-                     <User_footer />
+                      <Admin_header />
+                      <Admin />
+                      <Admin_footer />
                   </>
-               }
+                }
             />
+          </Routes>
 
-            <Route
-               path="/user_edit"
-               element={
-                  <>
-                     <User_header />
-                     <Profile_edit />
-                     <User_footer />
-                  </>
-               }
-            />
-
-            <Route
-               path="/admin"
-               element={
-                  <>
-                     <Admin_header />
-                     <Admin />
-                     <Admin_footer />
-                  </>
-               }
-            />
-         </Routes>
-
-         <MessengerCustomerChat
+          <MessengerCustomerChat
             pageId="2369383416447624"
             appId="320035067349586"
-         />
+          />
       </ThemeProvider>
-   );
+    );
 }
 
 export default App;

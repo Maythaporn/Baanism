@@ -3,11 +3,16 @@
    box-sizing: border-box;
 }
 
+button {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
 .est-main {
    box-sizing: border-box;
    margin: 0;
    padding: 0;
-   background-color: aliceblue;
    min-height: 100vh;
    display: flex;
    flex-direction: column;
@@ -58,6 +63,10 @@
    border-radius: 10px;
    color: #03128e;
    transition: 0.3s ease-out;
+}
+
+.nav-btn {
+   display: flex;
 }
 
 .nav-btn button {
@@ -179,6 +188,96 @@
 .answer h4 {
    color: #038e7f;
 }
-.show-answer p {
-   color: black;
+
+/* Extra Small Devices */
+@media screen and (max-width: 575px) {
+   .est-info {
+      width: 80%;
+   }
+   .est-question h2 {
+      font-size: 15px;
+   }
+   .question-choice {
+      display: flex;
+      flex-direction: column;
+   }
+   .question-choice button {
+      font-size: 13px;
+      width: 150px;
+   }
+   .est-choice h2 {
+      font-size: 15px;
+   }
+   .est-choice img {
+      width: 70%;
+   }
+   .choice button {
+      font-size: 10px;
+      width: 100px;
+      height: 40px;
+   }
+   .choice button:hover {
+      font-size: 10px;
+      width: 100px;
+      height: 40px;
+   }
+   .nav-btn button {
+      font-size: 10px;
+      width: 100px;
+      height: 40px;
+   }
+   .answer {
+      width: 80%;
+   }
+   .show-answer h1,
+   h2 {
+      font-size: 20px;
+   }
+   .show-answer h3,
+   h4 {
+      font-size: 15px;
+   }
+   .answer-left {
+      margin: 0 30px 0 0;
+   }
+   .answer-right {
+      margin: 0 20px;
+   }
+}
+/* Small Devices (Tablets): */
+@media screen and (min-width: 576px) and (max-width: 767px) {
+   .est-info {
+      width: 80%;
+   }
+   .est-question h2 {
+      font-size: 20px;
+   }
+   .question-choice button {
+      font-size: 12px;
+      width: 130px;
+   }
+   .est-choice h2 {
+      font-size: 25px;
+   }
+   .est-choice img {
+      width: 70%;
+   }
+}
+/* Medium Devices (Laptops and Desktops): */
+@media screen and (min-width: 768px) and (max-width: 992px) {
+   .est-info {
+      width: 90%;
+   }
+}
+/* Large Devices (Desktops): */
+@media screen and (min-width: 993px) and (max-width: 1200px) {
+   .est-info {
+      width: 90%;
+   }
+}
+/* Extra Large Devices (Desktops): */
+@media screen and (min-width: 1200px) {
+   .est-info {
+      width: 70%;
+   }
 }

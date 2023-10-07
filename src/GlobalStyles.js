@@ -2,29 +2,21 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
   body {
-    width: 100vw;
+    // width: 100vw;
     height: 100vh;
-    background: ${(props) => props.theme.White};
+    // background: ${(props) => props.theme.White};
     font-family: 'DM Sans', sans-serif;
     font-size:18px;
-    color: ${(props) => props.theme.Dark};
+    // color: ${(props) => props.theme.Dark};
   }
 
-  h1, h2, h3{
-    color: ${(props) => props.theme.Dark};
+  h1, h2, h3, p{
+    // color: ${(props) => props.theme.Dark};
+    font-family: "Prompt", sans-serif;
   }
 
-  p{
-    color: ${(props) => props.theme.Grayish};
-  }
-
-  // button, a{
-  //   border-radius: 0.2rem; 
-  //   cursor: pointer;
-  //   transition: 1s;
-  //   :hover {
-  //     transition: 0.5s;
-  //     background-color: transparent;}
+  // p{
+  //   color: ${(props) => props.theme.Grayish};
   // }
 
   * {
