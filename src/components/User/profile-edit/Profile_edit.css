@@ -1,5 +1,5 @@
 .container{
-    background-image: url("./../../assets/images/bg-information.png"); /* Path to your background image */
+    background-image: url("./../../../assets/images/bg-information.png"); /* Path to your background image */
     background-size: cover; /* Adjust as needed */
     background-repeat: repeat; /* Adjust as needed */
     /* Other background properties can be added here */

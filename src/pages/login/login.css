@@ -36,7 +36,6 @@ body {
     background-color: #fff; 
     color: #000;
     text-align: center;
-    line-height: 200px;
     font-size: 24px;
     border-radius: 0 20px 20px 0;
     position: relative;
@@ -68,23 +67,24 @@ body {
   .forgot-password-button {
     font-family: 'Prompt', sans-serif;
     background-color: transparent;
-    color: rgb(190, 190, 190); /* สีข้อความ */
+    color: #ccc;
     border: none;
     font-size: 14px;
-    text-decoration: underline; /* เพิ่มขีดเส้นใต้ข้อความ */
+    text-decoration: underline; 
     cursor: pointer;
-    margin-left: 330px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    display: block; /* กำหนดประเภทแสดงผลเป็น block */
-    line-height: 1;
-  }
+    margin-right: 30px;
+    position: absolute;
+    right: 15px;
+    width: auto; 
+    padding: 5px 10px;
   
-  .forgot-password-button:hover {
-    font-family: 'Prompt', sans-serif;
-    text-decoration: none; /* ลบขีดเส้นใต้ข้อความเมื่อชี้ตัวเมาส์ */
-  }
+}
 
+.forgot-password-button:hover {
+    font-family: 'Prompt', sans-serif;
+    text-decoration: none; 
+    color: #999; 
+}
 
   /*เพิ่มจากหวาน*/
 
@@ -97,8 +97,8 @@ body {
   width: 400px;
   height: 40px;
   margin-left: 50px;
-  margin-top: 20px;
-  display: block;
+  margin-top: 40px;
+  display: flex;
 }
 
 .login-button:hover {
@@ -107,4 +107,23 @@ body {
   border: 3px solid #038E7F;
   
 }
-  
+
+.tel-input,.password-input {
+  margin-top: 2px;
+  margin-bottom: 2px;
+  width: 400px;
+  height: 50px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  font-size: 16px;
+  font-family: 'Prompt', sans-serif;
+}
+.tel-input:focus,.password-input:focus  {
+  border-color: #007bff;
+}
+.tel-input::placeholder, .password-input::placeholder {
+  color: #999; /* สีที่คุณต้องการ */
+  opacity: 1;  /* ความโปร่งใสของ placeholder (1 คือ 100%) */
+}

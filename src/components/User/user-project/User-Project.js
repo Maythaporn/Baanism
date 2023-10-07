@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "./Project.css"; // Import the CSS file for this component
+import "./User-project.css"; // Import the CSS file for this component
 import 'react-icons/fa';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { FaCamera, FaUserCircle } from 'react-icons/fa';
+import { FaCamera, FaPlus, FaUserCircle } from 'react-icons/fa';
 import { FaFile } from 'react-icons/fa';
 import { FaUser} from 'react-icons/fa';
 import { FaCashRegister } from 'react-icons/fa';
@@ -58,7 +59,21 @@ function Project() {
         <br />
       </div>
 
-      <div className="profilebar"></div>
+      <div className="profilebar">
+
+        <div className="addproject">
+          <Link to = "/Assignment1">
+            <div className="adproject-button">
+              <FaPlus size={10} color="white"/>  เพิ่มโครงการ
+            </div>
+          </Link>
+        </div>
+        <br>
+        </br>
+        <br>
+        </br>
+        ไม่มีโครงการของท่าน ณ ตอนนี้
+      </div>
     </div>
   );
 }

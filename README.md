@@ -19,6 +19,7 @@ please follow this step
 ```bash
 # First, you need to install these dependencies
 npm install react react-dom
+npm install react-responsive-carousel --save
 
 # Then, start the project using the following command
 npm start

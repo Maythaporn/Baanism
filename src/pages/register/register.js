@@ -35,12 +35,12 @@ function Register() {
             </div>
             <div className="white-box-register">
                 <h1 className="head-register">สมัครสมาชิก</h1>
-                <TextInput placeholder="ชื่อจริง" />
-                <TextInput placeholder="นามสกุล" />
-                <TextInput placeholder="เบอร์โทรศัพท์" />
-                <TextInput placeholder="อีเมล" />
-                <TextInput placeholder="รหัสผ่าน" />
-                <TextInput placeholder="ยืนยันรหัสผ่าน" />
+                <input type="text" className="name-input" placeholder="ชื่อจริง"></input>
+                <input type="text" className="surname-input" placeholder="นามสกุล"></input>
+                <input type="text" className="tele-input" placeholder="เบอร์โทรศัพท์"></input>
+                <input type="text" className="email-input" placeholder="อีเมล"></input>
+                <input type="text" className="pass-input" placeholder="รหัสผ่าน"></input>
+                <input type="text" className="confirm-pass-input" placeholder="ยืนยันรหัสผ่าน"></input>
                 <div className="terms-condition">
                 <input 
                         type="checkbox" 

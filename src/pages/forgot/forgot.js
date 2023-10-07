@@ -25,7 +25,7 @@ function Forgot() {
                 <p class='head-text'>ลืมรหัสผ่านหรือไม่?</p>
                 <p class='content-text'>กรุณากรอกหมายเลขโทรศัพท์หรือที่อยู่อีเมลของคุณ</p>
                 <p class='last-text'>คุณจะได้รับลิงค์สำหรับสร้างรหัสผ่านใหม่ทางอีเมล</p>
-                <TextInput placeholder="เบอร์โทรศัพท์ หรือ อีเมล" />
+                <input type="text" className="reset-input" placeholder="เบอร์โทรศัพท์ หรือ อีเมล"></input>
                 <button className="reset-button" onClick={btnForgot}>
                         รีเซตรหัสผ่าน
                     </button>

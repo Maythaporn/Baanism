@@ -37,10 +37,9 @@ html {
 .white-box-register {
     width: 500px;
     height: 700px;
-    background-color: #fff; 
+    background-color: #fff;
     color: #000;
     text-align: center;
-    line-height: 200px;
     font-size: 24px;
     border-radius: 0 20px 20px 0;
     position: relative;
@@ -109,4 +108,41 @@ html {
 .terms-text {
     margin-left: 5px;
     color: #999;
+}
+
+.name-input,
+.surname-input,
+.tele-input,
+.email-input,
+.pass-input,
+.confirm-pass-input {
+    width: 400px;
+    height: 50px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    font-size: 16px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+    font-family: 'Prompt', sans-serif;
+}
+
+.name-input::placeholder,
+.surname-input::placeholder,
+.tele-input::placeholder,
+.email-input::placeholder,
+.pass-input::placeholder,
+.confirm-pass-input::placeholder {
+    color: #999;
+}
+
+.name-input:focus,
+.surname-input:focus,
+.tele-input:focus,
+.email-input:focus,
+.pass-input:focus,
+.confirm-pass-input:focus {
+    border-color: #007bff;
 }

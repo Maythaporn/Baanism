@@ -3,7 +3,7 @@ import "./Profile_edit.css"; // Import the CSS file for this component
 import 'react-icons/fa';
 import { Link, Routes, Route, useNavigate } from 'react-router-dom';
 import { View, TextInput, onChangeText, onChangeNumber } from 'react';
-import Button from '../../components/button/button.js';
+import Button from '../../../components/button/button.js';
 
 import { FaCamera, FaUserCircle } from 'react-icons/fa';
 import { FaFile } from 'react-icons/fa';
