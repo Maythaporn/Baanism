@@ -1,0 +1,27 @@
+.input-container-cont {
+    display: flex;
+    align-items: flex-start;
+    justify-items: center;
+    margin: 20px;
+}
+
+.text-input {
+    width: 350px;
+    height: 50px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    font-size: 16px;
+    margin-top: 2px;
+    margin-bottom: 2px; 
+    font-family: 'Prompt', sans-serif;
+}
+
+.text-input::placeholder {
+    color: #000;
+}
+
+.text-input:focus {
+    border-color: #038E7F;
+}

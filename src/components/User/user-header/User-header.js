@@ -1,5 +1,5 @@
 import logo from './logo-header.png';
-import './Header.css';
+import './User-header.css';
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import {FaBell,FaUser} from 'react-icons/fa'

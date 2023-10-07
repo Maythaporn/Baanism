@@ -3,16 +3,23 @@ import "./register.css";
 import logoIcon from '../../assets/images/logo_withbg.png';
 import TextInput from '../../components/textinput/textinput.js';
 // import Button from '../../components/button/button.js';
-import { Link, Routes, Route, useNavigate } from 'react-router-dom';
+import { useNavigate,} from 'react-router-dom';
+import { useState } from "react";
 import Button from "../../components/button/button";
 
 
 function Register() {
 
     const navigate = useNavigate();
-  
+
+    const [isTermsChecked, setIsTermsChecked] = useState(false); // State for checkbox
+
     const btnConfirm = () => {
-        navigate('/user'); // put ur page after /
+        if (!isTermsChecked) {
+            alert('โปรดยอมรับข้อกำหนดและเงื่อนไขก่อนการสมัครสมาชิก');
+            return;
+        }
+        navigate('/user'); // Navigate to your page
     }
 
     return (
@@ -28,17 +35,31 @@ function Register() {
             </div>
             <div className="white-box-register">
                 <h1 className="head-register">สมัครสมาชิก</h1>
-                <TextInput placeholder="ชื่อจริง" />
-                <TextInput placeholder="นามสกุล" />
-                <TextInput placeholder="เบอร์โทรศัพท์" />
-                <TextInput placeholder="อีเมล" />
-                <TextInput placeholder="รหัสผ่าน" />
-                <TextInput placeholder="ยืนยันรหัสผ่าน" />
-                <Link to='/user'>
-                    <button className='confirmbutton' onClick={btnConfirm}>
+                <input type="text" className="name-input" placeholder="ชื่อจริง"></input>
+                <input type="text" className="surname-input" placeholder="นามสกุล"></input>
+                <input type="text" className="tele-input" placeholder="เบอร์โทรศัพท์"></input>
+                <input type="text" className="email-input" placeholder="อีเมล"></input>
+                <input type="text" className="pass-input" placeholder="รหัสผ่าน"></input>
+                <input type="text" className="confirm-pass-input" placeholder="ยืนยันรหัสผ่าน"></input>
+                <div className="terms-condition">
+                <input 
+                        type="checkbox" 
+                        id="terms" 
+                        name="terms"
+                        checked={isTermsChecked} 
+                        onChange={e => setIsTermsChecked(e.target.checked)} 
+                        required 
+                    />
+                    <div className ="terms-text">
+                    <label htmlFor="terms">ข้อกำหนดและเงื่อนไข</label>
+                    </div>
+                </div>
+                <button 
+                    className='confirm-button' 
+                    onClick={btnConfirm}
+                >
                         สมัครสมาชิก
                     </button>
-                </Link>
             </div>
         </div>
     );
