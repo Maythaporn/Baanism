@@ -1,5 +1,5 @@
 .Usercontainer{
-  background-image: url("./../../assets/images/bg-information.png"); /* Path to your background image */
+  background-image: url("./../../../assets/images/bg-information.png"); /* Path to your background image */
   background-size: cover; /* Adjust as needed */
   background-repeat: repeat; /* Adjust as needed */
   /* Other background properties can be added here */
@@ -133,21 +133,22 @@ hr.new4 {
   margin-top: 5px;
 }
 
-.input-container {
+.assign-input-container {
   width: 910px;
   display: flex;
-  flex-direction: row; /* Make it a flex container */
+  padding-left: 40px;
 
-  background-color: antiquewhite;
+  justify-content: space-between;
+  flex-direction: row; /* Make it a flex container */
   margin-bottom: 20px;
   /* You can also add other styles like width, background-color, etc. */
 }
 
-.input1-container {
+.assign-input1-container {
   width: 910px;
   display: flex;
+  padding-left: 40px;
 
-  background-color:#ffffff;
   justify-content: center;
   flex-direction: row; /* Make it a flex container */
   margin-bottom: 20px;
@@ -158,7 +159,7 @@ hr.new4 {
   width: 450px;
   height: 150px;
   display: flex;
-  background-color:#ccc;
+
   justify-content: space-between;
   flex-direction: column;
   /* Make it a flex container */
@@ -167,7 +168,7 @@ hr.new4 {
 .column1 {
   width: 450px;
   display: flex;
-  background-color: aliceblue;
+
   flex-direction: column; /* Make it a flex container */
   /* You can also add other styles like width, background-color, etc. */
 }
@@ -440,7 +441,7 @@ hr.new4 {
   font-family: 'Prompt', sans-serif;
   color: #100F0D;
   font-size: 30px;
-  padding-right: 30rem;
+  padding-right: 33rem;
 }
 
 .text-dropdown{

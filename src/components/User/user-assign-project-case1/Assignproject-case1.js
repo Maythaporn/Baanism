@@ -5,9 +5,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import the st
 import { Carousel } from "react-responsive-carousel";
 import { Link, useNavigate } from "react-router-dom";
 
-import gallery3 from '../../assets/images/gallery3.png'
-import gallery4 from '../../assets/images/gallery4.png'
-import gallery5 from '../../assets/images/gallery5.png'
+import gallery3 from '../../../assets/images/gallery3.png'
+import gallery5 from '../../../assets/images/gallery5.png'
 
 import {
   FaCamera,
@@ -159,7 +158,7 @@ function Assign1(props) {
             height: "20px",
           }}
         />
-        <div className="input-container">
+        <div className="assign-input-container">
           <div className="column1">
             <div
               className={`dropdown-input${
@@ -199,8 +198,7 @@ function Assign1(props) {
               )}
             </div>
           </div>
-
-          <div className="column3">
+          <div className="column1">
             <div
               className={`dropdown-input${
                 isOptionNULLSelected ? "-expanded" : ""
@@ -249,7 +247,7 @@ function Assign1(props) {
             </div>
           </div>
         </div>
-        <div className="input-container">
+        <div className="assign-input-container">
           <div className="column1">
             <div className="checkbox-container">
               <p className="text">สถานที่ดำเนินโครงการ : </p>
@@ -292,7 +290,7 @@ function Assign1(props) {
             </div>
           </div>
         </div>
-        <div className="input-container">
+        <div className="assign-input-container">
           <div className="column1">
             <div className="text-input-provinces">
               จังหวัด
@@ -339,7 +337,7 @@ function Assign1(props) {
           </div>
         </div>
 
-        <div className="input-container">
+        <div className="assign-input-container">
           <div className="column2">
             <div className="row">
               <div className="dropdown-input">
@@ -414,7 +412,7 @@ function Assign1(props) {
             </div>
           </div>
         </div>
-        <div className="input-container">
+        <div className="assign-input-container">
           <div className="column1">
             <div className="text-input">
               ลิ้งค์ Google Maps
@@ -496,7 +494,7 @@ function Assign1(props) {
 
         {isOptionNULLSelected ? (
           <div>
-            <div className="input-container">
+            <div className="assign-input-container">
               <div className="column1">
                 <div className="area-input">
                   กำหนดเริ่มดำเนินโครงการ
@@ -596,7 +594,7 @@ function Assign1(props) {
                 </div>
               </div>
             </div>
-            <div className="input-container">
+            <div className="assign-input-container">
               <div className="column1">
                 <p className="text2">ดูแบบบ้านในแต่ละโครงการ</p>
 
@@ -631,7 +629,7 @@ function Assign1(props) {
                 </div>
               </div>
             </div>
-            <div className="input1-container">
+            <div className="assign-input1-container">
               <Carousel
                 showArrows={true} // Show navigation arrows
                 showThumbs={false} // Hide thumbnail images
@@ -653,7 +651,7 @@ function Assign1(props) {
               </Carousel>
             </div>
 
-            <div className="input-container">
+            <div className="assign-input-container">
               <div className="column1">
                 <div className="blueprint">
                   <div>
@@ -682,7 +680,7 @@ function Assign1(props) {
                 </div>
               </div>
             </div>
-            <div className="input-container">
+            <div className="assign-input-container">
               <div className="column2">
                 <div className="info-input">
                   ข้อมูลเพิ่มเติม
@@ -696,13 +694,13 @@ function Assign1(props) {
               </div>
             </div>
 
-            <div className="input1-container">
+            <div className="assign-input1-container">
               <div className="assign1-confirm-button">ยืนยันข้อมูล</div>
             </div>
           </div>
         ) : (
           <div>
-            <div className="input-container">
+            <div className="assign-input-container">
               <div className="column1">
                 <div className="area-input">
                   กำหนดเริ่มดำเนินโครงการ
@@ -803,7 +801,7 @@ function Assign1(props) {
               </div>
             </div>
 
-            <div className="input-container">
+            <div className="assign-input-container">
               <div className="column1">
                 <div className="blueprint">
                   <div>
@@ -832,7 +830,7 @@ function Assign1(props) {
                 </div>
               </div>
             </div>
-            <div className="input-container">
+            <div className="assign-input-container">
               <div className="column2">
                 <div className="info-input">
                   ข้อมูลเพิ่มเติม
@@ -847,7 +845,7 @@ function Assign1(props) {
             </div>
             <br />
             <br />
-            <div className="input1-container">
+            <div className="assign-input1-container">
               <div className="assign1-confirm-button">ยืนยันข้อมูล</div>
             </div>
           </div>

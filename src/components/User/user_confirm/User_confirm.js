@@ -11,7 +11,7 @@ import { FaUser } from 'react-icons/fa';
 import { FaCashRegister } from 'react-icons/fa';
 import { FaIdCard } from 'react-icons/fa';
 
-import Button from '../../components/button/button.js';
+
 
 function Confirm(props) {
     const [isMobile, setIsMobile] = useState(false);
