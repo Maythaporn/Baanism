@@ -17,6 +17,8 @@ import User from "./components/user-project/User-Project";
 import User_header from "./components/user-header/User-header";
 import User_footer from "./components/user-footer/User-footer";
 
+import Assign1 from "./components/user-assign-project-case1/Assignproject-case1";
+
 import Admin from "./components/admin_profile/project/Admin-Project";
 import Admin_header from "./components/admin_profile/header/Admin-header";
 import Admin_footer from "./components/admin_profile/footer/Admin-footer";
@@ -138,6 +140,13 @@ function App() {
             </>
           }
         />
+
+        <Route path="/Assignment1" element={<>
+        <User_header />
+        <Assign1/>
+        <User_footer />
+        
+      </>} />
 
         <Route
           path="/admin"
