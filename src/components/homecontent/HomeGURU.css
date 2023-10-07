@@ -1,29 +1,24 @@
 
 .HomeGURUContainer {
-  padding-top: 70px;
-  height: 740px;
-  margin: 0 auto; /* Added "px" units to the margin values */
-  background-size: cover; /* Ensure the background image covers the container */
-  background-repeat: no-repeat; /* Prevent background image repetition */
-
+  padding: 70px 0;
+  background: radial-gradient(at bottom left,rgb(189, 189, 255),white ,white);
 }
 
 .HomeGURUContent {
   font-family: 'prompt', sans-serif;
   color: black; /* Take up remaining space */
-  padding-left: 100px;
+  padding-left: 80px;
+  padding-bottom: 40px;
   font-size: 40px;
 }
 
 .content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  grid-gap: 20px;
-  justify-items: center;
-  margin: 40px auto;
   width: 90vw;
-  height: 450px;
-  overflow: hidden;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-gap: 40px;
+  justify-items: center;
+  margin: 0 auto;
   /* border: 1px solid black; */
 }
 
