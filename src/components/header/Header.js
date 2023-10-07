@@ -74,14 +74,28 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <div className='lineButton' onClick={btnLogin} to='/login'>
+              <div className='lineButton'>
+                <Link onClick={btnLogin} to='/login'>
                   ลงชื่อเข้าใช้งาน
+                </Link>
               </div>
+              {/* <div className='lineButton'>
+                <Link onClick={btnLogin} to='/login'>
+                  ลงชื่อเข้าใช้งาน
+                </Link>
+              </div> */}
             </li>
             <li>
-              <div className='solidButton' onClick={btnRegister} to='/register'>
+              <div className='solidButton'>
+                <Link onClick={btnRegister} to='/register'>
                   ลงทะเบียน
+                </Link>
               </div>
+              {/* <div className='solidButton'>
+                <Link onClick={btnRegister} to='/Register'>
+                  ลงทะเบียน
+                </Link>
+              </div> */}
             </li>
           </ul>
         </div>

@@ -11,6 +11,7 @@
   grid-template-columns: 1fr 1fr;
   justify-content: center;
   padding-left: 100px;
+  padding-top: 100px;
 }
 
 .content-container{
@@ -95,7 +96,8 @@ h2{
 .icon{
   width: 115px;
   height: 125px;
-  object-fit: contain;
+  object-fit: scale-down
+  ;
 }
 
 .icon-large{
@@ -162,6 +164,7 @@ h2{
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
 }
 
 .op-content-box{

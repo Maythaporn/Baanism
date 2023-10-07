@@ -2,8 +2,8 @@ import './All_Projects.css'
 
 const All_Projects = () => {
     const data = [
-        { id: 1, title: "ต่อเติม", type: "", address: "หมู่บ้าน , เขต/อำเถอ , จังหวัด , รหัสไปรษณี aaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
-        {id: 2, title: "ต่อเติม", type: "", address: "หมู่บ้าน , เขต/อำเถอ , จังหวัด , รหัสไปรษณี"},
+        { id: 1, title: "ต่อเติม", type: "", address: "หมู่บ้าน , เขต/อำเถอ , จังหวัด , รหัสไปรษณี" },
+        { id: 2, title: "ต่อเติม", type: "", address: "หมู่บ้าน , เขต/อำเถอ , จังหวัด , รหัสไปรษณี" },
     ]
     return (
         <>
