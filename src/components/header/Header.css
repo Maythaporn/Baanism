@@ -1,17 +1,8 @@
-.logoStyle{
-  width: 252px;
-  height: 60px; 
-}
-
-.logoStyleF{
-  width: 252px;
-  height: 60px; 
-}
-
 .left-side{
   display: flex;
   flex-direction: row;
 }
+
 nav{
   display: flex;
   align-items: center;
@@ -19,7 +10,6 @@ nav{
   background-color: #fff;
   height: 60px;
   width: 100%;
-  padding-right: 50px;
   position: fixed;
   z-index: 1;
 }
@@ -33,7 +23,7 @@ nav{
 
 .navBar li{
   list-style: none;
-  padding: 0 20px;
+  /* padding: 0 20px; */
   position: relative;
 }
 
@@ -58,6 +48,10 @@ nav{
   left: 35%;
 }
 
+.gap{
+  /* margin-left: 50%; */
+}
+
 .lineButton{
   border: 3px solid #038E7F;
   border-radius: 12px;
@@ -67,53 +61,38 @@ nav{
   
 }
 
-.custom-link {
-  width: 180px;
-  height: 40px;
-  /* Add other styles as needed */
-}
-
 .lineButton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   border: 3px solid #038E7F;
   border-radius: 12px;
   background-color: #fff;
 
   font-size: 1.3rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "Prompt", sans-serif;
   color: #100F0D;
 
   width: 180px;
   height: 40px;
 }
 
-.lineButton a:hover{
-  color: #100F0D;
-}
-
 .solidButton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   border: 3px solid #038E7F;
   border-radius: 12px;
   background-color: #038E7F;
   
   color: white;
   font-size: 1.3rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "Prompt", sans-serif;
   
   width: 180px;
   height: 40px;
-}
-
-.solidButton a:hover{
-  color: white;
-} 
-
-.navbar {
-  /* display: flex;
-  justify-content: space-between;
-  align-items: center; */
-  padding: 1rem 2rem;
-  /* background-color: #fff;
-  color: #fff; */
 }
 
 .nav-toggle {
@@ -149,7 +128,7 @@ nav{
 }
 
 .nav-links.open li{
-  padding: 1.3rem 0;
+  /* padding: 1.3rem 0; */
 }
 
 .nav-links.open li a:hover{

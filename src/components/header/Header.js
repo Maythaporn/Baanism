@@ -1,4 +1,4 @@
-import logo from './../../assets/images/LOGO_Linear_BGW_FTB.png';
+import logo from './../../assets/images/logo-header.png';
 import './Header.css';
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
@@ -42,7 +42,7 @@ export default function Header() {
     <>
       <nav className={`navbar ${isNavOpen ? 'active' : ''}`}>
         <Link to="/">
-          <img src={logo} alt="baanism-logo" className="logoStyleF" />
+          <img src={logo} alt="baanism-logo" style={{width:'220px', height:'60px'}} />
         </Link>
 
         <div className="nav-toggle" onClick={toggleNav}>
@@ -51,37 +51,9 @@ export default function Header() {
           <div className="bar"></div>
         </div>
 
-        {/* <div className='left-side'>
-        <Link to="/">
-          <img src={logo} alt="baanism-logo" className="logoStyle" />
-        </Link>
-        <ul className='navBar'>
-            <li>
-              <Link to="/about">
-                เกี่ยวกับเรา
-              </Link>
-            </li>
-            <li>
-              <Link to='/homecontent'>
-                Home GURU
-              </Link>
-            </li>
-            <li>
-              <Link to='/'>
-                ประเมินราคา
-              </Link>
-            </li>
-            <li>
-              <Link to='/'>
-                ติดต่อเรา
-              </Link>
-            </li>
-          </ul>
-        </div> */}
-
         <div className={`nav-links ${isNavOpen ? 'open' : ''}`}>
           <ul className='navBar'>
-            <li>
+            <li className='gap'>
               <Link to="/about">
                 เกี่ยวกับเรา
               </Link>
@@ -102,18 +74,14 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <button className='lineButton'>
-                <Link onClick={btnLogin} to='/login'>
-                  ลงชื่อเข้าใช้งาน
-                </Link>
-              </button>
+              <div onClick={btnLogin} to='/login' className='lineButton'>
+                ลงชื่อเข้าใช้งาน
+              </div>
             </li>
             <li>
-              <button className='solidButton'>
-                <Link onClick={btnRegister} to='/Register'>
-                  ลงทะเบียน
-                </Link>
-              </button>
+              <div onClick={btnRegister} to='/register' className='solidButton'>
+                ลงชื่อเข้าใช้งาน
+              </div>
             </li>
           </ul>
         </div>
