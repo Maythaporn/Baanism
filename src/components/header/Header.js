@@ -40,7 +40,7 @@ export default function Header() {
 
   return (
     <>
-      <nav className={`navbar ${isNavOpen ? 'active' : ''}`}>
+      <nav className={`rootNav ${isNavOpen ? 'active' :''}`}>
         <Link to="/">
           <img src={logo} alt="baanism-logo" className="logoStyle" />
         </Link>
@@ -54,7 +54,7 @@ export default function Header() {
         <div className={`nav-links ${isNavOpen ? 'open' : ''}`}>
           <ul className='navBar'>
             <li>
-              <Link to="/about">
+              <Link to="/about" className='first'>
                 เกี่ยวกับเรา
               </Link>
             </li>
@@ -74,10 +74,8 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <div className='lineButton'>
-                <Link onClick={btnLogin} to='/login'>
+              <div className='lineButton' onClick={btnLogin} to='/login'>
                   ลงชื่อเข้าใช้งาน
-                </Link>
               </div>
               {/* <div className='lineButton'>
                 <Link onClick={btnLogin} to='/login'>
@@ -86,10 +84,8 @@ export default function Header() {
               </div> */}
             </li>
             <li>
-              <div className='solidButton'>
-                <Link onClick={btnRegister} to='/register'>
+              <div className='solidButton' onClick={btnRegister} to='/register'>
                   ลงทะเบียน
-                </Link>
               </div>
               {/* <div className='solidButton'>
                 <Link onClick={btnRegister} to='/Register'>
@@ -99,6 +95,7 @@ export default function Header() {
             </li>
           </ul>
         </div>
+
       </nav>
     </>
   );
