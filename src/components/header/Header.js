@@ -64,12 +64,12 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link to='/'>
+              <Link to='/estimate'>
                 ประเมินราคา
               </Link>
             </li>
             <li>
-              <Link to='/'>
+              <Link to='/contact'>
                 ติดต่อเรา
               </Link>
             </li>
