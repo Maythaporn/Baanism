@@ -26,6 +26,7 @@ import Profile_edit from "./components/profile-edit/Profile_edit"
 
 import LpFooter from "./components/landingPageFooter/lpFooter";
 import Estimate from "./components/estimate/Estimate"
+import Contact from "./pages/contact us/contact";
 
 function App() {
   return (
@@ -49,103 +50,113 @@ function App() {
           <LpFooter />
         </>} />
 
-            {/* Home's route */}
-            <Route
-                path="/homecontent"
-                element={
-                  <>
-                      <Header />
-                      <HomeGURU />
-                      <LpFooter />
-                  </>
-                }
-            />
-            {/* Home's route */}
-            <Route
-                path="/estimate"
-                element={
-                  <>
-                      <Header />
-                      <Estimate /> 
-                      <LpFooter />
-                  </>
-                }
-            />
+        {/* Home's route */}
+        <Route
+          path="/homecontent"
+          element={
+            <>
+              <Header />
+              <HomeGURU />
+              <LpFooter />
+            </>
+          }
+        />
+        {/* Home's route */}
+        <Route
+          path="/estimate"
+          element={
+            <>
+              <Header />
+              <Estimate />
+              <LpFooter />
+            </>
+          }
+        />
 
-            {/* register's route */}
-            <Route
-                path="/register"
-                element={
-                  <>
-                      <Header />
-                      <Register />
-                      <LpFooter />
-                  </>
-                }
-            />
-            <Route
-                path="/forgot-password"
-                element={
-                  <>
-                      <Header />
-                      <Forgot />
-                      <LpFooter />
-                  </>
-                }
-            />
+        {/* register's route */}
+        <Route
+          path="/register"
+          element={
+            <>
+              <Header />
+              <Register />
+              <LpFooter />
+            </>
+          }
+        />
+        <Route
+          path="/forgot-password"
+          element={
+            <>
+              <Header />
+              <Forgot />
+              <LpFooter />
+            </>
+          }
+        />
 
-            {/* forgot's route */}
-            {/* <Route path="/forgot-password" element={<>
+        <Route
+          path="/contact"
+          element={
+            <>
+              <Header />
+              <Contact />
+            </>
+          }
+        />
+
+        {/* forgot's route */}
+        {/* <Route path="/forgot-password" element={<>
           <Forgot />
         </>} /> */}
 
-            {/* login's route */}
-            <Route
-                path="/login"
-                element={
-                  <>
-                      <Header />
-                      <Login />
-                      <LpFooter />
-                  </>
-                }
-            />
+        {/* login's route */}
+        <Route
+          path="/login"
+          element={
+            <>
+              <Header />
+              <Login />
+              <LpFooter />
+            </>
+          }
+        />
 
-      <Route path="/user" element={<>
-        <User_header />
-        <User_confirm />
-        <User_footer />
-      </>} />
+        <Route path="/user" element={<>
+          <User_header />
+          <User_confirm />
+          <User_footer />
+        </>} />
 
-            <Route
-                path="/user_edit"
-                element={
-                  <>
-                      <User_header />
-                      <Profile_edit />
-                      <User_footer />
-                  </>
-                }
-            />
+        <Route
+          path="/user_edit"
+          element={
+            <>
+              <User_header />
+              <Profile_edit />
+              <User_footer />
+            </>
+          }
+        />
 
-            <Route
-                path="/admin"
-                element={
-                  <>
-                      <Admin_header />
-                      <Admin />
-                      <Admin_footer />
-                  </>
-                }
-            />
-          </Routes>
+        <Route
+          path="/admin"
+          element={
+            <>
+              <Admin_header />
+              <Admin />
+              <Admin_footer />
+            </>
+          }
+        />
+      </Routes>
 
-          <MessengerCustomerChat
-            pageId="2369383416447624"
-            appId="320035067349586"
-          />
-      </ThemeProvider>
-    );
+      <MessengerCustomerChat
+        pageId="2369383416447624"
+        appId="320035067349586"
+      />
+    </ThemeProvider>
+  );
 }
 
 export default App;

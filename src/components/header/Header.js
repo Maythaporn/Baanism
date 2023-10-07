@@ -91,7 +91,7 @@ export default function Header() {
                      <Link to="/estimate">ประเมินราคา</Link>
                   </li>
                   <li>
-                     <Link to="/">ติดต่อเรา</Link>
+                     <Link to="/contact">ติดต่อเรา</Link>
                   </li>
                   <li>
                      <button className="lineButton">
