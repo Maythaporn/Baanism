@@ -100,7 +100,7 @@ function Assign1(props) {
   }, []);
 
   return (
-    <div className={`Usercontainer ${isMobile ? "mobile" : "desktop"}`}>
+    <div className={`Assigncontainer ${isMobile ? "mobile" : "desktop"}`}>
       <div className="sidebar">
         <br />
         <div className="profile-circle">

@@ -5,7 +5,7 @@ export const GlobalStyles = createGlobalStyle`
     // width: 100vw;
     height: 100vh;
     // background: ${(props) => props.theme.White};
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Prompt', sans-serif;
     font-size:18px;
     // color: ${(props) => props.theme.Dark};
   }

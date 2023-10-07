@@ -1,21 +1,20 @@
-.footer {
+.Userfooter {
   display: flex;
   flex-direction: row;
   height: 100px;
   background-color: #03128E;
   justify-content: space-evenly;
-
   color: white;
   font-family: "Prompt", sans-serif;
   font-size: 13px;
+  flex-wrap: wrap; /* เพิ่ม flex-wrap เพื่อให้รายการแสดงผลเป็นสองแถวหรือมากกว่าก็ได้ */
 
-  flex-wrap: wrap; /* Add this line to wrap items on smaller screens */
+  padding-top: 40px;
 }
-
 
 /* Media query for responsiveness */
 @media screen and (max-width: 768px) {
-  .footer {
+  .Userfooter {
     flex-direction: column;
     align-items: center;
   }

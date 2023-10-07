@@ -1,3 +1,4 @@
+import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./GlobalStyles";
@@ -24,6 +25,8 @@ import Admin_header from "./components/Admin/header/Admin-header";
 import Admin_footer from "./components/Admin/footer/Admin-footer";
 
 import User_confirm from "./components/User/user_confirm/User_confirm";
+import User_info from "./components/User/user-Info/User-info";
+import User_profile from "./components/User/user-profile/User-profile";
 import Profile_edit from "./components/User/profile-edit/Profile_edit";
 
 import LpFooter from "./components/landingPageFooter/lpFooter";
@@ -161,8 +164,25 @@ function App() {
           path="/user_project"
           element={
             <>
-              <User_header />
               <User_project />
+            </>
+          }
+        />
+
+<Route
+          path="/user_profile"
+          element={
+            <>
+              <User_profile/>
+            </>
+          }
+        />
+        <Route
+          path="/user_info"
+          element={
+            <>
+              <User_header />
+              <User_info />
               <User_footer />
             </>
           }

@@ -1,105 +1,3 @@
-.Usercontainer{
-  background-image: url("./../../../assets/images/bg-information.png"); /* Path to your background image */
-  background-size: cover; /* Adjust as needed */
-  background-repeat: repeat; /* Adjust as needed */
-  /* Other background properties can be added here */
-  flex-direction: row;
-  justify-content:space-evenly; 
-  display: flex;
-  margin: 0 0 0 0;
-
-  width: 100%;
-}
-
-
-.sidebar{
-    margin-top: 50px;
-    margin-left: 2rem;
-
-    width: 300px;
-    height: 310px;
-    background-color: white;
-    border: 1px solid gray;
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px grey;
-
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-
-    align-items: center;
-}
-
-.profilebar{
-  margin-top: 50px;
-  margin-bottom: 50px;
-
-
-  width: 1000px;
-  height: 700px;
-  background-color: white;
-  border: 1px solid gray;
-  border-radius: 10px;
-  box-shadow: 5px 5px 5px grey;
-
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-
-  align-items: center;
-
-  padding-top: 40px;
-
-  font-size: 50px;
-  font-family: 'Prompt', sans-serif;
-  color: #e1e1e1;
-
-}
-
-.profile-circle{
-  width: 95px;
-  height: 95px;
-  text-align: center;
-
-  background-color: gray;
-  border-radius: 100px
-}
-
-.profile-fix-circle{
-  margin-left: 4rem;
-  width: 30px;
-  height: 30px;
-  text-align: center;
-
-  background-color: #d9d9d9;
-  border-radius: 100px
-}
-
-.botton{
-  border-radius: 10px;
-  background-color: #03128E;
-  font-size: 15px;
-  font-family: 'Prompt', sans-serif;
-  color: white;
-  width: 200px;
-  height: 32px;
-  align-items: center;
-
-  /* Define hover styles here */
-  transition: background-color 0.3s; /* Add a smooth transition effect */
-}
-
-.select-button{
-  border-radius: 10px;
-  background-color: white;
-  font-size: 15px;
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
-  width: 200px;
-  height: 32px;
-  align-items: center;
-
-}
 
 .addproject{
   margin-left: 45rem;
@@ -120,36 +18,82 @@
 
 }
 
-.user-icon{
-  margin-top: 20px;
+.normaltext{
+  font-size: 50px;
+  color: #d9d9d9;
 }
 
-.camera-icon{
-  margin-top: 5px;
-}
-
-.button-icon{
-  margin-left: 10px;
-  margin-top: 5px;
-}
 
 
 @media (max-width: 768px) {
-  .Usercontainer {
+
+  .normaltext{
+    font-size: 20px;
+  }
+  .projectUsercontainer {
     flex-direction: column; /* Stack items vertically */
   }
-  .sidebar {
+  .project-sidebar {
     margin-left: 10px;
     width: 95%; /* Full width */
   }
-  .profilebar {
+
+  .mim-container{
+    padding-top: 20px;
+    display: flex;
+    width: 95%;
+
+    flex-direction: row;
+    justify-content: space-evenly;
+  
+  }
+  
+  .mim-container2{
+    padding-top: 20px;
+    display: flex;
+    width: 150px;
+ 
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  
+  
+
+  .MimprojectUsercontainer{
+
+    flex-direction: column;
+    justify-content:space-evenly; 
+    display: flex;
+    padding-top: 40px;
+  
+    width: 100%;
+  }
+  .project-profilebar {
     margin-left: 10px;
     width: 95%;
-    font-size: 30px;
+    font-size: 20px;
     align-items: center; /* Full width */
     text-align: center;
   }
   .addproject{
     margin-right: 45rem;
   }
+
+  .UserHeader {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    font-size: 10px;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mim-Userfooter {
+    font-size: 13px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    flex-direction: column;
+    align-items: center;
+  }
+  
 }

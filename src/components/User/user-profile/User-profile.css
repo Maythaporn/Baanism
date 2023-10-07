@@ -1,0 +1,276 @@
+.projectUsercontainer{
+  background-image: url("./../../../assets/images/bg-information.png"); 
+  background-repeat: repeat; /* Adjust as needed */
+  background-size: cover; /* Cover the entire page */
+  background-attachment: fixed; /* Fixed background image */
+  background-position: center; /* Center the image horizontally and vertically */
+  flex-direction: column;
+  justify-content:space-evenly; 
+  display: flex;
+
+  width: 100%;
+}
+
+.UserHeaderLogo{
+  width: 252px;
+  height: 60px; 
+}
+
+.UserHeader{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background:white;
+}
+
+
+.mim-container{
+  padding-top: 20px;
+  display: flex;
+  width: 900px;
+
+  flex-direction: row;
+  text-align: left;
+
+}
+
+.mim-container2{
+  padding-top: 20px;
+  display: flex;
+  width: 150px;
+
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+
+
+
+.MimprojectUsercontainer{
+  background-image: url("./../../../assets/images/bg-information.png"); 
+  background-repeat: repeat; /* Adjust as needed */
+  background-size: cover; /* Cover the entire page */
+  background-attachment: fixed; /* Fixed background image */
+  background-position: center; /* Center the image horizontally and vertically */
+  flex-direction: row;
+  justify-content:space-evenly; 
+  display: flex;
+  padding-top: 40px;
+
+  width: 100%;
+}
+
+.project-sidebar{
+    margin-top: 50px;
+    margin-left: 2rem;
+
+    width: 300px;
+    height: 340px;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px grey;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    align-items: center;
+}
+
+.project-profilebar{
+  margin-top: 50px;
+  margin-bottom: 90px;
+
+  width: 1000px;
+  height: 580px;
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px grey;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+  align-items: center;
+
+  text-align: center;
+  padding-top: 40px;
+
+  font-size: 50px;
+  font-family: 'Prompt', sans-serif;
+  color: #e1e1e1;
+
+}
+
+.profile-circle{
+  width: 95px;
+  height: 95px;
+  text-align: center;
+
+  background-color: gray;
+  border-radius: 100px
+}
+
+.profile-fix-circle{
+  margin-left: 4rem;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+
+  background-color: #d9d9d9;
+  border-radius: 100px
+}
+
+
+.Userselect-button{
+  border-radius: 10px;
+  background-color: #03128E;
+  font-size: 15px;
+  font-family: 'Prompt', sans-serif;
+  color: white;
+  width: 200px;
+  height: 32px;
+  align-items: center;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.Userbutton{
+  border-radius: 10px;
+  background-color: white;
+  font-size: 15px;
+  font-family: 'Prompt', sans-serif;
+  color: #100F0D;
+  width: 200px;
+  height: 32px;
+  align-items: center;
+
+  display: flex;
+  flex-direction: row;
+}
+
+
+.addproject{
+  margin-left: 45rem;
+}
+
+.adproject-button{
+  border-radius: 10px;
+  background-color: #038E7F;
+  font-size: 15px;
+  font-family: 'Prompt', sans-serif;
+  color: white;
+  width: 150px;
+  height: 32px;
+  align-items: center;
+  text-align: center;
+
+  padding-top: 3px;
+
+}
+
+.user-icon{
+  margin-top: 20px;
+}
+
+.profile-graps{
+  margin-top: 3px;
+}
+
+.camera-icon{
+  margin-top: 5px;
+}
+
+.button-icon{
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+
+.mim-Userfooter {
+  display: flex;
+  flex-direction: row;
+  padding-top: 40px;
+  height: 100px;
+  background-color: #03128E;
+  justify-content: space-evenly;
+  color: white;
+  font-family: "Prompt", sans-serif;
+  font-size: 15px;
+  flex-wrap: wrap; /* เพิ่ม flex-wrap เพื่อให้รายการแสดงผลเป็นสองแถวหรือมากกว่าก็ได้ */
+}
+
+
+
+@media (max-width: 768px) {
+  .projectUsercontainer {
+    flex-direction: column; /* Stack items vertically */
+  }
+  .project-sidebar {
+    margin-left: 10px;
+    width: 95%; /* Full width */
+  }
+
+  .mim-container{
+    padding-top: 20px;
+    display: flex;
+    width: 95%;
+
+    flex-direction: row;
+    justify-content: space-evenly;
+  
+  }
+  
+  .mim-container2{
+    padding-top: 20px;
+    display: flex;
+    width: 150px;
+ 
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .MimprojectUsercontainer{
+
+    flex-direction: column;
+    justify-content:space-evenly; 
+    display: flex;
+    padding-top: 40px;
+  
+    width: 100%;
+  }
+  .project-profilebar {
+    margin-left: 10px;
+    font-size: 10px;
+    width: 95%;
+    font-size: 30px;
+    align-items: center; /* Full width */
+    text-align: center;
+  }
+  .addproject{
+    margin-right: 45rem;
+  }
+
+  .UserHeader {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    font-size: 10px;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mim-Userfooter {
+    font-size: 13px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+}

@@ -1,4 +1,4 @@
-.Usercontainer{
+.Assigncontainer{
   background-image: url("./../../../assets/images/bg-information.png"); /* Path to your background image */
   background-size: cover; /* Adjust as needed */
   background-repeat: repeat; /* Adjust as needed */
@@ -6,14 +6,14 @@
   flex-direction: row;
   justify-content:space-evenly; 
   display: flex;
-  margin: 0 0 0 0;
+  height:100vh;
 
   width: 100%;
 }
 
 
 .sidebar{
-    margin-top: 50px;
+    margin-top: 70px;
     margin-left: 2rem;
 
     width: 300px;
@@ -37,7 +37,7 @@ hr.new4 {
 }
 
 .assign1-profilebar{
-  margin-top: 50px;
+  margin-top: 70px;
   margin-bottom: 50px;
   margin-right: 2rem;
   
@@ -408,8 +408,6 @@ hr.new4 {
 
 }
 
-
-
 .text2{
   font-family: 'Prompt', sans-serif;
   color: #100F0D;
@@ -451,7 +449,7 @@ hr.new4 {
 }
 
 @media (max-width: 768px) {
-  .Usercontainer {
+  .Assigncontainer {
     flex-direction: column; /* Stack items vertically */
   }
   .sidebar {
