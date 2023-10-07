@@ -4,15 +4,13 @@
     position: relative;
     display: flex;
     justify-content: space-between;
+    text-align: left;
     min-height: 180px;
     width: 90%;
     border: 1px solid gray;
     border-radius: 10px;
     box-shadow: 5px 5px 5px grey;
     margin-top: 50px;
-}
-
-.project-container p {
     color: #000;
 }
 
@@ -46,6 +44,7 @@
 
 .edit {
     display: flex;
+    justify-content: flex-end;
 }
 
 .edit-btn {
