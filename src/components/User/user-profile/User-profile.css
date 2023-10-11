@@ -5,8 +5,11 @@
   background-attachment: fixed; /* Fixed background image */
   background-position: center; /* Center the image horizontally and vertically */
   flex-direction: column;
-  justify-content:space-evenly; 
+  justify-content:space-between; 
   display: flex;
+
+  height: 100dvh;
+
 
   width: 100%;
 }
@@ -210,6 +213,7 @@
 @media (max-width: 768px) {
   .projectUsercontainer {
     flex-direction: column; /* Stack items vertically */
+    height: 100vh;
   }
   .project-sidebar {
     margin-left: 10px;

@@ -3,10 +3,39 @@
   height: 60px; 
 }
 
-.UsernavBar{
+.UserHeader{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   background:white;
 }
 
+@media (max-width: 768px) {
+  .UserHeader {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    font-size: 10px;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .mim-container{
+    padding-top: 20px;
+    display: flex;
+    width: 95%;
+
+    flex-direction: row;
+    justify-content: space-evenly;
+  
+  }
+  
+  .mim-container2{
+    padding-top: 20px;
+    display: flex;
+    width: 150px;
+ 
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+}

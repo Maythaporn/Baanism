@@ -18,7 +18,7 @@ import User_project from "./components/User/user-project/User-Project";
 import User_header from "./components/User/user-header/User-header";
 import User_footer from "./components/User/user-footer/User-footer";
 
-import Assign1 from "./components/User/user-assign-project-case1/Assignproject-case1";
+import Assign1 from "./components/User/user-assign-project-case1/Assign2";
 
 import Admin from "./components/Admin/project/Admin-Project";
 import Admin_header from "./components/Admin/header/Admin-header";
@@ -173,7 +173,10 @@ function App() {
           path="/user_profile"
           element={
             <>
-              <User_profile/>
+            
+             <User_profile/>
+     
+           
             </>
           }
         />
@@ -192,9 +195,9 @@ function App() {
           path="/Assignment1"
           element={
             <>
-              <User_header />
+       
               <Assign1 />
-              <User_footer />
+            
             </>
           }
         />

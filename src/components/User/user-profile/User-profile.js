@@ -12,13 +12,45 @@ import { FaCashRegister } from "react-icons/fa";
 import { FaIdCard } from "react-icons/fa";
 
 import UserProject from "./../user-project/User-Project";
-import UserConfirm from "./../user_confirm/User_confirm";
 
 function Project() {
   const [isMobile, setIsMobile] = useState(false);
   const [isProjectClicked, setIsProjectClicked] = useState(false);
   const [isPaymentClicked, setIsPaymentClicked] = useState(false);
   const [isInfoClicked, setIsInfoClicked] = useState(false);
+  const [email, setEmail] = useState("");
+  const [provinces, setProvinces] = useState([]);
+  const [district, setDistrict] = useState([]);
+  const [selectedOption, setSelectedOption] = useState(
+    "เลือกประเภทงานที่ท่านต้องการ"
+  ); // State to store the selected option
+
+  const [selectedProvince, setSelectedProvince] = useState("");
+  const [selectedDistrict, setSelectedDistrict] = useState("");
+  const [selectedSubdistrict, setSelectedSubdistrict] = useState("");
+
+  const [additionalField, setAdditionalField] = useState("");
+  const [additionalFieldVisible, setAdditionalFieldVisible] = useState(false);
+  const isOptionNULLSelected = selectedOption === "NULL";
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const handleChange = (event) => {
+    const selectedValue = event.target.value;
+    setSelectedOption(selectedValue);
+
+    // Check if the selected option is "อื่นๆ"
+    if (selectedValue === "NULL") {
+      // Show the additional field
+      setAdditionalFieldVisible(true);
+    } else {
+      // Hide the additional field
+      setAdditionalFieldVisible(false);
+    }
+  };
+
+  const handleChangeThaimaps = (e) => {
+    setSelectedProvince(e.target.value);
+  };
 
   const handleProjectClick = () => {
     setIsProjectClicked(true);
@@ -178,14 +210,119 @@ function Project() {
           <div className="project-profilebar">
             {isProjectClicked && (
               <div>
-                <UserProject/>
+                <UserProject />
               </div>
             )}
             {isPaymentClicked && <div>Payment content</div>}
-            {isInfoClicked && 
-            <div>
-              <UserConfirm/>
-              </div>}
+            {isInfoClicked && (
+              <div>
+                ยืนยันข้อมูลผู้ใช้งาน
+                <hr
+                  style={{
+                    height: "30px",
+                  }}
+                ></hr>
+                <div className="assign-input-container">
+                  <div className="column1">
+                    <div className="text-input">
+                      ลิ้งค์ Google Maps
+                      <input
+                        style={{ width: "150px" }} // Set the width using inline CSS
+                        className="text"
+                        type="text"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="column1">
+                    <div className="text-input">
+                      ลิ้งค์ Google Maps
+                      <input
+                        style={{ width: "150px" }} // Set the width using inline CSS
+                        className="text"
+                        type="text"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="assign-input-container">
+                  <div className="column2">
+                    <div className="row">
+                      <div className="zip-input">
+                        รหัสไปรษณีย์
+                        <input
+                          style={{ width: "130px" }} // Set the width using inline CSS
+                          className="text"
+                          type="text"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                        />
+                      </div>
+                    </div>
+                    <div className="zip-input">
+                      รหัสไปรษณีย์
+                      <input
+                        style={{ width: "130px" }} // Set the width using inline CSS
+                        className="text"
+                        type="text"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div className="column2">
+                    <div className="address-input">
+                      ที่อยู่
+                      <textarea
+                        style={{ width: "385px", height: "100px" }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
+                        className="text"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="assign-input-container">
+                  <div className="column1">
+                    <div className="text-input">
+                      ลิ้งค์ Google Maps
+                      <input
+                        style={{ width: "150px" }} // Set the width using inline CSS
+                        className="text"
+                        type="text"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="column1">
+                    <div className="text-input">
+                      ลิ้งค์ Google Maps
+                      <input
+                        style={{ width: "150px" }} // Set the width using inline CSS
+                        className="text"
+                        type="text"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <hr
+                  style={{
+                    height: "20px",
+                  }}
+                ></hr>
+                <div className="assign-input1-container">
+                  <div className="assign1-confirm-button">ยืนยันข้อมูล</div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
         <div className="mim-Userfooter">

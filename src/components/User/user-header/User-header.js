@@ -24,24 +24,33 @@ export default function Header() {
 
   return (
     <>
-      <nav className={`Usernavbar`}>
+           <div className="UserHeader">
         <Link to="/">
           <img src={logo} alt="baanism-logo" className="UserHeaderLogo" />
         </Link>
 
-        <div>
+        <div className="mim-container">
           <Link to="/about">เกี่ยวกับเรา</Link>
-        </div>
-        <div>
+          <hr
+            style={{
+              width: "40px",
+            }}
+          ></hr>
           <Link to="/homecontent">Home GURU Content</Link>
-        </div>
-        <div>
+          <hr
+            style={{
+              width: "40px",
+            }}
+          ></hr>
           <Link to="/">ประเมินราคา</Link>
-        </div>
-        <div>
+          <hr
+            style={{
+              width: "40px",
+            }}
+          ></hr>
           <Link to="/">ติดต่อเรา</Link>
         </div>
-        <div>
+        <div className="mim-container2">
           <Link>
             <FaBell size={30} color="gray" />
           </Link>
@@ -50,7 +59,7 @@ export default function Header() {
             <FaUser size={30} color="gray" />
           </Link>
         </div>
-      </nav>
+      </div>
     </>
   );
 }
