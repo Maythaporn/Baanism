@@ -6,7 +6,6 @@
   flex-direction: row;
   justify-content:space-evenly; 
   display: flex;
-  height:100vh;
 
   width: 100%;
 }
@@ -37,7 +36,7 @@ hr.new4 {
 }
 
 .assign1-profilebar{
-  margin-top: 70px;
+  margin-top: 50px;
   margin-bottom: 50px;
   margin-right: 2rem;
   
