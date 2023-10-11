@@ -81,43 +81,22 @@ html {
     line-height: 1.5;
 }
 
-.reset-button {
+.resetPasswordButtonPeng {
     font-family: 'Prompt', sans-serif;
     border-radius: 5px;
     background-color: #038E7F;
     font-size: 15px;
     color: white;
-    width: 400px;
+    width: 330px;
     height: 40px;
-    margin-left: 50px;
+    margin-left:85px;
     margin-top: 20px;
     display: block;
-}
-
-.reset-button:hover {
+  }
+  
+.resetPasswordButtonPeng:hover {
     color: #038E7F;
     background-color: #fff;
     border: 3px solid #038E7F;
-
-}
-
-.reset-input {
-    margin-top: 2px;
-    margin-bottom: 2px;
-    width: 400px;
-    height: 50px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    outline: none;
-    font-size: 16px;
-    font-family: 'Prompt', sans-serif;
-}
-
-.reset-input::placeholder {
-    border-color: #999;
-}
-
-.reset-input:focus {
-    border-color: #007bff;
-}
+    
+  }

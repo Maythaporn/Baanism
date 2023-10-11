@@ -225,9 +225,9 @@ function Project() {
                 <div className="assign-input-container">
                   <div className="column1">
                     <div className="text-input">
-                      ลิ้งค์ Google Maps
+                      ชื่อจริง
                       <input
-                        style={{ width: "150px" }} // Set the width using inline CSS
+                        style={{ width: "200px" }} // Set the width using inline CSS
                         className="text"
                         type="text"
                         value={email}
@@ -238,7 +238,7 @@ function Project() {
 
                   <div className="column1">
                     <div className="text-input">
-                      ลิ้งค์ Google Maps
+                      นามสกุล
                       <input
                         style={{ width: "150px" }} // Set the width using inline CSS
                         className="text"
@@ -253,7 +253,7 @@ function Project() {
                   <div className="column2">
                     <div className="row">
                       <div className="zip-input">
-                        รหัสไปรษณีย์
+                        เบอร์โทร
                         <input
                           style={{ width: "130px" }} // Set the width using inline CSS
                           className="text"
@@ -319,7 +319,7 @@ function Project() {
                   }}
                 ></hr>
                 <div className="assign-input1-container">
-                  <div className="assign1-confirm-button">ยืนยันข้อมูล</div>
+                  <div className="assign1-confirm-button">แก้ไขข้อมูล</div>
                 </div>
               </div>
             )}

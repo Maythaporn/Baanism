@@ -100,7 +100,7 @@ function App() {
           }
         />
         <Route
-          path="/forgot-password"
+          path="/forgot"
           element={
             <>
               <Header />
