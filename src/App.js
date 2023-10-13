@@ -37,7 +37,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <Routes>
+      <Routes basename="/Baanism">
         {/* Default route */}
         <Route
           path="/"
