@@ -13,6 +13,10 @@
     color: #000;
 }
 
+.admin-project-container:last-child {
+    margin-bottom: 40px;
+}
+
 .status {
     display: inline-block;
     width: 10px;

@@ -1,36 +1,38 @@
-.Admincontainer{
-  background-image: url('./bg-information.png'); /* Path to your background image */
-  background-size: cover; /* Adjust as needed */
+.Admincontainer {
+  background-image: url("./../../../assets/images/bg-information.png"); 
   background-repeat: repeat; /* Adjust as needed */
-  /* Other background properties can be added here */
+  background-size: cover; /* Cover the entire page */
+  background-attachment: fixed; /* Fixed background image */
+  background-position: center; /* Center the image horizontally and vertically */
   flex-direction: row;
   justify-content:space-evenly; 
   display: flex;
-  margin: 0 0 0 0;
+  padding-top: 3px;
+
   width: 100%;
 }
 
 
-.sidebar{
-    margin-top: 50px;
-    margin-left: 2rem;
+.admin-sidebar {
+  margin-top: 50px;
+  margin-left: 2rem;
 
-    width: 300px;
-    height: 310px;
-    background-color: white;
-    border: 1px solid gray;
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px grey;
+  width: 300px;
+  height: 340px;
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px grey;
 
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
 
-    align-items: center;
+  align-items: center;
 
 }
 
-.admin-profilebar{
+.admin-profilebar {
   margin-top: 50px;
   margin-bottom: 50px;
   margin-right: 2rem;
@@ -49,7 +51,7 @@
 
 }
 
-.profile-circle{
+.profile-circle {
   width: 95px;
   height: 95px;
   text-align: center;
@@ -58,7 +60,7 @@
   border-radius: 100px
 }
 
-.profile-fix-circle{
+.profile-fix-circle {
   margin-left: 4rem;
   width: 30px;
   height: 30px;
@@ -68,39 +70,40 @@
   border-radius: 100px
 }
 
-.botton{
-  border-radius: 10px;
-  background-color: #03128E;
-  font-size: 15px;
-  font-family: 'Prompt', sans-serif;
-  color: white;
-  width: 200px;
-  height: 32px;
-  align-items: center;
-
-  /* Define hover styles here */
-  transition: background-color 0.3s; /* Add a smooth transition effect */
-}
-
-
-
-.select-button{
+.admin-botton {
   border-radius: 10px;
   background-color: white;
   font-size: 15px;
   font-family: 'Prompt', sans-serif;
   color: #100F0D;
-  width: 200px;
+  width: 100%;
+  height: 32px;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+.admin-select-button {
+  border-radius: 10px;
+  background-color: #03128E;
+  font-size: 15px;
+  font-family: 'Prompt', sans-serif;
+  color: white;
+  max-width: 300px;
   height: 32px;
   align-items: center;
 
+  display: flex;
+  flex-direction: row;
 }
 
-.user-icon{
+.user-icon {
   margin-top: 20px;
 }
 
-.camera-icon{
+.camera-icon {
   margin-top: 5px;
 }
 
@@ -109,17 +112,25 @@
   margin-top: 5px;
 }
 
+.over {
+  overflow-y: scroll;
+}
 
 @media (max-width: 768px) {
   .Admincontainer {
-    flex-direction: column; /* Stack items vertically */
+    flex-direction: column;
+    /* Stack items vertically */
   }
-  .sidebar {
+
+  .admin-sidebar {
     margin-left: 10px;
-    width: 95%; /* Full width */
+    width: 95%;
+    /* Full width */
   }
+
   .admin-profilebar {
     margin-left: 10px;
-    width: 95%; /* Full width */
+    width: 95%;
+    /* Full width */
   }
 }

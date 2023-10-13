@@ -4,11 +4,32 @@ import 'react-icons/fa';
 
 import { FaCamera, FaHistory, FaRegAddressBook, FaUserCircle } from 'react-icons/fa';
 import { FaFile } from 'react-icons/fa';
-import { FaUser} from 'react-icons/fa';
+import { FaUser } from 'react-icons/fa';
 import AllProjects from "../all-projects/All_Projects";
 
 function Project() {
   const [isMobile, setIsMobile] = useState(false);
+  const [isProjectClicked, setIsProjectClicked] = useState(false);
+  const [isUpdateClicked, setIsUpdateClicked] = useState(false);
+  const [isAddClicked, setIsAddClicked] = useState(false);
+
+  const handleProjectClick = () => {
+    setIsProjectClicked(true);
+    setIsUpdateClicked(false);
+    setIsAddClicked(false);
+  };
+
+  const handleUpdateClick = () => {
+    setIsProjectClicked(false);
+    setIsUpdateClicked(true);
+    setIsAddClicked(false);
+  };
+
+  const handleAddClick = () => {
+    setIsProjectClicked(false);
+    setIsUpdateClicked(false);
+    setIsAddClicked(true);
+  };
 
   useEffect(() => {
     // Add an event listener to track window size changes
@@ -30,7 +51,7 @@ function Project() {
 
   return (
     <div className={`Admincontainer ${isMobile ? "mobile" : "desktop"}`}>
-      <div className="sidebar">
+      <div className="admin-sidebar">
         <br />
         <div className="profile-circle">
           <FaUser size={isMobile ? 50 : 50} color="white" className="user-icon" />
@@ -40,25 +61,36 @@ function Project() {
         </div>
         <br />
         <div>
-          <div className="botton">
-            <FaFile size={isMobile ? 10 : 17} color="white" className="button-icon" /> โครงการทั้งหมด
+          <div onClick={handleProjectClick} className={`${isProjectClicked ? "admin-select-button" : "admin-botton"
+            }`}>
+            <FaFile size={isMobile ? 10 : 17} color={isProjectClicked ? "white" : "gray"} className="button-icon" /> โครงการทั้งหมด
           </div>
           <br />
 
-          <div className="select-button">
-            <FaHistory size={isMobile ? 10 : 17} color="grey" className="button-icon" /> อัพเดต Home GURU Content
+          <div onClick={handleUpdateClick} className={`${isUpdateClicked ? "admin-select-button" : "admin-botton"
+            }`}>
+            <FaHistory size={isMobile ? 10 : 17} color={isUpdateClicked ? "white" : "gray"} className="button-icon" /> อัพเดต Home GURU Content
           </div>
           <br />
 
-          <div className="select-button">
-            <FaRegAddressBook size={isMobile ? 10 : 17} color="grey" className="button-icon" /> เพิ่มแบบโครงการเข้าระบบ
+          <div onClick={handleAddClick} className={`${isAddClicked ? "admin-select-button" : "admin-botton"
+            }`}>
+            <FaRegAddressBook size={isMobile ? 10 : 17} color={isAddClicked ? "white" : "gray"} className="button-icon" /> เพิ่มแบบโครงการเข้าระบบ
           </div>
         </div>
         <br />
       </div>
 
-      <div className="admin-profilebar">
-        <AllProjects />
+      <div className={`admin-profilebar ${isProjectClicked ? 'over' : ''}`}>
+        {isProjectClicked && (
+          <AllProjects />
+        )}
+        {isUpdateClicked && (
+          <h2>Update</h2>
+        )}
+        {isAddClicked && (
+          <h2>Add</h2>
+        )}
       </div>
     </div>
   );
