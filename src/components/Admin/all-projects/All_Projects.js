@@ -1,6 +1,6 @@
 import './All_Projects.css'
 
-const All_Projects = () => {
+const AllProjects = () => {
     const data = [
         { id: 1, title: "ต่อเติม", type: "", address: "หมู่บ้าน , เขต/อำเถอ , จังหวัด , รหัสไปรษณี" },
         { id: 2, title: "ต่อเติม", type: "", address: "หมู่บ้าน , เขต/อำเถอ , จังหวัด , รหัสไปรษณี" },
@@ -9,7 +9,7 @@ const All_Projects = () => {
     return (
         <>
             {data.map((e) => (
-                <div className="project-container" key={e.id}>
+                <div className="admin-project-container" key={e.id}>
                     <div className='info-left'>
                         <p className='project-title'>{e.title}</p>
                         <p>ประเภทห้อง : {e.type}</p>
@@ -29,4 +29,4 @@ const All_Projects = () => {
     )
 }
 
-export default All_Projects
+export default AllProjects

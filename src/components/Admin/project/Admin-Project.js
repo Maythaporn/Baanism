@@ -5,7 +5,7 @@ import 'react-icons/fa';
 import { FaCamera, FaHistory, FaRegAddressBook, FaUserCircle } from 'react-icons/fa';
 import { FaFile } from 'react-icons/fa';
 import { FaUser} from 'react-icons/fa';
-import All_Projects from "./All_Projects";
+import AllProjects from "../all-projects/All_Projects";
 
 function Project() {
   const [isMobile, setIsMobile] = useState(false);
@@ -57,8 +57,8 @@ function Project() {
         <br />
       </div>
 
-      <div className="profilebar">
-        <All_Projects />
+      <div className="admin-profilebar">
+        <AllProjects />
       </div>
     </div>
   );
