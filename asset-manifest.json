@@ -1,23 +1,40 @@
 {
   "files": {
-    "main.css": "/Baanism/static/css/main.2fa9d160.css",
-    "main.js": "/Baanism/static/js/main.8a1fafbf.js",
+    "main.css": "/Baanism/static/css/main.406cd3d5.css",
+    "main.js": "/Baanism/static/js/main.57c42156.js",
+    "static/media/Home2.png": "/Baanism/static/media/Home2.ece75d98ae219924e150.png",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/Baanism/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
     "static/media/bg-landing.png": "/Baanism/static/media/bg-landing.988eec651c428a8f03c7.png",
+    "static/media/gallery3.png": "/Baanism/static/media/gallery3.0ef423ab0a3954be044f.png",
+    "static/media/Home1.png": "/Baanism/static/media/Home1.47d4c34f302cfd05d178.png",
+    "static/media/gallery7.png": "/Baanism/static/media/gallery7.235f01c8565e3b3b444a.png",
+    "static/media/gallery5.png": "/Baanism/static/media/gallery5.64f7f7f3ae824e843afc.png",
     "static/media/fontawesome-webfont.eot": "/Baanism/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
     "static/media/fontawesome-webfont.ttf?v=4.7.0": "/Baanism/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
+    "static/media/Room_stake.png": "/Baanism/static/media/Room_stake.5095f8b6ab61e5f77ea9.png",
+    "static/media/gallery1.png": "/Baanism/static/media/gallery1.e9900f507bbb1c9f1b7d.png",
+    "static/media/gallery4.png": "/Baanism/static/media/gallery4.d06e77d237bad7d7938b.png",
     "static/media/fontawesome-webfont.woff?v=4.7.0": "/Baanism/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
+    "static/media/gallery8.png": "/Baanism/static/media/gallery8.d6956a364f1eaf76da5a.png",
+    "static/media/logo_withbg.png": "/Baanism/static/media/logo_withbg.b21f27bcbb1908f09a30.png",
+    "static/media/gallery2.png": "/Baanism/static/media/gallery2.17ec875f4467af4ec92c.png",
     "static/media/fontawesome-webfont.woff2?v=4.7.0": "/Baanism/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
+    "static/media/bg-information.png": "/Baanism/static/media/bg-information.a8235b78ccaf2990571a.png",
+    "static/media/gallery6.png": "/Baanism/static/media/gallery6.43796f1bebadbb821f16.png",
     "static/media/logo-header.png": "/Baanism/static/media/logo-header.09a0d3fbc49f2eee3f6f.png",
     "static/media/logo-footer.png": "/Baanism/static/media/logo-footer.ff0ed6729d88abef9006.png",
+    "static/media/content3.png": "/Baanism/static/media/content3.c15ac1a2d86f0f92109b.png",
+    "static/media/content4.png": "/Baanism/static/media/content4.06331b38fc9cc1813f90.png",
+    "static/media/content2.png": "/Baanism/static/media/content2.00604c01be96d9427338.png",
+    "static/media/content1.png": "/Baanism/static/media/content1.c08a44707260b2702e51.png",
+    "static/media/About1.png": "/Baanism/static/media/About1.52f61ad746b2703a5a55.png",
+    "static/media/About4.png": "/Baanism/static/media/About4.836dcfad28f667d31399.png",
     "index.html": "/Baanism/index.html",
-    "static/media/icon-close.svg": "/Baanism/static/media/icon-close.b04dc29397de9c9f194fb075c140e966.svg",
-    "static/media/icon-hamburger.svg": "/Baanism/static/media/icon-hamburger.4385fd507d24f37ccbb3ae359b5c9555.svg",
-    "main.2fa9d160.css.map": "/Baanism/static/css/main.2fa9d160.css.map",
-    "main.8a1fafbf.js.map": "/Baanism/static/js/main.8a1fafbf.js.map"
+    "main.406cd3d5.css.map": "/Baanism/static/css/main.406cd3d5.css.map",
+    "main.57c42156.js.map": "/Baanism/static/js/main.57c42156.js.map"
   },
   "entrypoints": [
-    "static/css/main.2fa9d160.css",
-    "static/js/main.8a1fafbf.js"
+    "static/css/main.406cd3d5.css",
+    "static/js/main.57c42156.js"
   ]
 }
