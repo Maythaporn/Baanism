@@ -263,15 +263,21 @@ function Project() {
                         />
                       </div>
                     </div>
-                    <div className="zip-input">
-                      รหัสไปรษณีย์
-                      <input
-                        style={{ width: "130px" }} // Set the width using inline CSS
+                    <div className="text-input-provinces">
+                      จังหวัด
+                      <select
+                        style={{ width: "250px" }}
+                        id="dropdownProvincs"
                         className="text"
-                        type="text"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
+                        value={selectedProvince}
+                        onChange={handleChangeThaimaps}
+                      >
+                        {provinces.map((province) => (
+                          <option key={province.id} value={province.id}>
+                            {province.name}
+                          </option>
+                        ))}
+                      </select>
                     </div>
                   </div>
                   <div className="column2">
@@ -288,23 +294,30 @@ function Project() {
                 </div>
                 <div className="assign-input-container">
                   <div className="column1">
-                    <div className="text-input">
-                      ลิ้งค์ Google Maps
-                      <input
-                        style={{ width: "150px" }} // Set the width using inline CSS
-                        className="text"
-                        type="text"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                    </div>
+                  <div className="dropdown-input">
+                        เขต/อำเภอ
+                        <br />
+                        <select
+                          style={{ width: "175px" }}
+                          id="dropdownDistrict"
+                          className="text"
+                          value={selectedDistrict}
+                          onChange={handleChangeThaimaps}
+                        >
+                          {district.map((district) => (
+                            <option key={district.id} value={district.id}>
+                              {district.name}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
                   </div>
 
                   <div className="column1">
-                    <div className="text-input">
-                      ลิ้งค์ Google Maps
+                  <div className="zip-input">
+                      รหัสไปรษณีย์
                       <input
-                        style={{ width: "150px" }} // Set the width using inline CSS
+                        style={{ width: "130px" }} // Set the width using inline CSS
                         className="text"
                         type="text"
                         value={email}

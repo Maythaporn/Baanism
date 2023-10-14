@@ -18,7 +18,7 @@ import User_project from "./components/User/user-project/User-Project";
 import User_header from "./components/User/user-header/User-header";
 import User_footer from "./components/User/user-footer/User-footer";
 
-import Assign1 from "./components/User/user-assign-project-case1/Assign2";
+import Assign1 from "./components/User/user-assign-project-case1/Assign";
 
 import Admin from "./components/Admin/project/Admin-Project";
 import Admin_header from "./components/Admin/header/Admin-header";
@@ -37,10 +37,10 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <Routes >
+      <Routes>
         {/* Default route */}
         <Route
-          path="/"
+          path="/Baanism/"
           element={
             <>
               <Header />
