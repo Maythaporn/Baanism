@@ -206,9 +206,9 @@ function App() {
           path="/admin"
           element={
             <>
-              <Admin_header />
+              <User_header />
               <Admin />
-              <Admin_footer />
+              <User_footer/>
             </>
           }
         />

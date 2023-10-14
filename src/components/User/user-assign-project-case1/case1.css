@@ -7,6 +7,8 @@
   justify-content:space-evenly; 
   display: flex;
 
+  padding-top: 50px;
+
   width: 100%;
 }
 
@@ -35,59 +37,6 @@ hr.new4 {
   border: 0.5px solid #e1e1e0;
 }
 
-.assign1-profilebar{
-  margin-top: 50px;
-  margin-bottom: 50px;
-  margin-right: 2rem;
-  
-  align-items: center;
-
-  width: 1000px;
-  height: 1970px;
-  background-color: white;
-  border: 1px solid gray;
-  border-radius: 10px;
-  box-shadow: 5px 5px 5px grey;
-
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
- 
-  text-align: left;
-  font-size: 30px;
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
-
-  padding-top: 40px;
-
-}
-
-.assign2-profilebar{
-  margin-top: 50px;
-  margin-bottom: 50px;
-  margin-right: 2rem;
-  
-  align-items: center;
-
-  width: 1000px;
-  height: 1300px;
-  background-color: white;
-  border: 1px solid gray;
-  border-radius: 10px;
-  box-shadow: 5px 5px 5px grey;
-
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
- 
-  text-align: left;
-  font-size: 30px;
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
-
-  padding-top: 40px;
-
-}
 
 .profile-circle{
   width: 95px;
@@ -194,6 +143,7 @@ hr.new4 {
 .column1 {
   width: 450px;
   display: flex;
+  text-align: left;
 
   flex-direction: column; /* Make it a flex container */
   /* You can also add other styles like width, background-color, etc. */
@@ -437,7 +387,7 @@ hr.new4 {
 .text2{
   font-family: 'Prompt', sans-serif;
   color: #100F0D;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: bold;
   margin-bottom: 20px;
 }

@@ -89,10 +89,7 @@ function Project() {
 
   return (
     <div>
-      <div
-        className={`projectUsercontainer ${isMobile ? "mobile" : "desktop"}`}
-      >
-        <div className="UserHeader">
+         <div className="UserHeader">
           <Link to="/">
             <img src={logo} alt="baanism-logo" className="UserHeaderLogo" />
           </Link>
@@ -128,6 +125,9 @@ function Project() {
             </Link>
           </div>
         </div>
+      <div
+        className={`projectUsercontainer ${isMobile ? "mobile" : "desktop"}`}
+      >
         <div className="MimprojectUsercontainer">
           <div className="project-sidebar">
             <br />
@@ -337,8 +337,11 @@ function Project() {
               </div>
             )}
           </div>
+          
         </div>
-        <div className="mim-Userfooter">
+        
+      </div>
+      <div className="mim-Userfooter">
           <div>Copyright © 2023 BAANISM Co., Ltd. All rights reserved.</div>
           <div>
             <Link to="/">นโยบายการใช้งาน</Link>
@@ -350,7 +353,6 @@ function Project() {
             <Link to="/">เงื่อนไขการใช้งาน</Link>
           </div>
         </div>
-      </div>
     </div>
   );
 }
