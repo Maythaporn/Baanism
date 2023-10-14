@@ -16,7 +16,7 @@ import AssignForm from "./../user-assign-project-case1/Assignproject-case1";
 
 function Project() {
   const [isMobile, setIsMobile] = useState(false);
-  const [isProjectClicked, setIsProjectClicked] = useState(false);
+  const [isProjectClicked, setIsProjectClicked] = useState(true);
   const [isPaymentClicked, setIsPaymentClicked] = useState(false);
   const [isInfoClicked, setIsInfoClicked] = useState(false);
   const [email, setEmail] = useState("");
@@ -217,7 +217,7 @@ function Project() {
             {isPaymentClicked && <div>Payment content</div>}
             {isInfoClicked && (
               <div>
-                ยืนยันข้อมูลผู้ใช้งาน
+                ข้อมูลผู้ใช้งาน
                 <hr
                   style={{
                     height: "30px",

@@ -7,9 +7,12 @@ import { FaFile } from 'react-icons/fa';
 import { FaUser } from 'react-icons/fa';
 import AllProjects from "../all-projects/All_Projects";
 
+import Assign_admin from "../assign-project/assign-admin";
+import Content from "../content/content";
+
 function Project() {
   const [isMobile, setIsMobile] = useState(false);
-  const [isProjectClicked, setIsProjectClicked] = useState(false);
+  const [isProjectClicked, setIsProjectClicked] = useState(true);
   const [isUpdateClicked, setIsUpdateClicked] = useState(false);
   const [isAddClicked, setIsAddClicked] = useState(false);
 
@@ -86,10 +89,14 @@ function Project() {
           <AllProjects />
         )}
         {isUpdateClicked && (
-          <h2>Update</h2>
+          <div style={{ height: "550px", overflow: "scroll" }}>
+          <Content/>
+          </div>
         )}
         {isAddClicked && (
-          <h2>Add</h2>
+          <div style={{ height: "550px", overflow: "scroll" }}>
+          <Assign_admin/>
+          </div>
         )}
       </div>
     </div>

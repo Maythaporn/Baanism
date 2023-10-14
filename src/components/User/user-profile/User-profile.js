@@ -17,7 +17,7 @@ function Project() {
   const [isMobile, setIsMobile] = useState(false);
   const [isProjectClicked, setIsProjectClicked] = useState(false);
   const [isPaymentClicked, setIsPaymentClicked] = useState(false);
-  const [isInfoClicked, setIsInfoClicked] = useState(false);
+  const [isInfoClicked, setIsInfoClicked] = useState(true);
   const [email, setEmail] = useState("");
   const [provinces, setProvinces] = useState([]);
   const [district, setDistrict] = useState([]);
@@ -216,7 +216,7 @@ function Project() {
             {isPaymentClicked && <div>Payment content</div>}
             {isInfoClicked && (
               <div>
-                ยืนยันข้อมูลผู้ใช้งาน
+                ข้อมูลผู้ใช้งาน
                 <hr
                   style={{
                     height: "30px",

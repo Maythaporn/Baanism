@@ -48,6 +48,7 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+  padding-top: 40px;
 
   align-items: center;
 
@@ -93,7 +94,7 @@
   font-size: 15px;
   font-family: 'Prompt', sans-serif;
   color: white;
-  max-width: 300px;
+  width: 250px;
   height: 32px;
   align-items: center;
 
