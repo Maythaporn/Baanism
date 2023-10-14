@@ -40,7 +40,7 @@ function App() {
       <Routes>
         {/* Default route */}
         <Route
-          path="/Baanism/"
+          path="/"
           element={
             <>
               <Header />
