@@ -138,7 +138,7 @@ function App() {
         />
 
         <Route
-          path="/user"
+          path="/user/:phone_number"
           element={
             <>
               <User_header />
@@ -170,7 +170,7 @@ function App() {
         />
 
 <Route
-          path="/user_profile"
+          path="/user_profile/:phone_number"
           element={
             <>
             

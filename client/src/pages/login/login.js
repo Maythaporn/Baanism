@@ -20,16 +20,15 @@ function Login() {
       password: password,
     })
       .then((response) => {
-        console.log(password, phoneNumber);
         if (response.data === "/admin") {
           window.location.href = "/admin"; // Redirect to the admin page
+        } else if (response.data === "/user") {
+          navigate(`/user/${phoneNumber}`); // Redirect to the user profile page with phone_number as a parameter
         } else {
-          window.location.href = "/user_profile"; // Redirect to the user profile page
+          navigate(`/user_profile/${phoneNumber}`)
         }
       })
       .catch((error) => {
-        console.log("testttttttttttttttt");
-        console.log(password, phoneNumber);
         alert("เบอร์โทรศัพท์ หรือ password ของท่านผิด");
       });
   };

@@ -1,26 +1,36 @@
 import React, { useState, useEffect } from "react";
 import "./User-profile.css"; // Import the CSS file for this component
 import "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate,useParams } from "react-router-dom";
 
 import logo from "./../../../assets/images/logo-header.png";
 
-import { FaCamera, FaPlus, FaUserCircle } from "react-icons/fa";
+import { FaCamera, FaFireExtinguisher, FaPlus, FaSignOutAlt, FaUserCircle } from "react-icons/fa";
 import { FaFile } from "react-icons/fa";
 import { FaUser, FaBell } from "react-icons/fa";
 import { FaCashRegister } from "react-icons/fa";
 import { FaIdCard } from "react-icons/fa";
+import Axios from "axios";
 
 import UserProject from "./../user-project/User-Project";
 
 function Project() {
+
+  const { phone_number } = useParams();
+
   const [isMobile, setIsMobile] = useState(false);
   const [isProjectClicked, setIsProjectClicked] = useState(false);
   const [isPaymentClicked, setIsPaymentClicked] = useState(false);
   const [isInfoClicked, setIsInfoClicked] = useState(true);
+
   const [email, setEmail] = useState("");
-  const [provinces, setProvinces] = useState([]);
-  const [district, setDistrict] = useState([]);
+  const [firstname, setFirstname] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState(phone_number);
+  const [lastname, setLastname] = useState("");
+  const [address, setAddress] = useState("");
+  const [district, setDistrict] = useState("");
+  const [provinces, setProvinces] = useState("");
+  const [zipcode, setZipcode] = useState("");
   const [selectedOption, setSelectedOption] = useState(
     "เลือกประเภทงานที่ท่านต้องการ"
   ); // State to store the selected option
@@ -70,6 +80,44 @@ function Project() {
     setIsInfoClicked(true);
   };
   useEffect(() => {
+
+    Axios.get("http://localhost:3001/userprofile", {
+      params: {
+        phone_number: phoneNumber,
+      }
+    })
+      .then((response) => {
+        const userData = response.data;
+        console.log(userData);
+        setFirstname(userData.first_name);
+        setLastname(userData.last_name);
+       
+      })
+      .catch((error) => {
+        // Handle any network or server errors here
+        console.error("Error fetching user data: ", error);
+        // You might want to display a user-friendly error message to the user
+      });
+
+      Axios.get("http://localhost:3001/userinfo", {
+      params: {
+        phone_number: phoneNumber,
+      }
+    })
+      .then((response) => {
+        const userData = response.data;
+        console.log(userData);
+        setAddress(userData.address);
+        setProvinces(userData.provinces);
+        setDistrict(userData.district);
+        setZipcode(userData.provinces);
+       
+      })
+      .catch((error) => {
+        // Handle any network or server errors here
+        console.error("Error fetching user data: ", error);
+        // You might want to display a user-friendly error message to the user
+      });
     // Add an event listener to track window size changes
     function handleResize() {
       setIsMobile(window.innerWidth <= 768); // Adjust the breakpoint as needed
@@ -203,6 +251,26 @@ function Project() {
                 />{" "}
                 <p className="profile-graps">ข้อมูลผู้ใช้งาน</p>
               </div>
+
+              
+              <hr
+                style={{
+                  height: "20px",
+                }}
+              ></hr>
+
+              <div
+                onClick={handleInfoClick}
+                className={"Userbutton"
+                }
+              >
+                <FaSignOutAlt
+                  size={isMobile ? 10 : 17}
+                  color={ "grey"}
+                  className="button-icon"
+                />{" "}
+                <p className="profile-graps">ออกจากระบบ</p>
+              </div>
             </div>
             <br />
           </div>
@@ -215,7 +283,7 @@ function Project() {
             )}
             {isPaymentClicked && <div>Payment content</div>}
             {isInfoClicked && (
-              <div>
+               <div style={{ height: "500px", overflow: "scroll" }}>
                 ข้อมูลผู้ใช้งาน
                 <hr
                   style={{
@@ -230,6 +298,7 @@ function Project() {
                         style={{ width: "200px" }} // Set the width using inline CSS
                         className="text"
                         type="text"
+                        placeholder={firstname}
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                       />
@@ -243,6 +312,7 @@ function Project() {
                         style={{ width: "150px" }} // Set the width using inline CSS
                         className="text"
                         type="text"
+                        placeholder={lastname}
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                       />
@@ -258,6 +328,7 @@ function Project() {
                           style={{ width: "130px" }} // Set the width using inline CSS
                           className="text"
                           type="text"
+                          placeholder={phone_number}
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                         />
@@ -265,19 +336,16 @@ function Project() {
                     </div>
                     <div className="text-input-provinces">
                       จังหวัด
-                      <select
+                      <input
                         style={{ width: "250px" }}
                         id="dropdownProvincs"
                         className="text"
+                        placeholder={provinces}
                         value={selectedProvince}
                         onChange={handleChangeThaimaps}
                       >
-                        {provinces.map((province) => (
-                          <option key={province.id} value={province.id}>
-                            {province.name}
-                          </option>
-                        ))}
-                      </select>
+                        
+                      </input>
                     </div>
                   </div>
                   <div className="column2">
@@ -286,6 +354,7 @@ function Project() {
                       <textarea
                         style={{ width: "385px", height: "100px" }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
                         className="text"
+                        placeholder={address}
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                       />
@@ -297,19 +366,16 @@ function Project() {
                   <div className="dropdown-input">
                         เขต/อำเภอ
                         <br />
-                        <select
+                        <input
                           style={{ width: "175px" }}
                           id="dropdownDistrict"
                           className="text"
+                          placeholder={district}
                           value={selectedDistrict}
                           onChange={handleChangeThaimaps}
                         >
-                          {district.map((district) => (
-                            <option key={district.id} value={district.id}>
-                              {district.name}
-                            </option>
-                          ))}
-                        </select>
+                          
+                        </input>
                       </div>
                   </div>
 
@@ -320,6 +386,7 @@ function Project() {
                         style={{ width: "130px" }} // Set the width using inline CSS
                         className="text"
                         type="text"
+                        placeholder={zipcode}
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                       />
@@ -331,9 +398,11 @@ function Project() {
                     height: "20px",
                   }}
                 ></hr>
+                <Link to = '/user/${phoneNumber}'>
                 <div className="assign-input1-container">
                   <div className="assign1-confirm-button">แก้ไขข้อมูล</div>
                 </div>
+                </Link>
               </div>
             )}
           </div>

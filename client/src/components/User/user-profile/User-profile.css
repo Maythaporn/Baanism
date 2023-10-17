@@ -153,6 +153,25 @@
   flex-direction: row;
 }
 
+.column2 {
+  width: 450px;
+  height: 150px;
+  display: flex;
+
+  justify-content: space-between;
+  flex-direction: column;
+  /* Make it a flex container */
+  /* You can also add other styles like width, background-color, etc. */
+}
+.column1 {
+  width: 450px;
+  display: flex;
+  text-align: left;
+
+  flex-direction: column; /* Make it a flex container */
+  /* You can also add other styles like width, background-color, etc. */
+}
+
 
 .addproject{
   margin-left: 45rem;

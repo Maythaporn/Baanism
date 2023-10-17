@@ -216,7 +216,7 @@ function Project() {
             )}
             {isPaymentClicked && <div>Payment content</div>}
             {isInfoClicked && (
-              <div>
+               <div style={{ height: "500px", overflow: "scroll" }}>
                 ข้อมูลผู้ใช้งาน
                 <hr
                   style={{
