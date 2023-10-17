@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "./User-profile.css"; // Import the CSS file for this component
 import "react-icons/fa";
-import { Link, useNavigate,useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import logo from "./../../../assets/images/logo-header.png";
 
-import { FaCamera, FaFireExtinguisher, FaPlus, FaSignOutAlt, FaUserCircle } from "react-icons/fa";
+import {
+  FaCamera,
+  FaFireExtinguisher,
+  FaPlus,
+  FaSignOutAlt,
+  FaUserCircle,
+} from "react-icons/fa";
 import { FaFile } from "react-icons/fa";
 import { FaUser, FaBell } from "react-icons/fa";
 import { FaCashRegister } from "react-icons/fa";
@@ -15,13 +21,18 @@ import Axios from "axios";
 import UserProject from "./../user-project/User-Project";
 
 function Project() {
-
   const { phone_number } = useParams();
 
   const [isMobile, setIsMobile] = useState(false);
   const [isProjectClicked, setIsProjectClicked] = useState(false);
+  const [isProjectCreateClicked, setIsProjectCreateClicked] = useState(false);
   const [isPaymentClicked, setIsPaymentClicked] = useState(false);
   const [isInfoClicked, setIsInfoClicked] = useState(true);
+
+  
+  
+  const [addRoomtype, setaddRoomtype] = useState("");
+  const [addProjecttype, setaddProjecttype] = useState("");
 
   const [email, setEmail] = useState("");
   const [firstname, setFirstname] = useState("");
@@ -44,8 +55,8 @@ function Project() {
   const isOptionNULLSelected = selectedOption === "NULL";
   const [selectedFile, setSelectedFile] = useState(null);
 
-  const handleChange = (event) => {
-    const selectedValue = event.target.value;
+  const handleTypeChange = (event) => {
+    const addProjecttype = event.target.value;
     setSelectedOption(selectedValue);
 
     // Check if the selected option is "อื่นๆ"
@@ -66,32 +77,40 @@ function Project() {
     setIsProjectClicked(true);
     setIsPaymentClicked(false);
     setIsInfoClicked(false);
+    setIsProjectCreateClicked(false);
   };
 
   const handlePaymentClick = () => {
     setIsProjectClicked(false);
     setIsPaymentClicked(true);
     setIsInfoClicked(false);
+    setIsProjectCreateClicked(false);
   };
 
   const handleInfoClick = () => {
     setIsProjectClicked(false);
     setIsPaymentClicked(false);
     setIsInfoClicked(true);
+    setIsProjectCreateClicked(false);
+  };
+
+  const handleCreateClick = () => {
+    setIsProjectClicked(false);
+    setIsPaymentClicked(false);
+    setIsInfoClicked(false);
+    setIsProjectCreateClicked(true);
   };
   useEffect(() => {
-
     Axios.get("http://localhost:3001/userprofile", {
       params: {
         phone_number: phoneNumber,
-      }
+      },
     })
       .then((response) => {
         const userData = response.data;
         console.log(userData);
         setFirstname(userData.first_name);
         setLastname(userData.last_name);
-       
       })
       .catch((error) => {
         // Handle any network or server errors here
@@ -99,10 +118,10 @@ function Project() {
         // You might want to display a user-friendly error message to the user
       });
 
-      Axios.get("http://localhost:3001/userinfo", {
+    Axios.get("http://localhost:3001/userinfo", {
       params: {
         phone_number: phoneNumber,
-      }
+      },
     })
       .then((response) => {
         const userData = response.data;
@@ -111,7 +130,6 @@ function Project() {
         setProvinces(userData.provinces);
         setDistrict(userData.district);
         setZipcode(userData.provinces);
-       
       })
       .catch((error) => {
         // Handle any network or server errors here
@@ -137,42 +155,42 @@ function Project() {
 
   return (
     <div>
-         <div className="UserHeader">
-          <Link to="/">
-            <img src={logo} alt="baanism-logo" className="UserHeaderLogo" />
-          </Link>
+      <div className="UserHeader">
+        <Link to="/">
+          <img src={logo} alt="baanism-logo" className="UserHeaderLogo" />
+        </Link>
 
-          <div className="mim-container">
-            <Link to="/about">เกี่ยวกับเรา</Link>
-            <hr
-              style={{
-                width: "40px",
-              }}
-            ></hr>
-            <Link to="/homecontent">Home GURU Content</Link>
-            <hr
-              style={{
-                width: "40px",
-              }}
-            ></hr>
-            <Link to="/">ประเมินราคา</Link>
-            <hr
-              style={{
-                width: "40px",
-              }}
-            ></hr>
-            <Link to="/">ติดต่อเรา</Link>
-          </div>
-          <div className="mim-container2">
-            <Link>
-              <FaBell size={30} color="gray" />
-            </Link>
-            {"        "}
-            <Link>
-              <FaUser size={30} color="gray" />
-            </Link>
-          </div>
+        <div className="mim-container">
+          <Link to="/about">เกี่ยวกับเรา</Link>
+          <hr
+            style={{
+              width: "40px",
+            }}
+          ></hr>
+          <Link to="/homecontent">Home GURU Content</Link>
+          <hr
+            style={{
+              width: "40px",
+            }}
+          ></hr>
+          <Link to="/">ประเมินราคา</Link>
+          <hr
+            style={{
+              width: "40px",
+            }}
+          ></hr>
+          <Link to="/">ติดต่อเรา</Link>
         </div>
+        <div className="mim-container2">
+          <Link>
+            <FaBell size={30} color="gray" />
+          </Link>
+          {"        "}
+          <Link>
+            <FaUser size={30} color="gray" />
+          </Link>
+        </div>
+      </div>
       <div
         className={`projectUsercontainer ${isMobile ? "mobile" : "desktop"}`}
       >
@@ -252,21 +270,16 @@ function Project() {
                 <p className="profile-graps">ข้อมูลผู้ใช้งาน</p>
               </div>
 
-              
               <hr
                 style={{
                   height: "20px",
                 }}
               ></hr>
 
-              <div
-                onClick={handleInfoClick}
-                className={"Userbutton"
-                }
-              >
+              <div onClick={handleInfoClick} className={"Userbutton"}>
                 <FaSignOutAlt
                   size={isMobile ? 10 : 17}
-                  color={ "grey"}
+                  color={"grey"}
                   className="button-icon"
                 />{" "}
                 <p className="profile-graps">ออกจากระบบ</p>
@@ -278,12 +291,113 @@ function Project() {
           <div className="project-profilebar">
             {isProjectClicked && (
               <div>
-                <UserProject />
+                <div className="adproject-button" onClick={handleCreateClick}>
+                  <FaPlus size={10} color="white" /> เพิ่มโครงการ
+                </div>
               </div>
             )}
             {isPaymentClicked && <div>Payment content</div>}
+            {isProjectCreateClicked && (
+              <div style={{ height: "500px",width: "910px", overflow: "scroll" }}>
+                สร้างโครงการ
+                <div class="grid-container">
+                  <div class="grid-item"><div
+              className={`dropdown-input${
+                isOptionNULLSelected ? "-expanded" : ""
+              }`}
+            >
+              ประเภทงาน
+              <br />
+              <select
+                style={{ width: "175px" }}
+                id="dropdown"
+                className="text"
+                value={addProjecttype}
+                onChange={handleChange}
+              >
+                <option value="ต่อเติม" className="text">
+                  ต่อเติม
+                </option>
+                <option value="รีโนเวท" className="text">
+                  รีโนเวท
+                </option>
+                <option value="NULL" className="text">
+                  อื่นๆ
+                </option>
+              </select>
+              {isOptionNULLSelected && (
+                <div>
+                  <input
+                    style={{ width: "175px" }}
+                    type="text"
+                    className="text"
+                    placeholder="กรุณาโปรดระบุ"
+                    value={additionalField}
+                    onChange={(e) => setAdditionalField(e.target.value)}
+                  />
+                </div>
+              )}
+            </div></div>
+                  <div class="grid-item">
+                  <div
+              className={`dropdown-input${
+                isOptionNULLSelected ? "-expanded" : ""
+              }`}
+            >
+              ประเภทห้อง
+              <br />
+              <select
+                style={{ width: "175px" }}
+                id="dropdown"
+                className="text"
+                value={selectedOption}
+                onChange={handleChange}
+              >
+                <option value="option1" className="text">
+                  ห้องนอน
+                </option>
+                <option value="option2" className="text">
+                  ห้องน้ำ
+                </option>
+                <option value="option3" className="text">
+                  ห้องนั่งเล่น
+                </option>
+                <option value="option4" className="text">
+                  ห้องครัว
+                </option>
+                <option value="option5" className="text">
+                  ห้องอเนกประสงค์
+                </option>
+                <option value="NULL" className="text">
+                  อื่นๆ
+                </option>
+              </select>
+              {isOptionNULLSelected && (
+                <div>
+                  <input
+                    style={{ width: "175px" }}
+                    type="text"
+                    className="text"
+                    placeholder="กรุณาโปรดระบุ"
+                    value={addRoomtype}
+                    onChange={(e) => setaddRoomtype(e.target.value)}
+                  />
+                </div>
+              )}
+            </div>
+                  </div>
+                  <div class="grid-item">3</div>
+                  <div class="grid-item">4</div>
+                  <div class="grid-item">5</div>
+                  <div class="grid-item">6</div>
+                  <div class="grid-item">7</div>
+                  <div class="grid-item">8</div>
+                  <div class="grid-item">9</div>
+                </div>
+              </div>
+            )}
             {isInfoClicked && (
-               <div style={{ height: "500px", overflow: "scroll" }}>
+              <div style={{ height: "500px", overflow: "scroll" }}>
                 ข้อมูลผู้ใช้งาน
                 <hr
                   style={{
@@ -343,9 +457,7 @@ function Project() {
                         placeholder={provinces}
                         value={selectedProvince}
                         onChange={handleChangeThaimaps}
-                      >
-                        
-                      </input>
+                      ></input>
                     </div>
                   </div>
                   <div className="column2">
@@ -363,24 +475,22 @@ function Project() {
                 </div>
                 <div className="assign-input-container">
                   <div className="column1">
-                  <div className="dropdown-input">
-                        เขต/อำเภอ
-                        <br />
-                        <input
-                          style={{ width: "175px" }}
-                          id="dropdownDistrict"
-                          className="text"
-                          placeholder={district}
-                          value={selectedDistrict}
-                          onChange={handleChangeThaimaps}
-                        >
-                          
-                        </input>
-                      </div>
+                    <div className="dropdown-input">
+                      เขต/อำเภอ
+                      <br />
+                      <input
+                        style={{ width: "175px" }}
+                        id="dropdownDistrict"
+                        className="text"
+                        placeholder={district}
+                        value={selectedDistrict}
+                        onChange={handleChangeThaimaps}
+                      ></input>
+                    </div>
                   </div>
 
                   <div className="column1">
-                  <div className="zip-input">
+                    <div className="zip-input">
                       รหัสไปรษณีย์
                       <input
                         style={{ width: "130px" }} // Set the width using inline CSS
@@ -398,30 +508,28 @@ function Project() {
                     height: "20px",
                   }}
                 ></hr>
-                <Link to = '/user/${phoneNumber}'>
-                <div className="assign-input1-container">
-                  <div className="assign1-confirm-button">แก้ไขข้อมูล</div>
-                </div>
+                <Link to="/user/${phone_number}">
+                  <div className="assign-input1-container">
+                    <div className="assign1-confirm-button">แก้ไขข้อมูล</div>
+                  </div>
                 </Link>
               </div>
             )}
           </div>
-          
         </div>
-        
       </div>
       <div className="mim-Userfooter">
-          <div>Copyright © 2023 BAANISM Co., Ltd. All rights reserved.</div>
-          <div>
-            <Link to="/">นโยบายการใช้งาน</Link>
-          </div>
-          <div>
-            <Link to="/">ติดต่อสอบถาม</Link>
-          </div>
-          <div>
-            <Link to="/">เงื่อนไขการใช้งาน</Link>
-          </div>
+        <div>Copyright © 2023 BAANISM Co., Ltd. All rights reserved.</div>
+        <div>
+          <Link to="/">นโยบายการใช้งาน</Link>
         </div>
+        <div>
+          <Link to="/">ติดต่อสอบถาม</Link>
+        </div>
+        <div>
+          <Link to="/">เงื่อนไขการใช้งาน</Link>
+        </div>
+      </div>
     </div>
   );
 }

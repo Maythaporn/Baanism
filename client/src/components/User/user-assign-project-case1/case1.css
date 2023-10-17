@@ -108,7 +108,7 @@ hr.new4 {
   margin-top: 5px;
 }
 
-.assign-input-container {
+.mimassign-input-container {
   width: 910px;
   display: flex;
   padding-left: 40px;
@@ -130,7 +130,7 @@ hr.new4 {
   /* You can also add other styles like width, background-color, etc. */
 }
 
-.column2 {
+.mimcolumn2 {
   width: 450px;
   height: 150px;
   display: flex;
@@ -140,7 +140,7 @@ hr.new4 {
   /* Make it a flex container */
   /* You can also add other styles like width, background-color, etc. */
 }
-.column1 {
+.mimcolumn1 {
   width: 450px;
   display: flex;
   text-align: left;
