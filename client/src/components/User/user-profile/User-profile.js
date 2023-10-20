@@ -25,15 +25,15 @@ import { FaCashRegister } from "react-icons/fa";
 import { FaIdCard } from "react-icons/fa";
 import Axios from "axios";
 
-import UserProject from "./../user-project/User-Project";
+
 
 function Project() {
   const navigate = useNavigate();
   const { phone_number } = useParams();
 
   const [isMobile, setIsMobile] = useState(false);
-  const [isProjectClicked, setIsProjectClicked] = useState(false);
   const [isProjectCreateClicked, setIsProjectCreateClicked] = useState(false);
+  const [isProjectClicked, setIsProjectClicked] = useState(false);
   const [isPaymentClicked, setIsPaymentClicked] = useState(false);
   const [isInfoClicked, setIsInfoClicked] = useState(true);
 
@@ -148,6 +148,13 @@ function Project() {
     }
   };
 
+  const btnClick = () => {
+    setIsProjectClicked(false);
+    setIsPaymentClicked(false);
+    setIsInfoClicked(false);
+    setIsProjectCreateClicked(true);
+  };
+
   const handleProjectClick = () => {
     setIsProjectClicked(true);
     setIsPaymentClicked(false);
@@ -167,13 +174,6 @@ function Project() {
     setIsPaymentClicked(false);
     setIsInfoClicked(true);
     setIsProjectCreateClicked(false);
-  };
-
-  const handleCreateClick = () => {
-    setIsProjectClicked(false);
-    setIsPaymentClicked(false);
-    setIsInfoClicked(false);
-    setIsProjectCreateClicked(true);
   };
 
   const createProject = () => {
@@ -197,16 +197,18 @@ function Project() {
   };
 
   useEffect(() => {
+
     Axios.get("http://localhost:3001/userprofile", {
       params: {
         phone_number: phoneNumber,
-      },
+      }
     })
       .then((response) => {
         const userData = response.data;
         console.log(userData);
         setFirstname(userData.first_name);
         setLastname(userData.last_name);
+
       })
       .catch((error) => {
         // Handle any network or server errors here
@@ -217,7 +219,7 @@ function Project() {
     Axios.get("http://localhost:3001/userinfo", {
       params: {
         phone_number: phoneNumber,
-      },
+      }
     })
       .then((response) => {
         const userData = response.data;
@@ -226,6 +228,7 @@ function Project() {
         setProvinces(userData.provinces);
         setDistrict(userData.district);
         setZipcode(userData.provinces);
+
       })
       .catch((error) => {
         // Handle any network or server errors here
@@ -315,9 +318,8 @@ function Project() {
             <div>
               <div
                 onClick={handleProjectClick} // Use parentheses to invoke the function
-                className={`${
-                  isProjectClicked ? "Userselect-button" : "Userbutton"
-                }`}
+                className={`${isProjectClicked ? "Userselect-button" : "Userbutton"
+                  }`}
               >
                 <FaFile
                   size={isMobile ? 10 : 17}
@@ -334,9 +336,8 @@ function Project() {
 
               <div
                 onClick={handlePaymentClick}
-                className={`${
-                  isPaymentClicked ? "Userselect-button" : "Userbutton"
-                }`}
+                className={`${isPaymentClicked ? "Userselect-button" : "Userbutton"
+                  }`}
               >
                 <FaCashRegister
                   size={isMobile ? 10 : 17}
@@ -354,9 +355,8 @@ function Project() {
 
               <div
                 onClick={handleInfoClick}
-                className={`${
-                  isInfoClicked ? "Userselect-button" : "Userbutton"
-                }`}
+                className={`${isInfoClicked ? "Userselect-button" : "Userbutton"
+                  }`}
               >
                 <FaIdCard
                   size={isMobile ? 10 : 17}
@@ -366,13 +366,18 @@ function Project() {
                 <p className="profile-graps">ข้อมูลผู้ใช้งาน</p>
               </div>
 
+
               <hr
                 style={{
                   height: "20px",
                 }}
               ></hr>
 
-              <div onClick={handleInfoClick} className={"Userbutton"}>
+              <div
+                onClick={handleInfoClick}
+                className={"Userbutton"
+                }
+              >
                 <FaSignOutAlt
                   size={isMobile ? 10 : 17}
                   color={"grey"}
@@ -387,9 +392,9 @@ function Project() {
           <div className="project-profilebar">
             {isProjectClicked && (
               <div>
-                <div className="adproject-button" onClick={handleCreateClick}>
-                  <FaPlus size={10} color="white" /> เพิ่มโครงการ
-                </div>
+                <div className="adproject-button" onClick={btnClick}>
+            <FaPlus size={10} color="white"  /> เพิ่มโครงการ
+          </div>
               </div>
             )}
             {isPaymentClicked && <div>Payment content</div>}
@@ -953,91 +958,95 @@ function Project() {
                     height: "30px",
                   }}
                 ></hr>
-                <div className="assign-input-container">
-                  <div className="column1">
-                    <div className="text-input">
-                      ชื่อจริง
-                      <input
-                        style={{ width: "200px" }} // Set the width using inline CSS
-                        className="text"
-                        type="text"
-                        placeholder={firstname}
-                      />
-                    </div>
+                <div className="profile-gridHvan">
+                  <div className="text-inputHvan">
+                    ชื่อจริง
+                    <input
+                      style={{ width: "250px"}} // Set the width using inline CSS
+                      className="text"
+                      type="text"
+                      placeholder={firstname}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
                   </div>
 
-                  <div className="column1">
-                    <div className="text-input">
-                      นามสกุล
+                  <div className="text-inputHvan">
+                    นามสกุล
+                    <input
+                      style={{ width: "250px"}} // Set the width using inline CSS
+                      className="text"
+                      type="text"
+                      placeholder={lastname}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                  
+                    <div className="phone-inputHvan">
+                      เบอร์โทร
                       <input
-                        style={{ width: "150px" }} // Set the width using inline CSS
+                        style={{ width: "250px"}} // Set the width using inline CSS
                         className="text"
                         type="text"
-                        placeholder={lastname}
+                        placeholder={phone_number}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                       />
                     </div>
-                  </div>
-                </div>
-                <div className="assign-input-container">
-                  <div className="column2">
-                    <div className="row">
-                      <div className="zip-input">
-                        เบอร์โทร
-                        <input
-                          style={{ width: "130px" }} // Set the width using inline CSS
-                          className="text"
-                          type="text"
-                          placeholder={phone_number}
-                        />
-                      </div>
-                    </div>
-                    <div className="text-input-provinces">
-                      จังหวัด
-                      <input
-                        style={{ width: "250px" }}
-                        id="dropdownProvincs"
-                        className="text"
-                        placeholder={provinces}
-                      ></input>
-                    </div>
-                  </div>
-                  <div className="column2">
-                    <div className="address-input">
-                      ที่อยู่
-                      <textarea
-                        style={{ width: "385px", height: "100px" }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
-                        className="text"
-                        placeholder={address}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="assign-input-container">
-                  <div className="column1">
-                    <div className="dropdown-input">
-                      เขต/อำเภอ
-                      <br />
-                      <input
-                        style={{ width: "175px" }}
-                        id="dropdownDistrict"
-                        className="text"
-                        placeholder={district}
-                      ></input>
-                    </div>
+                  
+
+                  <div className="address-inputHvan">
+                    ที่อยู่
+                    <textarea
+                      style={{ width: "250px"}} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
+                      className="text"
+                      placeholder={address}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
                   </div>
 
-                  <div className="column1">
-                    <div className="zip-input">
-                      รหัสไปรษณีย์
-                      <input
-                        style={{ width: "130px" }} // Set the width using inline CSS
-                        className="text"
-                        type="text"
-                        placeholder={zipcode}
-                      />
-                    </div>
+                  <div className="text-input-provincesHvan">
+                    จังหวัด
+                    <input
+                      style={{ width: "250px" }}
+                      id="dropdownProvincs"
+                      className="text"
+                      placeholder={provinces}
+                      value={selectedProvince}
+                      onChange={handleChangeThaimaps}
+                    >
+                    </input>
+                  </div>
+
+                  <div className="zip-inputHvan">
+                    รหัสไปรษณีย์
+                    <input
+                      style={{ width: "250px" }} // Set the width using inline CSS
+                      className="text"
+                      type="text"
+                      placeholder={zipcode}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="district-inputHvan">
+                    เขต/อำเภอ
+                    <br />
+                    <input
+                      style={{ width: "175px" }}
+                      id="dropdownDistrict"
+                      className="text"
+                      placeholder={district}
+                      value={selectedDistrict}
+                      onChange={handleChangeThaimaps}
+                    >
+                    </input>
                   </div>
                 </div>
+
                 <hr
                   style={{
                     height: "20px",
@@ -1051,7 +1060,9 @@ function Project() {
               </div>
             )}
           </div>
+
         </div>
+
       </div>
       <div className="mim-Userfooter">
         <div>Copyright © 2023 BAANISM Co., Ltd. All rights reserved.</div>
