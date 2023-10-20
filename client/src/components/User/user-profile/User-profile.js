@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./User-profile.css"; // Import the CSS file for this component
 import "react-icons/fa";
-import { Link, useNavigate,useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import logo from "./../../../assets/images/logo-header.png";
 
@@ -22,7 +22,7 @@ function Project() {
   const [isProjectClicked, setIsProjectClicked] = useState(false);
   const [isPaymentClicked, setIsPaymentClicked] = useState(false);
   const [isInfoClicked, setIsInfoClicked] = useState(true);
-
+  
   const [email, setEmail] = useState("");
   const [firstname, setFirstname] = useState("");
   const [phoneNumber, setPhoneNumber] = useState(phone_number);
@@ -91,7 +91,7 @@ function Project() {
         console.log(userData);
         setFirstname(userData.first_name);
         setLastname(userData.last_name);
-       
+
       })
       .catch((error) => {
         // Handle any network or server errors here
@@ -99,7 +99,7 @@ function Project() {
         // You might want to display a user-friendly error message to the user
       });
 
-      Axios.get("http://localhost:3001/userinfo", {
+    Axios.get("http://localhost:3001/userinfo", {
       params: {
         phone_number: phoneNumber,
       }
@@ -111,7 +111,7 @@ function Project() {
         setProvinces(userData.provinces);
         setDistrict(userData.district);
         setZipcode(userData.provinces);
-       
+
       })
       .catch((error) => {
         // Handle any network or server errors here
@@ -137,42 +137,42 @@ function Project() {
 
   return (
     <div>
-         <div className="UserHeader">
-          <Link to="/">
-            <img src={logo} alt="baanism-logo" className="UserHeaderLogo" />
-          </Link>
+      <div className="UserHeader">
+        <Link to="/">
+          <img src={logo} alt="baanism-logo" className="UserHeaderLogo" />
+        </Link>
 
-          <div className="mim-container">
-            <Link to="/about">เกี่ยวกับเรา</Link>
-            <hr
-              style={{
-                width: "40px",
-              }}
-            ></hr>
-            <Link to="/homecontent">Home GURU Content</Link>
-            <hr
-              style={{
-                width: "40px",
-              }}
-            ></hr>
-            <Link to="/">ประเมินราคา</Link>
-            <hr
-              style={{
-                width: "40px",
-              }}
-            ></hr>
-            <Link to="/">ติดต่อเรา</Link>
-          </div>
-          <div className="mim-container2">
-            <Link>
-              <FaBell size={30} color="gray" />
-            </Link>
-            {"        "}
-            <Link>
-              <FaUser size={30} color="gray" />
-            </Link>
-          </div>
+        <div className="mim-container">
+          <Link to="/about">เกี่ยวกับเรา</Link>
+          <hr
+            style={{
+              width: "40px",
+            }}
+          ></hr>
+          <Link to="/homecontent">Home GURU Content</Link>
+          <hr
+            style={{
+              width: "40px",
+            }}
+          ></hr>
+          <Link to="/">ประเมินราคา</Link>
+          <hr
+            style={{
+              width: "40px",
+            }}
+          ></hr>
+          <Link to="/">ติดต่อเรา</Link>
         </div>
+        <div className="mim-container2">
+          <Link>
+            <FaBell size={30} color="gray" />
+          </Link>
+          {"        "}
+          <Link>
+            <FaUser size={30} color="gray" />
+          </Link>
+        </div>
+      </div>
       <div
         className={`projectUsercontainer ${isMobile ? "mobile" : "desktop"}`}
       >
@@ -201,9 +201,8 @@ function Project() {
             <div>
               <div
                 onClick={handleProjectClick} // Use parentheses to invoke the function
-                className={`${
-                  isProjectClicked ? "Userselect-button" : "Userbutton"
-                }`}
+                className={`${isProjectClicked ? "Userselect-button" : "Userbutton"
+                  }`}
               >
                 <FaFile
                   size={isMobile ? 10 : 17}
@@ -220,9 +219,8 @@ function Project() {
 
               <div
                 onClick={handlePaymentClick}
-                className={`${
-                  isPaymentClicked ? "Userselect-button" : "Userbutton"
-                }`}
+                className={`${isPaymentClicked ? "Userselect-button" : "Userbutton"
+                  }`}
               >
                 <FaCashRegister
                   size={isMobile ? 10 : 17}
@@ -240,9 +238,8 @@ function Project() {
 
               <div
                 onClick={handleInfoClick}
-                className={`${
-                  isInfoClicked ? "Userselect-button" : "Userbutton"
-                }`}
+                className={`${isInfoClicked ? "Userselect-button" : "Userbutton"
+                  }`}
               >
                 <FaIdCard
                   size={isMobile ? 10 : 17}
@@ -252,7 +249,7 @@ function Project() {
                 <p className="profile-graps">ข้อมูลผู้ใช้งาน</p>
               </div>
 
-              
+
               <hr
                 style={{
                   height: "20px",
@@ -266,7 +263,7 @@ function Project() {
               >
                 <FaSignOutAlt
                   size={isMobile ? 10 : 17}
-                  color={ "grey"}
+                  color={"grey"}
                   className="button-icon"
                 />{" "}
                 <p className="profile-graps">ออกจากระบบ</p>
@@ -283,145 +280,131 @@ function Project() {
             )}
             {isPaymentClicked && <div>Payment content</div>}
             {isInfoClicked && (
-               <div style={{ height: "500px", overflow: "scroll" }}>
+              <div style={{ height: "500px", overflow: "scroll" }}>
                 ข้อมูลผู้ใช้งาน
                 <hr
                   style={{
                     height: "30px",
                   }}
                 ></hr>
-                <div className="assign-input-container">
-                  <div className="column1">
-                    <div className="text-input">
-                      ชื่อจริง
-                      <input
-                        style={{ width: "200px" }} // Set the width using inline CSS
-                        className="text"
-                        type="text"
-                        placeholder={firstname}
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                    </div>
+                <div className="profile-gridHvan">
+                  <div className="text-inputHvan">
+                    ชื่อจริง
+                    <input
+                      style={{ width: "250px"}} // Set the width using inline CSS
+                      className="text"
+                      type="text"
+                      placeholder={firstname}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
                   </div>
 
-                  <div className="column1">
-                    <div className="text-input">
-                      นามสกุล
+                  <div className="text-inputHvan">
+                    นามสกุล
+                    <input
+                      style={{ width: "250px"}} // Set the width using inline CSS
+                      className="text"
+                      type="text"
+                      placeholder={lastname}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                  
+                    <div className="phone-inputHvan">
+                      เบอร์โทร
                       <input
-                        style={{ width: "150px" }} // Set the width using inline CSS
+                        style={{ width: "250px"}} // Set the width using inline CSS
                         className="text"
                         type="text"
-                        placeholder={lastname}
+                        placeholder={phone_number}
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                       />
                     </div>
-                  </div>
-                </div>
-                <div className="assign-input-container">
-                  <div className="column2">
-                    <div className="row">
-                      <div className="zip-input">
-                        เบอร์โทร
-                        <input
-                          style={{ width: "130px" }} // Set the width using inline CSS
-                          className="text"
-                          type="text"
-                          placeholder={phone_number}
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                        />
-                      </div>
-                    </div>
-                    <div className="text-input-provinces">
-                      จังหวัด
-                      <input
-                        style={{ width: "250px" }}
-                        id="dropdownProvincs"
-                        className="text"
-                        placeholder={provinces}
-                        value={selectedProvince}
-                        onChange={handleChangeThaimaps}
-                      >
-                        
-                      </input>
-                    </div>
-                  </div>
-                  <div className="column2">
-                    <div className="address-input">
-                      ที่อยู่
-                      <textarea
-                        style={{ width: "385px", height: "100px" }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
-                        className="text"
-                        placeholder={address}
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="assign-input-container">
-                  <div className="column1">
-                  <div className="dropdown-input">
-                        เขต/อำเภอ
-                        <br />
-                        <input
-                          style={{ width: "175px" }}
-                          id="dropdownDistrict"
-                          className="text"
-                          placeholder={district}
-                          value={selectedDistrict}
-                          onChange={handleChangeThaimaps}
-                        >
-                          
-                        </input>
-                      </div>
+                  
+
+                  <div className="address-inputHvan">
+                    ที่อยู่
+                    <textarea
+                      style={{ width: "250px"}} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
+                      className="text"
+                      placeholder={address}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
                   </div>
 
-                  <div className="column1">
-                  <div className="zip-input">
-                      รหัสไปรษณีย์
-                      <input
-                        style={{ width: "130px" }} // Set the width using inline CSS
-                        className="text"
-                        type="text"
-                        placeholder={zipcode}
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                    </div>
+                  <div className="text-input-provincesHvan">
+                    จังหวัด
+                    <input
+                      style={{ width: "250px" }}
+                      id="dropdownProvincs"
+                      className="text"
+                      placeholder={provinces}
+                      value={selectedProvince}
+                      onChange={handleChangeThaimaps}
+                    >
+                    </input>
+                  </div>
+
+                  <div className="zip-inputHvan">
+                    รหัสไปรษณีย์
+                    <input
+                      style={{ width: "250px" }} // Set the width using inline CSS
+                      className="text"
+                      type="text"
+                      placeholder={zipcode}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="district-inputHvan">
+                    เขต/อำเภอ
+                    <br />
+                    <input
+                      style={{ width: "175px" }}
+                      id="dropdownDistrict"
+                      className="text"
+                      placeholder={district}
+                      value={selectedDistrict}
+                      onChange={handleChangeThaimaps}
+                    >
+                    </input>
                   </div>
                 </div>
+
                 <hr
                   style={{
                     height: "20px",
                   }}
                 ></hr>
-                <Link to = '/user/${phoneNumber}'>
-                <div className="assign-input1-container">
-                  <div className="assign1-confirm-button">แก้ไขข้อมูล</div>
-                </div>
+                <Link to='/user/${phoneNumber}'>
+                  <div className="assign-input1-container">
+                    <div className="assign1-confirm-button">แก้ไขข้อมูล</div>
+                  </div>
                 </Link>
               </div>
             )}
           </div>
-          
+
         </div>
-        
+
       </div>
       <div className="mim-Userfooter">
-          <div>Copyright © 2023 BAANISM Co., Ltd. All rights reserved.</div>
-          <div>
-            <Link to="/">นโยบายการใช้งาน</Link>
-          </div>
-          <div>
-            <Link to="/">ติดต่อสอบถาม</Link>
-          </div>
-          <div>
-            <Link to="/">เงื่อนไขการใช้งาน</Link>
-          </div>
+        <div>Copyright © 2023 BAANISM Co., Ltd. All rights reserved.</div>
+        <div>
+          <Link to="/">นโยบายการใช้งาน</Link>
         </div>
+        <div>
+          <Link to="/">ติดต่อสอบถาม</Link>
+        </div>
+        <div>
+          <Link to="/">เงื่อนไขการใช้งาน</Link>
+        </div>
+      </div>
     </div>
   );
 }
