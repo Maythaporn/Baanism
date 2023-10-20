@@ -6,32 +6,80 @@ import logoIcon from "../../assets/images/logo_withbg.png";
 import TextInput from "../../components/textinput/textinput.js";
 import Button from "../../components/button/button.js";
 import { Link, Routes, Route, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 function Login() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+  let loginAttempts = 1;
+
+  let timeLeft = 10; // Initial time left
+  
+
+  const startCountdown = () => {
+    const countdownInterval = setInterval(() => {
+      if (timeLeft <= 0) {
+        // Reset login attempts and clear the interval when the countdown ends
+        clearInterval(countdownInterval);
+        loginAttempts = 0;
+      } else {
+        // Display the countdown alert to the user
+        console.log("Time left: " + timeLeft);
+        timeLeft--;
+      }
+    }, 1000); // Update the countdown every 1 second
+  };
 
   const btnLogin = () => {
+    if (loginAttempts >= 5) {
+      alert(
+        "เบอร์โทร หรือ รหัสผ่านท่านผิดกรุณาลองใหม่อีกครั้ง ท่านสามารถลองได้อีกครั้งใน 10 วินาที."
+      );
+      startCountdown(); // Start the countdown timer
+    }
+  
     Axios.post("http://localhost:3001/login", {
       phone_number: phoneNumber,
       password: password,
     })
       .then((response) => {
-        if (response.data === "/admin") {
+        if (response.data === "Invalid phone number or password") {
+          loginAttempts++; // Increment login attempts on failed login
+          console.log("Login : " + loginAttempts);
+          alert(
+            "เบอร์โทร หรือ รหัสผ่านท่านผิดกรุณาลองใหม่อีกครั้ง ท่านสามารถลองได้อีก : " +
+              (5 - loginAttempts) +
+              " ครั้ง"
+          );
+        } else if (response.data === "/admin") {
           window.location.href = "/admin"; // Redirect to the admin page
+        } else if (response.data === "/changepassword") {
+          alert("รหัสผ่านท่านมีอายุเกิน 90 วันแล้วกรุณาเปลี่ยน");
+          window.location.href = "/forgot";
         } else if (response.data === "/user") {
-          navigate(`/user/${phoneNumber}`); // Redirect to the user profile page with phone_number as a parameter
+          navigate(`/user/${phoneNumber}`);
         } else {
-          navigate(`/user_profile/${phoneNumber}`)
+          navigate(`/user_profile/${phoneNumber}`);
         }
       })
       .catch((error) => {
-        alert("เบอร์โทรศัพท์ หรือ password ของท่านผิด");
+        if (loginAttempts > 5) {
+          loginAttempts = 5; // Limit login attempts to 5
+        }
+      
+        alert(
+          "เบอร์โทร หรือ รหัสผ่านท่านผิดกรุณาลองใหม่อีกครั้ง ท่านสามารถลองได้อีก : " +
+            (5 - loginAttempts) +
+            " ครั้ง"
+        );
+      
+        loginAttempts++;
       });
   };
+  
+  
 
   const btnForgot = () => {
     navigate("/forgot"); // put ur page after /
@@ -65,7 +113,6 @@ function Login() {
             ลืมรหัสผ่าน
           </button>
         </Link>
-        <p>Your name: {phoneNumber + " " + password}</p>
         <div className="button-container">
           <button className="login-button" onClick={btnLogin}>
             เข้าสู่ระบบ

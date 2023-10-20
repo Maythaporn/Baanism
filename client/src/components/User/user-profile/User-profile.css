@@ -46,7 +46,18 @@
   justify-content: space-evenly;
 }
 
+.titletext{
+  font-family: 'Prompt', sans-serif;
+  color: #100F0D;
+  font-size: 30px;
+  margin-right: 40rem;
+}
 
+.titletext2{
+  font-family: 'Prompt', sans-serif;
+  color: #100F0D;
+  font-size: 30px;
+}
 
 
 .MimprojectUsercontainer{
@@ -81,21 +92,39 @@
 }
 
 .grid-container {
-  margin-left: 10px;
+  width: 700px;
   display: grid;
   grid-template-columns: auto auto;
   column-gap: 20px;
-  row-gap: 20px;
-  background-color: aliceblue;
+  row-gap: 10px;
+  padding: 10px;
+  margin-left: 20px;
   justify-content: space-between;
 }
 .grid-item {
   width: 400px;
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
+
   color:#100F0D;
   font-size: 30px;
+  justify-content: space-between;
   text-align: center;
+}
+
+.grid-container2 {
+  display: grid;
+  row-gap: 10px;
+  margin-left: 20px;
+  grid-template-columns: auto ;
+
+  padding: 10px;
+}
+.grid-item2 {
+
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .project-profilebar{
@@ -169,6 +198,22 @@
 
   display: flex;
   flex-direction: row;
+}
+
+.assign1-confirm-button{
+
+  padding-top: 10px;
+  border-radius: 10px;
+  background-color: #038E7F;
+  font-size: 16px;
+  font-family: 'Prompt', sans-serif;
+  color: #ffffff;
+  width: 150px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  margin-left: 25rem;
+
 }
 
 
