@@ -13,21 +13,6 @@ const db = mysql.createConnection({
   database: "Baanism",
 });
 
-app.get("/register", (req, res) => {
-  const { phone_number } = "admin"; // Retrieve the dynamic phone_number parameter from the URL
-  db.query(
-    "SELECT `first_name`, `last_name` FROM `users`",
-    (err, result) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Internal server error");
-      } else {
-        res.send(result);
-      }
-    }
-  );
-});
-
 
 app.get("/userprofile", (req, res) => {
   const { phone_number } = req.query;
@@ -99,9 +84,6 @@ app.get("/userinfo", (req, res) => {
 
 app.get("/provinces", (req, res) => {
   // เชื่อมต่อกับ MySQL และดึงข้อมูลจังหวัด
-
-  db.connect();
-
   const query = "SELECT * FROM `provinces`"; // แก้ไขตามโครงสร้างของตารางในฐานข้อมูลของคุณ
   db.query(query, (error, results) => {
     if (error) {
@@ -120,8 +102,6 @@ app.get("/provinces", (req, res) => {
 
 app.get("/district", (req, res) => {
   // เชื่อมต่อกับ MySQL และดึงข้อมูลจังหวัด
-
-  db.connect();
 
   const query = "SELECT * FROM `amphures`"; // แก้ไขตามโครงสร้างของตารางในฐานข้อมูลของคุณ
   db.query(query, (error, results) => {
@@ -187,6 +167,40 @@ app.post("/createusers", (req, res) => {
 });
 
 app.post("/adduserinfo", (req, res) => {
+  const { address, provinces, district, zipcode, phone_number } = req.body;
+
+  db.beginTransaction((err) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send("Internal server error");
+    }
+
+    db.query(
+      "UPDATE `users_info` SET `address`= ?,`provinces`= ?,`district`= ?,`zipcode`= ? WHERE`phone_number`= ?  ",
+      [ address, provinces, district,zipcode, phone_number],
+      (err, result) => {
+        if (err) {
+          db.rollback(() => {
+            console.log(err);
+            return res.status(500).send("Internal server error");
+          });
+        }
+
+        db.commit((err) => {
+          if (err) {
+            db.rollback(() => {
+              console.log(err);
+              return res.status(500).send("Internal server error");
+            });
+          }
+          return res.status(200).send("User added successfully");
+        });
+      }
+    );
+  });
+});
+
+app.post("/project", (req, res) => {
   const { address, provinces, district, zipcode, phone_number } = req.body;
 
   db.beginTransaction((err) => {

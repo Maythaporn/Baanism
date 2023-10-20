@@ -80,6 +80,24 @@
     align-items: center;
 }
 
+.grid-container {
+  margin-left: 10px;
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 20px;
+  row-gap: 20px;
+  background-color: aliceblue;
+  justify-content: space-between;
+}
+.grid-item {
+  width: 400px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  color:#100F0D;
+  font-size: 30px;
+  text-align: center;
+}
+
 .project-profilebar{
   margin-bottom: 90px;
   width: 1000px;
@@ -148,25 +166,6 @@
   flex-direction: row;
 }
 
-.column2 {
-  width: 450px;
-  height: 150px;
-  display: flex;
-
-  justify-content: space-between;
-  flex-direction: column;
-  /* Make it a flex container */
-  /* You can also add other styles like width, background-color, etc. */
-}
-.column1 {
-  width: 450px;
-  display: flex;
-  text-align: left;
-
-  flex-direction: column; /* Make it a flex container */
-  /* You can also add other styles like width, background-color, etc. */
-}
-
 
 .addproject{
   margin-left: 45rem;
@@ -182,7 +181,7 @@
   height: 32px;
   align-items: center;
   text-align: center;
-
+  margin-left: 45rem;
   padding-top: 3px;
 
 }
