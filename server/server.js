@@ -15,7 +15,7 @@ const db = mysql.createConnection({
 
 app.get("/userprofile", (req, res) => {
   const { phone_number } = req.query;
-  console.log("44444444444444444444444");
+
   console.log("phone " + phone_number);
 
   if (!phone_number) {
@@ -47,9 +47,69 @@ app.get("/userprofile", (req, res) => {
   );
 });
 
+app.post("/delete-project", (req, res) => {
+  const projectId = req.body.projectId;
+
+  // Use the projectId in a SQL DELETE query to remove the project from the database.
+  db.query("DELETE FROM project WHERE id = ?", [projectId], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Internal server error" });
+    }
+
+    return res.status(200).json({ message: "Project deleted successfully" });
+  });
+});
+
+app.get("/project", (req, res) => {
+  const { phone_number } = req.query;
+
+  console.log("phone " + phone_number);
+
+  // if (!phone_number) {
+  //   return res.status(400).json({ error: "Phone number is required." });
+  // }
+
+  // Use the phone_number in the SQL query to retrieve user information
+  db.query(
+    "SELECT * FROM `project` WHERE `phone_number` = ?",
+    [phone_number],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({ error: "Internal server error" });
+      }
+
+      if (result.length === 0) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      // Convert the result (an array of user records) to a list of users
+      const users = result.map((user) => ({
+        id: user.id,
+        phone_number: user.phone_number,
+        project_type: user.project_type,
+        room_type: user.room_type,
+        sq_meter: user.sq_meter,
+        address: user.address,
+        provinces: user.provinces,
+        district: user.district,
+        subdistrict: user.subdistrict,
+        zipcode: user.zipcode
+
+        // Add more properties as needed
+      }));
+
+      // Send the list of users as a JSON response
+      res.send(users);
+    }
+  );
+});
+
+
 app.get("/userinfo", (req, res) => {
   const { phone_number } = req.query;
-  console.log("55555555555555555");
+
   console.log("phone " + phone_number);
 
   if (!phone_number) {
@@ -81,42 +141,6 @@ app.get("/userinfo", (req, res) => {
   );
 });
 
-app.get("/provinces", (req, res) => {
-  // เชื่อมต่อกับ MySQL และดึงข้อมูลจังหวัด
-  const query = "SELECT * FROM `provinces`"; // แก้ไขตามโครงสร้างของตารางในฐานข้อมูลของคุณ
-  db.query(query, (error, results) => {
-    if (error) {
-      console.error("Error fetching provinces:", error);
-      res.status(500).json({ error: "Failed to fetch provinces" });
-    } else {
-      const provinces = results.map((result) => ({
-        id: result.id,
-        name: result.name_th,
-      }));
-      res.json(provinces);
-      console.log("useeeeeee");
-    }
-  });
-});
-
-app.get("/district", (req, res) => {
-  // เชื่อมต่อกับ MySQL และดึงข้อมูลจังหวัด
-
-  const query = "SELECT * FROM `amphures`"; // แก้ไขตามโครงสร้างของตารางในฐานข้อมูลของคุณ
-  db.query(query, (error, results) => {
-    if (error) {
-      console.error("Error fetching district:", error);
-      res.status(500).json({ error: "Failed to fetch provinces" });
-    } else {
-      const district = results.map((result) => ({
-        id: result.id,
-        name: result.name_th,
-      }));
-      res.json(district);
-      console.log("useeeeeee");
-    }
-  });
-});
 
 const bcrypt = require("bcrypt");
 const saltRounds = 10; // The number of salt rounds, higher is more secure

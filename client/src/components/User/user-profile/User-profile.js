@@ -91,14 +91,23 @@ function Project() {
 
   //place
   const [Option, setOption] = useState("yes");
-  const [backupAddress, setBackupAddress] = useState(address);
 
   const handleOptionChange = (event) => {
+
     setOption(event.target.value);
-    if (Option === "no") {
+    
+    console.log(Option);
+
+    if (Option === "yes") {
+      setSelectedDistrict(district);
+      selectedProvince(provinces);
+      setPostcode(zipcode);
+      
+    } else if(Option === "no") {
       setAddress("");
-    } else {
-      setAddress(backupAddress);
+      setSelectedDistrict('');
+      selectedProvince('');
+      setPostcode('');      
     }
   };
 
@@ -109,6 +118,9 @@ function Project() {
     const file = event.target.files[0];
     setSelectedFile(file);
   };
+
+  const [project, setProject] = useState([]);
+
   const [selectedProvince, setSelectedProvince] = useState(""); // Use a single province, not an array
   const [provinces, setProvinces] = useState(""); // Use an array for provinces
   const [province, setProvince] = useState([]); // Use an array for provinces
@@ -125,8 +137,6 @@ function Project() {
   const handleDateOptionChange = (event) => {
     setDateOption(event.target.value);
   };
-
-  let province_id = 0;
 
   const [projectName, setprojectName] = useState("โปรดระบุ");
   const [isProjectNameNULLSelected, setisProjectNameNULLSelected] =
@@ -176,6 +186,26 @@ function Project() {
     setIsProjectCreateClicked(false);
   };
 
+  const handleDeleteProject = (projectId) => {
+    // Send an HTTP DELETE request to the server to delete the project.
+    console.log(projectId);
+
+    Axios.post("http://localhost:3001/delete-project", {
+      projectId: projectId,
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          alert("ลบรายการเรียบร้อย");
+          // navigate(`/user_profile/${phoneNumber}`); // Redirect to the user profile page with phone_number as a parameter
+        }
+      })
+      .catch((error) => {
+        alert("เกิดข้อผิดพลากกรุณาลองใหม่อีกครั้ง");
+      }); // put ur page after /
+
+  };
+  
+
   const createProject = () => {
     Axios.post("http://localhost:3001/createProject", {
       project_type: addProject,
@@ -197,14 +227,35 @@ function Project() {
       .catch((error) => {
         alert("เกิดข้อผิดพลากกรุณาลองใหม่อีกครั้ง");
       }); // put ur page after /
+
+    setIsProjectClicked(true);
+    setIsPaymentClicked(false);
+    setIsInfoClicked(false);
+    setIsProjectCreateClicked(false);
+
   };
   useEffect(() => {
+
     console.log("Provinces : ", selectedProvince);
     console.log("Subdistrict : ", selectedSubDistrict);
 
     setProvince(Thai_provinces);
     setdistrict(Thai_district);
     setSubdistrict(Thai_subdistrict);
+
+    Axios.get("http://localhost:3001/project", {
+      params: {
+        phone_number: phoneNumber,
+      },
+    })
+      .then((response) => {
+        setProject(response.data);
+      })
+      .catch((error) => {
+        // Handle any network or server errors here
+        console.error("Error fetching user data: ", error);
+        // You might want to display a user-friendly error message to the user
+      });
 
     Axios.get("http://localhost:3001/userprofile", {
       params: {
@@ -241,6 +292,8 @@ function Project() {
         console.error("Error fetching user data: ", error);
         // You might want to display a user-friendly error message to the user
       });
+
+    
     // Add an event listener to track window size changes
     function handleResize() {
       setIsMobile(window.innerWidth <= 768); // Adjust the breakpoint as needed
@@ -395,10 +448,29 @@ function Project() {
 
           <div className="project-profilebar">
             {isProjectClicked && (
-              <div>
+               <div
+               style={{ height: "500px", width: "910px", overflow: "scroll" }}
+             >
                 <div className="adproject-button" onClick={btnClick}>
                   <FaPlus size={10} color="white" /> เพิ่มโครงการ
                 </div>
+                {project.map((e) => (
+                <div className="admin-project-container" key={e.id}>
+                    <div className='info-left'>
+                        <p className='project-title'>{e.project_type}</p>
+                        <p>ประเภทห้อง : {e.room_type}</p>
+                        <p>สถานที่ : {e.address}</p>
+                    </div>
+                    <div className='info-right'>
+                        <p>สถานะ : <span class="status"></span>รอการติดต่อกลับ</p>
+                        <div className='edit'>
+                            <button className='edit-btn'>แก้ไขข้อมูล</button>
+                            <span className='space'>|</span>
+                            <button className='edit-btn' onClick={() => handleDeleteProject(e.id)}>ลบโครงการ</button>
+                        </div>
+                    </div>
+                </div>
+            ))}
               </div>
             )}
             {isPaymentClicked && <div>Payment content</div>}
@@ -406,7 +478,6 @@ function Project() {
               <div
                 style={{ height: "500px", width: "910px", overflow: "scroll" }}
               >
-                {backupAddress}
                 <p className="titletext">สร้างโครงการ</p>
                 <hr
                   style={{
@@ -554,7 +625,6 @@ function Project() {
                         value={selectedProvince} // The selected province is bound to the value of the select element
                         onChange={(e) => setSelectedProvince(e.target.value)} // This function will be called when the selection changes
                       >
-                        <option value="">กรุณาเลือก</option>{" "}
                         {/* Default empty option */}
                         {province.map((state) => (
                           <option key={state.id} value={state.name_th}>
@@ -993,6 +1063,7 @@ function Project() {
                 </div>
               </div>
             )}
+            
             {isInfoClicked && (
               <div style={{ height: "500px", overflow: "scroll" }}>
                 ข้อมูลผู้ใช้งาน

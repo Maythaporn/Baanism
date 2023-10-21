@@ -152,7 +152,6 @@ function Confirm(props) {
               <option value="" disabled selected>
                 จังหวัด
               </option>
-              <option value="">กรุณาเลือก</option> {/* Default empty option */}
               {province.map((state) => (
                 <option key={state.id} value={state.name_th}>
                   {state.name_th}
