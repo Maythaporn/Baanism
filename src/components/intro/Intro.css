@@ -1,5 +1,3 @@
-
-
 .IntroTitle {
   font-size: 75px;
   color: #100F0D; /* Adjust the margin-bottom as needed for spacing */
@@ -26,7 +24,6 @@
   padding-left: 3rem;
 }
 
-
 .free_estimate{
   margin-top: 3%;
   width: 350px;
@@ -51,11 +48,53 @@
     color: #100F0D;
   }
 
-  @media (max-width: 800px) {
+  /* @media (max-width: 768px) {
     background: transparent;
 
     &:hover {
       background: none;
+    }
+  } */
+}
+
+@media (max-width:768px){
+  .IntroContainer{
+    height: 700px;
+    width: auto;
+    background-size:cover;
+  }
+  .IntroTitle {
+    font-size: 40px; /* Adjust font size for smaller screens */
+  }
+  .IntroContent{
+    font-size: 22px;
+  }
+  .space-intro{
+    padding-top: 9rem;
+    padding-left: 0.5rem;
+  }
+  .free_estimate{
+    margin-top: 10%;
+    width: 80%;
+    height: 100%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  
+    font-size: 20px;
+    font-family: 'Prompt',sans-serif;
+    color: white;
+    background: #038E7F;
+  
+    &:hover {
+      background: white;
+      border: 2px solid #038E7F;
+  
+      font-size: 30px;
+      font-family: 'Prompt',sans-serif;
+  
+      color: #100F0D;
     }
   }
 }
