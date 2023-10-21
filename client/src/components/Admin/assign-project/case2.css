@@ -1,0 +1,513 @@
+.Assigncontainer{
+  background-image: url("./../../../assets/images/bg-information.png"); /* Path to your background image */
+  background-size: cover; /* Adjust as needed */
+  background-repeat: repeat; /* Adjust as needed */
+  /* Other background properties can be added here */
+  flex-direction: row;
+  justify-content:space-evenly; 
+  display: flex;
+
+  padding-top: 50px;
+
+  width: 100%;
+}
+
+
+.sidebar{
+    margin-top: 70px;
+    margin-left: 2rem;
+
+    width: 300px;
+    height: 310px;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px grey;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    align-items: center;
+
+}
+
+hr.new4 {
+  width: 800px;
+  border: 0.5px solid #e1e1e0;
+}
+
+
+.profile-circle{
+  width: 95px;
+  height: 95px;
+  text-align: center;
+
+  background-color: gray;
+  border-radius: 100px
+}
+
+.profile-fix-circle{
+  margin-left: 4rem;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+
+  background-color: #d9d9d9;
+  border-radius: 100px
+}
+
+.botton{
+  border-radius: 10px;
+  background-color: #03128E;
+  font-size: 15px;
+  font-family: 'Prompt', sans-serif;
+  color: white;
+  width: 200px;
+  height: 32px;
+  align-items: center;
+
+  /* Define hover styles here */
+  transition: background-color 0.3s; /* Add a smooth transition effect */
+}
+
+.assign1-confirm-button{
+
+  padding-top: 10px;
+  border-radius: 10px;
+  background-color: #038E7F;
+  font-size: 16px;
+  font-family: 'Prompt', sans-serif;
+  color: #ffffff;
+  width: 150px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+
+}
+
+.user-icon{
+  margin-top: 20px;
+}
+
+.camera-icon{
+  margin-top: 5px;
+}
+
+.gallery-icon{
+  margin-top: 5px;
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+}
+
+.button-icon{
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.assign-input-container {
+  width: 910px;
+  display: flex;
+  padding-left: 40px;
+
+  justify-content: space-between;
+  flex-direction: row; /* Make it a flex container */
+  margin-bottom: 20px;
+  /* You can also add other styles like width, background-color, etc. */
+}
+
+.assign-input1-container {
+  width: 910px;
+  display: flex;
+  padding-left: 40px;
+
+  justify-content: center;
+  flex-direction: row; /* Make it a flex container */
+  margin-bottom: 20px;
+  /* You can also add other styles like width, background-color, etc. */
+}
+
+.column2 {
+  width: 450px;
+  height: 150px;
+  display: flex;
+
+  justify-content: space-between;
+  flex-direction: column;
+  /* Make it a flex container */
+  /* You can also add other styles like width, background-color, etc. */
+}
+.column1 {
+  width: 450px;
+  display: flex;
+  text-align: left;
+
+  flex-direction: column; /* Make it a flex container */
+  /* You can also add other styles like width, background-color, etc. */
+}
+
+.text-container {
+  width: 300px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+
+
+  align-content: flex-end;
+  font-size: 16px;
+  margin-top: 2px;
+  margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+  font-family: 'Prompt', sans-serif;
+  color: #100F0D;
+}
+
+.checkbox-container {
+  width: 400px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
+  margin-top: 2px;
+  margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+  font-family: 'Prompt', sans-serif;
+  color: #100F0D;
+}
+
+.checkbox1-container {
+  width: 400px;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
+  margin-top: 2px;
+  justify-content: space-between;
+  margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+  font-family: 'Prompt', sans-serif;
+  color: #100F0D;
+}
+.text-input{
+  width: 400px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  align-content: center;
+  font-size: 16px;
+  margin-top: 2px;
+  margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+  font-family: 'Prompt', sans-serif;
+  color: #100F0D;
+}
+
+.text-input1 {
+  padding-top: 10px;
+  padding-left: 10px;
+
+  width: 400px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  align-content: center;
+  font-size: 16px;
+  margin-top: 2px;
+  margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+  font-family: 'Prompt', sans-serif;
+  color: #100F0D;
+}
+
+.zip-input {
+  padding-top: 10px;
+  padding-left: 10px;
+  width: 150px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  align-content: center;
+  font-size: 16px;
+  margin-top: 2px;
+  margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+  font-family: 'Prompt', sans-serif;
+  color: #100F0D;
+}
+
+.blueprint {
+  width: 400px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+
+  border-radius: 10px;
+  outline: none;
+  align-content: center;
+  font-size: 16px;
+  margin-top: 2px;
+  margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+  font-family: 'Prompt', sans-serif;
+  color: #100F0D;
+}
+.address2-input {
+  padding-top: 10px;
+  padding-left: 10px;
+  width: 400px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  align-content: center;
+  font-size: 16px;
+  margin-top: 2px;
+  margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+  font-family: 'Prompt', sans-serif;
+  color: #100F0D;
+}
+
+.info-input {
+  padding-top: 10px;
+  padding-left: 10px;
+  width: 830px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  align-content: center;
+  font-size: 16px;
+  margin-top: 2px;
+  margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+  font-family: 'Prompt', sans-serif;
+  color: #100F0D;
+}
+
+.area-input {
+  padding-top: 10px;
+  padding-left: 10px;
+  width: 400px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  align-content: center;
+  font-size: 16px;
+  margin-top: 2px;
+  margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+  font-family: 'Prompt', sans-serif;
+  color: #100F0D;
+}
+.text-input-provinces {
+  width: 275px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  align-content: center;
+  font-size: 16px;
+
+  padding-left: 10px;
+  padding-top: 10px;
+  margin-top: 2px;
+  margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+  font-family: 'Prompt', sans-serif;
+  color: #100F0D;
+}
+
+.dropdown-input {
+  width: 200px;
+  height: 65px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  align-content: center;
+  font-size: 16px;
+
+  margin-right: 10px;
+  padding-top: 7px;
+  padding-left: 10px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+  font-family: 'Prompt', sans-serif;
+  color: #100F0D;
+
+}
+
+.dropdown-input-expanded {
+  width: 200px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  align-content: center;
+  font-size: 16px;
+
+  padding-top: 10px;
+  padding-left: 10px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+  font-family: 'Prompt', sans-serif;
+  color: #100F0D;
+
+}
+
+.text2{
+  font-family: 'Prompt', sans-serif;
+  color: #100F0D;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.text{
+  font-family: 'Prompt', sans-serif;
+  color: #100F0D;
+  font-size: 15px;
+}
+
+.text1{
+  font-family: 'Prompt', sans-serif;
+  color: #d9d9d9;
+  font-size: 15px;
+}
+
+.titletext{
+  font-family: 'Prompt', sans-serif;
+  color: #100F0D;
+  font-size: 30px;
+  padding-right: 55px;
+}
+
+.titletext2{
+  font-family: 'Prompt', sans-serif;
+  color: #100F0D;
+  font-size: 30px;
+  padding-right: 33rem;
+}
+
+.text-dropdown{
+  font-family: 'Prompt', sans-serif;
+  color: #100F0D;
+  font-size: 10px;
+}
+
+@media (max-width: 768px) {
+  .Assigncontainer {
+    flex-direction: column; /* Stack items vertically */
+  }
+  .sidebar {
+    margin-left: 10px;
+    width: 95%; /* Full width */
+  }
+  .assign1-profilebar {
+    margin-left: 10px;
+    width: 95%;
+   
+  }
+  .input-container{
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  .titletext{
+    font-family: 'Prompt', sans-serif;
+    color: #100F0D;
+    font-size: 30px;
+    padding-right: 0;
+  }
+
+  .assign-input-container {
+    width: 95%;
+    display: flex;
+    padding-left: 150px;
+  
+    justify-content: space-between;
+    flex-direction: column; /* Make it a flex container */
+    margin-bottom: 20px;
+    /* You can also add other styles like width, background-color, etc. */
+  }
+  
+  .assign-input1-container {
+    width: 95%;
+    display: flex;
+   
+  
+    justify-content: center;
+    flex-direction: column; /* Make it a flex container */
+    margin-bottom: 20px;
+    /* You can also add other styles like width, background-color, etc. */
+  }
+
+  
+hr.new4 {
+  width: 95%;
+  border: 0.5px solid #e1e1e0;
+  margin-bottom: 10px;
+}
+  
+  .titletext2{
+    font-family: 'Prompt', sans-serif;
+    color: #100F0D;
+    font-size: 30px;
+    padding-right: 0;
+  }
+
+  .row{
+    display: flex;
+    height: 300px;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .column2 {
+    width: 95%;
+
+    display: flex;
+  
+    justify-content: space-between;
+    flex-direction: column;
+    margin-bottom: 80px;
+    /* Make it a flex container */
+    /* You can also add other styles like width, background-color, etc. */
+  }
+  .column1 {
+    width: 95%;
+    display: flex;
+    margin-bottom: 20px;
+    flex-direction: column; /* Make it a flex container */
+    /* You can also add other styles like width, background-color, etc. */
+  }
+  
+}
