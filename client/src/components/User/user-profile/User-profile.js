@@ -90,12 +90,12 @@ function Project() {
   };
 
   //place
-  const [Option, setOption] = useState("yes");
+  const [Option, setOption] = useState("");
 
   const handleOptionChange = (event) => {
 
     setOption(event.target.value);
-    
+
     console.log(Option);
 
     if (Option === "yes") {
@@ -195,7 +195,7 @@ function Project() {
     })
       .then((response) => {
         if (response.status === 200) {
-          alert("ลบรายการเรียบร้อย");
+          alert("ลบโครงการเรียบร้อย");
           // navigate(`/user_profile/${phoneNumber}`); // Redirect to the user profile page with phone_number as a parameter
         }
       })
@@ -462,7 +462,7 @@ function Project() {
                         <p>สถานที่ : {e.address}</p>
                     </div>
                     <div className='info-right'>
-                        <p>สถานะ : <span class="status"></span>รอการติดต่อกลับ</p>
+                        <p>สถานะ : <span class="status"></span>{e.status}</p>
                         <div className='edit'>
                             <button className='edit-btn'>แก้ไขข้อมูล</button>
                             <span className='space'>|</span>
