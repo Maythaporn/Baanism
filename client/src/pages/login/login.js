@@ -93,26 +93,22 @@ function Login() {
       </div>
       <div className="white-box-login">
         <h1 class="head-login">กรอกข้อมูลเข้าสู่ระบบ</h1>
-        <div className="tel-input">
           <input
+          className="tel-input"
             placeholder="เบอร์โทรศัพท์"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
           />
-        </div>
-        <div className="pass-input">
           <input
+          className="password-input"
             type="password"
             placeholder="รหัสผ่าน"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-        </div>
-        <Link to="/forgot">
           <button className="forgot-password-button" onClick={btnForgot}>
             ลืมรหัสผ่าน
           </button>
-        </Link>
         {LoginAttempts && (
           <div>
             <div className="button-container">

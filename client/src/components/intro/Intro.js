@@ -11,9 +11,7 @@ function Intro() {
             <h1 className="IntroTitle">INNOVATION.</h1>
             <br />
 
-            <p className="IntroContent">
-               ต่อเติมบ้านอย่างมีคุณภาพด้วย PrefabVolution
-            </p>
+            <p className="IntroContent">ต่อเติมบ้านอย่างมีคุณภาพด้วย PrefabVolution</p>
             <p className="IntroContent">ผลิตจากอุตสาหกรรม ลดปัญหางานก่อสร้าง</p>
             <p className="IntroContent">ติดตั้งไว จบงานเร็วสุด 14 วัน</p>
 
