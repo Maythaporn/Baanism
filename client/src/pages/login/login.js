@@ -6,17 +6,17 @@ import logoIcon from "../../assets/images/logo_withbg.png";
 import TextInput from "../../components/textinput/textinput.js";
 import Button from "../../components/button/button.js";
 import { Link, Routes, Route, useNavigate } from "react-router-dom";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function Login() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
+  const [LoginAttempts, setIsLoginAttempts] = useState(true);
 
   const navigate = useNavigate();
   let loginAttempts = 1;
 
   let timeLeft = 10; // Initial time left
-  
 
   const startCountdown = () => {
     const countdownInterval = setInterval(() => {
@@ -24,9 +24,11 @@ function Login() {
         // Reset login attempts and clear the interval when the countdown ends
         clearInterval(countdownInterval);
         loginAttempts = 0;
+        setIsLoginAttempts(true);
       } else {
         // Display the countdown alert to the user
         console.log("Time left: " + timeLeft);
+        setIsLoginAttempts(false);
         timeLeft--;
       }
     }, 1000); // Update the countdown every 1 second
@@ -39,7 +41,7 @@ function Login() {
       );
       startCountdown(); // Start the countdown timer
     }
-  
+
     Axios.post("http://localhost:3001/login", {
       phone_number: phoneNumber,
       password: password,
@@ -68,18 +70,16 @@ function Login() {
         if (loginAttempts > 5) {
           loginAttempts = 5; // Limit login attempts to 5
         }
-      
+
         alert(
           "เบอร์โทร หรือ รหัสผ่านท่านผิดกรุณาลองใหม่อีกครั้ง ท่านสามารถลองได้อีก : " +
             (5 - loginAttempts) +
             " ครั้ง"
         );
-      
+
         loginAttempts++;
       });
   };
-  
-  
 
   const btnForgot = () => {
     navigate("/forgot"); // put ur page after /
@@ -113,11 +113,15 @@ function Login() {
             ลืมรหัสผ่าน
           </button>
         </Link>
-        <div className="button-container">
-          <button className="login-button" onClick={btnLogin}>
-            เข้าสู่ระบบ
-          </button>
-        </div>
+        {LoginAttempts && (
+          <div>
+            <div className="button-container">
+              <button className="login-button" onClick={btnLogin}>
+                เข้าสู่ระบบ
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

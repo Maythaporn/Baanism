@@ -163,6 +163,18 @@ app.post("/createusers", (req, res) => {
                   }
                 }
               );
+              db.query(
+                "INSERT INTO `users_info` (`phone_number`) VALUES (?)",
+                [ phone_number,],
+                (insertErr, result) => {
+                  if (insertErr) {
+                    console.log(insertErr);
+                    res.status(500).send("Internal server error");
+                  } else {
+                    res.status(200).send("User added successfully");
+                  }
+                }
+              );
             }
           });
         }
@@ -171,8 +183,10 @@ app.post("/createusers", (req, res) => {
   );
 });
 
+
+
 app.post("/createProject", (req, res) => {
-  const { address, sq_meter, provinces, district, zipcode, phone_number } =
+  const { project_type,room_type,address, sq_meter, provinces, district,subdistrict, zipcode, phone_number } =
     req.body;
 
   db.beginTransaction((err) => {
@@ -182,8 +196,8 @@ app.post("/createProject", (req, res) => {
     }
 
     db.query(
-      "INSERT INTO `project`(address,sq_meter, provinces, district, zipcode, phone_number) VALUES (?,?, ?, ?, ?, ?); ",
-      [address, sq_meter, provinces, district, zipcode, phone_number],
+      "INSERT INTO `project`(project_type,room_type,address,sq_meter, provinces, district,subdistrict, zipcode, phone_number) VALUES (?,?,?,?,?, ?, ?, ?, ?); ",
+      [project_type,room_type,address, sq_meter, provinces, district,subdistrict, zipcode, phone_number],
       (err, result) => {
         if (err) {
           db.rollback(() => {

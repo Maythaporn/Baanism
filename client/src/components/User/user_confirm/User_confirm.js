@@ -11,6 +11,9 @@ import { FaUser } from "react-icons/fa";
 import { FaCashRegister } from "react-icons/fa";
 import { FaIdCard } from "react-icons/fa";
 
+import Thai_provinces from "../../../thai_provinces.js";
+import Thai_district from "../../../thai_amphures.js";
+
 function Confirm(props) {
   const [userData, setUserData] = useState({});
   const { phone_number } = useParams();
@@ -22,6 +25,9 @@ function Confirm(props) {
   const [provinces, setProvinces] = useState("");
   const [zipcode, setZipcode] = useState("");
   const [isMobile, setIsMobile] = useState(false);
+
+  const [province, setProvince] = useState([]); // Use an array for provinces
+  const [District, setdistrict] = useState([]);
 
   //เมื่อกด side bar จะเลือก case มาแสดงผล
   const [
@@ -57,23 +63,25 @@ function Confirm(props) {
   // const [setName, onChangeNumber] = React.useState('');
 
   useEffect(() => {
+    setProvince(Thai_provinces);
+    setdistrict(Thai_district);
+
     Axios.get("http://localhost:3001/userprofile", {
-        params: {
-          phone_number: phoneNumber,
-        }
+      params: {
+        phone_number: phoneNumber,
+      },
+    })
+      .then((response) => {
+        const userData = response.data;
+        console.log(userData);
+        setFirstname(userData.first_name);
+        setLastname(userData.last_name);
       })
-        .then((response) => {
-          const userData = response.data;
-          console.log(userData);
-          setFirstname(userData.first_name);
-          setLastname(userData.last_name);
-         
-        })
-        .catch((error) => {
-          // Handle any network or server errors here
-          console.error("Error fetching user data: ", error);
-          // You might want to display a user-friendly error message to the user
-        });
+      .catch((error) => {
+        // Handle any network or server errors here
+        console.error("Error fetching user data: ", error);
+        // You might want to display a user-friendly error message to the user
+      });
 
     // Add an event listener to track window size changes
     function handleResize() {
@@ -144,9 +152,12 @@ function Confirm(props) {
               <option value="" disabled selected>
                 จังหวัด
               </option>
-              <option value="option1">เชียงใหม่</option>
-              <option value="option2">ภูเก็ต</option>
-              <option value="option3">ปทุมธานี</option>
+              <option value="">กรุณาเลือก</option> {/* Default empty option */}
+              {province.map((state) => (
+                <option key={state.id} value={state.name_th}>
+                  {state.name_th}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -170,10 +181,20 @@ function Confirm(props) {
             >
               <option value="" disabled selected>
                 เขต/อำเภอ
-              </option>
-              <option value="option1">สายไหม</option>
-              <option value="option2">ศรีราชา</option>
-              <option value="option3">ลาดพร้าว</option>
+              </option>{" "}
+              {District.filter((state) => {
+                            const provinceIds = province
+                              .filter(
+                                (province_id) =>
+                                  province_id.name_th === provinces
+                              )
+                              .map((province_id) => province_id.id);
+                            return provinceIds.includes(state.province_id);
+                          }).map((state) => (
+                            <option key={state.id} value={state.name_th}>
+                              {state.name_th}
+                            </option>
+                          ))}
             </select>
           </div>
         </div>

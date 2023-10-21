@@ -11,6 +11,10 @@ import gallery5 from "../../../assets/images/gallery5.png";
 
 import logo from "./../../../assets/images/logo-header.png";
 
+import Thai_provinces from "../../../thai_provinces.js";
+import Thai_district from "../../../thai_amphures.js";
+import Thai_subdistrict from "../../../thai_tambons.js";
+
 import {
   FaCamera,
   FaFireExtinguisher,
@@ -24,8 +28,6 @@ import { FaUser, FaBell } from "react-icons/fa";
 import { FaCashRegister } from "react-icons/fa";
 import { FaIdCard } from "react-icons/fa";
 import Axios from "axios";
-
-
 
 function Project() {
   const navigate = useNavigate();
@@ -44,15 +46,10 @@ function Project() {
   const [lastname, setLastname] = useState("");
   const [address, setAddress] = useState("");
   const [district, setDistrict] = useState("");
-  const [provinces, setProvinces] = useState("");
-  const [zipcode, setZipcode] = useState("");
-  const [selectedOption, setSelectedOption] = useState(
-    "เลือกประเภทงานที่ท่านต้องการ"
-  ); // State to store the selected option
 
-  const [selectedProvince, setSelectedProvince] = useState("");
+  const [zipcode, setZipcode] = useState("");
+  const [postcode, setPostcode] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
-  const [selectedSubdistrict, setSelectedSubdistrict] = useState("");
 
   const [addProjectField, setaddProjectField] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
@@ -94,14 +91,14 @@ function Project() {
 
   //place
   const [Option, setOption] = useState("yes");
-  const [backupAddress,setBackupAddress] = useState(address);
+  const [backupAddress, setBackupAddress] = useState(address);
+
   const handleOptionChange = (event) => {
     setOption(event.target.value);
     if (Option === "no") {
       setAddress("");
-    }else{
+    } else {
       setAddress(backupAddress);
-
     }
   };
 
@@ -112,16 +109,16 @@ function Project() {
     const file = event.target.files[0];
     setSelectedFile(file);
   };
+  const [selectedProvince, setSelectedProvince] = useState(""); // Use a single province, not an array
+  const [provinces, setProvinces] = useState(""); // Use an array for provinces
+  const [province, setProvince] = useState([]); // Use an array for provinces
 
-  const handleChangeThaimaps = (e) => {
-    setSelectedProvince(e.target.value);
-  };
+  const [subdistrict, setSubdistrict] = useState([]);
+  const [District, setdistrict] = useState([]);
+  const [selectedSubDistrict, setSelectedSubDistrict] = useState("");
 
   const [addressfield, setAddressField] = useState("");
-  const [postcode, setPostcode] = useState("");
   const [googlelink, setGoogleLink] = useState("");
-
-
 
   const [DateOption, setDateOption] = useState("yes");
 
@@ -129,9 +126,12 @@ function Project() {
     setDateOption(event.target.value);
   };
 
+  let province_id = 0;
+
   const [projectName, setprojectName] = useState("โปรดระบุ");
   const [isProjectNameNULLSelected, setisProjectNameNULLSelected] =
     useState(false);
+
   const handleProjectChange = (event) => {
     const projectName = event.target.value;
     setprojectName(projectName);
@@ -178,11 +178,14 @@ function Project() {
 
   const createProject = () => {
     Axios.post("http://localhost:3001/createProject", {
+      project_type: addProject,
+      room_type: addRoom,
       address: address,
-      provinces: provinces,
-      district: district,
-      sq_meter :area,
-      zipcode: zipcode,
+      provinces: selectedProvince,
+      district: selectedDistrict,
+      subdistrict: selectedSubDistrict,
+      sq_meter: area,
+      zipcode: postcode,
       phone_number: phoneNumber,
     })
       .then((response) => {
@@ -195,20 +198,24 @@ function Project() {
         alert("เกิดข้อผิดพลากกรุณาลองใหม่อีกครั้ง");
       }); // put ur page after /
   };
-
   useEffect(() => {
+    console.log("Provinces : ", selectedProvince);
+    console.log("Subdistrict : ", selectedSubDistrict);
+
+    setProvince(Thai_provinces);
+    setdistrict(Thai_district);
+    setSubdistrict(Thai_subdistrict);
 
     Axios.get("http://localhost:3001/userprofile", {
       params: {
         phone_number: phoneNumber,
-      }
+      },
     })
       .then((response) => {
         const userData = response.data;
         console.log(userData);
         setFirstname(userData.first_name);
         setLastname(userData.last_name);
-
       })
       .catch((error) => {
         // Handle any network or server errors here
@@ -219,7 +226,7 @@ function Project() {
     Axios.get("http://localhost:3001/userinfo", {
       params: {
         phone_number: phoneNumber,
-      }
+      },
     })
       .then((response) => {
         const userData = response.data;
@@ -228,7 +235,6 @@ function Project() {
         setProvinces(userData.provinces);
         setDistrict(userData.district);
         setZipcode(userData.provinces);
-
       })
       .catch((error) => {
         // Handle any network or server errors here
@@ -318,8 +324,9 @@ function Project() {
             <div>
               <div
                 onClick={handleProjectClick} // Use parentheses to invoke the function
-                className={`${isProjectClicked ? "Userselect-button" : "Userbutton"
-                  }`}
+                className={`${
+                  isProjectClicked ? "Userselect-button" : "Userbutton"
+                }`}
               >
                 <FaFile
                   size={isMobile ? 10 : 17}
@@ -336,8 +343,9 @@ function Project() {
 
               <div
                 onClick={handlePaymentClick}
-                className={`${isPaymentClicked ? "Userselect-button" : "Userbutton"
-                  }`}
+                className={`${
+                  isPaymentClicked ? "Userselect-button" : "Userbutton"
+                }`}
               >
                 <FaCashRegister
                   size={isMobile ? 10 : 17}
@@ -355,8 +363,9 @@ function Project() {
 
               <div
                 onClick={handleInfoClick}
-                className={`${isInfoClicked ? "Userselect-button" : "Userbutton"
-                  }`}
+                className={`${
+                  isInfoClicked ? "Userselect-button" : "Userbutton"
+                }`}
               >
                 <FaIdCard
                   size={isMobile ? 10 : 17}
@@ -366,18 +375,13 @@ function Project() {
                 <p className="profile-graps">ข้อมูลผู้ใช้งาน</p>
               </div>
 
-
               <hr
                 style={{
                   height: "20px",
                 }}
               ></hr>
 
-              <div
-                onClick={handleInfoClick}
-                className={"Userbutton"
-                }
-              >
+              <div onClick={handleInfoClick} className={"Userbutton"}>
                 <FaSignOutAlt
                   size={isMobile ? 10 : 17}
                   color={"grey"}
@@ -393,8 +397,8 @@ function Project() {
             {isProjectClicked && (
               <div>
                 <div className="adproject-button" onClick={btnClick}>
-            <FaPlus size={10} color="white"  /> เพิ่มโครงการ
-          </div>
+                  <FaPlus size={10} color="white" /> เพิ่มโครงการ
+                </div>
               </div>
             )}
             {isPaymentClicked && <div>Payment content</div>}
@@ -402,7 +406,7 @@ function Project() {
               <div
                 style={{ height: "500px", width: "910px", overflow: "scroll" }}
               >
-                      {backupAddress}
+                {backupAddress}
                 <p className="titletext">สร้างโครงการ</p>
                 <hr
                   style={{
@@ -545,11 +549,19 @@ function Project() {
                       จังหวัด
                       <select
                         style={{ width: "250px" }}
-                        id="dropdownProvincs"
+                        id="dropdownProvinces"
                         className="text"
-                        value={selectedProvince}
-                        onChange={handleChangeThaimaps}
-                      ></select>
+                        value={selectedProvince} // The selected province is bound to the value of the select element
+                        onChange={(e) => setSelectedProvince(e.target.value)} // This function will be called when the selection changes
+                      >
+                        <option value="">กรุณาเลือก</option>{" "}
+                        {/* Default empty option */}
+                        {province.map((state) => (
+                          <option key={state.id} value={state.name_th}>
+                            {state.name_th}
+                          </option>
+                        ))}
+                      </select>
                     </div>
                     <hr
                       style={{
@@ -570,7 +582,23 @@ function Project() {
                           id="dropdownDistrict"
                           className="text"
                           value={selectedDistrict}
-                        ></select>
+                          onChange={(e) => setSelectedDistrict(e.target.value)}
+                        >
+                          {" "}
+                          {District.filter((state) => {
+                            const provinceIds = province
+                              .filter(
+                                (province_id) =>
+                                  province_id.name_th === selectedProvince
+                              )
+                              .map((province_id) => province_id.id);
+                            return provinceIds.includes(state.province_id);
+                          }).map((state) => (
+                            <option key={state.id} value={state.name_th}>
+                              {state.name_th}
+                            </option>
+                          ))}
+                        </select>
                       </div>
 
                       <div className="dropdown-input">
@@ -580,11 +608,26 @@ function Project() {
                           style={{ width: "175px" }}
                           id="dropdown"
                           className="text"
-                          value={selectedSubdistrict}
+                          value={selectedSubDistrict}
+                          onChange={(e) =>
+                            setSelectedSubDistrict(e.target.value)
+                          }
                         >
-                          <option value="option1" className="text">
-                            ห้องนอน
-                          </option>
+                          {/* Default empty option */}
+                          {" "}
+                          {subdistrict.filter((state) => {
+                            const districtIds = District
+                              .filter(
+                                (district_id) =>
+                                  district_id.name_th === selectedDistrict
+                              )
+                              .map((district_id) => district_id.id);
+                            return districtIds.includes(state.amphure_id);
+                          }).map((state) => (
+                            <option key={state.id} value={state.name_th}>
+                              {state.name_th}
+                            </option>
+                          ))}
                         </select>
                       </div>
                     </div>
@@ -607,8 +650,8 @@ function Project() {
                         style={{ width: "130px" }} // Set the width using inline CSS
                         className="text"
                         type="text"
-                        value={zipcode}
-                        onChange={(e) => setZipcode(e.target.value)}
+                        value={postcode}
+                        onChange={(e) => setPostcode(e.target.value)}
                       />
                     </div>
                   </div>
@@ -694,9 +737,7 @@ function Project() {
                             className="text"
                             placeholder="กรุณาโปรดระบุ"
                             value={projectName}
-                            onChange={(e) =>
-                              setprojectName(e.target.value)
-                            }
+                            onChange={(e) => setprojectName(e.target.value)}
                           />
                         </div>
                       )}
@@ -947,7 +988,9 @@ function Project() {
                   }}
                 ></hr>
 
-                <div className="assign1-confirm-button" onClick={createProject}>ยืนยันข้อมูล</div>
+                <div className="assign1-confirm-button" onClick={createProject}>
+                  ยืนยันข้อมูล
+                </div>
               </div>
             )}
             {isInfoClicked && (
@@ -962,7 +1005,7 @@ function Project() {
                   <div className="text-inputHvan">
                     ชื่อจริง
                     <input
-                      style={{ width: "250px"}} // Set the width using inline CSS
+                      style={{ width: "250px" }} // Set the width using inline CSS
                       className="text"
                       type="text"
                       placeholder={firstname}
@@ -974,7 +1017,7 @@ function Project() {
                   <div className="text-inputHvan">
                     นามสกุล
                     <input
-                      style={{ width: "250px"}} // Set the width using inline CSS
+                      style={{ width: "250px" }} // Set the width using inline CSS
                       className="text"
                       type="text"
                       placeholder={lastname}
@@ -982,24 +1025,23 @@ function Project() {
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
-                  
-                    <div className="phone-inputHvan">
-                      เบอร์โทร
-                      <input
-                        style={{ width: "250px"}} // Set the width using inline CSS
-                        className="text"
-                        type="text"
-                        placeholder={phone_number}
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                    </div>
-                  
+
+                  <div className="phone-inputHvan">
+                    เบอร์โทร
+                    <input
+                      style={{ width: "250px" }} // Set the width using inline CSS
+                      className="text"
+                      type="text"
+                      placeholder={phone_number}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
 
                   <div className="address-inputHvan">
                     ที่อยู่
                     <textarea
-                      style={{ width: "250px"}} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
+                      style={{ width: "250px" }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
                       className="text"
                       placeholder={address}
                       value={email}
@@ -1014,10 +1056,7 @@ function Project() {
                       id="dropdownProvincs"
                       className="text"
                       placeholder={provinces}
-                      value={selectedProvince}
-                      onChange={handleChangeThaimaps}
-                    >
-                    </input>
+                    ></input>
                   </div>
 
                   <div className="zip-inputHvan">
@@ -1041,12 +1080,10 @@ function Project() {
                       className="text"
                       placeholder={district}
                       value={selectedDistrict}
-                      onChange={handleChangeThaimaps}
-                    >
-                    </input>
+               
+                    ></input>
                   </div>
                 </div>
-
                 <hr
                   style={{
                     height: "20px",
@@ -1060,9 +1097,7 @@ function Project() {
               </div>
             )}
           </div>
-
         </div>
-
       </div>
       <div className="mim-Userfooter">
         <div>Copyright © 2023 BAANISM Co., Ltd. All rights reserved.</div>
