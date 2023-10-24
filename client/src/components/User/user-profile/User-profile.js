@@ -765,7 +765,7 @@ function Project() {
                           onChange={handleFileInputChange}
                         />
                         {"  "}
-                        <label htmlFor="fileInput">
+                        <label htmlFor="fileInput" style={{ alignItems: "center" , marginInline:10}}>
                           <FaImage
                             size={30}
                             color="black"
@@ -781,26 +781,15 @@ function Project() {
                       )}
                     </div>
                   </div>
-                  <div class="grid-item">
-                    <div className="text-input">
-                      ลิ้งค์ Google Maps
-                      <input
-                        style={{ width: "150px" }} // Set the width using inline CSS
-                        className="text"
-                        type="text"
-                        value={googlelink}
-                        onChange={(e) => setGoogleLink(e.target.value)}
-                      />
-                    </div>
-                  </div>
+      
                   <div class="grid-item">
                     <div
                       className={
-                        isProjectNameNULLSelected ? "text-input1" : "text-input"
+                        isProjectNameNULLSelected ? "text-input1" : "text-inputProject"
                       }
                     >
                       ชื่อโครงการที่อยู่อาศัย
-                      <br />
+                      {/* <br /> */}
                       <select
                         style={{ width: "175px" }}
                         id="dropdown"
@@ -839,6 +828,18 @@ function Project() {
                           />
                         </div>
                       )}
+                    </div>
+                  </div>
+                  <div class="grid-item">
+                    <div className="linkgoogleInput ">
+                      Link Google Maps
+                      <input
+                        style={{ width: "175px" }} // Set the width using inline CSS
+                        className="text"
+                        type="text"
+                        value={googlelink}
+                        onChange={(e) => setGoogleLink(e.target.value)}
+                      />
                     </div>
                   </div>
                 </div>
