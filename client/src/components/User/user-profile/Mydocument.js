@@ -1,0 +1,20 @@
+import React from 'react';
+import { Document, Page,Image, Text, View, StyleSheet } from '@react-pdf/renderer';
+
+const styles = StyleSheet.create({
+  page: { flexDirection: 'row', backgroundColor: '#E4E4E4' },
+  section: { margin: 10, padding: 10, flexGrow: 1 },
+});
+
+const MyDocument = () => (
+  <Document>
+  <Page size="A4" style={styles.page}>
+    <View style={styles.section}>
+      <Image src="./../../../assets/images/logo-header.png" style={styles.image} />
+      <Text>แบบฟอร์มการสร้าง โครงการก่อสร้าง</Text>
+    </View>
+  </Page>
+</Document>
+);
+
+export default MyDocument;

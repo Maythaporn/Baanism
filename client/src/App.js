@@ -28,6 +28,7 @@ import User_confirm from "./components/User/user_confirm/User_confirm";
 import User_info from "./components/User/user-Info/User-info";
 import User_profile from "./components/User/user-profile/User-profile";
 import Profile_edit from "./components/User/profile-edit/Profile_edit";
+import Document from "./components/User/user-profile/Mydocument";
 
 import LpFooter from "./components/landingPageFooter/lpFooter";
 import Estimate from "./components/estimate/Estimate";
@@ -84,6 +85,15 @@ function App() {
               <Header />
               <Estimate />
               <LpFooter />
+            </>
+          }
+        />
+
+        <Route
+          path="/document"
+          element={
+            <>
+              <Document />
             </>
           }
         />
@@ -169,14 +179,11 @@ function App() {
           }
         />
 
-<Route
+        <Route
           path="/user_profile/:phone_number"
           element={
             <>
-            
-             <User_profile/>
-     
-           
+              <User_profile />
             </>
           }
         />
@@ -195,9 +202,7 @@ function App() {
           path="/Assignment1"
           element={
             <>
-       
               <Assign1 />
-            
             </>
           }
         />
@@ -208,7 +213,7 @@ function App() {
             <>
               <User_header />
               <Admin />
-              <User_footer/>
+              <User_footer />
             </>
           }
         />

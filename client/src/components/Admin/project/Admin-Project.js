@@ -16,37 +16,45 @@ import { FaPlus } from "react-icons/fa";
 import AllProjects from "../all-projects/All_Projects";
 import Assign_admin from "../assign-project/assign-admin";
 import Content from "../all-projects/all_content";
+
 import Add_content from "../content/content";
 
 function Project() {
   const [isMobile, setIsMobile] = useState(false);
+
   const [isProjectClicked, setIsProjectClicked] = useState(true);
   const [isUpdateClicked, setIsUpdateClicked] = useState(false);
   const [isAddClicked, setIsAddClicked] = useState(false);
+  const [isAddcontentClicked, setIsAddcontentClicked] = useState(false);
+  const [isUpdatecontentClicked, setIsUpdatecontentClicked] = useState(false);
 
   const handleProjectClick = () => {
     setIsProjectClicked(true);
     setIsUpdateClicked(false);
     setIsAddClicked(false);
+    setIsAddcontentClicked(false);
   };
-
-  const [isAddcontentClicked, setIsAddcontentClicked] = useState(false);
 
   // Step 2: Create a click handler function
   const handleAddContentClick = () => {
     setIsAddcontentClicked(true);
+    setIsProjectClicked(false);
+    setIsUpdateClicked(false);
+    setIsAddClicked(false);
   };
 
   const handleUpdateClick = () => {
     setIsProjectClicked(false);
     setIsUpdateClicked(true);
     setIsAddClicked(false);
+    setIsAddcontentClicked(false);
   };
 
   const handleAddClick = () => {
     setIsProjectClicked(false);
     setIsUpdateClicked(false);
     setIsAddClicked(true);
+    setIsAddcontentClicked(false);
   };
 
   useEffect(() => {
@@ -157,6 +165,11 @@ function Project() {
         {isAddcontentClicked && (
           <div style={{ height: "550px", overflow: "scroll" }}>
             <Add_content />
+          </div>
+        )}
+        {isUpdatecontentClicked && (
+          <div style={{ height: "550px", overflow: "scroll" }}>
+        
           </div>
         )}
       </div>

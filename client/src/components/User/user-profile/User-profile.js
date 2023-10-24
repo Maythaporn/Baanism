@@ -93,21 +93,22 @@ function Project() {
   const [Option, setOption] = useState("");
 
   const handleOptionChange = (event) => {
-
     setOption(event.target.value);
 
-    console.log(Option);
+    console.log("Status : " + Option);
 
     if (Option === "yes") {
       setSelectedDistrict(district);
-      selectedProvince(provinces);
+      setSelectedProvince(provinces);
       setPostcode(zipcode);
-      
-    } else if(Option === "no") {
-      setAddress("");
-      setSelectedDistrict('');
-      selectedProvince('');
-      setPostcode('');      
+      setAddress2(addressBackup);
+
+      console.log("option provinces : " + provinces);
+    } else if (Option === "no") {
+      setAddress2("");
+      setSelectedDistrict("");
+      setSelectedProvince("");
+      setPostcode("");
     }
   };
 
@@ -129,13 +130,24 @@ function Project() {
   const [District, setdistrict] = useState([]);
   const [selectedSubDistrict, setSelectedSubDistrict] = useState("");
 
-  const [addressfield, setAddressField] = useState("");
+  const [addressBackup, setAddressBackup] = useState("");
+  const [address2, setAddress2] = useState("");
   const [googlelink, setGoogleLink] = useState("");
 
-  const [DateOption, setDateOption] = useState("yes");
+  const [DateOption, setDateOption] = useState("");
 
-  const handleDateOptionChange = (event) => {
-    setDateOption(event.target.value);
+  const [selectedDays, setSelectedDays] = useState([]); // Initialize an empty array for selected days
+
+  const handleDateOptionChange = (e) => {
+    const value = e.target.value;
+    if (selectedDays.includes(value)) {
+      // Deselect day if it's already selected
+      setSelectedDays(selectedDays.filter((day) => day !== value));
+    } else {
+      // Select the day if it's not already selected
+      setSelectedDays([...selectedDays, value]);
+    }
+    console.log(selectedDays);
   };
 
   const [projectName, setprojectName] = useState("โปรดระบุ");
@@ -196,15 +208,13 @@ function Project() {
       .then((response) => {
         if (response.status === 200) {
           alert("ลบโครงการเรียบร้อย");
-          // navigate(`/user_profile/${phoneNumber}`); // Redirect to the user profile page with phone_number as a parameter
+          navigate(`/user_profile/${phoneNumber}`); // Redirect to the user profile page with phone_number as a parameter
         }
       })
       .catch((error) => {
         alert("เกิดข้อผิดพลากกรุณาลองใหม่อีกครั้ง");
       }); // put ur page after /
-
   };
-  
 
   const createProject = () => {
     Axios.post("http://localhost:3001/createProject", {
@@ -232,10 +242,17 @@ function Project() {
     setIsPaymentClicked(false);
     setIsInfoClicked(false);
     setIsProjectCreateClicked(false);
-
   };
-  useEffect(() => {
 
+  const logoButton = () => {
+    navigate(`/user_profile/${phoneNumber}`);
+    setIsProjectClicked(true);
+    setIsPaymentClicked(false);
+    setIsInfoClicked(false);
+    setIsProjectCreateClicked(false);
+  };
+
+  useEffect(() => {
     console.log("Provinces : ", selectedProvince);
     console.log("Subdistrict : ", selectedSubDistrict);
 
@@ -283,9 +300,10 @@ function Project() {
         const userData = response.data;
         console.log(userData);
         setAddress(userData.address);
+        setAddressBackup(userData.address);
         setProvinces(userData.provinces);
         setDistrict(userData.district);
-        setZipcode(userData.provinces);
+        setZipcode(userData.zipcode);
       })
       .catch((error) => {
         // Handle any network or server errors here
@@ -293,7 +311,6 @@ function Project() {
         // You might want to display a user-friendly error message to the user
       });
 
-    
     // Add an event listener to track window size changes
     function handleResize() {
       setIsMobile(window.innerWidth <= 768); // Adjust the breakpoint as needed
@@ -314,9 +331,12 @@ function Project() {
   return (
     <div>
       <div className="UserHeader">
-        <Link to="/">
-          <img src={logo} alt="baanism-logo" className="UserHeaderLogo" />
-        </Link>
+        <img
+          src={logo}
+          alt="baanism-logo"
+          className="UserHeaderLogo"
+          onClick={logoButton}
+        />
 
         <div className="mim-container">
           <Link to="/about">เกี่ยวกับเรา</Link>
@@ -433,44 +453,53 @@ function Project() {
                   height: "20px",
                 }}
               ></hr>
-
-              <div onClick={handleInfoClick} className={"Userbutton"}>
-                <FaSignOutAlt
-                  size={isMobile ? 10 : 17}
-                  color={"grey"}
-                  className="button-icon"
-                />{" "}
-                <p className="profile-graps">ออกจากระบบ</p>
-              </div>
+              <Link to="/">
+                <div onClick={handleInfoClick} className={"Userbutton"}>
+                  <FaSignOutAlt
+                    size={isMobile ? 10 : 17}
+                    color={"grey"}
+                    className="button-icon"
+                  />{" "}
+                  <p className="profile-graps">ออกจากระบบ</p>
+                </div>
+              </Link>
             </div>
             <br />
           </div>
 
           <div className="project-profilebar">
             {isProjectClicked && (
-               <div
-               style={{ height: "500px", width: "910px", overflow: "scroll" }}
-             >
+              <div
+                style={{ height: "500px", width: "910px", overflow: "scroll" }}
+              >
                 <div className="adproject-button" onClick={btnClick}>
                   <FaPlus size={10} color="white" /> เพิ่มโครงการ
                 </div>
                 {project.map((e) => (
-                <div className="admin-project-container" key={e.id}>
-                    <div className='info-left'>
-                        <p className='project-title'>{e.project_type}</p>
-                        <p>ประเภทห้อง : {e.room_type}</p>
-                        <p>สถานที่ : {e.address}</p>
+                  <div className="admin-project-container" key={e.id}>
+                    <div className="info-left">
+                      <p className="project-title">{e.project_type}</p>
+                      <p>ประเภทห้อง : {e.room_type}</p>
+                      <p>สถานที่ : {e.address}</p>
                     </div>
-                    <div className='info-right'>
-                        <p>สถานะ : <span class="status"></span>{e.status}</p>
-                        <div className='edit'>
-                            <button className='edit-btn'>แก้ไขข้อมูล</button>
-                            <span className='space'>|</span>
-                            <button className='edit-btn' onClick={() => handleDeleteProject(e.id)}>ลบโครงการ</button>
-                        </div>
+                    <div className="info-right">
+                      <p>
+                        สถานะ : <span class="status"></span>
+                        {e.status}
+                      </p>
+                      <div className="edit">
+                        <button className="edit-btn">แก้ไขข้อมูล</button>
+                        <span className="space">|</span>
+                        <button
+                          className="edit-btn"
+                          onClick={() => handleDeleteProject(e.id)}
+                        >
+                          ลบโครงการ
+                        </button>
+                      </div>
                     </div>
-                </div>
-            ))}
+                  </div>
+                ))}
               </div>
             )}
             {isPaymentClicked && <div>Payment content</div>}
@@ -586,7 +615,7 @@ function Project() {
                           name="options"
                           value="yes"
                           checked={Option === "yes"}
-                          onChange={handleOptionChange}
+                          onClick={handleOptionChange}
                         />{" "}
                         สถานที่เดียวกันกับที่ลงทะเบียน
                       </div>
@@ -596,7 +625,7 @@ function Project() {
                           name="options"
                           value="no"
                           checked={Option === "no"}
-                          onChange={handleOptionChange}
+                          onClick={handleOptionChange}
                         />{" "}
                         ไม่ใช่สถานที่เดียวกันกับที่ลงทะเบียน
                       </div>
@@ -683,21 +712,20 @@ function Project() {
                             setSelectedSubDistrict(e.target.value)
                           }
                         >
-                          {/* Default empty option */}
-                          {" "}
-                          {subdistrict.filter((state) => {
-                            const districtIds = District
-                              .filter(
+                          {/* Default empty option */}{" "}
+                          {subdistrict
+                            .filter((state) => {
+                              const districtIds = District.filter(
                                 (district_id) =>
                                   district_id.name_th === selectedDistrict
-                              )
-                              .map((district_id) => district_id.id);
-                            return districtIds.includes(state.amphure_id);
-                          }).map((state) => (
-                            <option key={state.id} value={state.name_th}>
-                              {state.name_th}
-                            </option>
-                          ))}
+                              ).map((district_id) => district_id.id);
+                              return districtIds.includes(state.amphure_id);
+                            })
+                            .map((state) => (
+                              <option key={state.id} value={state.name_th}>
+                                {state.name_th}
+                              </option>
+                            ))}
                         </select>
                       </div>
                     </div>
@@ -708,8 +736,8 @@ function Project() {
                       <textarea
                         style={{ width: "385px", height: "100px" }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
                         className="text"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
+                        value={address2}
+                        onChange={(e) => setAddress2(e.target.value)}
                       />
                     </div>
                   </div>
@@ -859,57 +887,57 @@ function Project() {
                         <input
                           type="radio"
                           name="options"
-                          value="monday"
-                          checked={DateOption === "monday"}
-                          onChange={handleDateOptionChange}
+                          value="วันจันทร์"
+                          checked={selectedDays.includes("วันจันทร์")}
+                          onClick={handleDateOptionChange}
                         />{" "}
                         จันทร์{" "}
                         <input
                           type="radio"
                           name="options"
-                          value="tuesday"
-                          checked={DateOption === "tuesday"}
-                          onChange={handleDateOptionChange}
+                          value="วันอังคาร"
+                          checked={selectedDays.includes("วันอังคาร")}
+                          onClick={handleDateOptionChange}
                         />{" "}
                         อังคาร{" "}
                         <input
                           type="radio"
                           name="options"
-                          value="wednesday"
-                          checked={DateOption === "wednesday"}
-                          onChange={handleDateOptionChange}
+                          value="วันพุธ"
+                          checked={selectedDays.includes("วันพุธ")}
+                          onClick={handleDateOptionChange}
                         />{" "}
                         พุธ{" "}
                         <input
                           type="radio"
                           name="options"
-                          value="thursday"
-                          checked={DateOption === "thursday"}
-                          onChange={handleDateOptionChange}
+                          value="วันพฤหัสบดี"
+                          checked={selectedDays.includes("วันพฤหัสบดี")}
+                          onClick={handleDateOptionChange}
                         />{" "}
                         พฤหัสบดี{" "}
                         <input
                           type="radio"
                           name="options"
-                          value="friday"
-                          checked={DateOption === "friday"}
-                          onChange={handleDateOptionChange}
+                          value="วันศุกร์"
+                          checked={selectedDays.includes("วันศุกร์")}
+                          onClick={handleDateOptionChange}
                         />{" "}
                         ศุกร์{" "}
                         <input
                           type="radio"
                           name="options"
-                          value="saturnday"
-                          checked={DateOption === "saturnday"}
-                          onChange={handleDateOptionChange}
+                          value="วันเสาร์"
+                          checked={selectedDays.includes("วันเสาร์")}
+                          onClick={handleDateOptionChange}
                         />{" "}
                         เสาร์{" "}
                         <input
                           type="radio"
                           name="options"
-                          value="sunday"
-                          checked={DateOption === "sunday"}
-                          onChange={handleDateOptionChange}
+                          value="วันอาทิตย์"
+                          checked={selectedDays.includes("วันอาทิตย์")}
+                          onClick={handleDateOptionChange}
                         />{" "}
                         อาทิตย์
                       </div>
@@ -1063,7 +1091,7 @@ function Project() {
                 </div>
               </div>
             )}
-            
+
             {isInfoClicked && (
               <div style={{ height: "500px", overflow: "scroll" }}>
                 ข้อมูลผู้ใช้งาน
@@ -1137,8 +1165,6 @@ function Project() {
                       className="text"
                       type="text"
                       placeholder={zipcode}
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
 
@@ -1150,8 +1176,6 @@ function Project() {
                       id="dropdownDistrict"
                       className="text"
                       placeholder={district}
-                      value={selectedDistrict}
-               
                     ></input>
                   </div>
                 </div>
