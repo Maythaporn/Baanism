@@ -61,6 +61,7 @@ app.post("/delete-project", (req, res) => {
   });
 });
 
+
 app.get("/project", (req, res) => {
   const { phone_number } = req.query;
 
@@ -100,6 +101,53 @@ app.get("/project", (req, res) => {
 
         // Add more properties as needed
       }));
+
+      // Send the list of users as a JSON response
+      res.send(users);
+    }
+  );
+});
+
+app.get("/projectPDF", (req, res) => {
+  const { phone_number,id } = req.query;
+
+  console.log("phone " + phone_number);
+
+  // if (!phone_number) {
+  //   return res.status(400).json({ error: "Phone number is required." });
+  // }
+
+  // Use the phone_number in the SQL query to retrieve user information
+  db.query(
+    "SELECT * FROM `project` WHERE 'id' = ?",
+    [27],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({ error: "Internal server error" });
+      }
+
+      if (result.length === 0) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      // Convert the result (an array of user records) to a list of users
+      const users = result.map((user) => ({
+        id: user.id,
+        status: user.status,
+        phone_number: user.phone_number,
+        project_type: user.project_type,
+        room_type: user.room_type,
+        sq_meter: user.sq_meter,
+        address: user.address,
+        provinces: user.provinces,
+        district: user.district,
+        subdistrict: user.subdistrict,
+        zipcode: user.zipcode,
+
+        // Add more properties as needed
+      }));
+      console.log('Done');
 
       // Send the list of users as a JSON response
       res.send(users);
@@ -250,7 +298,17 @@ app.post("/createProject", (req, res) => {
     subdistrict,
     zipcode,
     phone_number,
+    googlelink,
+    project_name,
+    selectdate,
+    date,
+    start,
+    end,
+    etc
   } = req.body;
+
+  const selectdateString = selectdate.join(", ");
+  const start_time = start + " - "+end;
 
   db.beginTransaction((err) => {
     if (err) {
@@ -259,7 +317,7 @@ app.post("/createProject", (req, res) => {
     }
 
     db.query(
-      "INSERT INTO `project`(project_type,room_type,address,sq_meter, provinces, district,subdistrict, zipcode, phone_number,status) VALUES (?,?,?,?,?,?,?,?,?,?); ",
+      "INSERT INTO `project`(project_type,room_type,address,sq_meter, provinces, district,subdistrict, zipcode, phone_number,status,google_maps,project_name,dayofavaliable,start_date,timeofavaliable,etc) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); ",
       [
         project_type,
         room_type,
@@ -270,7 +328,13 @@ app.post("/createProject", (req, res) => {
         subdistrict,
         zipcode,
         phone_number,
-        "รอการติดต่อกลับ"
+        "รอการติดต่อกลับ",
+        googlelink,
+        project_name,
+        selectdateString,
+        date,
+        start_time,
+        etc
       ],
       (err, result) => {
         if (err) {
@@ -329,7 +393,7 @@ app.post("/adduserinfo", (req, res) => {
 });
 
 app.post("/updatestatus", (req, res) => {
-  const {status,id} = req.body;
+  const { status, id } = req.body;
 
   db.beginTransaction((err) => {
     if (err) {
@@ -339,7 +403,7 @@ app.post("/updatestatus", (req, res) => {
 
     db.query(
       "UPDATE `project` SET `status`= ? WHERE `id`= ? ",
-      [status,id],
+      [status, id],
       (err, result) => {
         if (err) {
           db.rollback(() => {

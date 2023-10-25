@@ -33,6 +33,7 @@ import Document from "./components/User/user-profile/Mydocument";
 import LpFooter from "./components/landingPageFooter/lpFooter";
 import Estimate from "./components/estimate/Estimate";
 import Contact from "./pages/contact us/contact";
+import Doc from "./components/User/user-profile/Mydocument";
 
 function App() {
   return (
@@ -49,6 +50,15 @@ function App() {
               <About />
               <HomeGURU />
               <LpFooter />
+            </>
+          }
+        />
+
+        <Route
+          path="/doc"
+          element={
+            <>
+              <Doc />
             </>
           }
         />
@@ -90,12 +100,13 @@ function App() {
         />
 
         <Route
-          path="/document"
+          path="/document/:phone_number/:id"
           element={
             <>
-              <Document />
+            <Document/>
             </>
           }
+   
         />
 
         {/* register's route */}

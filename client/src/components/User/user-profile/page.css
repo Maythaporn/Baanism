@@ -1,0 +1,39 @@
+/* custom-styles.css */
+.page {
+  flex-direction: column;
+  background-color: white;
+  border: 1px;
+  border-color: black;
+}
+
+.section {
+  margin: 10pt;
+  padding: 10pt;
+  flex-grow: 1;
+}
+
+hr.line {
+  width: 800px;
+  border: 0.2px solid #ededed;
+  justify-content: center;
+}
+
+.Header {
+  display: flex;
+  flex-direction: row;
+  background: white;
+  justify-content: center;
+  text-align: center;
+}
+
+.word {
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    grid-template-columns: 1fr 1fr;  /* Two equal-width columns */
+    gap: 10px;  /* Gap between columns */
+  }
+  
+  .column {
+    /* Add additional styles for the columns, if needed */
+  }

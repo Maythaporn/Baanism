@@ -72,6 +72,10 @@ function Project() {
     }
   };
 
+  const [start, setStart] = useState("");
+  const [end, setEnd] = useState("");
+  const [etc, setEtc] = useState("");
+
   const [addRoom, setaddRoom] = useState("ห้องนอน");
   const [isRoomNULLSelected, setisRoomNULLSelected] = useState(false);
 
@@ -140,17 +144,20 @@ function Project() {
 
   const handleDateOptionChange = (e) => {
     const value = e.target.value;
-    if (selectedDays.includes(value)) {
-      // Deselect day if it's already selected
-      setSelectedDays(selectedDays.filter((day) => day !== value));
-    } else {
-      // Select the day if it's not already selected
+    const isChecked = e.target.checked;
+
+    if (isChecked) {
+      // Add the value to the list when the checkbox is checked
       setSelectedDays([...selectedDays, value]);
+    } else {
+      // Remove the value from the list when the checkbox is unchecked
+      setSelectedDays(selectedDays.filter((day) => day !== value));
     }
     console.log(selectedDays);
   };
-
-  const [projectName, setprojectName] = useState("โปรดระบุ");
+  
+  const [projectName, setprojectName] = useState("แสนสิริ");
+  const [date, setDate] = useState("");
   const [isProjectNameNULLSelected, setisProjectNameNULLSelected] =
     useState(false);
 
@@ -161,7 +168,6 @@ function Project() {
     // Check if the selected option is "อื่นๆ"
     if (projectName === "") {
       // Show the additional field
-
       setisProjectNameNULLSelected(true);
     } else {
       // Hide the additional field
@@ -199,23 +205,29 @@ function Project() {
   };
 
   const handleDeleteProject = (projectId) => {
-    // Send an HTTP DELETE request to the server to delete the project.
-    console.log(projectId);
-
-    Axios.post("http://localhost:3001/delete-project", {
-      projectId: projectId,
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          alert("ลบโครงการเรียบร้อย");
-          navigate(`/user_profile/${phoneNumber}`); // Redirect to the user profile page with phone_number as a parameter
-        }
+    // Use window.confirm() to show a confirmation dialog
+    const confirmation = window.confirm("คุณต้องการลบโครงการนี้ใช่หรือไม่?");
+  
+    // If the user confirms the deletion, proceed with the deletion process
+    if (confirmation) {
+      // Send an HTTP DELETE request to the server to delete the project.
+      console.log(projectId);
+  
+      Axios.post("http://localhost:3001/delete-project", {
+        projectId: projectId,
       })
-      .catch((error) => {
-        alert("เกิดข้อผิดพลากกรุณาลองใหม่อีกครั้ง");
-      }); // put ur page after /
+        .then((response) => {
+          if (response.status === 200) {
+            alert("ลบโครงการเรียบร้อย");
+            window.location.href = `/user_profile/${phoneNumber}` // Redirect to the user profile page with phone_number as a parameter
+            
+          }
+        })
+        .catch((error) => {
+          alert("เกิดข้อผิดพลากกรุณาลองใหม่อีกครั้ง");
+        });
+    }
   };
-
   const createProject = () => {
     Axios.post("http://localhost:3001/createProject", {
       project_type: addProject,
@@ -227,11 +239,19 @@ function Project() {
       sq_meter: area,
       zipcode: postcode,
       phone_number: phoneNumber,
+      googlelink: googlelink,
+      project_name: projectName,
+      selectdate: selectedDays,
+      date: date,
+      start: start,
+      end: end,
+      etc: etc
+      
     })
       .then((response) => {
         if (response.status === 200) {
           alert("สร้างโครงการเรียบร้อยแล้ว");
-          navigate(`/user_profile/${phoneNumber}`); // Redirect to the user profile page with phone_number as a parameter
+          window.location.href = `/user_profile/${phoneNumber}` // Redirect to the user profile page with phone_number as a parameter
         }
       })
       .catch((error) => {
@@ -253,6 +273,7 @@ function Project() {
   };
 
   useEffect(() => {
+    console.log(selectedDays);
     console.log("Provinces : ", selectedProvince);
     console.log("Subdistrict : ", selectedSubDistrict);
 
@@ -475,31 +496,38 @@ function Project() {
                 <div className="adproject-button" onClick={btnClick}>
                   <FaPlus size={10} color="white" /> เพิ่มโครงการ
                 </div>
-                {project.map((e) => (
-                  <div className="admin-project-container" key={e.id}>
-                    <div className="info-left">
-                      <p className="project-title">{e.project_type}</p>
-                      <p>ประเภทห้อง : {e.room_type}</p>
-                      <p>สถานที่ : {e.address}</p>
-                    </div>
-                    <div className="info-right">
-                      <p>
-                        สถานะ : <span class="status"></span>
-                        {e.status}
-                      </p>
-                      <div className="edit">
-                        <button className="edit-btn">แก้ไขข้อมูล</button>
-                        <span className="space">|</span>
-                        <button
-                          className="edit-btn"
-                          onClick={() => handleDeleteProject(e.id)}
-                        >
-                          ลบโครงการ
-                        </button>
+                {project && project.length > 0 ? (
+                  project.map((e) => (
+                    <div className="admin-project-container" key={e.id}>
+                      <div className="info-left">
+                        <p className="project-title">{e.project_type}</p>
+                        <p>ประเภทห้อง : {e.room_type}</p>
+                        <p>สถานที่ : {e.address}</p>
+                      </div>
+                      <div className="info-right">
+                        <p>
+                          สถานะ : {" "}{e.status}
+                        </p>
+                        <div className="edit">
+                          <button className="edit-btn">แก้ไขข้อมูล</button>
+                          <span className="space">|</span>
+                          <button
+                            className="edit-btn"
+                            onClick={() => handleDeleteProject(e.id)}
+                          >
+                            ลบโครงการ
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))
+                ) : (
+                  <>
+                    <br />
+                    <br />
+                    <p>ไม่มีโครงการของท่าน</p>
+                  </>
+                )}
               </div>
             )}
             {isPaymentClicked && <div>Payment content</div>}
@@ -765,7 +793,10 @@ function Project() {
                           onChange={handleFileInputChange}
                         />
                         {"  "}
-                        <label htmlFor="fileInput" style={{ alignItems: "center" , marginInline:10}}>
+                        <label
+                          htmlFor="fileInput"
+                          style={{ alignItems: "center", marginInline: 10 }}
+                        >
                           <FaImage
                             size={30}
                             color="black"
@@ -781,11 +812,13 @@ function Project() {
                       )}
                     </div>
                   </div>
-      
+
                   <div class="grid-item">
                     <div
                       className={
-                        isProjectNameNULLSelected ? "text-input1" : "text-inputProject"
+                        `dropdown-input${
+                          isProjectNameNULLSelected ? "-expanded" : ""
+                        }`
                       }
                     >
                       ชื่อโครงการที่อยู่อาศัย
@@ -869,8 +902,8 @@ function Project() {
                         style={{ width: "130px" }} // Set the width using inline CSS
                         className="text"
                         type="date"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        value={date}
+                        onChange={(e) => setDate(e.target.value)}
                       />
                     </div>
                   </div>
@@ -886,73 +919,70 @@ function Project() {
                       ></hr>
                       <div>
                         <input
-                          type="radio"
+                          type="checkbox"
                           name="options"
                           value="วันจันทร์"
                           checked={selectedDays.includes("วันจันทร์")}
-                          onClick={handleDateOptionChange}
+                          onChange={handleDateOptionChange}
                         />{" "}
                         จันทร์{" "}
                         <input
-                          type="radio"
+                          type="checkbox"
                           name="options"
                           value="วันอังคาร"
                           checked={selectedDays.includes("วันอังคาร")}
-                          onClick={handleDateOptionChange}
+                          onChange={handleDateOptionChange}
                         />{" "}
                         อังคาร{" "}
                         <input
-                          type="radio"
+                          type="checkbox"
                           name="options"
                           value="วันพุธ"
                           checked={selectedDays.includes("วันพุธ")}
-                          onClick={handleDateOptionChange}
+                          onChange={handleDateOptionChange}
                         />{" "}
                         พุธ{" "}
                         <input
-                          type="radio"
+                          type="checkbox"
                           name="options"
                           value="วันพฤหัสบดี"
                           checked={selectedDays.includes("วันพฤหัสบดี")}
-                          onClick={handleDateOptionChange}
+                          onChange={handleDateOptionChange}
                         />{" "}
                         พฤหัสบดี{" "}
                         <input
-                          type="radio"
+                          type="checkbox"
                           name="options"
                           value="วันศุกร์"
                           checked={selectedDays.includes("วันศุกร์")}
-                          onClick={handleDateOptionChange}
+                          onChange={handleDateOptionChange}
                         />{" "}
                         ศุกร์{" "}
                         <input
-                          type="radio"
+                          type="checkbox"
                           name="options"
                           value="วันเสาร์"
                           checked={selectedDays.includes("วันเสาร์")}
-                          onClick={handleDateOptionChange}
+                          onChange={handleDateOptionChange}
                         />{" "}
                         เสาร์{" "}
                         <input
-                          type="radio"
+                          type="checkbox"
                           name="options"
                           value="วันอาทิตย์"
                           checked={selectedDays.includes("วันอาทิตย์")}
-                          onClick={handleDateOptionChange}
+                          onChange={handleDateOptionChange}
                         />{" "}
                         อาทิตย์
                       </div>
-                      <hr
-                        style={{
-                          height: "2px",
-                        }}
-                      ></hr>
                       <div>
                         เวลา : {"  "}
                         <input
                           type="time"
                           style={{ width: "110px" }}
                           className="text"
+                          value={start}
+                          onChange={(e) => setStart(e.target.value)}
 
                           // Handle checkbox change event
                         />
@@ -961,6 +991,8 @@ function Project() {
                           style={{ width: "100px" }}
                           type="time"
                           className="text"
+                          value={end}
+                          onChange={(e) => setEnd(e.target.value)}
 
                           // Handle checkbox change event
                         />
@@ -1075,8 +1107,8 @@ function Project() {
                       <textarea
                         style={{ width: "385px", height: "100px" }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
                         className="text"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        value={etc}
+                        onChange={(e) => setEtc(e.target.value)}
                       />
                     </div>
                   </div>
