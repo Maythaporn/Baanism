@@ -35,6 +35,7 @@ function Project() {
 
   const [isMobile, setIsMobile] = useState(false);
   const [isProjectCreateClicked, setIsProjectCreateClicked] = useState(false);
+  const [isProjectEditClicked, setIsProjectEditClicked] = useState(false);
   const [isProjectClicked, setIsProjectClicked] = useState(false);
   const [isPaymentClicked, setIsPaymentClicked] = useState(false);
   const [isInfoClicked, setIsInfoClicked] = useState(true);
@@ -72,6 +73,20 @@ function Project() {
     }
   };
 
+  const handleTypeEditChange = (event) => {
+    const project_type_edit = event.target.value;
+    setproject_type(project_type_edit);
+
+    // Check if the selected option is "อื่นๆ"
+    if (project_type_edit === "") {
+      // Show the additional field
+      setisTypeNULLSelected(true);
+    } else {
+      // Hide the additional field
+      setisTypeNULLSelected(false);
+    }
+  };
+
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
   const [etc, setEtc] = useState("");
@@ -85,6 +100,20 @@ function Project() {
 
     // Check if the selected option is "อื่นๆ"
     if (addRoom === "") {
+      // Show the additional field
+      setisRoomNULLSelected(true);
+    } else {
+      // Hide the additional field
+      setisRoomNULLSelected(false);
+    }
+  };
+
+  const handleRoomEditChange = (event) => {
+    const room_type_edit = event.target.value;
+    setroom_type(room_type_edit);
+
+    // Check if the selected option is "อื่นๆ"
+    if (room_type_edit === "") {
       // Show the additional field
       setisRoomNULLSelected(true);
     } else {
@@ -123,6 +152,7 @@ function Project() {
     const file = event.target.files[0];
     setSelectedFile(file);
   };
+  
 
   const [project, setProject] = useState([]);
 
@@ -141,6 +171,7 @@ function Project() {
   const [DateOption, setDateOption] = useState("");
 
   const [selectedDays, setSelectedDays] = useState([]); // Initialize an empty array for selected days
+  const [selectedEditDays, setSelectedEditDays] = useState([]);
 
   const handleDateOptionChange = (e) => {
     const value = e.target.value;
@@ -155,7 +186,21 @@ function Project() {
     }
     console.log(selectedDays);
   };
-  
+
+  const handleDateEditOptionChange = (e) => {
+    const value = e.target.value;
+    const isChecked = e.target.checked;
+
+    if (isChecked) {
+      // Add the value to the list when the checkbox is checked
+      setSelectedEditDays([...selectedEditDays, value]);
+    } else {
+      // Remove the value from the list when the checkbox is unchecked
+      setSelectedEditDays(selectedEditDays.filter((day) => day !== value));
+    }
+    console.log(selectedEditDays);
+  };
+
   const [projectName, setprojectName] = useState("แสนสิริ");
   const [date, setDate] = useState("");
   const [isProjectNameNULLSelected, setisProjectNameNULLSelected] =
@@ -176,11 +221,27 @@ function Project() {
     }
   };
 
+  const handleProjectEditChange = (event) => {
+    const project_name_edit = event.target.value;
+    setproject_name(project_name_edit);
+
+    // Check if the selected option is "อื่นๆ"
+    if (project_name_edit === "") {
+      // Show the additional field
+      setisProjectNameNULLSelected(true);
+    } else {
+      // Hide the additional field
+
+      setisProjectNameNULLSelected(false);
+    }
+  };
+
   const btnClick = () => {
     setIsProjectClicked(false);
     setIsPaymentClicked(false);
     setIsInfoClicked(false);
     setIsProjectCreateClicked(true);
+    setIsProjectEditClicked(false);
   };
 
   const handleProjectClick = () => {
@@ -188,6 +249,7 @@ function Project() {
     setIsPaymentClicked(false);
     setIsInfoClicked(false);
     setIsProjectCreateClicked(false);
+    setIsProjectEditClicked(false);
   };
 
   const handlePaymentClick = () => {
@@ -195,6 +257,7 @@ function Project() {
     setIsPaymentClicked(true);
     setIsInfoClicked(false);
     setIsProjectCreateClicked(false);
+    setIsProjectEditClicked(false);
   };
 
   const handleInfoClick = () => {
@@ -202,25 +265,31 @@ function Project() {
     setIsPaymentClicked(false);
     setIsInfoClicked(true);
     setIsProjectCreateClicked(false);
+    setIsProjectEditClicked(false);
+  };
+
+
+
+  const PDF = (id) => {
+    window.location.href = `/document/${phoneNumber}/${id}`;
   };
 
   const handleDeleteProject = (projectId) => {
     // Use window.confirm() to show a confirmation dialog
     const confirmation = window.confirm("คุณต้องการลบโครงการนี้ใช่หรือไม่?");
-  
+
     // If the user confirms the deletion, proceed with the deletion process
     if (confirmation) {
       // Send an HTTP DELETE request to the server to delete the project.
       console.log(projectId);
-  
+
       Axios.post("http://localhost:3001/delete-project", {
         projectId: projectId,
       })
         .then((response) => {
           if (response.status === 200) {
             alert("ลบโครงการเรียบร้อย");
-            window.location.href = `/user_profile/${phoneNumber}` // Redirect to the user profile page with phone_number as a parameter
-            
+            window.location.href = `/user_profile/${phoneNumber}`; // Redirect to the user profile page with phone_number as a parameter
           }
         })
         .catch((error) => {
@@ -245,13 +314,12 @@ function Project() {
       date: date,
       start: start,
       end: end,
-      etc: etc
-      
+      etc: etc,
     })
       .then((response) => {
         if (response.status === 200) {
           alert("สร้างโครงการเรียบร้อยแล้ว");
-          window.location.href = `/user_profile/${phoneNumber}` // Redirect to the user profile page with phone_number as a parameter
+          window.location.href = `/user_profile/${phoneNumber}`; // Redirect to the user profile page with phone_number as a parameter
         }
       })
       .catch((error) => {
@@ -262,6 +330,93 @@ function Project() {
     setIsPaymentClicked(false);
     setIsInfoClicked(false);
     setIsProjectCreateClicked(false);
+  };
+
+  const [project_type_edit, setproject_type] = useState("");
+  const [room_type_edit, setroom_type] = useState("");
+  const [project_name_edit, setproject_name] = useState("");
+  const [sq_meter_edit, setsq_meter] = useState("");
+  const [start_date_edit, setstart_date] = useState("");
+  const [starttime_edit, setstarttime] = useState("");
+  const [endtime_edit, setendtime] = useState("");
+  const [address_edit, setaddress] = useState("");
+  const [etc_edit, setetc] = useState("");
+  const [provinces_edit, setprovinces] = useState("");
+  const [district_edit, setdistrict_edit] = useState("");
+  const [subdistrict_edit, setsubdistrict] = useState("");
+  const [zipcode_edit, setzipcode] = useState("");
+  const [googlelink_edit, setGoogleLink_edit] = useState("");
+
+  const [project_id, setproject_id] = useState("");
+
+  const updateProject = (id) => {
+    console.log(id);
+
+    setproject_id(id);
+    setIsProjectClicked(false);
+    setIsPaymentClicked(false);
+    setIsInfoClicked(false);
+    setIsProjectCreateClicked(false);
+    setIsProjectEditClicked(true);
+
+    Axios.get("http://localhost:3001/projectID", {
+      params: {
+        id: id,
+      },
+    })
+      .then((response) => {
+        const userData = response.data;
+        console.log(userData);
+        setproject_type(userData.project_type);
+        setroom_type(userData.room_type);
+        setproject_name(userData.project_name);
+        setsq_meter(userData.sq_meter);
+        setetc(userData.etc);
+        setstart_date(userData.start_date);
+        setaddress(userData.address);
+        setprovinces(userData.provinces);
+        setdistrict_edit(userData.district);
+        setsubdistrict(userData.subdistrict);
+        setzipcode(userData.zipcode);
+        setGoogleLink_edit(userData.google_maps);
+      })
+      .catch((error) => {
+        // Handle any network or server errors here
+        console.error("Error fetching user data: ", error);
+        // You might want to display a user-friendly error message to the user
+      });
+  };
+
+  const UPdateProject = () => {
+    Axios.post("http://localhost:3001/updateProject", {
+      params: {
+        id: project_id,
+      },
+      project_type: project_type_edit,
+      room_type: room_type_edit,
+      address: address_edit,
+      provinces: provinces_edit,
+      district: district_edit,
+      subdistrict: subdistrict_edit,
+      sq_meter: sq_meter_edit,
+      zipcode: zipcode_edit,
+      googlelink: googlelink_edit,
+      project_name: project_name_edit,
+      selectdate: selectedEditDays,
+      date: start_date_edit,
+      start: starttime_edit,
+      end: endtime_edit,
+      etc: setEtc,
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          alert("แก้ไขโครงการเรียบร้อยแล้ว");
+          window.location.href = `/user_profile/${phoneNumber}`; // Redirect to the user profile page with phone_number as a parameter
+        }
+      })
+      .catch((error) => {
+        alert("เกิดข้อผิดพลากกรุณาลองใหม่อีกครั้ง");
+      }); // put ur page after /
   };
 
   const logoButton = () => {
@@ -505,11 +660,21 @@ function Project() {
                         <p>สถานที่ : {e.address}</p>
                       </div>
                       <div className="info-right">
-                        <p>
-                          สถานะ : {" "}{e.status}
-                        </p>
+                        <p>สถานะ : {e.status}</p>
                         <div className="edit">
-                          <button className="edit-btn">แก้ไขข้อมูล</button>
+                          <button
+                            className="edit-btn"
+                            onClick={() => updateProject(e.id)}
+                          >
+                            แก้ไขข้อมูล
+                          </button>
+                          <span className="space">|</span>
+                          <button
+                            className="edit-btn"
+                            onClick={() => PDF(e.id)}
+                          >
+                            ดูใบงานโครงการ
+                          </button>
                           <span className="space">|</span>
                           <button
                             className="edit-btn"
@@ -815,11 +980,9 @@ function Project() {
 
                   <div class="grid-item">
                     <div
-                      className={
-                        `dropdown-input${
-                          isProjectNameNULLSelected ? "-expanded" : ""
-                        }`
-                      }
+                      className={`dropdown-input${
+                        isProjectNameNULLSelected ? "-expanded" : ""
+                      }`}
                     >
                       ชื่อโครงการที่อยู่อาศัย
                       {/* <br /> */}
@@ -867,7 +1030,7 @@ function Project() {
                     <div className="linkgoogleInput ">
                       Link Google Maps
                       <input
-                        style={{ width: "175px" }} // Set the width using inline CSS
+                        style={{ width: "380px" }} // Set the width using inline CSS
                         className="text"
                         type="text"
                         value={googlelink}
@@ -1120,6 +1283,575 @@ function Project() {
                 ></hr>
 
                 <div className="assign1-confirm-button" onClick={createProject}>
+                  ยืนยันข้อมูล
+                </div>
+              </div>
+            )}
+            {isProjectEditClicked && (
+              <div
+                style={{ height: "500px", width: "910px", overflow: "scroll" }}
+              >
+                <p className="titletext">แก้ไขโครงการ</p>
+                <hr
+                  style={{
+                    height: "20px",
+                  }}
+                ></hr>
+                <div class="grid-container">
+                  <div class="grid-item">
+                    <div
+                      className={`dropdown-input${
+                        isTypeNULLSelected ? "-expanded" : ""
+                      }`}
+                    >
+                      ประเภทงาน
+                      <br />
+                      <select
+                        style={{ width: "175px" }}
+                        id="dropdown"
+                        className="text"
+                        value={project_type_edit}
+                        onChange={handleTypeEditChange}
+                      >
+                        <option value="ต่อเติม" className="text">
+                          ต่อเติม
+                        </option>
+                        <option value="รีโนเวท" className="text">
+                          รีโนเวท
+                        </option>
+                        <option value="" className="text">
+                          อื่นๆ
+                        </option>
+                      </select>
+                      {isTypeNULLSelected && (
+                        <div>
+                          <input
+                            style={{ width: "175px" }}
+                            type="text"
+                            className="text"
+                            placeholder="กรุณาโปรดระบุ"
+                            value={project_type_edit}
+                            onChange={(e) => setproject_type(e.target.value)}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div class="grid-item">
+                    <div
+                      className={`dropdown-input${
+                        isRoomNULLSelected ? "-expanded" : ""
+                      }`}
+                    >
+                      ประเภทห้อง
+                      <br />
+                      <select
+                        style={{ width: "175px" }}
+                        id="dropdown"
+                        className="text"
+                        value={room_type_edit}
+                        onChange={handleRoomEditChange}
+                      >
+                        <option value="ห้องนอน" className="text">
+                          ห้องนอน
+                        </option>
+                        <option value="ห้องน้ำ" className="text">
+                          ห้องน้ำ
+                        </option>
+                        <option value="ห้องนั่งเล่น" className="text">
+                          ห้องนั่งเล่น
+                        </option>
+                        <option value="ห้องครัว" className="text">
+                          ห้องครัว
+                        </option>
+                        <option value="ห้องอเนกประสงค์" className="text">
+                          ห้องอเนกประสงค์
+                        </option>
+                        <option value="" className="text">
+                          อื่นๆ
+                        </option>
+                      </select>
+                      {isRoomNULLSelected && (
+                        <div>
+                          <input
+                            style={{ width: "175px" }}
+                            type="text"
+                            className="text"
+                            placeholder="กรุณาโปรดระบุ"
+                            value={room_type_edit}
+                            onChange={(e) => setroom_type(e.target.value)}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div class="grid-item">
+                    {" "}
+                    <div className="area-input">
+                      พื้นที่ต่อตารางเมตร
+                      <input
+                        style={{ width: "130px" }} // Set the width using inline CSS
+                        className="text"
+                        type="text"
+                        value={sq_meter_edit}
+                        onChange={(e) => setsq_meter(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div class="grid-item">
+                  
+                  </div>
+                  <div class="grid-item">
+                    {" "}
+                    <div className="text-input-provinces">
+                      จังหวัด
+                      <select
+                        style={{ width: "250px" }}
+                        id="dropdownProvinces"
+                        className="text"
+                        value={provinces_edit} // The selected province is bound to the value of the select element
+                        onChange={(e) => setprovinces(e.target.value)} // This function will be called when the selection changes
+                      >
+                        {/* Default empty option */}
+                        {province.map((state) => (
+                          <option key={state.id} value={state.name_th}>
+                            {state.name_th}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                 
+                  <div class="grid-item">
+                    <hr
+                      style={{
+                        height: "10px",
+                      }}
+                    ></hr>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div className="dropdown-input">
+                        เขต/อำเภอ
+                        <br />
+                        <select
+                          style={{ width: "175px" }}
+                          id="dropdownDistrict"
+                          className="text"
+                          value={district_edit}
+                          onChange={(e) => setdistrict_edit(e.target.value)}
+                        >
+                          {" "}
+                          {District.filter((state) => {
+                            const provinceIds = province
+                              .filter(
+                                (province_id) =>
+                                  province_id.name_th === provinces_edit
+                              )
+                              .map((province_id) => province_id.id);
+                            return provinceIds.includes(state.province_id);
+                          }).map((state) => (
+                            <option key={state.id} value={state.name_th}>
+                              {state.name_th}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div className="dropdown-input">
+                        แขวง/ตำบล
+                        <br />
+                        <select
+                          style={{ width: "175px" }}
+                          id="dropdown"
+                          className="text"
+                          value={subdistrict_edit}
+                    
+                          onChange={(e) =>
+                            setsubdistrict(e.target.value)
+                          }
+                        >
+                          {/* Default empty option */}{" "}
+                          {subdistrict
+                            .filter((state) => {
+                              const districtIds = District.filter(
+                                (district_id) =>
+                                  district_id.name_th === district_edit
+                              ).map((district_id) => district_id.id);
+                              return districtIds.includes(state.amphure_id);
+                            })
+                            .map((state) => (
+                              <option key={state.id} value={state.name_th}>
+                                {state.name_th}
+                              </option>
+                            ))}
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="grid-item">
+                    <div className="address-input">
+                      ที่อยู่
+                      <textarea
+                        style={{ width: "385px", height: "100px" }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
+                        className="text"
+                        value={address_edit}
+                        onChange={(e) => setaddress(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div class="grid-item">
+                    <div className="zip-input">
+                      รหัสไปรษณีย์
+                      <input
+                        style={{ width: "130px" }} // Set the width using inline CSS
+                        className="text"
+                        type="text"
+                        value={zipcode_edit}
+                        onChange={(e) => setzipcode(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div class="grid-item">
+                    <div className="blueprint">
+                      <div>
+                        {" "}
+                        แบบการออกแบบเบื้องต้น (Blueprint) :
+                        <input
+                          type="file"
+                          id="fileInput"
+                          style={{ display: "none" }}
+                          onChange={handleFileInputChange}
+                        />
+                        {"  "}
+                        <label
+                          htmlFor="fileInput"
+                          style={{ alignItems: "center", marginInline: 10 }}
+                        >
+                          <FaImage
+                            size={30}
+                            color="black"
+                            className="camera-icon"
+                            style={{ cursor: "pointer" }}
+                          />
+                        </label>
+                      </div>
+                      {selectedFile && (
+                        <p className="text1">
+                          ไฟล์ที่ท่านเลือก : {selectedFile.name}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div class="grid-item">
+                    <div
+                      className={`dropdown-input${
+                        isProjectNameNULLSelected ? "-expanded" : ""
+                      }`}
+                    >
+                      ชื่อโครงการที่อยู่อาศัย
+                      {/* <br /> */}
+                      <select
+                        style={{ width: "175px" }}
+                        id="dropdown"
+                        className="text"
+                        value={project_name_edit}
+                        onChange={handleProjectEditChange}
+                      >
+                        <option value="ห้องนอน" className="text">
+                          ห้องนอน
+                        </option>
+                        <option value="ห้องน้ำ" className="text">
+                          ห้องน้ำ
+                        </option>
+                        <option value="ห้องนั่งเล่น" className="text">
+                          ห้องนั่งเล่น
+                        </option>
+                        <option value="ห้องครัว" className="text">
+                          ห้องครัว
+                        </option>
+                        <option value="ห้องอเนกประสงค์" className="text">
+                          ห้องอเนกประสงค์
+                        </option>
+                        <option value="" className="text">
+                          อื่นๆ
+                        </option>
+                      </select>
+                      {isProjectNameNULLSelected && (
+                        <div>
+                          <input
+                            style={{ width: "175px" }}
+                            type="text"
+                            className="text"
+                            placeholder="กรุณาโปรดระบุ"
+                            value={project_name_edit}
+                            onChange={(e) => setproject_name(e.target.value)}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div class="grid-item">
+                    <div className="linkgoogleInput ">
+                      Link Google Maps
+                      <input
+                        style={{ width: "380px" }} // Set the width using inline CSS
+                        className="text"
+                        type="text"
+                        value={googlelink_edit}
+                        onChange={(e) => setGoogleLink_edit(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <hr
+                  style={{
+                    height: "60px",
+                  }}
+                ></hr>
+                <hr className="new4"></hr>
+                <hr
+                  style={{
+                    height: "40px",
+                  }}
+                ></hr>
+                <p className="titletext2">รายละเอียดเพิ่มเติมโครงการ</p>
+                <hr
+                  style={{
+                    height: "40px",
+                  }}
+                ></hr>
+
+                <div class="grid-container">
+                  <div class="grid-item">
+                    <div className="area-input">
+                      กำหนดเริ่มดำเนินโครงการ
+                      <input
+                        style={{ width: "130px" }} // Set the width using inline CSS
+                        className="text"
+                        type="date"
+                        value={start_date_edit}
+                        onChange={(e) => setstart_date(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div class="grid-item">
+                    <div className="checkbox1-container">
+                      <p className="text">
+                        ช่วงเวลาที่ท่านสะดวกเพื่อติดต่อช่าง :{" "}
+                      </p>
+                      <hr
+                        style={{
+                          height: "5px",
+                        }}
+                      ></hr>
+                      <div>
+                        <input
+                          type="checkbox"
+                          name="options"
+                          value="วันจันทร์"
+                          checked={selectedEditDays.includes("วันจันทร์")}
+                          onChange={handleDateEditOptionChange}
+                        />{" "}
+                        จันทร์{" "}
+                        <input
+                          type="checkbox"
+                          name="options"
+                          value="วันอังคาร"
+                          checked={selectedEditDays.includes("วันอังคาร")}
+                          onChange={handleDateEditOptionChange}
+                        />{" "}
+                        อังคาร{" "}
+                        <input
+                          type="checkbox"
+                          name="options"
+                          value="วันพุธ"
+                          checked={selectedEditDays.includes("วันพุธ")}
+                          onChange={handleDateEditOptionChange}
+                        />{" "}
+                        พุธ{" "}
+                        <input
+                          type="checkbox"
+                          name="options"
+                          value="วันพฤหัสบดี"
+                          checked={selectedEditDays.includes("วันพฤหัสบดี")}
+                          onChange={handleDateEditOptionChange}
+                        />{" "}
+                        พฤหัสบดี{" "}
+                        <input
+                          type="checkbox"
+                          name="options"
+                          value="วันศุกร์"
+                          checked={selectedEditDays.includes("วันศุกร์")}
+                          onChange={handleDateEditOptionChange}
+                        />{" "}
+                        ศุกร์{" "}
+                        <input
+                          type="checkbox"
+                          name="options"
+                          value="วันเสาร์"
+                          checked={selectedEditDays.includes("วันเสาร์")}
+                          onChange={handleDateEditOptionChange}
+                        />{" "}
+                        เสาร์{" "}
+                        <input
+                          type="checkbox"
+                          name="options"
+                          value="วันอาทิตย์"
+                          checked={selectedEditDays.includes("วันอาทิตย์")}
+                          onChange={handleDateEditOptionChange}
+                        />{" "}
+                        อาทิตย์
+                      </div>
+                      <div>
+                        เวลา : {"  "}
+                        <input
+                          type="time"
+                          style={{ width: "110px" }}
+                          className="text"
+                          value={starttime_edit}
+                          onChange={(e) => setstarttime(e.target.value)}
+
+                          // Handle checkbox change event
+                        />
+                        {"    "} ถึง {"     "}
+                        <input
+                          style={{ width: "100px" }}
+                          type="time"
+                          className="text"
+                          value={endtime_edit}
+                          onChange={(e) => setendtime(e.target.value)}
+
+                          // Handle checkbox change event
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {isProjectNameNULLSelected ? (
+                  <div>
+                    <hr
+                      style={{
+                        height: "10px",
+                      }}
+                    ></hr>
+                    <div class="grid-container2">
+                      <div class="grid-item2">
+                        <p className="text2">ดูแบบบ้านในแต่ละโครงการ</p>
+
+                        <div className="dropdown-input">
+                          รูปแบบบ้าน
+                          <select
+                            style={{ width: "175px" }}
+                            id="dropdown"
+                            className="text"
+                          >
+                            <option value="option1" className="text">
+                              ห้องนอน
+                            </option>
+                            <option value="option2" className="text">
+                              ห้องน้ำ
+                            </option>
+                            <option value="option3" className="text">
+                              ห้องนั่งเล่น
+                            </option>
+                            <option value="option4" className="text">
+                              ห้องครัว
+                            </option>
+                            <option value="option5" className="text">
+                              ห้องอเนกประสงค์
+                            </option>
+                            <option value="NULL" className="text">
+                              อื่นๆ
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="grid-item2">
+                        {" "}
+                        <Carousel
+                          showArrows={true} // Show navigation arrows
+                          showThumbs={false} // Hide thumbnail images
+                          infiniteLoop={true} // Enable infinite loop
+                          autoPlay={true} // Auto play the carousel
+                          interval={5000} // Time (in milliseconds) between slides
+                          height="50px"
+                        >
+                          <div>
+                            <img src={gallery3} alt="Image 1" />
+                            <p className="legend">Caption for Image 1</p>
+                          </div>
+                          <div>
+                            <img src={gallery5} alt="Image 2" />
+                            <p className="legend">Caption for Image 2</p>
+                          </div>
+
+                          {/* Add more images as needed */}
+                        </Carousel>
+                      </div>
+                      <div class="grid-item2"></div>
+                    </div>
+                  </div>
+                ) : (
+                  <div></div>
+                )}
+                <hr
+                  style={{
+                    height: "10px",
+                  }}
+                ></hr>
+                <div class="grid-container2">
+                  <div class="grid-item2">
+                    <div className="blueprint">
+                      <div>
+                        รูปภาพหน้างานจริง :
+                        <input
+                          type="file"
+                          id="fileInput"
+                          style={{ display: "none" }}
+                          onChange={handleFileInputChange}
+                        />
+                        {"  "}
+                        <label htmlFor="fileInput">
+                          <FaImage
+                            size={30}
+                            color="black"
+                            className="camera-icon"
+                            style={{ cursor: "pointer" }}
+                          />
+                        </label>
+                      </div>
+                      {selectedFile && (
+                        <p className="text1">
+                          ไฟล์ที่ท่านเลือก : {selectedFile.name}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <div class="grid-item2">
+                    <div className="info-input">
+                      ข้อมูลเพิ่มเติม
+                      <textarea
+                        style={{ width: "385px", height: "100px" }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
+                        className="text"
+                        value={etc_edit}
+                        onChange={(e) => setetc(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <hr
+                  style={{
+                    height: "10px",
+                  }}
+                ></hr>
+
+                <div className="assign1-confirm-button" onClick={UPdateProject}>
                   ยืนยันข้อมูล
                 </div>
               </div>

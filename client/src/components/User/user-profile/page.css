@@ -31,9 +31,10 @@ hr.line {
     justify-content: center;
     text-align: center;
     grid-template-columns: 1fr 1fr;  /* Two equal-width columns */
-    gap: 10px;  /* Gap between columns */
+    gap: 10px;
+    margin-left: 80px;  /* Gap between columns */
   }
   
   .column {
-    /* Add additional styles for the columns, if needed */
+   text-align: left;
   }

@@ -108,19 +108,16 @@ app.get("/project", (req, res) => {
   );
 });
 
-app.get("/projectPDF", (req, res) => {
-  const { phone_number,id } = req.query;
 
-  console.log("phone " + phone_number);
+app.get("/projectID", (req, res) => {
+  const { id } = req.query;
 
-  // if (!phone_number) {
-  //   return res.status(400).json({ error: "Phone number is required." });
-  // }
+  console.log("ID " + id);
 
   // Use the phone_number in the SQL query to retrieve user information
   db.query(
-    "SELECT * FROM `project` WHERE 'id' = ?",
-    [27],
+    "SELECT * FROM `project` WHERE `id` = ?",
+    [id],
     (err, result) => {
       if (err) {
         console.log(err);
@@ -131,26 +128,13 @@ app.get("/projectPDF", (req, res) => {
         return res.status(404).json({ error: "User not found" });
       }
 
-      // Convert the result (an array of user records) to a list of users
-      const users = result.map((user) => ({
-        id: user.id,
-        status: user.status,
-        phone_number: user.phone_number,
-        project_type: user.project_type,
-        room_type: user.room_type,
-        sq_meter: user.sq_meter,
-        address: user.address,
-        provinces: user.provinces,
-        district: user.district,
-        subdistrict: user.subdistrict,
-        zipcode: user.zipcode,
+      const user = result[0];
 
-        // Add more properties as needed
-      }));
-      console.log('Done');
+      // Log the user information
+      console.log("User found: " + user.address + " " + user.provinces);
 
-      // Send the list of users as a JSON response
-      res.send(users);
+      // Send the user information as a JSON response
+      res.send(user);
     }
   );
 });
@@ -187,6 +171,78 @@ app.get("/project_admin", (req, res) => {
     res.send(users);
   });
 });
+
+
+app.post("/updateProject", (req, res) => {
+  const {
+    project_type,
+    room_type,
+    address,
+    sq_meter,
+    provinces,
+    district,
+    subdistrict,
+    zipcode,
+    googlelink,
+    project_name,
+    selectdate,
+    date,
+    start,
+    end,
+    etc,
+    id
+  } = req.body;
+
+  const selectdateString = selectdate.join(", ");
+  const start_time = start + " - " + end;
+
+  db.beginTransaction((err) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send("Internal server error");
+    }
+
+    db.query(
+      "UPDATE `project` SET project_type=?, room_type=?, address=?, sq_meter=?, provinces=?, district=?, subdistrict=?, zipcode=?,  google_maps=?, project_name=?, dayofavaliable=?, start_date=?, timeofavaliable=?, etc=? WHERE id=?;",
+      [
+        project_type,
+        room_type,
+        address,
+        sq_meter,
+        provinces,
+        district,
+        subdistrict,
+        zipcode,
+        googlelink,
+        project_name,
+        selectdateString,
+        date,
+        start_time,
+        etc,
+        id
+      ],
+      (err, result) => {
+        if (err) {
+          db.rollback(() => {
+            console.log(err);
+            return res.status(500).send("Internal server error");
+          });
+        }
+
+        db.commit((err) => {
+          if (err) {
+            db.rollback(() => {
+              console.log(err);
+              return res.status(500).send("Internal server error");
+            });
+          }
+          return res.status(200).send("Project updated successfully");
+        });
+      }
+    );
+  });
+});
+
 
 app.get("/userinfo", (req, res) => {
   const { phone_number } = req.query;

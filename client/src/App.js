@@ -18,7 +18,6 @@ import User_project from "./components/User/user-project/User-Project";
 import User_header from "./components/User/user-header/User-header";
 import User_footer from "./components/User/user-footer/User-footer";
 
-import Assign1 from "./components/User/user-assign-project-case1/Assign";
 
 import Admin from "./components/Admin/project/Admin-Project";
 import Admin_header from "./components/Admin/header/Admin-header";
@@ -33,7 +32,6 @@ import Document from "./components/User/user-profile/Mydocument";
 import LpFooter from "./components/landingPageFooter/lpFooter";
 import Estimate from "./components/estimate/Estimate";
 import Contact from "./pages/contact us/contact";
-import Doc from "./components/User/user-profile/Mydocument";
 
 function App() {
   return (
@@ -50,15 +48,6 @@ function App() {
               <About />
               <HomeGURU />
               <LpFooter />
-            </>
-          }
-        />
-
-        <Route
-          path="/doc"
-          element={
-            <>
-              <Doc />
             </>
           }
         />
@@ -209,14 +198,6 @@ function App() {
           }
         />
 
-        <Route
-          path="/Assignment1"
-          element={
-            <>
-              <Assign1 />
-            </>
-          }
-        />
 
         <Route
           path="/admin"
