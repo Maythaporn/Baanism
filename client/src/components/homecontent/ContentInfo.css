@@ -1,20 +1,12 @@
-.content-info {
-  display: flex;
-  flex-direction: column;
-  width: 320px;
-  font-size: 18px;
-  font-family: 'prompt', sans-serif;
-  /* border: 1px solid black; */
-}
-
-.content-info img {
-  width: 90%;
-  object-fit: cover;
+.content-full {
+  border: 1px solid black;
+  padding-block: 70px;
   margin: 0 auto;
-  margin-bottom: 25px;
+  width: 60vw;
 }
 
-.content-info p {
+.content-full pre {
   margin-top: 10px;
   color: black;
+  white-space: pre-wrap;
 }
