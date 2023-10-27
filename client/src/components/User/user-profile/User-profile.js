@@ -190,17 +190,25 @@ function Project() {
   const handleDateEditOptionChange = (e) => {
     const value = e.target.value;
     const isChecked = e.target.checked;
-
+  
+    // Ensure selectedEditDays is always an array
+    const updatedSelectedEditDays = Array.isArray(selectedEditDays) ? [...selectedEditDays] : [];
+  
     if (isChecked) {
       // Add the value to the list when the checkbox is checked
-      setSelectedEditDays([...selectedEditDays, value]);
+      updatedSelectedEditDays.push(value);
     } else {
       // Remove the value from the list when the checkbox is unchecked
-      setSelectedEditDays(selectedEditDays.filter((day) => day !== value));
+      const index = updatedSelectedEditDays.indexOf(value);
+      if (index !== -1) {
+        updatedSelectedEditDays.splice(index, 1);
+      }
     }
-    console.log(selectedEditDays);
+  
+    setSelectedEditDays(updatedSelectedEditDays);
+    console.log(updatedSelectedEditDays);
   };
-
+  
   const [projectName, setprojectName] = useState("แสนสิริ");
   const [date, setDate] = useState("");
   const [isProjectNameNULLSelected, setisProjectNameNULLSelected] =
@@ -349,6 +357,7 @@ function Project() {
 
   const [project_id, setproject_id] = useState("");
 
+
   const updateProject = (id) => {
     console.log(id);
 
@@ -379,6 +388,12 @@ function Project() {
         setsubdistrict(userData.subdistrict);
         setzipcode(userData.zipcode);
         setGoogleLink_edit(userData.google_maps);
+        setSelectedEditDays(userData.dayofavaliable);
+
+        const parts = userData.timeofavaliable.split(" - ");
+        setstarttime(parts[0]);
+        console.log(starttime_edit);
+        setendtime(parts[1]);
       })
       .catch((error) => {
         // Handle any network or server errors here
@@ -387,11 +402,11 @@ function Project() {
       });
   };
 
+
+  // เหลือเวลากับวัน
+
   const UPdateProject = () => {
     Axios.post("http://localhost:3001/updateProject", {
-      params: {
-        id: project_id,
-      },
       project_type: project_type_edit,
       room_type: room_type_edit,
       address: address_edit,
@@ -406,11 +421,15 @@ function Project() {
       date: start_date_edit,
       start: starttime_edit,
       end: endtime_edit,
-      etc: setEtc,
+      etc: etc_edit,
+      id: project_id,
+      
     })
       .then((response) => {
         if (response.status === 200) {
           alert("แก้ไขโครงการเรียบร้อยแล้ว");
+          console.log(selectedEditDays);
+          console.log(selectedDays);
           window.location.href = `/user_profile/${phoneNumber}`; // Redirect to the user profile page with phone_number as a parameter
         }
       })

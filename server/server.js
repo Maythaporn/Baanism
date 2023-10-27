@@ -193,7 +193,12 @@ app.post("/updateProject", (req, res) => {
     id
   } = req.body;
 
-  const selectdateString = selectdate.join(", ");
+
+  console.log(project_type);
+  console.log(id
+    );
+
+  const selectdateString = selectdate.join(" , ");
   const start_time = start + " - " + end;
 
   db.beginTransaction((err) => {
