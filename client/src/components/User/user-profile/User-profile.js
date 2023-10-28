@@ -156,7 +156,6 @@ function Project() {
     const file = event.target.files[0];
     setSelectedFile(file);
   };
-  
 
   const [project, setProject] = useState([]);
 
@@ -194,10 +193,12 @@ function Project() {
   const handleDateEditOptionChange = (e) => {
     const value = e.target.value;
     const isChecked = e.target.checked;
-  
+
     // Ensure selectedEditDays is always an array
-    const updatedSelectedEditDays = Array.isArray(selectedEditDays) ? [...selectedEditDays] : [];
-  
+    const updatedSelectedEditDays = Array.isArray(selectedEditDays)
+      ? [...selectedEditDays]
+      : [];
+
     if (isChecked) {
       // Add the value to the list when the checkbox is checked
       updatedSelectedEditDays.push(value);
@@ -208,11 +209,11 @@ function Project() {
         updatedSelectedEditDays.splice(index, 1);
       }
     }
-  
+
     setSelectedEditDays(updatedSelectedEditDays);
     console.log(updatedSelectedEditDays);
   };
-  
+
   const [projectName, setprojectName] = useState("แสนสิริ");
   const [date, setDate] = useState("");
   const [isProjectNameNULLSelected, setisProjectNameNULLSelected] =
@@ -284,8 +285,6 @@ function Project() {
     setIsProjectConfirm(false);
   };
 
-
-
   const PDF = (id) => {
     window.location.href = `/document/${phoneNumber}/${id}`;
   };
@@ -345,7 +344,6 @@ function Project() {
           setIsInfoClicked(false);
           setIsProjectCreateClicked(false);
           setIsProjectEditClicked(false);
-
         }
       })
       .catch((error) => {
@@ -374,7 +372,6 @@ function Project() {
   const [googlelink_edit, setGoogleLink_edit] = useState("");
 
   const [project_id, setproject_id] = useState("");
-
 
   const updateProject = (id) => {
     console.log(id);
@@ -420,7 +417,6 @@ function Project() {
       });
   };
 
-
   // เหลือเวลากับวัน
 
   const UPdateProject = () => {
@@ -441,7 +437,6 @@ function Project() {
       end: endtime_edit,
       etc: etc_edit,
       id: project_id,
-      
     })
       .then((response) => {
         if (response.status === 200) {
@@ -681,7 +676,7 @@ function Project() {
               <div
                 style={{ height: "500px", width: "910px", overflow: "scroll" }}
               >
-                <div className="adproject-button" onClick={btnClick}>
+                <div className="confiRmbutton" onClick={btnClick}>
                   <FaPlus size={10} color="white" /> เพิ่มโครงการ
                 </div>
                 {project && project.length > 0 ? (
@@ -729,25 +724,30 @@ function Project() {
               </div>
             )}
             {isPaymentClicked && <div>Payment content</div>}
-            {isProjectConfirm && 
-            <div>
-              <br></br>
-              <br></br>
-              <div className="confirm_contain">
-              <p style={{color:"#100F0D",fontSize:30}}>ได้รับข้อมูลของท่านเรียบร้อยแล้ว</p>
-            
-              <FaRegCheckCircle
-                  size={40}
-                  color={"black"}
-                  className="icon-space"
-          
-                /> 
+            {isProjectConfirm && (
+              <div>
+                <br></br>
+                <br></br>
+                <div className="confirm_contain">
+                  <p style={{ color: "#100F0D", fontSize: 30 }}>
+                    ได้รับข้อมูลของท่านเรียบร้อยแล้ว
+                  </p>
+
+                  <FaRegCheckCircle
+                    size={40}
+                    color={"black"}
+                    className="icon-space"
+                  />
                 </div>
-              <p style={{color:"#100F0D",fontSize:20}}>ทาง Baanism จะรีบติดต่อกลับท่านอย่างรวดเร็วที่สุด ขอขอบคุณที่เลือกใช้บริการกับทางเรา!</p>
-                      <div className="confiRmbutton" onClick={Homepage}>
-                 กลับสู่หน้าหลัก
+                <p style={{ color: "#100F0D", fontSize: 20 }}>
+                  ทาง Baanism จะรีบติดต่อกลับท่านอย่างรวดเร็วที่สุด
+                  ขอขอบคุณที่เลือกใช้บริการกับทางเรา!
+                </p>
+                <div className="confiRmbutton" onClick={Homepage}>
+                  กลับสู่หน้าหลัก
                 </div>
-              </div>}
+              </div>
+            )}
             {isProjectCreateClicked && (
               <div
                 style={{ height: "500px", width: "910px", overflow: "scroll" }}
@@ -912,12 +912,7 @@ function Project() {
                         height: "10px",
                       }}
                     ></hr>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
+                    <div className="align">
                       <div className="dropdown-input">
                         เขต/อำเภอ
                         <br />
@@ -944,7 +939,11 @@ function Project() {
                           ))}
                         </select>
                       </div>
-
+                      <hr
+                        style={{
+                          height: "10px",
+                        }}
+                      ></hr>
                       <div className="dropdown-input">
                         แขวง/ตำบล
                         <br />
@@ -979,7 +978,10 @@ function Project() {
                     <div className="address-input">
                       ที่อยู่
                       <textarea
-                        style={{ width: "385px", height: "100px" }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
+                        style={{
+                          width: isMobile ? "300px" : "385px",
+                          height: "100px",
+                        }}
                         className="text"
                         value={address2}
                         onChange={(e) => setAddress2(e.target.value)}
@@ -1029,7 +1031,11 @@ function Project() {
                       )}
                     </div>
                   </div>
-
+                  <hr
+                  style={{
+                    height: "50px",
+                  }}
+                ></hr>
                   <div class="grid-item">
                     <div
                       className={`dropdown-input${
@@ -1082,7 +1088,10 @@ function Project() {
                     <div className="linkgoogleInput ">
                       Link Google Maps
                       <input
-                        style={{ width: "380px" }} // Set the width using inline CSS
+                        style={{
+                          width: isMobile ? "250px" : "380px",
+                          height: "100px",
+                        }}
                         className="text"
                         type="text"
                         value={googlelink}
@@ -1132,63 +1141,77 @@ function Project() {
                           height: "5px",
                         }}
                       ></hr>
-                      <div>
-                        <input
-                          type="checkbox"
-                          name="options"
-                          value="วันจันทร์"
-                          checked={selectedDays.includes("วันจันทร์")}
-                          onChange={handleDateOptionChange}
-                        />{" "}
-                        จันทร์{" "}
-                        <input
-                          type="checkbox"
-                          name="options"
-                          value="วันอังคาร"
-                          checked={selectedDays.includes("วันอังคาร")}
-                          onChange={handleDateOptionChange}
-                        />{" "}
-                        อังคาร{" "}
-                        <input
-                          type="checkbox"
-                          name="options"
-                          value="วันพุธ"
-                          checked={selectedDays.includes("วันพุธ")}
-                          onChange={handleDateOptionChange}
-                        />{" "}
-                        พุธ{" "}
-                        <input
-                          type="checkbox"
-                          name="options"
-                          value="วันพฤหัสบดี"
-                          checked={selectedDays.includes("วันพฤหัสบดี")}
-                          onChange={handleDateOptionChange}
-                        />{" "}
-                        พฤหัสบดี{" "}
-                        <input
-                          type="checkbox"
-                          name="options"
-                          value="วันศุกร์"
-                          checked={selectedDays.includes("วันศุกร์")}
-                          onChange={handleDateOptionChange}
-                        />{" "}
-                        ศุกร์{" "}
-                        <input
-                          type="checkbox"
-                          name="options"
-                          value="วันเสาร์"
-                          checked={selectedDays.includes("วันเสาร์")}
-                          onChange={handleDateOptionChange}
-                        />{" "}
-                        เสาร์{" "}
-                        <input
-                          type="checkbox"
-                          name="options"
-                          value="วันอาทิตย์"
-                          checked={selectedDays.includes("วันอาทิตย์")}
-                          onChange={handleDateOptionChange}
-                        />{" "}
-                        อาทิตย์
+                      <div className="align">
+                        <div>
+                          <input
+                            type="checkbox"
+                            name="options"
+                            value="วันจันทร์"
+                            checked={selectedDays.includes("วันจันทร์")}
+                            onChange={handleDateOptionChange}
+                          />{" "}
+                          จันทร์{" "}
+                        </div>
+                        <div>
+                          <input
+                            type="checkbox"
+                            name="options"
+                            value="วันอังคาร"
+                            checked={selectedDays.includes("วันอังคาร")}
+                            onChange={handleDateOptionChange}
+                          />{" "}
+                          อังคาร{" "}
+                        </div>
+                        <div>
+                          <input
+                            type="checkbox"
+                            name="options"
+                            value="วันพุธ"
+                            checked={selectedDays.includes("วันพุธ")}
+                            onChange={handleDateOptionChange}
+                          />{" "}
+                          พุธ{" "}
+                        </div>
+                        <div>
+                          <input
+                            type="checkbox"
+                            name="options"
+                            value="วันพฤหัสบดี"
+                            checked={selectedDays.includes("วันพฤหัสบดี")}
+                            onChange={handleDateOptionChange}
+                          />{" "}
+                          พฤหัสบดี{" "}
+                        </div>
+                        <div>
+                          <input
+                            type="checkbox"
+                            name="options"
+                            value="วันศุกร์"
+                            checked={selectedDays.includes("วันศุกร์")}
+                            onChange={handleDateOptionChange}
+                          />{" "}
+                          ศุกร์{" "}
+                        </div>
+                        <div>
+                          <input
+                            type="checkbox"
+                            name="options"
+                            value="วันเสาร์"
+                            checked={selectedDays.includes("วันเสาร์")}
+                            onChange={handleDateOptionChange}
+                          />{" "}
+                          เสาร์{" "}
+                        </div>
+                        <div>
+                          <input
+                            type="checkbox"
+                            name="options"
+                            value="วันอาทิตย์"
+                            checked={selectedDays.includes("วันอาทิตย์")}
+                            onChange={handleDateOptionChange}
+                          />{" "}
+                          อาทิตย์
+                        </div>
                       </div>
                       <div>
                         เวลา : {"  "}
@@ -1320,7 +1343,10 @@ function Project() {
                     <div className="info-input">
                       ข้อมูลเพิ่มเติม
                       <textarea
-                        style={{ width: "385px", height: "100px" }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
+                        style={{
+                          width: isMobile ? "250px" : "385px",
+                          height: "100px",
+                        }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
                         className="text"
                         value={etc}
                         onChange={(e) => setEtc(e.target.value)}
@@ -1450,9 +1476,7 @@ function Project() {
                       />
                     </div>
                   </div>
-                  <div class="grid-item">
-                  
-                  </div>
+                  <div class="grid-item"></div>
                   <div class="grid-item">
                     {" "}
                     <div className="text-input-provinces">
@@ -1473,19 +1497,14 @@ function Project() {
                       </select>
                     </div>
                   </div>
-                 
+
                   <div class="grid-item">
                     <hr
                       style={{
                         height: "10px",
                       }}
                     ></hr>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
+                    <div className="align">
                       <div className="dropdown-input">
                         เขต/อำเภอ
                         <br />
@@ -1512,7 +1531,11 @@ function Project() {
                           ))}
                         </select>
                       </div>
-
+                      <hr
+                        style={{
+                          height: "10px",
+                        }}
+                      ></hr>
                       <div className="dropdown-input">
                         แขวง/ตำบล
                         <br />
@@ -1521,10 +1544,7 @@ function Project() {
                           id="dropdown"
                           className="text"
                           value={subdistrict_edit}
-                    
-                          onChange={(e) =>
-                            setsubdistrict(e.target.value)
-                          }
+                          onChange={(e) => setsubdistrict(e.target.value)}
                         >
                           {/* Default empty option */}{" "}
                           {subdistrict
@@ -1548,7 +1568,10 @@ function Project() {
                     <div className="address-input">
                       ที่อยู่
                       <textarea
-                        style={{ width: "385px", height: "100px" }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
+                        style={{
+                          width: isMobile ? "300px" : "385px",
+                          height: "100px",
+                        }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
                         className="text"
                         value={address_edit}
                         onChange={(e) => setaddress(e.target.value)}
@@ -1598,7 +1621,11 @@ function Project() {
                       )}
                     </div>
                   </div>
-
+                  <hr
+                  style={{
+                    height: "50px",
+                  }}
+                ></hr>
                   <div class="grid-item">
                     <div
                       className={`dropdown-input${
@@ -1651,7 +1678,10 @@ function Project() {
                     <div className="linkgoogleInput ">
                       Link Google Maps
                       <input
-                        style={{ width: "380px" }} // Set the width using inline CSS
+                        style={{
+                          width: isMobile ? "250px" : "380px",
+                          height: "100px",
+                        }} // Set the width using inline CSS
                         className="text"
                         type="text"
                         value={googlelink_edit}
@@ -1701,63 +1731,77 @@ function Project() {
                           height: "5px",
                         }}
                       ></hr>
-                      <div>
-                        <input
-                          type="checkbox"
-                          name="options"
-                          value="วันจันทร์"
-                          checked={selectedEditDays.includes("วันจันทร์")}
-                          onChange={handleDateEditOptionChange}
-                        />{" "}
-                        จันทร์{" "}
-                        <input
-                          type="checkbox"
-                          name="options"
-                          value="วันอังคาร"
-                          checked={selectedEditDays.includes("วันอังคาร")}
-                          onChange={handleDateEditOptionChange}
-                        />{" "}
-                        อังคาร{" "}
-                        <input
-                          type="checkbox"
-                          name="options"
-                          value="วันพุธ"
-                          checked={selectedEditDays.includes("วันพุธ")}
-                          onChange={handleDateEditOptionChange}
-                        />{" "}
-                        พุธ{" "}
-                        <input
-                          type="checkbox"
-                          name="options"
-                          value="วันพฤหัสบดี"
-                          checked={selectedEditDays.includes("วันพฤหัสบดี")}
-                          onChange={handleDateEditOptionChange}
-                        />{" "}
-                        พฤหัสบดี{" "}
-                        <input
-                          type="checkbox"
-                          name="options"
-                          value="วันศุกร์"
-                          checked={selectedEditDays.includes("วันศุกร์")}
-                          onChange={handleDateEditOptionChange}
-                        />{" "}
-                        ศุกร์{" "}
-                        <input
-                          type="checkbox"
-                          name="options"
-                          value="วันเสาร์"
-                          checked={selectedEditDays.includes("วันเสาร์")}
-                          onChange={handleDateEditOptionChange}
-                        />{" "}
-                        เสาร์{" "}
-                        <input
-                          type="checkbox"
-                          name="options"
-                          value="วันอาทิตย์"
-                          checked={selectedEditDays.includes("วันอาทิตย์")}
-                          onChange={handleDateEditOptionChange}
-                        />{" "}
-                        อาทิตย์
+                      <div className="align">
+                        <div>
+                          <input
+                            type="checkbox"
+                            name="options"
+                            value="วันจันทร์"
+                            checked={selectedEditDays.includes("วันจันทร์")}
+                            onChange={handleDateEditOptionChange}
+                          />{" "}
+                          จันทร์{" "}
+                        </div>
+                        <div>
+                          <input
+                            type="checkbox"
+                            name="options"
+                            value="วันอังคาร"
+                            checked={selectedEditDays.includes("วันอังคาร")}
+                            onChange={handleDateEditOptionChange}
+                          />{" "}
+                          อังคาร{" "}
+                        </div>
+                        <div>
+                          <input
+                            type="checkbox"
+                            name="options"
+                            value="วันพุธ"
+                            checked={selectedEditDays.includes("วันพุธ")}
+                            onChange={handleDateEditOptionChange}
+                          />{" "}
+                          พุธ{" "}
+                        </div>
+                        <div>
+                          <input
+                            type="checkbox"
+                            name="options"
+                            value="วันพฤหัสบดี"
+                            checked={selectedEditDays.includes("วันพฤหัสบดี")}
+                            onChange={handleDateEditOptionChange}
+                          />{" "}
+                          พฤหัสบดี{" "}
+                        </div>
+                        <div>
+                          <input
+                            type="checkbox"
+                            name="options"
+                            value="วันศุกร์"
+                            checked={selectedEditDays.includes("วันศุกร์")}
+                            onChange={handleDateEditOptionChange}
+                          />{" "}
+                          ศุกร์{" "}
+                        </div>
+                        <div>
+                          <input
+                            type="checkbox"
+                            name="options"
+                            value="วันเสาร์"
+                            checked={selectedEditDays.includes("วันเสาร์")}
+                            onChange={handleDateEditOptionChange}
+                          />{" "}
+                          เสาร์{" "}
+                        </div>
+                        <div>
+                          <input
+                            type="checkbox"
+                            name="options"
+                            value="วันอาทิตย์"
+                            checked={selectedEditDays.includes("วันอาทิตย์")}
+                            onChange={handleDateEditOptionChange}
+                          />{" "}
+                          อาทิตย์
+                        </div>
                       </div>
                       <div>
                         เวลา : {"  "}
@@ -1782,6 +1826,7 @@ function Project() {
                         />
                       </div>
                     </div>
+                    
                   </div>
                 </div>
 
@@ -1889,7 +1934,10 @@ function Project() {
                     <div className="info-input">
                       ข้อมูลเพิ่มเติม
                       <textarea
-                        style={{ width: "385px", height: "100px" }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
+                        style={{
+                          width: isMobile ? "250px" : "385px",
+                          height: "100px",
+                        }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
                         className="text"
                         value={etc_edit}
                         onChange={(e) => setetc(e.target.value)}
@@ -1921,7 +1969,7 @@ function Project() {
                   <div className="text-inputHvan">
                     ชื่อจริง
                     <input
-                      style={{ width: "250px" }} // Set the width using inline CSS
+                      style={{  width: isMobile ? "170px" : "250px"}} // Set the width using inline CSS
                       className="text"
                       type="text"
                       placeholder={firstname}
@@ -1933,7 +1981,7 @@ function Project() {
                   <div className="text-inputHvan">
                     นามสกุล
                     <input
-                      style={{ width: "250px" }} // Set the width using inline CSS
+                      style={{ width: isMobile ? "170px" : "250px" }} // Set the width using inline CSS
                       className="text"
                       type="text"
                       placeholder={lastname}
@@ -1945,7 +1993,7 @@ function Project() {
                   <div className="phone-inputHvan">
                     เบอร์โทร
                     <input
-                      style={{ width: "250px" }} // Set the width using inline CSS
+                      style={{width: isMobile ? "170px" : "250px"}} // Set the width using inline CSS
                       className="text"
                       type="text"
                       placeholder={phone_number}
@@ -1956,8 +2004,8 @@ function Project() {
 
                   <div className="address-inputHvan">
                     ที่อยู่
-                    <textarea
-                      style={{ width: "250px" }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
+                    <input
+                      style={{ width: isMobile ? "170px" : "250px"}} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
                       className="text"
                       placeholder={address}
                       value={email}
@@ -1968,7 +2016,7 @@ function Project() {
                   <div className="text-input-provincesHvan">
                     จังหวัด
                     <input
-                      style={{ width: "250px" }}
+                      style={{ width: isMobile ? "170px" : "250px" }}
                       id="dropdownProvincs"
                       className="text"
                       placeholder={provinces}
@@ -1978,7 +2026,7 @@ function Project() {
                   <div className="zip-inputHvan">
                     รหัสไปรษณีย์
                     <input
-                      style={{ width: "250px" }} // Set the width using inline CSS
+                      style={{width: isMobile ? "170px" : "250px"}} // Set the width using inline CSS
                       className="text"
                       type="text"
                       placeholder={zipcode}
@@ -2002,9 +2050,9 @@ function Project() {
                   }}
                 ></hr>
                 <Link to={`/user/${phone_number}`}>
-                  <div className="assign-input1-container">
+                
                     <div className="assign1-confirm-button">แก้ไขข้อมูล</div>
-                  </div>
+              
                 </Link>
               </div>
             )}
