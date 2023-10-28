@@ -103,14 +103,9 @@ function Assign1(props) {
 
       <div >
         <p className="titletext">เพิ่มแบบโครงการเข้าระบบ</p>
-        <hr
-          style={{
-            height: "20px",
-          }}
-        />
         <div className="assign-input-container">
           <div className="column1">
-          <div className="area-input">
+            <div className="area-input">
               ชื่อโครงการ : 
               <input
                 style={{ width: "130px" }} // Set the width using inline CSS
@@ -121,11 +116,12 @@ function Assign1(props) {
               />
             </div>
           </div>
+          <hr style={{height: "2px",}}/>
           <div className="column1">
-          <div className="area-input">
+            <div className="area-input">
               Developer : 
               <input
-                style={{ width: "130px" }} // Set the width using inline CSS
+                style={{ width: "320px" }} // Set the width using inline CSS
                 className="text"
                 type="number"
                 value={email}
@@ -136,17 +132,17 @@ function Assign1(props) {
         </div>
         <div className="assign-input-container">
           <div className="column1">
-          <div className="address2-input">
+            <div className="address2-input">
               ที่อยู่
               <textarea
-                style={{ width: "385px", height: "100px" }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
+                style={{ width: "385px", height: "50px" }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
                 className="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-            </div>
-            
+            </div>  
           </div>
+          <hr style={{height: "40px",}}/>
           <div className="column1">
             <div className="text-input-provinces">
               จังหวัด
@@ -164,13 +160,8 @@ function Assign1(props) {
                 ))}
               </select>
             </div>
-            <hr
-          style={{
-            height: "20px",
-          }}
-        ></hr>
-
-          <div className="row">
+            <hr style={{ height: "80px",}}></hr>
+            <div className="row">
               <div className="dropdown-input">
                 เขต/อำเภอ
                 <br />
@@ -187,11 +178,9 @@ function Assign1(props) {
                     </option>
                   ))}
                 </select>
-              </div>
-
+              </div>     
               <div className="dropdown-input">
                 แขวง/ตำบล
-                <br />
                 <select
                   style={{ width: "175px" }}
                   id="dropdown"
@@ -220,27 +209,25 @@ function Assign1(props) {
                 </select>
               </div>
             </div>
-            <hr
-          style={{
-            height: "20px",
-          }}
-        ></hr>
-            <div className="zip-input">
-              รหัสไปรษณีย์
-              <input
-                style={{ width: "130px" }} // Set the width using inline CSS
-                className="text"
-                type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+            <hr style={{height: "60px",}}></hr>
+            <div className="column1">
+              <div className="zip-input">
+                รหัสไปรษณีย์
+                <input
+                  style={{ width: "130px" }} // Set the width using inline CSS
+                  className="text"
+                  type="text"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
             </div>
           </div>
         </div>
-
+        <hr style={{height: "100px",}}></hr>            
         <div className="assign-input-container">
           <div className="column2">
-          <div className="blueprint">
+            <div className="blueprint">
               <div>
                 {" "}
                 แบบการออกแบบเบื้องต้น (Blueprint) :
@@ -250,21 +237,20 @@ function Assign1(props) {
                   style={{ display: "none" }}
                   onChange={handleFileInputChange}
                 />
-                {"  "}
-                <label htmlFor="fileInput">
-                  <FaImage
-                    size={30}
-                    color="black"
-                    className="camera-icon"
-                    style={{ cursor: "pointer" }}
-                  />
-                </label>
+                  {"  "}
+                  <label htmlFor="fileInput">
+                    <FaImage
+                      size={30}
+                      color="black"
+                      className="camera-icon"
+                      style={{ cursor: "pointer" }}
+                    />
+                  </label>
               </div>
-              {selectedFile && (
-                <p className="text1">ไฟล์ที่ท่านเลือก : {selectedFile.name}</p>
-              )}
-            </div>
-            
+                {selectedFile && (
+                  <p className="text1">ไฟล์ที่ท่านเลือก : {selectedFile.name}</p>
+                )}
+            </div>  
           </div>
           <div className="column2">
 
@@ -272,10 +258,10 @@ function Assign1(props) {
         </div>
         <div className="assign-input-container">
           <div className="column1">
+            <p>ลิ้งค์ Google Maps</p>
             <div className="text-input">
-              ลิ้งค์ Google Maps
               <input
-                style={{ width: "150px" }} // Set the width using inline CSS
+                style={{ width: "320px" }} // Set the width using inline CSS
                 className="text"
                 type="text"
                 value={email}
@@ -284,13 +270,12 @@ function Assign1(props) {
             </div>
           </div>
           <div className="column1">
+            <p>ชื่อโครงการที่อยู่อาศัย</p>
             <div
               className={isOptionNULLSelected ? "text-input1" : "text-input"}
             >
-              ชื่อโครงการที่อยู่อาศัย
-              <br />
               <select
-                style={{ width: "175px" }}
+                style={{ width: "320px" }}
                 id="dropdown"
                 className="text"
                 value={selectedOption}
@@ -689,16 +674,16 @@ function Assign1(props) {
               </div>
             </div>
             <div className="assign-input-container">
-              <div className="column2">
-                <div className="info-input">
+              <div className="column1">
+                <div className="address2-input">  
                   ข้อมูลเพิ่มเติม
                   <textarea
-                    style={{ width: "385px", height: "100px" }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
+                    style={{ width: "385px", height: "50px" }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
                     className="text"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
-                </div>
+                </div>  
               </div>
             </div>
             
