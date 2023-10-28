@@ -46,13 +46,20 @@
   justify-content: space-evenly;
 }
 
+
+.titletext-container {
+  display: flex; 
+  align-items: center; 
+  margin-right: 10px;
+}
 .titletext{
   display: flex;
   flex-direction: row;
-  text-align: left;
+  text-align: center;
   font-family: 'Prompt', sans-serif;
   color: #100F0D;
-  font-size: 30px;
+  font-size: 50px;
+  display: inline;
 }
 
 .titletext2{
@@ -302,6 +309,7 @@
   align-items: center;
   text-align: center;
   padding-top: 3px;
+  margin-left: 40rem;
 
 }
 
@@ -314,7 +322,10 @@ margin-left: 10px;
   flex-direction: row;
   justify-content: center;
   text-align: center;
+  margin-top: 0px;
   margin-bottom: 15px;
+  color: #100F0D;
+  font-size: 5;
 }
 
 .confiRmbutton{
@@ -328,7 +339,7 @@ margin-left: 10px;
   align-items: center;
   text-align: center;
   padding-top: 3px;
-  margin-left: 20rem;
+  margin-left: 27rem;
   margin-top: 40px;
 
 }
@@ -491,6 +502,15 @@ margin-left: 10px;
   color: #100F0D;
 }
 
+.titleConfirm{
+  margin-left: 17rem;
+  color: #100F0D;
+  display: flex;
+  text-align: center;
+  flex-direction: row;
+  font-size: 50px;
+}
+
 .address-input {
   padding-top: 10px;
   padding-left: 10px;
@@ -569,6 +589,38 @@ margin-left: 10px;
 
 
 @media (max-width: 768px) {
+  .confiRmbutton{
+    border-radius: 10px;
+    background-color: #038E7F;
+    font-size: 15px;
+    font-family: 'Prompt', sans-serif;
+    color: white;
+    width: 150px;
+    height: 32px;
+    align-items: center;
+    text-align: center;
+    padding-top: 3px;
+    margin-left: 7rem;
+    margin-top: 40px;
+  
+  }
+
+  .confirm_contain{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #100F0D;
+    font-size: 15;
+  }
+
+  .titletext{
+    margin-right: 20rem;
+    display: flex;
+    flex-direction: row;
+  }
   .address-inputHvan {
     padding-top: 10px;
     padding-left: 10px;
@@ -664,7 +716,6 @@ margin-left: 10px;
   
   }
   
-  
   .phone-inputHvan {
     padding-top: 10px;
     padding-left: 10px;
@@ -688,7 +739,7 @@ margin-left: 10px;
     position: relative; 
     display: grid;
     grid-template-columns:1fr ; /* สองคอลัมน์ที่มีความกว้างเท่ากัน */
-    margin-left: 10px;
+    margin-left: 2rem;
     width: 100%;
   }
 
@@ -730,7 +781,7 @@ margin-left: 10px;
     height: 32px;
     align-items: center;
     text-align: center;
-    margin-right: 60rem;
+    margin-left: 30rem;
     padding-top: 3px;
   
   }
@@ -816,6 +867,15 @@ margin-left: 10px;
     color: #100F0D;
     font-size: 30px;
     margin-left: 21rem;
+  }
+
+  .titleConfirm{
+    color: #100F0D;
+    font-size: 30px;
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+    margin-left: 5rem;
   }
   
   .titletext2{

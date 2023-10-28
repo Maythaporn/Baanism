@@ -676,7 +676,7 @@ function Project() {
               <div
                 style={{ height: "500px", width: "910px", overflow: "scroll" }}
               >
-                <div className="confiRmbutton" onClick={btnClick}>
+                <div className="adproject-button" onClick={btnClick}>
                   <FaPlus size={10} color="white" /> เพิ่มโครงการ
                 </div>
                 {project && project.length > 0 ? (
@@ -727,35 +727,36 @@ function Project() {
             {isProjectConfirm && (
               <div>
                 <br></br>
-                <br></br>
                 <div className="confirm_contain">
-                  <p style={{ color: "#100F0D", fontSize: 30 }}>
-                    ได้รับข้อมูลของท่านเรียบร้อยแล้ว
-                  </p>
+                
+                   ได้รับข้อมูลของท่านเรียบร้อยแล้ว
 
-                  <FaRegCheckCircle
-                    size={40}
-                    color={"black"}
-                    className="icon-space"
-                  />
+                    <FaRegCheckCircle
+                      size={40}
+                      color={"black"}
+                      className="icon-space"
+                    />
+              
                 </div>
-                <p style={{ color: "#100F0D", fontSize: 20 }}>
-                  ทาง Baanism จะรีบติดต่อกลับท่านอย่างรวดเร็วที่สุด
-                  ขอขอบคุณที่เลือกใช้บริการกับทางเรา!
-                </p>
+                <div className="confirm_contain">
+                <p>
+                    ทาง Baanism จะรีบติดต่อกลับท่านอย่างรวดเร็วที่สุด
+                    ขอขอบคุณที่เลือกใช้บริการกับทางเรา!
+                  </p>
+                  </div>
                 <div className="confiRmbutton" onClick={Homepage}>
-                  กลับสู่หน้าหลัก
-                </div>
+                    กลับสู่หน้าหลัก
+                  </div>
               </div>
             )}
             {isProjectCreateClicked && (
               <div
                 style={{ height: "500px", width: "910px", overflow: "scroll" }}
               >
-                <p className="titletext">สร้างโครงการ</p>
+                <h1 className="titletext">สร้างโครงการ</h1>
                 <hr
                   style={{
-                    height: "20px",
+                    height: "10px",
                   }}
                 ></hr>
                 <div class="grid-container">
@@ -1032,10 +1033,10 @@ function Project() {
                     </div>
                   </div>
                   <hr
-                  style={{
-                    height: "50px",
-                  }}
-                ></hr>
+                    style={{
+                      height: "50px",
+                    }}
+                  ></hr>
                   <div class="grid-item">
                     <div
                       className={`dropdown-input${
@@ -1369,7 +1370,7 @@ function Project() {
               <div
                 style={{ height: "500px", width: "910px", overflow: "scroll" }}
               >
-                <p className="titletext">แก้ไขโครงการ</p>
+                <h1 className="titletext">แก้ไขโครงการ</h1>
                 <hr
                   style={{
                     height: "20px",
@@ -1622,10 +1623,10 @@ function Project() {
                     </div>
                   </div>
                   <hr
-                  style={{
-                    height: "50px",
-                  }}
-                ></hr>
+                    style={{
+                      height: "50px",
+                    }}
+                  ></hr>
                   <div class="grid-item">
                     <div
                       className={`dropdown-input${
@@ -1826,7 +1827,6 @@ function Project() {
                         />
                       </div>
                     </div>
-                    
                   </div>
                 </div>
 
@@ -1959,17 +1959,18 @@ function Project() {
 
             {isInfoClicked && (
               <div style={{ height: "500px", overflow: "scroll" }}>
-                ข้อมูลผู้ใช้งาน
+                      <h1 className="titleConfirm">ข้อมูลผู้ใช้งาน</h1>
                 <hr
                   style={{
-                    height: "30px",
+                    height: "10px",
                   }}
                 ></hr>
+                
                 <div className="profile-gridHvan">
                   <div className="text-inputHvan">
                     ชื่อจริง
                     <input
-                      style={{  width: isMobile ? "170px" : "250px"}} // Set the width using inline CSS
+                      style={{ width: isMobile ? "170px" : "250px" }} // Set the width using inline CSS
                       className="text"
                       type="text"
                       placeholder={firstname}
@@ -1993,7 +1994,7 @@ function Project() {
                   <div className="phone-inputHvan">
                     เบอร์โทร
                     <input
-                      style={{width: isMobile ? "170px" : "250px"}} // Set the width using inline CSS
+                      style={{ width: isMobile ? "170px" : "250px" }} // Set the width using inline CSS
                       className="text"
                       type="text"
                       placeholder={phone_number}
@@ -2005,7 +2006,7 @@ function Project() {
                   <div className="address-inputHvan">
                     ที่อยู่
                     <input
-                      style={{ width: isMobile ? "170px" : "250px"}} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
+                      style={{ width: isMobile ? "170px" : "250px" }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
                       className="text"
                       placeholder={address}
                       value={email}
@@ -2026,7 +2027,7 @@ function Project() {
                   <div className="zip-inputHvan">
                     รหัสไปรษณีย์
                     <input
-                      style={{width: isMobile ? "170px" : "250px"}} // Set the width using inline CSS
+                      style={{ width: isMobile ? "170px" : "250px" }} // Set the width using inline CSS
                       className="text"
                       type="text"
                       placeholder={zipcode}
@@ -2050,9 +2051,7 @@ function Project() {
                   }}
                 ></hr>
                 <Link to={`/user/${phone_number}`}>
-                
-                    <div className="assign1-confirm-button">แก้ไขข้อมูล</div>
-              
+                  <div className="assign1-confirm-button">แก้ไขข้อมูล</div>
                 </Link>
               </div>
             )}
