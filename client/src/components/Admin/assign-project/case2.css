@@ -116,6 +116,8 @@ hr.new4 {
   justify-content: space-between;
   flex-direction: row; /* Make it a flex container */
   margin-bottom: 20px;
+  align-items: flex-start;
+  gap: 5px;
   /* You can also add other styles like width, background-color, etc. */
 }
 
@@ -142,9 +144,11 @@ hr.new4 {
 }
 .column1 {
   width: 450px;
+  height: 80px;
   display: flex;
   text-align: left;
-
+  margin-bottom: 10px;
+  flex: 1;
   flex-direction: column; /* Make it a flex container */
   /* You can also add other styles like width, background-color, etc. */
 }
@@ -209,7 +213,7 @@ hr.new4 {
   align-content: center;
   font-size: 16px;
   margin-top: 2px;
-  margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+  margin-bottom: 2px; 
   font-family: 'Prompt', sans-serif;
   color: #100F0D;
 }
@@ -219,7 +223,7 @@ hr.new4 {
   padding-left: 10px;
 
   width: 400px;
-  height: 100px;
+  height: 80px;
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -291,7 +295,7 @@ hr.new4 {
 .info-input {
   padding-top: 10px;
   padding-left: 10px;
-  width: 830px;
+  width: 400px;
   height: 150px;
   display: flex;
   flex-direction: column;
@@ -408,7 +412,8 @@ hr.new4 {
   font-family: 'Prompt', sans-serif;
   color: #100F0D;
   font-size: 30px;
-  padding-right: 55px;
+  padding-right: 33rem;
+  padding-left: 40px;
 }
 
 .titletext2{
@@ -416,6 +421,7 @@ hr.new4 {
   color: #100F0D;
   font-size: 30px;
   padding-right: 33rem;
+  padding-left: 40px;
 }
 
 .text-dropdown{
@@ -505,7 +511,7 @@ hr.new4 {
   .column1 {
     width: 95%;
     display: flex;
-    margin-bottom: 20px;
+    /* margin-bottom: 40px; */
     flex-direction: column; /* Make it a flex container */
     /* You can also add other styles like width, background-color, etc. */
   }

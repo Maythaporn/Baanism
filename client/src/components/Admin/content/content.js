@@ -171,6 +171,15 @@ function Assign1(props) {
           )}
         </div>
         <div className="address2-input">
+          Content Caption :
+          <textarea
+            style={{ width: "385px", height: "100px" }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
+            className="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="address2-input">
           รายละเอียด content :
           <textarea
             style={{ width: "385px", height: "100px" }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS

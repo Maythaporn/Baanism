@@ -152,7 +152,7 @@ function Project() {
     const file = event.target.files[0];
     setSelectedFile(file);
   };
-  
+
 
   const [project, setProject] = useState([]);
 
@@ -191,14 +191,22 @@ function Project() {
     const value = e.target.value;
     const isChecked = e.target.checked;
 
+    // Ensure selectedEditDays is always an array
+    const updatedSelectedEditDays = Array.isArray(selectedEditDays) ? [...selectedEditDays] : [];
+
     if (isChecked) {
       // Add the value to the list when the checkbox is checked
-      setSelectedEditDays([...selectedEditDays, value]);
+      updatedSelectedEditDays.push(value);
     } else {
       // Remove the value from the list when the checkbox is unchecked
-      setSelectedEditDays(selectedEditDays.filter((day) => day !== value));
+      const index = updatedSelectedEditDays.indexOf(value);
+      if (index !== -1) {
+        updatedSelectedEditDays.splice(index, 1);
+      }
     }
-    console.log(selectedEditDays);
+
+    setSelectedEditDays(updatedSelectedEditDays);
+    console.log(updatedSelectedEditDays);
   };
 
   const [projectName, setprojectName] = useState("แสนสิริ");
@@ -349,6 +357,7 @@ function Project() {
 
   const [project_id, setproject_id] = useState("");
 
+
   const updateProject = (id) => {
     console.log(id);
 
@@ -379,6 +388,12 @@ function Project() {
         setsubdistrict(userData.subdistrict);
         setzipcode(userData.zipcode);
         setGoogleLink_edit(userData.google_maps);
+        setSelectedEditDays(userData.dayofavaliable);
+
+        const parts = userData.timeofavaliable.split(" - ");
+        setstarttime(parts[0]);
+        console.log(starttime_edit);
+        setendtime(parts[1]);
       })
       .catch((error) => {
         // Handle any network or server errors here
@@ -387,11 +402,11 @@ function Project() {
       });
   };
 
+
+  // เหลือเวลากับวัน
+
   const UPdateProject = () => {
     Axios.post("http://localhost:3001/updateProject", {
-      params: {
-        id: project_id,
-      },
       project_type: project_type_edit,
       room_type: room_type_edit,
       address: address_edit,
@@ -406,11 +421,15 @@ function Project() {
       date: start_date_edit,
       start: starttime_edit,
       end: endtime_edit,
-      etc: setEtc,
+      etc: etc_edit,
+      id: project_id,
+
     })
       .then((response) => {
         if (response.status === 200) {
           alert("แก้ไขโครงการเรียบร้อยแล้ว");
+          console.log(selectedEditDays);
+          console.log(selectedDays);
           window.location.href = `/user_profile/${phoneNumber}`; // Redirect to the user profile page with phone_number as a parameter
         }
       })
@@ -573,9 +592,8 @@ function Project() {
             <div>
               <div
                 onClick={handleProjectClick} // Use parentheses to invoke the function
-                className={`${
-                  isProjectClicked ? "Userselect-button" : "Userbutton"
-                }`}
+                className={`${isProjectClicked ? "Userselect-button" : "Userbutton"
+                  }`}
               >
                 <FaFile
                   size={isMobile ? 10 : 17}
@@ -592,9 +610,8 @@ function Project() {
 
               <div
                 onClick={handlePaymentClick}
-                className={`${
-                  isPaymentClicked ? "Userselect-button" : "Userbutton"
-                }`}
+                className={`${isPaymentClicked ? "Userselect-button" : "Userbutton"
+                  }`}
               >
                 <FaCashRegister
                   size={isMobile ? 10 : 17}
@@ -612,9 +629,8 @@ function Project() {
 
               <div
                 onClick={handleInfoClick}
-                className={`${
-                  isInfoClicked ? "Userselect-button" : "Userbutton"
-                }`}
+                className={`${isInfoClicked ? "Userselect-button" : "Userbutton"
+                  }`}
               >
                 <FaIdCard
                   size={isMobile ? 10 : 17}
@@ -695,23 +711,30 @@ function Project() {
                 )}
               </div>
             )}
-            {isPaymentClicked && <div>Payment content</div>}
+            {isPaymentClicked && (<div>
+              <h1 className="titletext">Payment Content
+            </h1>
+              <hr
+                style={{
+                  height: "10px",
+                }}
+              ></hr></div>)}
             {isProjectCreateClicked && (
               <div
                 style={{ height: "500px", width: "910px", overflow: "scroll" }}
               >
-                <p className="titletext">สร้างโครงการ</p>
+                <h1 className="titletext">สร้างโครงการ
+                </h1>
                 <hr
                   style={{
-                    height: "20px",
+                    height: "10px",
                   }}
                 ></hr>
                 <div class="grid-container">
                   <div class="grid-item">
                     <div
-                      className={`dropdown-input${
-                        isTypeNULLSelected ? "-expanded" : ""
-                      }`}
+                      className={`dropdown-input${isTypeNULLSelected ? "-expanded" : ""
+                        }`}
                     >
                       ประเภทงาน
                       <br />
@@ -748,9 +771,8 @@ function Project() {
                   </div>
                   <div class="grid-item">
                     <div
-                      className={`dropdown-input${
-                        isRoomNULLSelected ? "-expanded" : ""
-                      }`}
+                      className={`dropdown-input${isRoomNULLSelected ? "-expanded" : ""
+                        }`}
                     >
                       ประเภทห้อง
                       <br />
@@ -980,9 +1002,8 @@ function Project() {
 
                   <div class="grid-item">
                     <div
-                      className={`dropdown-input${
-                        isProjectNameNULLSelected ? "-expanded" : ""
-                      }`}
+                      className={`dropdown-input${isProjectNameNULLSelected ? "-expanded" : ""
+                        }`}
                     >
                       ชื่อโครงการที่อยู่อาศัย
                       {/* <br /> */}
@@ -1147,7 +1168,7 @@ function Project() {
                           value={start}
                           onChange={(e) => setStart(e.target.value)}
 
-                          // Handle checkbox change event
+                        // Handle checkbox change event
                         />
                         {"    "} ถึง {"     "}
                         <input
@@ -1157,7 +1178,7 @@ function Project() {
                           value={end}
                           onChange={(e) => setEnd(e.target.value)}
 
-                          // Handle checkbox change event
+                        // Handle checkbox change event
                         />
                       </div>
                     </div>
@@ -1300,9 +1321,8 @@ function Project() {
                 <div class="grid-container">
                   <div class="grid-item">
                     <div
-                      className={`dropdown-input${
-                        isTypeNULLSelected ? "-expanded" : ""
-                      }`}
+                      className={`dropdown-input${isTypeNULLSelected ? "-expanded" : ""
+                        }`}
                     >
                       ประเภทงาน
                       <br />
@@ -1339,9 +1359,8 @@ function Project() {
                   </div>
                   <div class="grid-item">
                     <div
-                      className={`dropdown-input${
-                        isRoomNULLSelected ? "-expanded" : ""
-                      }`}
+                      className={`dropdown-input${isRoomNULLSelected ? "-expanded" : ""
+                        }`}
                     >
                       ประเภทห้อง
                       <br />
@@ -1399,7 +1418,7 @@ function Project() {
                     </div>
                   </div>
                   <div class="grid-item">
-                  
+
                   </div>
                   <div class="grid-item">
                     {" "}
@@ -1421,7 +1440,7 @@ function Project() {
                       </select>
                     </div>
                   </div>
-                 
+
                   <div class="grid-item">
                     <hr
                       style={{
@@ -1469,7 +1488,7 @@ function Project() {
                           id="dropdown"
                           className="text"
                           value={subdistrict_edit}
-                    
+
                           onChange={(e) =>
                             setsubdistrict(e.target.value)
                           }
@@ -1549,9 +1568,8 @@ function Project() {
 
                   <div class="grid-item">
                     <div
-                      className={`dropdown-input${
-                        isProjectNameNULLSelected ? "-expanded" : ""
-                      }`}
+                      className={`dropdown-input${isProjectNameNULLSelected ? "-expanded" : ""
+                        }`}
                     >
                       ชื่อโครงการที่อยู่อาศัย
                       {/* <br /> */}
@@ -1716,7 +1734,7 @@ function Project() {
                           value={starttime_edit}
                           onChange={(e) => setstarttime(e.target.value)}
 
-                          // Handle checkbox change event
+                        // Handle checkbox change event
                         />
                         {"    "} ถึง {"     "}
                         <input
@@ -1726,7 +1744,7 @@ function Project() {
                           value={endtime_edit}
                           onChange={(e) => setendtime(e.target.value)}
 
-                          // Handle checkbox change event
+                        // Handle checkbox change event
                         />
                       </div>
                     </div>
@@ -1859,10 +1877,11 @@ function Project() {
 
             {isInfoClicked && (
               <div style={{ height: "500px", overflow: "scroll" }}>
-                ข้อมูลผู้ใช้งาน
+                <h1 className="titletext">ข้อมูลผู้ใช้งาน
+                </h1>
                 <hr
                   style={{
-                    height: "30px",
+                    height: "10px",
                   }}
                 ></hr>
                 <div className="profile-gridHvan">

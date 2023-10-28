@@ -32,6 +32,7 @@ import Document from "./components/User/user-profile/Mydocument";
 import LpFooter from "./components/landingPageFooter/lpFooter";
 import Estimate from "./components/estimate/Estimate";
 import Contact from "./pages/contact us/contact";
+import ContentInfo from "./components/homecontent/ContentInfo";
 
 import thisIsLittleFooter from "./components/littleFooter/oneForAllLittleFooter";
 
@@ -74,6 +75,16 @@ function App() {
             <>
               <Header />
               <HomeGURU />
+              <LpFooter />
+            </>
+          }
+        />
+        <Route 
+          path="/homecontent/:id"
+          element={
+            <>
+              <Header />
+              <ContentInfo />
               <LpFooter />
             </>
           }

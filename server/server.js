@@ -193,7 +193,12 @@ app.post("/updateProject", (req, res) => {
     id
   } = req.body;
 
-  const selectdateString = selectdate.join(", ");
+
+  console.log(project_type);
+  console.log(id
+    );
+
+  const selectdateString = selectdate.join(" , ");
   const start_time = start + " - " + end;
 
   db.beginTransaction((err) => {
@@ -692,6 +697,30 @@ app.post("/login", (req, res) => {
     }
   );
 });
+
+app.get('/homecontent', (req, res) => {
+  db.query("SELECT * FROM content", (err, result) => {
+    if (err) {
+      console.error(err)
+    }
+    else {
+      res.json(result)
+    }
+  })
+})
+
+app.get('/homecontent/:id', (req, res) => {
+  const contentId = req.params.id
+  db.query("SELECT * FROM content WHERE id = ?", [contentId], (err, result) => {
+    if (err) {
+      console.error(err)
+    }
+    else {
+      const contentData = result[0]
+      res.json(contentData)
+    }
+  })
+})
 
 app.listen("3001", () => {
   console.log("Server is running on port 3001");
