@@ -34,6 +34,8 @@ import Estimate from "./components/estimate/Estimate";
 import Contact from "./pages/contact us/contact";
 import ContentInfo from "./components/homecontent/ContentInfo";
 
+import thisIsLittleFooter from "./components/littleFooter/oneForAllLittleFooter";
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -106,7 +108,6 @@ function App() {
             <Document/>
             </>
           }
-   
         />
 
         {/* register's route */}
@@ -137,6 +138,7 @@ function App() {
             <>
               <Header />
               <Contact />
+              <thisIsLittleFooter/>
             </>
           }
         />

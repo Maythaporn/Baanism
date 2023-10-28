@@ -1,0 +1,89 @@
+.admin-updateproject-container {
+    font-family: 'prompt', sans-serif;
+    font-size: 16px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    min-height: 90px;
+    width: 90%;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-top: 40px;
+    color: #000;
+}
+
+
+.admin-updateproject-container:last-child {
+    margin-bottom: 40px;
+}
+
+
+.info-left {
+    padding: 25px;
+    max-width: 60%;
+    /* border: 1px solid gray; */
+}
+
+.info-right {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* border: 1px solid gray; */
+}
+
+.project-title {
+    font-size: 28px;
+    padding-bottom: 15px;
+}
+
+.edit {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.edit-btn {
+    font-family: 'prompt', sans-serif;
+    font-size: 16px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.space {
+    margin: 0 8px;
+    padding: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .admin-project-container {
+        margin-top: 30px;
+        width: 95%;
+        display: flex;
+        flex-direction: column;
+        min-height: 240px;
+    }
+
+    .info-left {
+        max-width: 100%;
+    }
+
+    .info-right {
+        font-size: 14px;
+        padding: 0 20px;
+        margin-bottom: 20px;
+        max-width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .edit-btn {
+        font-size: 14px;
+    }
+
+    .status {
+        width: 8px;
+        height: 8px;
+    }
+}

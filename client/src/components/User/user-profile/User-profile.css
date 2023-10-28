@@ -46,11 +46,17 @@
   justify-content: space-evenly;
 }
 
+
+.titletext-container {
+  display: flex; 
+  align-items: center; 
+  margin-right: 10px;
+}
 .titletext{
   font-family: 'Prompt', sans-serif;
   color: #100F0D;
-  font-size: 30px;
-  margin-right: 40rem;
+  font-size: 50px;
+  display: inline;
 }
 
 .titletext2{
@@ -595,6 +601,23 @@
   flex-direction: column;
   text-align: left;
   border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  align-content: center;
+  font-size: 16px;
+  margin-top: 2px;
+  margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+  font-family: 'Prompt', sans-serif;
+  color: #100F0D;
+}
+
+.blueprintProfile {
+  width: 400px;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+
   border-radius: 10px;
   outline: none;
   align-content: center;
