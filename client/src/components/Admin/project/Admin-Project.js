@@ -16,18 +16,18 @@ import { FaPlus } from "react-icons/fa";
 import AllProjects from "../all-projects/All_Projects";
 import Assign_admin from "../assign-project/assign-admin";
 import Content from "../all-projects/all_content";
-
 import Add_content from "../content/content";
+import UpdateProject from "../update-project/update"
+import EditUpdateContent from "../content/editcontent"
 
 function Project() {
   const [isMobile, setIsMobile] = useState(false);
-
   const [isProjectClicked, setIsProjectClicked] = useState(true);
   const [isUpdateClicked, setIsUpdateClicked] = useState(false);
   const [isAddClicked, setIsAddClicked] = useState(false);
   const [isAddcontentClicked, setIsAddcontentClicked] = useState(false);
   const [isUpdatecontentClicked, setIsUpdatecontentClicked] = useState(false);
-
+  
   const handleProjectClick = () => {
     setIsProjectClicked(true);
     setIsUpdateClicked(false);
@@ -149,7 +149,7 @@ function Project() {
             <div className="addcontent">
          
                 <div className="adcontent-button" onClick={handleAddContentClick}>
-                  <FaPlus size={10} color="white" /> เพิ่ม Home GURU Content
+                  <FaPlus size={10} color="white" /> เพิ่ม Content
                 </div>
               
               <br></br>
@@ -157,6 +157,7 @@ function Project() {
             
           </div>
         )}
+        {isUpdateClicked && <UpdateProject />}
         {isAddClicked && (
           <div style={{ height: "550px", overflow: "scroll" }}>
             <Assign_admin />
@@ -167,12 +168,12 @@ function Project() {
             <Add_content />
           </div>
         )}
+      </div>
         {isUpdatecontentClicked && (
           <div style={{ height: "550px", overflow: "scroll" }}>
-        
+            <EditUpdateContent />
           </div>
         )}
-      </div>
     </div>
   );
 }
