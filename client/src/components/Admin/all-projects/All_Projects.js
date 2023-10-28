@@ -17,6 +17,7 @@ const AllProjects = () => {
       .then((response) => {
         if (response.status === 200) {
           alert("ลบโครงการเรียบร้อย");
+          window.location.href = `/admin`; 
           // navigate(`/user_profile/${phoneNumber}`); // Redirect to the user profile page with phone_number as a parameter
         }
       })
@@ -34,6 +35,7 @@ const AllProjects = () => {
       .then((response) => {
         if (response.status === 200) {
           alert("อัพเดตสถานะเรียบร้อย");
+          window.location.href = `/admin`; 
           // navigate(`/user_profile/${phoneNumber}`); // Redirect to the user profile page with phone_number as a parameter
         }
       })

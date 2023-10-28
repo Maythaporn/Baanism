@@ -22,6 +22,9 @@ import {
   FaSignOutAlt,
   FaUserCircle,
   FaImage,
+  FaAlignRight,
+  FaCheckCircle,
+  FaRegCheckCircle,
 } from "react-icons/fa";
 import { FaFile } from "react-icons/fa";
 import { FaUser, FaBell } from "react-icons/fa";
@@ -35,6 +38,7 @@ function Project() {
 
   const [isMobile, setIsMobile] = useState(false);
   const [isProjectCreateClicked, setIsProjectCreateClicked] = useState(false);
+  const [isProjectConfirm, setIsProjectConfirm] = useState(false);
   const [isProjectEditClicked, setIsProjectEditClicked] = useState(false);
   const [isProjectClicked, setIsProjectClicked] = useState(false);
   const [isPaymentClicked, setIsPaymentClicked] = useState(false);
@@ -250,6 +254,7 @@ function Project() {
     setIsInfoClicked(false);
     setIsProjectCreateClicked(true);
     setIsProjectEditClicked(false);
+    setIsProjectConfirm(false);
   };
 
   const handleProjectClick = () => {
@@ -258,6 +263,7 @@ function Project() {
     setIsInfoClicked(false);
     setIsProjectCreateClicked(false);
     setIsProjectEditClicked(false);
+    setIsProjectConfirm(false);
   };
 
   const handlePaymentClick = () => {
@@ -266,6 +272,7 @@ function Project() {
     setIsInfoClicked(false);
     setIsProjectCreateClicked(false);
     setIsProjectEditClicked(false);
+    setIsProjectConfirm(false);
   };
 
   const handleInfoClick = () => {
@@ -274,12 +281,17 @@ function Project() {
     setIsInfoClicked(true);
     setIsProjectCreateClicked(false);
     setIsProjectEditClicked(false);
+    setIsProjectConfirm(false);
   };
 
 
 
   const PDF = (id) => {
     window.location.href = `/document/${phoneNumber}/${id}`;
+  };
+
+  const Homepage = () => {
+    window.location.href = `/user_profile/${phoneNumber}`;
   };
 
   const handleDeleteProject = (projectId) => {
@@ -326,8 +338,14 @@ function Project() {
     })
       .then((response) => {
         if (response.status === 200) {
-          alert("สร้างโครงการเรียบร้อยแล้ว");
-          window.location.href = `/user_profile/${phoneNumber}`; // Redirect to the user profile page with phone_number as a parameter
+          setIsProjectConfirm(true);
+
+          setIsProjectClicked(false);
+          setIsPaymentClicked(false);
+          setIsInfoClicked(false);
+          setIsProjectCreateClicked(false);
+          setIsProjectEditClicked(false);
+
         }
       })
       .catch((error) => {
@@ -558,10 +576,6 @@ function Project() {
           <Link>
             <FaBell size={30} color="gray" />
           </Link>
-          {"        "}
-          <Link>
-            <FaUser size={30} color="gray" />
-          </Link>
         </div>
       </div>
       <div
@@ -715,6 +729,25 @@ function Project() {
               </div>
             )}
             {isPaymentClicked && <div>Payment content</div>}
+            {isProjectConfirm && 
+            <div>
+              <br></br>
+              <br></br>
+              <div className="confirm_contain">
+              <p style={{color:"#100F0D",fontSize:30}}>ได้รับข้อมูลของท่านเรียบร้อยแล้ว</p>
+            
+              <FaRegCheckCircle
+                  size={40}
+                  color={"black"}
+                  className="icon-space"
+          
+                /> 
+                </div>
+              <p style={{color:"#100F0D",fontSize:20}}>ทาง Baanism จะรีบติดต่อกลับท่านอย่างรวดเร็วที่สุด ขอขอบคุณที่เลือกใช้บริการกับทางเรา!</p>
+                      <div className="confiRmbutton" onClick={Homepage}>
+                 กลับสู่หน้าหลัก
+                </div>
+              </div>}
             {isProjectCreateClicked && (
               <div
                 style={{ height: "500px", width: "910px", overflow: "scroll" }}

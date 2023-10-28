@@ -300,6 +300,34 @@
 
 }
 
+.icon-space{
+margin-left: 10px;
+}
+
+.confirm_contain{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.confiRmbutton{
+  border-radius: 10px;
+  background-color: #038E7F;
+  font-size: 15px;
+  font-family: 'Prompt', sans-serif;
+  color: white;
+  width: 150px;
+  height: 32px;
+  align-items: center;
+  text-align: center;
+  padding-top: 3px;
+  margin-left: 20rem;
+  margin-top: 40px;
+
+}
+
 .user-icon{
   margin-top: 20px;
 }

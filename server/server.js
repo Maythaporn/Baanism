@@ -286,6 +286,7 @@ app.get("/userinfo", (req, res) => {
 const bcrypt = require("bcrypt");
 const saltRounds = 10; // The number of salt rounds, higher is more secure
 
+
 app.post("/createusers", (req, res) => {
   const first_name = req.body.first_name;
   const last_name = req.body.last_name;
@@ -700,4 +701,16 @@ app.post("/login", (req, res) => {
 
 app.listen("3001", () => {
   console.log("Server is running on port 3001");
+
+  bcrypt.hash("1234", saltRounds, (hashErr, hash) => {
+    if (hashErr) {
+      console.log(hashErr);
+      res.status(500).send("Internal server error");
+    } else {
+      // Insert the new user into the database with the hashed password
+      const currentDate = new Date().toLocaleDateString();
+      console.log("Date : " + currentDate);
+      console.log("Password Admin : " + hash);
+    }
+  });
 });

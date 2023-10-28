@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { PDFViewer } from '@react-pdf/renderer';
+import ReactPDF from '@react-pdf/renderer';
 import {
   Document,
   Page,
