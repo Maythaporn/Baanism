@@ -9,7 +9,7 @@ app.use(express.json());
 const db = mysql.createConnection({
   user: "root",
   host: "localhost",
-  password: "root1234",
+  password: "12345678",
   database: "Baanism",
 });
 
@@ -196,7 +196,7 @@ app.post("/updateProject", (req, res) => {
 
   console.log(project_type);
   console.log(id
-    );
+  );
 
   const selectdateString = selectdate.join(" , ");
   const start_time = start + " - " + end;
@@ -370,7 +370,7 @@ app.post("/createProject", (req, res) => {
   } = req.body;
 
   const selectdateString = selectdate.join(", ");
-  const start_time = start + " - "+end;
+  const start_time = start + " - " + end;
 
   db.beginTransaction((err) => {
     if (err) {
@@ -603,11 +603,36 @@ app.post("/checkEmail", (req, res) => {
       }
 
       if (results.length === 0) {
-        return res
+        return res  
           .status(401)
           .send("Invalid email and phone number combination");
       }
       res.status(200).send("/found");
+    }
+  );
+});
+
+app.post("/getUserEmailByPhoneNumber", (req, res) => {
+  const { phone_number } = req.body;
+
+  // ค้นหาในฐานข้อมูลของคุณเพื่อหาอีเมลที่เกี่ยวข้องกับเบอร์โทรศัพท์ที่รับมา
+  db.query(
+    "SELECT email FROM users WHERE phone_number = ?",
+    [phone_number],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({ error: "Internal server error" });
+      }
+
+      if (result.length === 0) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      const userEmail = result[0].email;
+
+      // ส่งค่าอีเมลกลับเป็น JSON response
+      res.json({ email: userEmail });
     }
   );
 });

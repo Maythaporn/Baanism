@@ -1,103 +1,82 @@
 import React from "react";
 import "./forgot.css";
 import logoIcon from "../../assets/images/logo_withbg.png";
-
 import Axios from "axios";
+import emailjs from 'emailjs-com'
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-import { Device } from "twilio-client";
 function Forgot() {
-  const client = new Device(
-    "AC5fac57ff49e4ac6a98379b5e05f24e2f",
-    "21f1038fc25aec09787205333b2b9082"
-  );
   const navigate = useNavigate();
 
+
+
+  //page state
   const [isreset, setIsresetClicked] = useState(true);
   const [isOtpCreateClicked, setIsOtpCreateClicked] = useState(false);
   const [isConfirmClicked, setIsConfirmClicked] = useState(false);
 
+  //value
+  const [otp, setOTP] = useState(""); // ประกาศตัวแปร otp และ setOTP
+  const [OTPinput, setOTPinput] = useState([]);
+  const [recipientEmail, setRecipientEmail] = useState("")
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordsMatch, setPasswordsMatch] = useState(true);
+  const specialCharacters = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/;  
 
-  const specialCharacters = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/;
-
-
-  const handleResetClick = () => {
+  const handleResetClick = async () => {
     setIsConfirmClicked(false);
-
-    Axios.post("http://localhost:3001/checkAccount", {
-      phone_number: phoneNumber,
-    })
-      .then((response) => {
-        if (response.status === 401) {
-          alert("Unauthorized: เบอร์โทรศัพท์ หรือ password ของท่านผิด");
-        } else if (response.data === "/found") {
-          setIsresetClicked(false);
-          setIsOtpCreateClicked(true);
-        } else {
-          alert("เกิดข้อผิดพลาด");
-          setIsresetClicked(false);
-        }
-      })
-      .catch((error) => {
-        alert("ไม่มีบัญชีนี้อยู่่");
-        navigate("/forgot");
+    try {
+      const response = await Axios.post("http://localhost:3001/checkAccount", {
+        phone_number: phoneNumber,
       });
-  };
-
-  const handleOTPClick = () => {
-    setIsresetClicked(false);
-    setIsOtpCreateClicked(false);
-
-    Axios.post("http://localhost:3001/checkEmail", {
-      email: email,
-      phone_number: phoneNumber,
-    })
-      .then((response) => {
-        if (response.status === 401) {
-          alert("Unauthorized: ท่านอาจจะไม่ใช่เจ้าของบัญชีนี้");
-
-          Axios.post("http://localhost:3001/resetpassword", {
-            phone_number: phoneNumber,
-            password: "password",
-          })
-            .then((response) => {
-              if (response.status === 200) {
-                alert("เปลี่ยนรหัสผ่านเรียบร้อย");
-                navigate("/");
-              }
-            })
-            .catch((error, response) => {
-              // Email already in use
-              console.error("Phone number already in use");
-            });
-        } else if (response.status === 200) {
-          setIsConfirmClicked(true);
-        }
-      })
-      .catch((error) => {
-        alert("ไม่มีบัญชีนี้อยู่่");
-        Axios.post("http://localhost:3001/resetpassword", {
+  
+      if (response.status === 401) {
+        alert("Unauthorized: เบอร์โทรศัพท์ หรือ password ของท่านผิด");
+      } else if (response.data === "/found") {
+        const emailResponse = await Axios.post("http://localhost:3001/getUserEmailByPhoneNumber", {
           phone_number: phoneNumber,
-          password: "password",
-        })
-          .then((response) => {
-            if (response.status === 200) {
-              alert("เปลี่ยนรหัสผ่านเรียบร้อย");
-              navigate("/");
-            }
-          })
-          .catch((error, response) => {
-            // Email already in use
-            console.error("Phone number already in use");
-          });
-      });
+        });
+  
+        if (emailResponse.status === 200) {
+          const otp = Math.floor(Math.random() * 9000 + 1000);
+          setRecipientEmail(emailResponse.data.email)
+          setOTP(otp);
+          setIsresetClicked(false);
+          setIsOtpCreateClicked(true);  
+          await emailjs.send(
+            'service_w7o0pfr', 
+            'template_shdsfyv', {
+            to_email: emailResponse.data.email,
+            recipientEmail: emailResponse.data.email,
+            otp: otp,
+          }, 'FQ05itjgxwQe6PnRs')
+  
+        } else {
+          alert("ไม่สามารถค้นหา email ได้");
+        }
+      } else {
+        alert("เกิดข้อผิดพลาด");
+        setIsresetClicked(false);
+      }
+    } catch (error) {
+      alert("มีข้อผิดพลาดเกิดขึ้นในการส่งคำขอ");
+      navigate("/forgot");
+    }
   };
+
+  function verifyOTP() {
+    const enteredOTP = parseInt(OTPinput.join(""), 10); // แปลงรหัส OTP ที่ผู้ใช้กรอกเป็นตัวเลขและรวมเข้ากัน
+
+    if (enteredOTP === otp) { // เปรียบเทียบรหัส OTP ที่ผู้ใช้กรอกกับรหัส OTP ที่ถูกสร้างขึ้นมา
+      setIsConfirmClicked(true);
+      setIsOtpCreateClicked(false);
+    } else {
+      alert("รหัส OTP ที่คุณป้อนไม่ถูกต้อง กรุณาลองอีกครั้งหรือขอรหัสใหม่"); // ถ้าไม่ตรงกันให้แสดงข้อความแจ้งเตือน
+    }
+  }
 
   const btnConfirm = () => {
     if (password === "" || confirmPassword === "") {
@@ -105,11 +84,11 @@ function Forgot() {
     } else if (!passwordsMatch) {
       alert("รหัสผ่านไม่ตรงกันกรุณาตรวจสอบอีกครั้ง");
     } else if (password.length < 8) {
-        // ตรวจสอบความยาวของรหัสผ่าน
-        alert("รหัสผ่านควรมีความยาวอย่างน้อย 8 ตัวอักษร");
+      // ตรวจสอบความยาวของรหัสผ่าน
+      alert("รหัสผ่านควรมีความยาวอย่างน้อย 8 ตัวอักษร");
     } else if (!specialCharacters.test(password)) {
-        // ตรวจสอบอักขระพิเศษในรหัสผ่าน
-        alert("รหัสผ่านควรมีอักขระพิเศษอย่างน้อย 1 ตัว");
+      // ตรวจสอบอักขระพิเศษในรหัสผ่าน
+      alert("รหัสผ่านควรมีอักขระพิเศษอย่างน้อย 1 ตัว");
     } else {
       Axios.post("http://localhost:3001/resetpassword", {
         phone_number: phoneNumber,
@@ -172,6 +151,7 @@ function Forgot() {
             <button
               className="resetPasswordButtonPeng"
               onClick={handleResetClick}
+            // onClick={checkEmail(testemail, testphoneNumber)}
             >
               รีเซตรหัสผ่าน
             </button>
@@ -180,21 +160,22 @@ function Forgot() {
         {isOtpCreateClicked && (
           <div>
             <p class="head-text">สร้างรหัสผ่านใหม่</p>
-            <p class="content-text">กรุณากรอก Email เพื่อยืนยัน</p>
+            <p class="content-text">กรุณากรอก Otp ที่ส่งไปยังอีเมล</p>
+            <p class="content-text">{recipientEmail}</p>
 
             <br></br>
             <input
               type="text"
               className="pass-input"
-              placeholder="E-mail"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              placeholder="OTP"
+              value={OTPinput.join("")} // ใช้ค่ารหัส OTP จาก OTPinput
+              onChange={(e) => setOTPinput(e.target.value.split(""))} // อัปเดต OTPinput เมื่อผู้ใช้ป้อนข้อมูล
             ></input>
             <br></br>
             <br></br>
             <button
               className="resetPasswordButtonPeng"
-              onClick={handleOTPClick}
+              onClick={verifyOTP}
             >
               ยืนยัน
             </button>

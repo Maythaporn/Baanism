@@ -87,9 +87,9 @@ html {
     background-color: #038E7F;
     font-size: 15px;
     color: white;
-    width: 330px;
+    width: 400px;
     height: 40px;
-    margin-left:85px;
+    margin: auto;
     margin-top: 20px;
     display: block;
   }
