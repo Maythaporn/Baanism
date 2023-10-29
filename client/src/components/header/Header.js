@@ -42,7 +42,7 @@ export default function Header() {
     <>
       <nav className={`rootNav ${isNavOpen ? 'active' :''}`}>
         <Link to="/">
-          <img src={logo} alt="baanism-logo" className="logoStyle" />
+          <img src={logo} alt="baanism-logo" className="logoLandingStyle" />
         </Link>
 
         <div className="nav-toggle" onClick={toggleNav}>
@@ -55,7 +55,7 @@ export default function Header() {
           <div className='leftMenu'>
             <ul className='navBar'>
               <li>
-                <Link to="/about" className='first'>
+                <Link to="/about">
                   เกี่ยวกับเรา
                 </Link>
               </li>
@@ -90,40 +90,7 @@ export default function Header() {
               </li>
             </ul>
           </div>
-          {/* <ul className='navBar'>
-            <li>
-              <Link to="/about" className='first'>
-                เกี่ยวกับเรา
-              </Link>
-            </li>
-            <li>
-              <Link to='/homecontent'>
-                Home GURU
-              </Link>
-            </li>
-            <li>
-              <Link to='/estimate'>
-                ประเมินราคา
-              </Link>
-            </li>
-            <li>
-              <Link to='/contact'>
-                ติดต่อเรา
-              </Link>
-            </li>
-            <li>
-              <div className='lineButton' onClick={btnLogin} to='/login'>
-                  ลงชื่อเข้าใช้งาน
-              </div>
-            </li>
-            <li>
-              <div className='solidButton' onClick={btnRegister} to='/register'>
-                  ลงทะเบียน
-              </div>
-            </li>
-          </ul> */}
         </div>
-
       </nav>
     </>
   );

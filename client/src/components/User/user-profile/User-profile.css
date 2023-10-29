@@ -46,17 +46,29 @@
   justify-content: space-evenly;
 }
 
+
+.titletext-container {
+  display: flex; 
+  align-items: center; 
+  margin-right: 10px;
+}
 .titletext{
+  display: flex;
+  flex-direction: row;
+  text-align: center;
   font-family: 'Prompt', sans-serif;
   color: #100F0D;
-  font-size: 30px;
-  margin-right: 40rem;
+  font-size: 50px;
+  display: inline;
 }
 
 .titletext2{
+  display: flex;
+  flex-direction: row;
+  text-align: left;
   font-family: 'Prompt', sans-serif;
   color: #100F0D;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .admin-project-container {
@@ -264,7 +276,6 @@
 }
 
 .assign1-confirm-button{
-
   padding-top: 10px;
   border-radius: 10px;
   background-color: #038E7F;
@@ -280,10 +291,12 @@
 
 }
 
-
-.addproject{
-  margin-left: 45rem;
+.align{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 }
+
 
 .adproject-button{
   border-radius: 10px;
@@ -295,8 +308,39 @@
   height: 32px;
   align-items: center;
   text-align: center;
-  margin-left: 45rem;
   padding-top: 3px;
+  margin-left: 40rem;
+
+}
+
+.icon-space{
+margin-left: 10px;
+}
+
+.confirm_contain{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 15px;
+  color: #100F0D;
+  font-size: 5;
+}
+
+.confiRmbutton{
+  border-radius: 10px;
+  background-color: #038E7F;
+  font-size: 15px;
+  font-family: 'Prompt', sans-serif;
+  color: white;
+  width: 150px;
+  height: 32px;
+  align-items: center;
+  text-align: center;
+  padding-top: 3px;
+  margin-left: 27rem;
+  margin-top: 40px;
 
 }
 
@@ -331,76 +375,6 @@
   font-family: "Prompt", sans-serif;
   font-size: 15px;
   flex-wrap: wrap; /* เพิ่ม flex-wrap เพื่อให้รายการแสดงผลเป็นสองแถวหรือมากกว่าก็ได้ */
-}
-
-
-
-@media (max-width: 768px) {
-  .projectUsercontainer {
-    flex-direction: column; /* Stack items vertically */
-    height: 100vh;
-  }
-  .project-sidebar {
-    margin-left: 10px;
-    width: 95%; /* Full width */
-  }
-
-  .mim-container{
-    padding-top: 20px;
-    display: flex;
-    width: 95%;
-
-    flex-direction: row;
-    justify-content: space-evenly;
-  
-  }
-  
-  .mim-container2{
-    padding-top: 20px;
-    display: flex;
-    width: 150px;
- 
-    flex-direction: row;
-    justify-content: space-evenly;
-  }
-
-  .MimprojectUsercontainer{
-    flex-direction: column;
-    justify-content:space-evenly; 
-    display: flex;
-    padding-top: 40px;
-  
-    width: 100%;
-  }
-  .project-profilebar {
-    margin-left: 10px;
-    font-size: 10px;
-    width: 95%;
-    font-size: 30px;
-    align-items: center; /* Full width */
-    text-align: center;
-  }
-  .addproject{
-    margin-right: 45rem;
-  }
-
-  .UserHeader {
-    padding-top: 20px;
-    padding-bottom: 10px;
-    font-size: 10px;
-    text-align: center;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .mim-Userfooter {
-    font-size: 13px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    flex-direction: column;
-    align-items: center;
-  }
-  
 }
 
 .profile-gridHvan{
@@ -528,6 +502,15 @@
   color: #100F0D;
 }
 
+.titleConfirm{
+  margin-left: 17rem;
+  color: #100F0D;
+  display: flex;
+  text-align: center;
+  flex-direction: row;
+  font-size: 50px;
+}
+
 .address-input {
   padding-top: 10px;
   padding-left: 10px;
@@ -547,7 +530,6 @@
   color: #100F0D;
 }
 
-
 .address-inputHvan {
   padding-top: 10px;
   padding-left: 10px;
@@ -566,7 +548,6 @@
   font-family: 'Prompt', sans-serif;
   color: #100F0D;
 }
-
 
 .text-inputProject {
   padding-top: 10px;
@@ -603,4 +584,356 @@
   margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
   font-family: 'Prompt', sans-serif;
   color: #100F0D;
+}
+
+
+
+@media (max-width: 768px) {
+  .confiRmbutton{
+    border-radius: 10px;
+    background-color: #038E7F;
+    font-size: 15px;
+    font-family: 'Prompt', sans-serif;
+    color: white;
+    width: 150px;
+    height: 32px;
+    align-items: center;
+    text-align: center;
+    padding-top: 3px;
+    margin-left: 7rem;
+    margin-top: 40px;
+  
+  }
+
+  .confirm_contain{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #100F0D;
+    font-size: 15;
+  }
+
+  .titletext{
+    margin-right: 20rem;
+    display: flex;
+    flex-direction: row;
+  }
+  .address-inputHvan {
+    padding-top: 10px;
+    padding-left: 10px;
+    width: 250px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    align-content: center;
+    font-size: 16px;
+    margin-top: 2px;
+    margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+    font-family: 'Prompt', sans-serif;
+    color: #100F0D;
+  }
+
+  .text-inputHvan{
+    width: 250px;
+    height:60px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    align-content: center;
+    font-size: 16px;
+    margin-top: 2px;
+    font-family: 'Prompt', sans-serif;
+    color: #100F0D;
+    padding-top: 10px;
+    padding-left: 10px;
+  }
+  
+  .zip-inputHvan {
+    padding-top: 10px;
+    padding-left: 10px;
+    width: 250px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    align-content: center;
+    font-size: 16px;
+    margin-top: 2px;
+    margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+    font-family: 'Prompt', sans-serif;
+    color: #100F0D;
+  }
+  
+  .text-input-provincesHvan {
+    padding-top: 10px;
+    padding-left: 10px;
+    width: 250px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    align-content: center;
+    font-size: 16px;
+    margin-top: 2px;
+    margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+    font-family: 'Prompt', sans-serif;
+    color: #100F0D;
+  }
+  
+  .district-inputHvan {
+    width: 250px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    align-content: center;
+    font-size: 16px;
+  
+    margin-right: 10px;
+    padding-top: 7px;
+    padding-left: 10px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+    font-family: 'Prompt', sans-serif;
+    color: #100F0D;
+  
+  }
+  
+  .phone-inputHvan {
+    padding-top: 10px;
+    padding-left: 10px;
+    width: 250px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    align-content: center;
+    font-size: 16px;
+    margin-top: 2px;
+    margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+    font-family: 'Prompt', sans-serif;
+    color: #100F0D;
+  }
+
+  .profile-gridHvan{
+    position: relative; 
+    display: grid;
+    grid-template-columns:1fr ; /* สองคอลัมน์ที่มีความกว้างเท่ากัน */
+    margin-left: 2rem;
+    width: 100%;
+  }
+
+  .text1{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+  }
+
+  .align{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  
+  .admin-project-container {
+    font-family: 'prompt', sans-serif;
+    font-size: 16px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    min-height: 180px;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-top: 40px;
+    margin-left: 19rem;
+    color: #000;
+  }
+
+  .adproject-button{
+    border-radius: 10px;
+    background-color: #038E7F;
+    font-size: 15px;
+    font-family: 'Prompt', sans-serif;
+    color: white;
+    width: 150px;
+    height: 32px;
+    align-items: center;
+    text-align: center;
+    margin-left: 30rem;
+    padding-top: 3px;
+  
+  }
+
+  .area-input{
+    width: 300px;
+  }
+
+  .info-input{
+    width: 310px;
+  }
+
+  .linkgoogleInput {
+    padding-top: 10px;
+    padding-left: 10px;
+    width: 300px;
+  }
+
+  .address-input {
+    padding-top: 10px;
+    padding-left: 10px;
+    width: 315px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    align-content: center;
+    font-size: 16px;
+    margin-top: 2px;
+    margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+    font-family: 'Prompt', sans-serif;
+    color: #100F0D;
+  }
+
+  .grid-container {
+    width: 700px;
+    display: grid;
+    grid-template-columns: auto;
+    column-gap: 20px;
+    row-gap: 10px;
+    padding: 10px;
+    margin-left: 18rem;
+    justify-content: space-between;
+  }
+  .grid-item {
+    width: 95%;
+  
+    color:#100F0D;
+    font-size: 30px;
+    justify-content: space-between;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+  
+  }
+
+  .grid-container2 {
+    display: grid;
+    row-gap: 10px;
+    margin-left: 20px;
+    grid-template-columns: auto ;
+    margin-top: 70px;
+    margin-left: 17rem;
+    padding: 10px;
+  }
+  .grid-item2 {
+  
+    font-size: 30px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .titletext{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    font-family: 'Prompt', sans-serif;
+    color: #100F0D;
+    font-size: 30px;
+    margin-left: 21rem;
+  }
+
+  .titleConfirm{
+    color: #100F0D;
+    font-size: 30px;
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+    margin-left: 5rem;
+  }
+  
+  .titletext2{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    font-family: 'Prompt', sans-serif;
+    color: #100F0D;
+    font-size: 25px;
+    margin-left: 17rem;
+  }
+
+  .projectUsercontainer {
+    flex-direction: column; /* Stack items vertically */
+    height: 100vh;
+  }
+  .project-sidebar {
+    margin-left: 10px;
+    width: 95%; /* Full width */
+  }
+
+  .mim-container{
+    padding-top: 20px;
+    display: flex;
+    width: 95%;
+
+    flex-direction: row;
+    justify-content: space-evenly;
+  
+  }
+  
+  .mim-container2{
+    padding-top: 20px;
+    display: flex;
+    width: 150px;
+ 
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .MimprojectUsercontainer{
+    flex-direction: column;
+    justify-content:space-evenly; 
+    display: flex;
+    padding-top: 40px;
+  
+    width: 100%;
+  }
+
+  .project-profilebar {
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 10px;
+    width: 95%;
+    font-size: 30px;
+    align-items: center; /* Full width */
+    text-align: center;
+  }
+
+  
 }

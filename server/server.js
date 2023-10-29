@@ -9,7 +9,7 @@ app.use(express.json());
 const db = mysql.createConnection({
   user: "root",
   host: "localhost",
-  password: "root1234",
+  password: "12345678",
   database: "Baanism",
 });
 
@@ -196,7 +196,7 @@ app.post("/updateProject", (req, res) => {
 
   console.log(project_type);
   console.log(id
-    );
+  );
 
   const selectdateString = selectdate.join(" , ");
   const start_time = start + " - " + end;
@@ -286,6 +286,7 @@ app.get("/userinfo", (req, res) => {
 const bcrypt = require("bcrypt");
 const saltRounds = 10; // The number of salt rounds, higher is more secure
 
+
 app.post("/createusers", (req, res) => {
   const first_name = req.body.first_name;
   const last_name = req.body.last_name;
@@ -369,7 +370,7 @@ app.post("/createProject", (req, res) => {
   } = req.body;
 
   const selectdateString = selectdate.join(", ");
-  const start_time = start + " - "+end;
+  const start_time = start + " - " + end;
 
   db.beginTransaction((err) => {
     if (err) {
@@ -602,11 +603,36 @@ app.post("/checkEmail", (req, res) => {
       }
 
       if (results.length === 0) {
-        return res
+        return res  
           .status(401)
           .send("Invalid email and phone number combination");
       }
       res.status(200).send("/found");
+    }
+  );
+});
+
+app.post("/getUserEmailByPhoneNumber", (req, res) => {
+  const { phone_number } = req.body;
+
+  // ค้นหาในฐานข้อมูลของคุณเพื่อหาอีเมลที่เกี่ยวข้องกับเบอร์โทรศัพท์ที่รับมา
+  db.query(
+    "SELECT email FROM users WHERE phone_number = ?",
+    [phone_number],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({ error: "Internal server error" });
+      }
+
+      if (result.length === 0) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      const userEmail = result[0].email;
+
+      // ส่งค่าอีเมลกลับเป็น JSON response
+      res.json({ email: userEmail });
     }
   );
 });
@@ -724,4 +750,16 @@ app.get('/homecontent/:id', (req, res) => {
 
 app.listen("3001", () => {
   console.log("Server is running on port 3001");
+
+  bcrypt.hash("1234", saltRounds, (hashErr, hash) => {
+    if (hashErr) {
+      console.log(hashErr);
+      res.status(500).send("Internal server error");
+    } else {
+      // Insert the new user into the database with the hashed password
+      const currentDate = new Date().toLocaleDateString();
+      console.log("Date : " + currentDate);
+      console.log("Password Admin : " + hash);
+    }
+  });
 });
