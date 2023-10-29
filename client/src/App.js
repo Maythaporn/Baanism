@@ -36,6 +36,7 @@ import ContentInfo from "./components/homecontent/ContentInfo";
 
 // import thisIsLittleFooter from "./components/littleFooter/oneForAllLittleFooter";
 import THISISFOOTERJA from "./components/footerForYouNa/footerForAllofU";
+import THISISFOOTERNABUTINBLUE from './components/footerForYouNa/footerForAllofYouButInBlueNa'
 
 function App() {
   return (
@@ -118,7 +119,7 @@ function App() {
             <>
               <Header />
               <Register />
-              <LpFooter />
+              <THISISFOOTERJA/>
             </>
           }
         />
@@ -128,7 +129,7 @@ function App() {
             <>
               <Header />
               <Forgot />
-              <LpFooter />
+              <THISISFOOTERJA/>
             </>
           }
         />
@@ -139,7 +140,7 @@ function App() {
             <>
               <Header />
               <Contact />
-              <THISISFOOTERJA/>
+              <THISISFOOTERNABUTINBLUE/>
             </>
           }
         />
@@ -156,7 +157,7 @@ function App() {
             <>
               <Header />
               <Login />
-              <LpFooter />
+              <THISISFOOTERJA/>
             </>
           }
         />

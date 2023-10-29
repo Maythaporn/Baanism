@@ -4,8 +4,23 @@
     justify-content: flex-start;
     justify-content: space-between;
     align-items: center;
+    height: 60px;
+    width: 100%;
+    background-color: #03128E;
+    color: #fff;
+}
+
+p{
     padding: 0 0 0 80px;
-    height: 80px;
+}
+
+.footerForAllofYouContainerButInBlueBG{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
     width: 100%;
     background-color: #fff;
     color: #03128E;
@@ -14,7 +29,6 @@
 .footerForAllofYouULStyle{
     display: flex;
     flex-direction: row;
-    /* justify-content: center; */
 }
 
 .footerForAllofYouULStyle li{
@@ -23,12 +37,17 @@
 }
 
 @media screen and (max-width: 768px) {
+    p{
+        padding: 0;
+    }
     .footerForAllofYouContainer{
-        padding-top: 10px;
         flex-direction: column;
-        height: 100px;
+        /* background-color: red; */
+    }
+    .footerForAllofYouContainerButInBlueBG{
+        flex-direction: column;
     }
     .footerForAllofYouULStyle{
-        padding-bottom: 10px;
+        padding-left: 11%;
     }
 }

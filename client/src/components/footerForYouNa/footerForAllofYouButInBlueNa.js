@@ -1,10 +1,10 @@
 import './footerForAllofYou.css'
 import { Link } from 'react-router-dom';
 
-export default function footerForAllofYou(){
+export default function footerForAllofYouButInBlueNa(){
     return(
         <>
-            <div className='footerForAllofYouContainer'>
+            <div className='footerForAllofYouContainerButInBlueBG'>
                 <p>Copyright © 2023 BAANISM Co., Ltd. All rights reserved.</p>
                 <ul className='footerForAllofYouULStyle'>
                     <li>
