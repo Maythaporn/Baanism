@@ -9,7 +9,7 @@ app.use(express.json());
 const db = mysql.createConnection({
   user: "root",
   host: "localhost",
-  password: "12345678",
+  password: "root1234",
   database: "Baanism",
 });
 
@@ -432,6 +432,64 @@ app.post("/adduserinfo", (req, res) => {
     db.query(
       "UPDATE `users_info` SET `address`= ?,`provinces`= ?,`district`= ?,`zipcode`= ? WHERE`phone_number`= ?  ",
       [address, provinces, district, zipcode, phone_number],
+      (err, result) => {
+        if (err) {
+          db.rollback(() => {
+            console.log(err);
+            return res.status(500).send("Internal server error");
+          });
+        }
+
+        db.commit((err) => {
+          if (err) {
+            db.rollback(() => {
+              console.log(err);
+              return res.status(500).send("Internal server error");
+            });
+          }
+          return res.status(200).send("User added successfully");
+        });
+      }
+    );
+  });
+});
+app.get("/getuserImage", (req, res) => {
+  const { phone_number } = req.query;
+
+  // Fetch the user's image from the database based on their phone number
+  db.query(
+    "SELECT img FROM users_info WHERE phone_number = ?",
+    [phone_number],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).send("Internal server error");
+      }
+
+      if (result.length === 0) {
+        return res.status(404).send("Image not found");
+      }
+
+      // Retrieve and send the image data as a response
+      const image = result[0];
+
+      res.send(image);
+    }
+  );
+});
+
+app.post("/updateImage", (req, res) => {
+  const { img,phone_number  } = req.body;
+
+  db.beginTransaction((err) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send("Internal server error");
+    }
+
+    db.query(
+      "UPDATE `users_info` SET `img`= ? WHERE `phone_number`= ? ",
+      [img, phone_number],
       (err, result) => {
         if (err) {
           db.rollback(() => {

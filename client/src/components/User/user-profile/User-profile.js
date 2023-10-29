@@ -25,6 +25,8 @@ import {
   FaAlignRight,
   FaCheckCircle,
   FaRegCheckCircle,
+  FaRegUserCircle,
+  FaUserAlt,
 } from "react-icons/fa";
 import { FaFile } from "react-icons/fa";
 import { FaUser, FaBell } from "react-icons/fa";
@@ -356,6 +358,32 @@ function Project() {
     setIsProjectCreateClicked(false);
   };
 
+  const [image, setImage] = useState("");
+
+  const handleImageChange = (e) => {
+    const selectedImage = e.target.files[0];
+    if (selectedImage) {
+      const imageUrl = URL.createObjectURL(selectedImage);
+      console.log(imageUrl);
+      setImage(imageUrl);
+
+      Axios.post("http://localhost:3001/updateImage", {
+      phone_number: phoneNumber,
+      img:imageUrl
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          alert("อัพเดตเรียบร้อยแล้ว");
+        }
+      })
+      .catch((error) => {
+        alert("เกิดข้อผิดพลากกรุณาลองใหม่อีกครั้ง");
+      });
+
+
+    }
+  };
+
   const [project_type_edit, setproject_type] = useState("");
   const [room_type_edit, setroom_type] = useState("");
   const [project_name_edit, setproject_name] = useState("");
@@ -468,6 +496,23 @@ function Project() {
     setdistrict(Thai_district);
     setSubdistrict(Thai_subdistrict);
 
+    Axios.get("http://localhost:3001/getuserImage", {
+      params: {
+        phone_number: phoneNumber,
+      },
+    })
+      .then((response) => {
+        console.log(response.data);
+        setImage(response.data.img);
+      })
+      .catch((error) => {
+        // Handle any network or server errors here
+        console.error("Error fetching user data: ", error);
+        // You might want to display a user-friendly error message to the user
+      });
+        
+      console.log("img:: "+image);
+      
     Axios.get("http://localhost:3001/project", {
       params: {
         phone_number: phoneNumber,
@@ -579,25 +624,35 @@ function Project() {
         <div className="MimprojectUsercontainer">
           <div className="project-sidebar">
             <br />
-            <div className="profile-circle">
-              <FaUser
-                size={isMobile ? 50 : 50}
-                color="white"
-                className="user-icon"
-              />
-              <div className="profile-fix-circle">
+            {image ? (
+              <img src={image} alt="User" className="img-circle" />
+            ) : (
+              <div>
+                <FaUserCircle
+                  size={isMobile ? 70 : 70}
+                  color="gray"
+                  className="user-icon"
+                />
+              </div>
+            )}
+            <div className="profile-fix-circle">
+              <label htmlFor="imageInput">
                 <FaCamera
                   size={isMobile ? 20 : 20}
                   color="black"
                   className="camera-icon"
                 />
-              </div>
+              </label>
+              <input
+                type="file"
+                id="imageInput"
+                accept="image/*"
+                style={{ display: "none" }}
+                onChange={handleImageChange}
+              />
             </div>
-            <hr
-              style={{
-                height: "50px",
-              }}
-            ></hr>
+
+            <br />
             <div>
               <div
                 onClick={handleProjectClick} // Use parentheses to invoke the function
@@ -728,25 +783,22 @@ function Project() {
               <div>
                 <br></br>
                 <div className="confirm_contain">
-                
-                   ได้รับข้อมูลของท่านเรียบร้อยแล้ว
-
-                    <FaRegCheckCircle
-                      size={40}
-                      color={"black"}
-                      className="icon-space"
-                    />
-              
+                  ได้รับข้อมูลของท่านเรียบร้อยแล้ว
+                  <FaRegCheckCircle
+                    size={40}
+                    color={"black"}
+                    className="icon-space"
+                  />
                 </div>
                 <div className="confirm_contain">
-                <p>
+                  <p>
                     ทาง Baanism จะรีบติดต่อกลับท่านอย่างรวดเร็วที่สุด
                     ขอขอบคุณที่เลือกใช้บริการกับทางเรา!
                   </p>
-                  </div>
+                </div>
                 <div className="confiRmbutton" onClick={Homepage}>
-                    กลับสู่หน้าหลัก
-                  </div>
+                  กลับสู่หน้าหลัก
+                </div>
               </div>
             )}
             {isProjectCreateClicked && (
@@ -1959,13 +2011,13 @@ function Project() {
 
             {isInfoClicked && (
               <div style={{ height: "500px", overflow: "scroll" }}>
-                      <h1 className="titleConfirm">ข้อมูลผู้ใช้งาน</h1>
+                <h1 className="titleConfirm">ข้อมูลผู้ใช้งาน</h1>
                 <hr
                   style={{
                     height: "10px",
                   }}
                 ></hr>
-                
+
                 <div className="profile-gridHvan">
                   <div className="text-inputHvan">
                     ชื่อจริง

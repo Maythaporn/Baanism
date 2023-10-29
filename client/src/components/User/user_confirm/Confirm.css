@@ -114,26 +114,6 @@
   margin-top: 5px;
 }
 
-
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    /* Stack items vertically */
-  }
-
-  .sidebar {
-    margin-left: 10px;
-    width: 95%;
-    /* Full width */
-  }
-
-  .profilebar {
-    margin-left: 10px;
-    width: 95%;
-    /* Full width */
-  }
-}
-
 .Input-container {
   position: relative; 
   display: grid;
@@ -268,3 +248,62 @@
   border-color: #007bff;
 }
 
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    /* Stack items vertically */
+  }
+
+  .sidebar {
+    margin-left: 10px;
+    width: 95%;
+    /* Full width */
+  }
+
+  .profilebar {
+    margin-left: 10px;
+    width: 95%;
+    /* Full width */
+  }
+
+  .setInfoButton {
+    font-family: 'Prompt', sans-serif;
+    border-radius: 5px;
+    background-color: #038E7F;
+    font-size: 15px;
+    color: white;
+    width: 400px;
+    height: 40px;
+    margin-left: 10px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .setInfoButton:hover {
+    font-size: 15px;
+    font-family: 'Prompt', sans-serif;
+  }
+
+  .setInfoButton {
+    font-family: 'Prompt', sans-serif;
+    border-radius: 5px;
+    background-color: #038E7F;
+    font-size: 15px;
+    color: white;
+    width: 200px;
+    height: 40px;
+    margin-left: 10px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .setInfoButton:hover {
+    font-size: 15px;
+    font-family: 'Prompt', sans-serif;
+  }
+  
+  
+}
