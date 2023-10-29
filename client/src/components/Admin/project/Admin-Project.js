@@ -143,7 +143,7 @@ function Project() {
         <br />
       </div>
 
-      <div className={`admin-profilebar ${isProjectClicked ? "over" : ""}`}>
+      <div className="admin-profilebar over">
         {isProjectClicked && <AllProjects />}
         {isUpdateClicked && (
           <div>

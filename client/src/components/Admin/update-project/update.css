@@ -1,10 +1,8 @@
 .admin-updateproject-container {
     font-family: 'prompt', sans-serif;
-    font-size: 16px;
-    position: relative;
     display: flex;
     justify-content: space-between;
-    text-align: left;
+    align-items: center;
     min-height: 90px;
     width: 90%;
     border-radius: 10px;
@@ -13,37 +11,15 @@
     color: #000;
 }
 
-
 .admin-updateproject-container:last-child {
     margin-bottom: 40px;
 }
 
-
-.info-left {
-    padding: 25px;
-    max-width: 60%;
-    /* border: 1px solid gray; */
+.admin-updateproject-container .project-title {
+    font-size: 20px;
 }
 
-.info-right {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    /* border: 1px solid gray; */
-}
-
-.project-title {
-    font-size: 28px;
-    padding-bottom: 15px;
-}
-
-.edit {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.edit-btn {
+.admin-updateproject-container .edit-btn {
     font-family: 'prompt', sans-serif;
     font-size: 16px;
     border: none;
@@ -51,38 +27,35 @@
     cursor: pointer;
 }
 
-.space {
+.admin-updateproject-container .space {
     margin: 0 8px;
     padding: 0;
 }
 
 @media screen and (max-width: 768px) {
-    .admin-project-container {
+    .admin-updateproject-container {
         margin-top: 30px;
         width: 95%;
-        display: flex;
         flex-direction: column;
-        min-height: 240px;
+        min-height: 180px;
     }
 
-    .info-left {
+    .admin-updateproject-container .info-left {
         max-width: 100%;
     }
 
-    .info-right {
+    .admin-updateproject-container .info-right {
         font-size: 14px;
         padding: 0 20px;
         margin-bottom: 20px;
         max-width: 100%;
-        display: flex;
-        flex-direction: row;
     }
 
-    .edit-btn {
+    .admin-updateproject-container .edit-btn {
         font-size: 14px;
     }
 
-    .status {
+    .admin-updateproject-container .status {
         width: 8px;
         height: 8px;
     }

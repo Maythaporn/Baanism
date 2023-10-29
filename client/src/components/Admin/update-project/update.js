@@ -1,10 +1,25 @@
+import { useEffect, useState } from 'react'
 import './update.css'
+import Axios from 'axios'
 
 const UpdateProjects = () => {
-    const data = [
-        { id: 1, title: "ไม้ฝา เฌอร่า คืออะไร?" },
-        { id: 2, title: "ไม้ฝา เฌอร่า คืออะไร?" },
-    ]
+    const [data ,setData] = useState([])
+
+    // const data = [
+    //     { id: 1, title: "ไม้ฝา เฌอร่า คืออะไร?" },
+    //     { id: 2, title: "ไม้ฝา เฌอร่า คืออะไร?" },
+    // ]
+
+    useEffect(() => {
+        Axios.get('http://localhost:3001/homecontent')
+          .then((response) => {
+            setData(response.data)
+            console.log(response.data)
+          })
+          .catch((error) => {
+            console.error(error)
+          })
+      }, [])
 
     return (
         <>
