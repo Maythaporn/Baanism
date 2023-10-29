@@ -592,9 +592,19 @@ margin-left: 10px;
   color: #100F0D;
 }
 
+.new4 {
+  width: 800px;
+  border: 0.5px solid #e1e1e0;
+}
+
 
 
 @media (max-width: 768px) {
+
+  .new4 {
+    width: 100px;
+    border: 0.5px solid #e1e1e0;
+  }
   .confiRmbutton{
     border-radius: 10px;
     background-color: #038E7F;
@@ -620,6 +630,10 @@ margin-left: 10px;
     margin-bottom: 15px;
     color: #100F0D;
     font-size: 15;
+  }
+
+  .text2{
+    margin-right:15rem ;
   }
 
   .titletext{
@@ -860,6 +874,7 @@ margin-left: 10px;
   .grid-item2 {
   
     font-size: 30px;
+    width: 95%;
     text-align: center;
     justify-content: center;
     align-items: center;

@@ -368,19 +368,17 @@ function Project() {
       setImage(imageUrl);
 
       Axios.post("http://localhost:3001/updateImage", {
-      phone_number: phoneNumber,
-      img:imageUrl
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          alert("อัพเดตเรียบร้อยแล้ว");
-        }
+        phone_number: phoneNumber,
+        img: imageUrl,
       })
-      .catch((error) => {
-        alert("เกิดข้อผิดพลากกรุณาลองใหม่อีกครั้ง");
-      });
-
-
+        .then((response) => {
+          if (response.status === 200) {
+            alert("อัพเดตเรียบร้อยแล้ว");
+          }
+        })
+        .catch((error) => {
+          alert("เกิดข้อผิดพลากกรุณาลองใหม่อีกครั้ง");
+        });
     }
   };
 
@@ -510,9 +508,9 @@ function Project() {
         console.error("Error fetching user data: ", error);
         // You might want to display a user-friendly error message to the user
       });
-        
-      console.log("img:: "+image);
-      
+
+    console.log("img:: " + image);
+
     Axios.get("http://localhost:3001/project", {
       params: {
         phone_number: phoneNumber,
@@ -1748,7 +1746,7 @@ function Project() {
                     height: "60px",
                   }}
                 ></hr>
-                <hr className="new4"></hr>
+                <div className="new4"></div>
                 <hr
                   style={{
                     height: "40px",
@@ -1924,22 +1922,38 @@ function Project() {
                       <div class="grid-item2">
                         {" "}
                         <Carousel
-                          showArrows={true} // Show navigation arrows
-                          showThumbs={false} // Hide thumbnail images
-                          infiniteLoop={true} // Enable infinite loop
-                          autoPlay={true} // Auto play the carousel
-                          interval={5000} // Time (in milliseconds) between slides
-                          height="50px"
+                          showArrows={true}
+                          showThumbs={false}
+                          infiniteLoop={true}
+                          autoPlay={true}
+                          interval={5000}
+                          style={{
+                            width: isMobile ? "200px" : "100%", // Adjust the width based on your requirements
+                            margin: "0 auto", // Center the carousel
+                          }}
                         >
                           <div>
-                            <img src={gallery3} alt="Image 1" />
+                            <img
+                              src={gallery3}
+                              style={{
+                                width: isMobile ? "200px" : "100%", // Adjust the width based on your requirements
+                                margin: "0 auto", // Center the carousel
+                              }}
+                              alt="Image 1"
+                            />
                             <p className="legend">Caption for Image 1</p>
                           </div>
                           <div>
-                            <img src={gallery5} alt="Image 2" />
+                            <img
+                              src={gallery5}
+                              style={{
+                                width: isMobile ? "200px" : "100%", // Adjust the width based on your requirements
+                                margin: "0 auto", // Center the carousel
+                              }}
+                              alt="Image 2"
+                            />
                             <p className="legend">Caption for Image 2</p>
                           </div>
-
                           {/* Add more images as needed */}
                         </Carousel>
                       </div>
