@@ -808,6 +808,18 @@ app.get('/homecontent/:id', (req, res) => {
   })
 })
 
+app.delete('/deletecontent/:id', (req, res) => {
+  const dId = req.params.id
+  db.query("DELETE FROM content WHERE id = ?", dId, (err, result) => {
+    if (err) {
+      console.error(err)
+    }
+    else {
+      res.send(result)
+    }
+  })
+})
+
 app.listen("3001", () => {
   console.log("Server is running on port 3001");
 
