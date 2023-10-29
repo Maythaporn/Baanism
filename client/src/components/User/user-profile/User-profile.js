@@ -2,12 +2,16 @@ import React, { useState, useEffect } from "react";
 import "./User-profile.css"; // Import the CSS file for this component
 import "react-icons/fa";
 import { Link, useNavigate, useParams } from "react-router-dom";
-
 import { Carousel } from "react-responsive-carousel";
 
 import gallery3 from "../../../assets/images/gallery3.png";
 import gallery4 from "../../../assets/images/gallery4.png";
 import gallery5 from "../../../assets/images/gallery5.png";
+
+import avatar1 from "../../../assets/images/avatar1.jpg";
+import avatar2 from "../../../assets/images/avatar2.jpg";
+import avatar3 from "../../../assets/images/avatar3.jpg";
+import avatar4 from "../../../assets/images/avatar4.jpg";
 
 import logo from "./../../../assets/images/logo-header.png";
 
@@ -17,16 +21,11 @@ import Thai_subdistrict from "../../../thai_tambons.js";
 
 import {
   FaCamera,
-  FaFireExtinguisher,
   FaPlus,
   FaSignOutAlt,
   FaUserCircle,
   FaImage,
-  FaAlignRight,
-  FaCheckCircle,
   FaRegCheckCircle,
-  FaRegUserCircle,
-  FaUserAlt,
 } from "react-icons/fa";
 import { FaFile } from "react-icons/fa";
 import { FaUser, FaBell } from "react-icons/fa";
@@ -359,27 +358,40 @@ function Project() {
   };
 
   const [image, setImage] = useState("");
+  const [avatar, setAvatar] = useState("");
 
   const handleImageChange = (e) => {
-    const selectedImage = e.target.files[0];
-    if (selectedImage) {
-      const imageUrl = URL.createObjectURL(selectedImage);
-      console.log(imageUrl);
-      setImage(imageUrl);
-
-      Axios.post("http://localhost:3001/updateImage", {
-        phone_number: phoneNumber,
-        img: imageUrl,
+    const selectedImage = e.target.value;
+    Axios.post("http://localhost:3001/updateImage", {
+      phone_number: phoneNumber, // Make sure phoneNumber is defined
+      img: selectedImage, // Send the binary image data
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          alert("อัพเดตเรียบร้อยแล้ว");
+        }
       })
-        .then((response) => {
-          if (response.status === 200) {
-            alert("อัพเดตเรียบร้อยแล้ว");
-          }
-        })
-        .catch((error) => {
-          alert("เกิดข้อผิดพลากกรุณาลองใหม่อีกครั้ง");
-        });
-    }
+      .catch((error) => {
+        alert("เกิดข้อผิดพลากกรุณาลองใหม่อีกครั้ง");
+      });
+
+      if (selectedImage === "1") {
+        setImage(avatar1);
+        setAvatar("Avatar 1");
+        console.log(image);
+      } else if (selectedImage=== "2") {
+        setImage(avatar2);
+        setAvatar("Avatar 2");
+        console.log(image);
+      } else if (selectedImage === "3") {
+        setImage(avatar3);
+        setAvatar("Avatar 3");
+        console.log(image);
+      } else if (selectedImage === "4") {
+        setImage(avatar4);
+        setAvatar("Avatar 4");
+        console.log(image);
+      }
   };
 
   const [project_type_edit, setproject_type] = useState("");
@@ -398,7 +410,6 @@ function Project() {
   const [googlelink_edit, setGoogleLink_edit] = useState("");
 
   const [project_id, setproject_id] = useState("");
-
   const updateProject = (id) => {
     console.log(id);
 
@@ -501,15 +512,29 @@ function Project() {
     })
       .then((response) => {
         console.log(response.data);
-        setImage(response.data.img);
+        if (response.data.img === "1") {
+          setImage(avatar1);
+          setAvatar("Avartar 1");
+          console.log(image);
+        } else if (response.data.img === "2") {
+          setImage(avatar2);
+          setAvatar("Avartar 2");
+          console.log(image);
+        } else if (response.data.img === "3") {
+          setImage(avatar3);
+          setAvatar("Avartar 3");
+          console.log(image);
+        } else if (response.data.img === "4") {
+          setImage(avatar4);
+          setAvatar("Avartar 4");
+          console.log(image);
+        }
       })
       .catch((error) => {
         // Handle any network or server errors here
         console.error("Error fetching user data: ", error);
         // You might want to display a user-friendly error message to the user
       });
-
-    console.log("img:: " + image);
 
     Axios.get("http://localhost:3001/project", {
       params: {
@@ -633,21 +658,28 @@ function Project() {
                 />
               </div>
             )}
-            <div className="profile-fix-circle">
-              <label htmlFor="imageInput">
-                <FaCamera
-                  size={isMobile ? 20 : 20}
-                  color="black"
-                  className="camera-icon"
-                />
-              </label>
-              <input
-                type="file"
-                id="imageInput"
-                accept="image/*"
-                style={{ display: "none" }}
+
+            <div className="dropdown-input">
+              Avatar ที่เลือก
+              <select
+                style={{ width: "175px" }}
+                id="dropdown"
+                className="text"
                 onChange={handleImageChange}
-              />
+              >
+                <option value="1" className="text">
+                  Avatar 1
+                </option>
+                <option value="2" className="text">
+                  Avatar 2
+                </option>
+                <option value="3" className="text">
+                  Avatar 3
+                </option>
+                <option value="4" className="text">
+                  Avatar 4
+                </option>
+              </select>
             </div>
 
             <br />
@@ -788,6 +820,7 @@ function Project() {
                     className="icon-space"
                   />
                 </div>
+                <br></br>
                 <div className="confirm_contain">
                   <p>
                     ทาง Baanism จะรีบติดต่อกลับท่านอย่างรวดเร็วที่สุด

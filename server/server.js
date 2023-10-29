@@ -3,6 +3,8 @@ const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
 
+const bodyParser = require('body-parser');
+
 app.use(cors());
 app.use(express.json());
 
@@ -480,7 +482,7 @@ app.get("/getuserImage", (req, res) => {
 
 app.post("/updateImage", (req, res) => {
   const { img,phone_number  } = req.body;
-
+console.log("img " + img);
   db.beginTransaction((err) => {
     if (err) {
       console.log(err);
@@ -489,7 +491,7 @@ app.post("/updateImage", (req, res) => {
 
     db.query(
       "UPDATE `users_info` SET `img`= ? WHERE `phone_number`= ? ",
-      [img, phone_number],
+      [img,phone_number],
       (err, result) => {
         if (err) {
           db.rollback(() => {

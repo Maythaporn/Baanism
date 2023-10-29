@@ -156,7 +156,7 @@
     margin-left: 2rem;
 
     width: 300px;
-    height: 370px;
+    height: 400px;
     background-color: white;
     border: 1px solid gray;
     border-radius: 10px;
@@ -331,7 +331,8 @@ margin-left: 10px;
   margin-top: 0px;
   margin-bottom: 15px;
   color: #100F0D;
-  font-size: 5;
+  font-size: 30px;
+  font-family: 'Prompt', sans-serif;
 }
 
 .confiRmbutton{
@@ -629,7 +630,9 @@ margin-left: 10px;
     text-align: center;
     margin-bottom: 15px;
     color: #100F0D;
-    font-size: 15;
+    color: #100F0D;
+    font-size: 20px;
+    font-family: 'Prompt', sans-serif;
   }
 
   .text2{
