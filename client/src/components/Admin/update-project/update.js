@@ -4,7 +4,6 @@ import Axios from 'axios'
 
 const UpdateProjects = () => {
     const [data, setData] = useState([])
-    const [confirm, setConfirm] = useState();
     // const data = [
     //     { id: 1, title: "ไม้ฝา เฌอร่า คืออะไร?" },
     //     { id: 2, title: "ไม้ฝา เฌอร่า คืออะไร?" },
@@ -28,9 +27,15 @@ const UpdateProjects = () => {
                     return val.id != id
                 })
             )
-            setConfirm()
         })
     }
+
+    const handleDelete = (id) => {
+        const isConfirmed = window.confirm("คุณแน่ใจที่ต้องการลบหรือไม่?");
+        if (isConfirmed) {
+            deleteContent(id)
+        }
+      }
 
     return (
         <>
@@ -43,20 +48,11 @@ const UpdateProjects = () => {
                         <div className='edit'>
                             <button className='edit-btn'>แก้ไขข้อมูล</button>
                             <span className='space'>|</span>
-                            <button className='edit-btn' onClick={() => { setConfirm(e.id) }}>ลบ Content</button>
+                            <button className='edit-btn' onClick={() => { handleDelete(e.id) }}>ลบ Content</button>
                         </div>
                     </div>
                 </div>
             ))}
-            {confirm && (
-                <div className="confirmation-popup">
-                    <p>คุณต้องการลบใช่หรือไม่?</p>
-                    <div className="btn">
-                        <button onClick={() => deleteContent(confirm)}  className="y">ใช่</button>
-                        <button onClick={() => setConfirm() } className="n">ยกเลิก</button>
-                    </div>
-                </div>
-            )}
         </>
     )
 }
