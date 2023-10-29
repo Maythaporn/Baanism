@@ -34,7 +34,8 @@ import Estimate from "./components/estimate/Estimate";
 import Contact from "./pages/contact us/contact";
 import ContentInfo from "./components/homecontent/ContentInfo";
 
-import thisIsLittleFooter from "./components/littleFooter/oneForAllLittleFooter";
+// import thisIsLittleFooter from "./components/littleFooter/oneForAllLittleFooter";
+import THISISFOOTERJA from "./components/footerForYouNa/footerForAllofU";
 
 function App() {
   return (
@@ -138,7 +139,7 @@ function App() {
             <>
               <Header />
               <Contact />
-              <thisIsLittleFooter/>
+              <THISISFOOTERJA/>
             </>
           }
         />
