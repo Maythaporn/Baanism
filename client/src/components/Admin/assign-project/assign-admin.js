@@ -103,6 +103,7 @@ function Assign1(props) {
 
       <div >
         <p className="titletext">เพิ่มแบบโครงการเข้าระบบ</p>
+        <hr style={{height: "20px",}}></hr>
         <div className="assign-input-container">
           <div className="column1">
             <div className="area-input">
@@ -142,7 +143,7 @@ function Assign1(props) {
               />
             </div>  
           </div>
-          <hr style={{height: "40px",}}/>
+          <hr style={{height: "20px",}}/>
           <div className="column1">
             <div className="text-input-provinces">
               จังหวัด
@@ -160,7 +161,7 @@ function Assign1(props) {
                 ))}
               </select>
             </div>
-            <hr style={{ height: "80px",}}></hr>
+            <hr style={{ height: "20px",}}></hr>
             <div className="row">
               <div className="dropdown-input">
                 เขต/อำเภอ
@@ -209,7 +210,7 @@ function Assign1(props) {
                 </select>
               </div>
             </div>
-            <hr style={{height: "60px",}}></hr>
+            <hr style={{height: "20px",}}></hr>
             <div className="column1">
               <div className="zip-input">
                 รหัสไปรษณีย์
