@@ -18,7 +18,6 @@ import User_project from "./components/User/user-project/User-Project";
 import User_header from "./components/User/user-header/User-header";
 import User_footer from "./components/User/user-footer/User-footer";
 
-
 import Admin from "./components/Admin/project/Admin-Project";
 import Admin_header from "./components/Admin/header/Admin-header";
 import Admin_footer from "./components/Admin/footer/Admin-footer";
@@ -28,6 +27,7 @@ import User_info from "./components/User/user-Info/User-info";
 import User_profile from "./components/User/user-profile/User-profile";
 import Profile_edit from "./components/User/profile-edit/Profile_edit";
 import Document from "./components/User/user-profile/Mydocument";
+import Admin_document from "./components/User/user-profile/adminMydocument";
 
 import LpFooter from "./components/landingPageFooter/lpFooter";
 import Estimate from "./components/estimate/Estimate";
@@ -36,7 +36,7 @@ import ContentInfo from "./components/homecontent/ContentInfo";
 
 // import thisIsLittleFooter from "./components/littleFooter/oneForAllLittleFooter";
 import THISISFOOTERJA from "./components/footerForYouNa/footerForAllofU";
-import THISISFOOTERNABUTINBLUE from './components/footerForYouNa/footerForAllofYouButInBlueNa'
+import THISISFOOTERNABUTINBLUE from "./components/footerForYouNa/footerForAllofYouButInBlueNa";
 
 function App() {
   return (
@@ -81,7 +81,7 @@ function App() {
             </>
           }
         />
-        <Route 
+        <Route
           path="/homecontent/:id"
           element={
             <>
@@ -107,7 +107,16 @@ function App() {
           path="/document/:phone_number/:id"
           element={
             <>
-            <Document/>
+              <Document />
+            </>
+          }
+        />
+
+        <Route
+          path="/admin-document/:id"
+          element={
+            <>
+              <Admin_document />
             </>
           }
         />
@@ -119,7 +128,7 @@ function App() {
             <>
               <Header />
               <Register />
-              <THISISFOOTERJA/>
+              <THISISFOOTERJA />
             </>
           }
         />
@@ -129,7 +138,7 @@ function App() {
             <>
               <Header />
               <Forgot />
-              <THISISFOOTERJA/>
+              <THISISFOOTERJA />
             </>
           }
         />
@@ -140,7 +149,7 @@ function App() {
             <>
               <Header />
               <Contact />
-              <THISISFOOTERNABUTINBLUE/>
+              <THISISFOOTERNABUTINBLUE />
             </>
           }
         />
@@ -157,7 +166,7 @@ function App() {
             <>
               <Header />
               <Login />
-              <THISISFOOTERJA/>
+              <THISISFOOTERJA />
             </>
           }
         />
@@ -189,7 +198,7 @@ function App() {
           path="/user_project"
           element={
             <>
-               <User_header />
+              <User_header />
               <User_project />
               <User_footer />
             </>
@@ -200,8 +209,9 @@ function App() {
           path="/user_profile/:phone_number"
           element={
             <>
-             <User_header />
+              <User_header />
               <User_profile />
+              {/* <THISISFOOTERJA/> */}
               <User_footer />
             </>
           }
@@ -216,7 +226,6 @@ function App() {
             </>
           }
         />
-
 
         <Route
           path="/admin"

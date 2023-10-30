@@ -2,6 +2,8 @@
   font-size: 75px;
   color: #100F0D; /* Adjust the margin-bottom as needed for spacing */
   font-family: 'Prompt',sans-serif;
+  /* border: 1px solid #000; */
+
 }
 
 .IntroContainer {
@@ -11,17 +13,26 @@
   background-size: cover; /* Ensure the background image covers the container */
   background-repeat: no-repeat; /* Prevent background image repetition */
   background-position: center;
+  /* border: 1px solid #000; */
+
 }
 
-.IntroContent {
+.IntroContent{
+  /* border: 1px solid #000; */
   color: black; /* Take up remaining space */
   font-size: 42px;
   font-family: 'Prompt',sans-serif;
 }
 
+
+
 .space-intro{
   padding-top: 10rem;
   padding-left: 3rem;
+}
+
+.space-intro p{
+  padding: 0 0 0 0;
 }
 
 .free_estimate{
@@ -64,7 +75,7 @@
     background-size:cover;
   }
   .IntroTitle {
-    font-size: 40px; /* Adjust font size for smaller screens */
+    font-size: 40px;
   }
   .IntroContent{
     font-size: 22px;

@@ -377,19 +377,19 @@ function Project() {
 
       if (selectedImage === "1") {
         setImage(avatar1);
-        setAvatar("Avatar 1");
+        setAvatar("Boss");
         console.log(image);
       } else if (selectedImage=== "2") {
         setImage(avatar2);
-        setAvatar("Avatar 2");
+        setAvatar("Woman");
         console.log(image);
       } else if (selectedImage === "3") {
         setImage(avatar3);
-        setAvatar("Avatar 3");
+        setAvatar("Baby Boss");
         console.log(image);
       } else if (selectedImage === "4") {
         setImage(avatar4);
-        setAvatar("Avatar 4");
+        setAvatar("Baby Girl");
         console.log(image);
       }
   };
@@ -514,19 +514,19 @@ function Project() {
         console.log(response.data);
         if (response.data.img === "1") {
           setImage(avatar1);
-          setAvatar("Avartar 1");
+          setAvatar("Boss");
           console.log(image);
         } else if (response.data.img === "2") {
           setImage(avatar2);
-          setAvatar("Avartar 2");
+          setAvatar("Woman");
           console.log(image);
         } else if (response.data.img === "3") {
           setImage(avatar3);
-          setAvatar("Avartar 3");
+          setAvatar("Baby Boss");
           console.log(image);
         } else if (response.data.img === "4") {
           setImage(avatar4);
-          setAvatar("Avartar 4");
+          setAvatar("Baby Girl");
           console.log(image);
         }
       })
@@ -624,25 +624,25 @@ function Project() {
               </div>
             )}
 
-            <div className="dropdown-input">
-              Avatar ที่เลือก
+            <div className="profile-graps"></div>
+            <div className="dropdown-inputProfile">
               <select
-                style={{ width: "175px" }}
+                style={{ width: "190px",height:"30px", borderColor:"#038E7F",color:"#000000",marginTop:"1px",borderRadius:"10px",marginLeft:"3px"}}
                 id="dropdown"
                 className="text"
                 onChange={handleImageChange}
-              >
+              > 
                 <option value="1" className="text">
-                  Avatar 1
+                  Boss
                 </option>
                 <option value="2" className="text">
-                  Avatar 2
+                  Woman
                 </option>
                 <option value="3" className="text">
-                  Avatar 3
+                  Baby Boss
                 </option>
                 <option value="4" className="text">
-                  Avatar 4
+                  Baby Girl
                 </option>
               </select>
             </div>

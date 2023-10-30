@@ -75,6 +75,10 @@
     cursor: pointer;
 }
 
+.info-left p{
+    padding: 0 0 0 0;
+}
+
 .edit-title{
     font-size: 24px;
     margin-top: 15px;
