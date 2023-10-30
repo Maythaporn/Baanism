@@ -1144,21 +1144,6 @@ function Project() {
                       )}
                     </div>
                   </div>
-                  {/* <div class="grid-item">
-                    <div className="linkgoogleInput ">
-                      Link Google Maps
-                      <input
-                        style={{
-                          width: isMobile ? "250px" : "380px",
-                          height: "100px",
-                        }}
-                        className="text"
-                        type="text"
-                        value={googlelink}
-                        onChange={(e) => setGoogleLink(e.target.value)}
-                      />
-                    </div>
-                  </div> */}
                 </div>
                 <hr
                   style={{
@@ -1180,10 +1165,10 @@ function Project() {
 
                 <div class="grid-container">
                   <div class="grid-item">
-                    <div className="area-input">
+                    <div className="area-input" style={{height:"91px"}}>
                       กำหนดเริ่มดำเนินโครงการ
                       <input
-                        style={{ width: "130px" }} // Set the width using inline CSS
+                        style={{ width: "130px"}} // Set the width using inline CSS
                         className="text"
                         type="date"
                         value={date}
