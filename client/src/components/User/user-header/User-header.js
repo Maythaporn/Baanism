@@ -1,12 +1,9 @@
 import logo from "./logo-header.png";
 import "./User-header.css";
-import { Link, useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
-import { FaBell, FaUser } from "react-icons/fa";
+import { Link, } from "react-router-dom";
+import React, {useEffect } from "react";
 
 export default function Header() {
-
-
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 769) {
@@ -24,7 +21,7 @@ export default function Header() {
 
   return (
     <>
-           <div className="UserHeader">
+      <div className="UserHeader">
         <Link to="/">
           <img src={logo} alt="baanism-logo" className="UserHeaderLogo" />
         </Link>
@@ -33,31 +30,22 @@ export default function Header() {
           <Link to="/about">เกี่ยวกับเรา</Link>
           <hr
             style={{
-              width: "40px",
+              width: "70px",
             }}
           ></hr>
           <Link to="/homecontent">Home GURU Content</Link>
           <hr
             style={{
-              width: "40px",
+              width: "70px",
             }}
           ></hr>
           <Link to="/">ประเมินราคา</Link>
           <hr
             style={{
-              width: "40px",
+              width: "70px",
             }}
           ></hr>
           <Link to="/">ติดต่อเรา</Link>
-        </div>
-        <div className="mim-container2">
-          <Link>
-            <FaBell size={30} color="gray" />
-          </Link>
-          {"        "}
-          <Link>
-            <FaUser size={30} color="gray" />
-          </Link>
         </div>
       </div>
     </>

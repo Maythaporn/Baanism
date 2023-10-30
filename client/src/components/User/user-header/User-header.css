@@ -10,6 +10,15 @@
   background:white;
 }
 
+.mim-container{
+  padding-top: 20px;
+  display: flex;
+  width: 95%;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+}
+
 @media (max-width: 768px) {
   .UserHeader {
     padding-top: 20px;
@@ -24,18 +33,9 @@
     padding-top: 20px;
     display: flex;
     width: 95%;
-
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-evenly;
   
   }
   
-  .mim-container2{
-    padding-top: 20px;
-    display: flex;
-    width: 150px;
- 
-    flex-direction: row;
-    justify-content: space-evenly;
-  }
 }

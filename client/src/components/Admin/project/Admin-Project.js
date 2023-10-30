@@ -7,6 +7,7 @@ import {
   FaHistory,
   FaRegAddressBook,
   FaUserCircle,
+  FaSignOutAlt
 } from "react-icons/fa";
 import { FaFile } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
@@ -95,20 +96,7 @@ function Project() {
     <div className={`Admincontainer ${isMobile ? "mobile" : "desktop"}`}>
       <div className="admin-sidebar">
         <br />
-        <div className="profile-circle">
-          <FaUser
-            size={isMobile ? 50 : 50}
-            color="white"
-            className="user-icon"
-          />
-          <div className="profile-fix-circle">
-            <FaCamera
-              size={isMobile ? 20 : 20}
-              color="black"
-              className="camera-icon"
-            />
-          </div>
-        </div>
+        <br />
         <br />
         <div>
           <div
@@ -168,6 +156,18 @@ function Project() {
             />{" "}
             แก้ไขหน้าประเมินราคา
           </div>
+
+          <br />
+          <Link to = "/">
+            <div className={"admin-botton"}>
+              <FaSignOutAlt
+                size={isMobile ? 10 : 17}
+                color={"grey"}
+                className="button-icon"
+              />{" "}
+              ออกจากระบบ
+            </div>
+          </Link>
         </div>
         <br />
       </div>
