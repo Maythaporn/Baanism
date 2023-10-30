@@ -2,10 +2,21 @@ import "./All_Projects.css";
 
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
+import Modal from 'react-modal';
 
 const AllProjects = () => {
   const [data, setData] = useState([]);
   const [status, setStatus] = useState([]);
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  const handleInputChange = (e) => {
+    setStatus(e.target.value);
+  };
 
   const handleDeleteProject = (projectId) => {
     // Send an HTTP DELETE request to the server to delete the project.
@@ -27,7 +38,20 @@ const AllProjects = () => {
   };
 
   const updatestatus = (projectId,status) => {
-    // Send an HTTP DELETE request to the server to delete the project.
+    setModalIsOpen(true);
+    <Modal
+      isOpen={modalIsOpen}
+      onRequestClose={closeModal}
+      contentLabel="Example Modal"
+    >
+      <button onClick={closeModal}>Close Modal</button>
+      <input
+        type="text"
+        placeholder="อัพเดตสถานะ"
+        value={status}
+        onChange={handleInputChange}
+      />
+    </Modal>
     Axios.post("http://localhost:3001/updatestatus", {
       id: projectId,
       status: status
@@ -84,14 +108,8 @@ const AllProjects = () => {
               สถานะ : <span class="allproject-status"></span>
               {e.status}
             </p>
-            <input
-              type="text"
-              placeholder="อัพเดตสถานะ"
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
-            />
             <div className="allproject-edit">
-              <button className="allproject-btn" onClick={() => updatestatus(e.id,status)}>แก้ไขข้อมูล</button>
+              <button className="allproject-btn" onClick={() => updatestatus(e.id,status)}>อัพเดตสถานะโครงการ</button>
               <span className="allproject-space">|</span>
               <button
                 className="allproject-btn"

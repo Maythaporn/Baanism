@@ -39,6 +39,7 @@
   .mim-Footer {
     display: flex;
     margin-top: 0rem;
+    margin-bottom: 0rem;
     height: 115px;
     padding-top: 15px;
     padding-bottom: 15px;

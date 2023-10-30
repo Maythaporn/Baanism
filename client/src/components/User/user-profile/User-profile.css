@@ -58,7 +58,7 @@
   font-size: 25px;
 }
 
-.admin-project-container {
+.user-project-container {
   font-family: 'prompt', sans-serif;
   font-size: 16px;
   position: relative;
@@ -74,7 +74,7 @@
   color: #000;
 }
 
-.admin-project-container:last-child {
+.user-project-container:last-child {
   margin-bottom: 40px;
 }
 
@@ -87,13 +87,13 @@
   margin-right: 5px;
 }
 
-.info-left {
+.userinfo-left {
   padding: 25px;
-  max-width: 60%;
+  justify-content: space-between;
   /* border: 1px solid gray; */
 }
 
-.info-right {
+.userinfo-right {
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -104,6 +104,8 @@
 .project-title {
   font-size: 22px;
   padding-bottom: 15px;
+  display: flex;
+  flex-direction: row;
 }
 
 .edit {
@@ -751,13 +753,12 @@ margin-left: 10px;
     flex-direction: column;
   }
   
-  .admin-project-container {
+  .user-project-container {
     font-family: 'prompt', sans-serif;
     font-size: 16px;
-    position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    text-align: left;
     min-height: 180px;
     width: 300px;
     border-radius: 10px;

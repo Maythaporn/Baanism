@@ -171,21 +171,20 @@ function Project() {
         </div>
         <br />
       </div>
-      <div className="admin-profilebar over">
-        {isProjectClicked && <AllProjects />}
+      <div style={{ height: "500px", overflow: "scroll" }} className="admin-profilebar">
+        {isProjectClicked &&
+         <AllProjects />}
+
         {isUpdateClicked && (
           <div>
             <div className="addcontent">
 
                 <div className="adcontent-button" onClick={handleAddContentClick}>
                   <FaPlus size={10} color="white" /> เพิ่ม Content
-                  <FaPlus size={10} color="white" /> เพิ่ม Home GURU Content
                 </div>
 
               <br></br>
             </div>
-            
-
           </div>
         )}
         {isUpdateClicked && <UpdateProject />}

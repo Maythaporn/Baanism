@@ -731,13 +731,13 @@ function Project() {
                 </div>
                 {project && project.length > 0 ? (
                   project.map((e) => (
-                    <div className="admin-project-container" key={e.id}>
-                      <div className="info-left">
+                    <div className="user-project-container" key={e.id}>
+                      <div className="userinfo-left">
                         <p className="project-title">{e.project_type}</p>
                         <p>ประเภทห้อง : {e.room_type}</p>
                         <p>สถานที่ : {e.address}</p>
                       </div>
-                      <div className="info-right">
+                      <div className="userinfo-right">
                         <p>สถานะ : {e.status}</p>
                         <div className="edit">
                           <button

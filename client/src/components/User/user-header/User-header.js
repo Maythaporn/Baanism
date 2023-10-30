@@ -30,22 +30,23 @@ export default function Header() {
           <Link to="/about">เกี่ยวกับเรา</Link>
           <hr
             style={{
-              width: "70px",
+              width: "20px",
             }}
           ></hr>
           <Link to="/homecontent">Home GURU Content</Link>
           <hr
             style={{
-              width: "70px",
+              width: "20px",
             }}
           ></hr>
           <Link to="/">ประเมินราคา</Link>
           <hr
             style={{
-              width: "70px",
+              width: "20px",
             }}
           ></hr>
-          <Link to="/">ติดต่อเรา</Link>
+          <Link to="/contact">ติดต่อเรา</Link>
+         
         </div>
       </div>
     </>
