@@ -17,22 +17,17 @@ import AllProjects from "../all-projects/All_Projects";
 import Assign_admin from "../assign-project/assign-admin";
 import Content from "../all-projects/all_content";
 import Add_content from "../content/content";
-import UpdateProject from "../update-project/update"
-import EditUpdateContent from "../content/editcontent"
 
 function Project() {
   const [isMobile, setIsMobile] = useState(false);
   const [isProjectClicked, setIsProjectClicked] = useState(true);
   const [isUpdateClicked, setIsUpdateClicked] = useState(false);
   const [isAddClicked, setIsAddClicked] = useState(false);
-  const [isAddcontentClicked, setIsAddcontentClicked] = useState(false);
-  const [isUpdatecontentClicked, setIsUpdatecontentClicked] = useState(false);
-  
+
   const handleProjectClick = () => {
     setIsProjectClicked(true);
     setIsUpdateClicked(false);
     setIsAddClicked(false);
-    setIsAddcontentClicked(false);
   };
 
   // Step 2: Create a click handler function
@@ -47,14 +42,12 @@ function Project() {
     setIsProjectClicked(false);
     setIsUpdateClicked(true);
     setIsAddClicked(false);
-    setIsAddcontentClicked(false);
   };
 
   const handleAddClick = () => {
     setIsProjectClicked(false);
     setIsUpdateClicked(false);
     setIsAddClicked(true);
-    setIsAddcontentClicked(false);
   };
 
   useEffect(() => {
@@ -97,9 +90,8 @@ function Project() {
         <div>
           <div
             onClick={handleProjectClick}
-            className={`${
-              isProjectClicked ? "admin-select-button" : "admin-botton"
-            }`}
+            className={`${isProjectClicked ? "admin-select-button" : "admin-botton"
+              }`}
           >
             <FaFile
               size={isMobile ? 10 : 17}
@@ -113,9 +105,8 @@ function Project() {
 
           <div
             onClick={handleUpdateClick}
-            className={`${
-              isUpdateClicked ? "admin-select-button" : "admin-botton"
-            }`}
+            className={`${isUpdateClicked ? "admin-select-button" : "admin-botton"
+              }`}
           >
             <FaHistory
               size={isMobile ? 10 : 17}
@@ -126,11 +117,11 @@ function Project() {
           </div>
           <br />
 
+
           <div
             onClick={handleAddClick}
-            className={`${
-              isAddClicked ? "admin-select-button" : "admin-botton"
-            }`}
+            className={`${isAddClicked ? "admin-select-button" : "admin-botton"
+              }`}
           >
             <FaRegAddressBook
               size={isMobile ? 10 : 17}
@@ -138,6 +129,21 @@ function Project() {
               className="button-icon"
             />{" "}
             เพิ่มแบบโครงการเข้าระบบ
+          </div>
+          <br />
+
+
+          <div
+            onClick={handleEditClick}
+            className={`${isEditEstimateClicked ? "admin-select-button" : "admin-botton"
+              }`}
+          >
+            <FaRegAddressBook
+              size={isMobile ? 10 : 17}
+              color={isEditEstimateClicked ? "white" : "gray"}
+              className="button-icon"
+            />{" "}
+            แก้ไขหน้าประเมินราคา
           </div>
         </div>
         <br />
@@ -150,12 +156,12 @@ function Project() {
             <div className="addcontent">
          
                 <div className="adcontent-button" onClick={handleAddContentClick}>
-                  <FaPlus size={10} color="white" /> เพิ่ม Content
+                  <FaPlus size={10} color="white" /> เพิ่ม Home GURU Content
                 </div>
               
               <br></br>
             </div>
-            
+
           </div>
         )}
         {isUpdateClicked && <UpdateProject />}
@@ -167,6 +173,19 @@ function Project() {
         {isAddcontentClicked && (
           <div style={{ height: "550px", overflow: "scroll" }}>
             <Add_content />
+          </div>
+        )}
+        {isEditEstimateClicked && (
+          <div>
+            <div className="addcontent">
+
+              <div className="add-question-button" >
+                <FaPlus size={10} color="white" /> เพิ่มคำถาม
+              </div>
+
+              <br></br>
+            </div>
+            <Editestimate />
           </div>
         )}
       </div>

@@ -11,8 +11,51 @@ app.use(express.json());
 const db = mysql.createConnection({
   user: "root",
   host: "localhost",
-  password: "root1234",
+  password: "12345678",
   database: "Baanism",
+});
+
+db.connect((err) => {
+  if (err) {
+     console.error("Error connecting to database:", err);
+     return;
+  }
+  console.log("Connected to the database");
+});
+
+app.get("/getQuestion", (req, res) => {
+  db.query(`SELECT * FROM questions`, function (err, result) {
+    if (err) {
+      console.error(err);
+      res.status(500).send("เกิดข้อผิดพลาดในการดึงข้อมูลจากฐานข้อมูล");
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get("/getSubquestion/:id", (req, res) => {
+  const qId = req.params.id;
+  db.query(`SELECT * FROM sub_questions WHERE question_id LIKE ?`,[qId], function (err, result) {
+    if (err) {
+      console.error(err);
+      res.status(500).send("เกิดข้อผิดพลาดในการดึงข้อมูลจากฐานข้อมูล");
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get("/getOption/:id", (req, res) => {
+  const sqId = req.params.id;
+  db.query(`SELECT * FROM options WHERE sub_question_id LIKE ?`,[sqId], function (err, result) {
+    if (err) {
+      console.error(err);
+      res.status(500).send("เกิดข้อผิดพลาดในการดึงข้อมูลจากฐานข้อมูล");
+    } else {
+      res.send(result);
+    }
+  });
 });
 
 app.get("/userprofile", (req, res) => {
