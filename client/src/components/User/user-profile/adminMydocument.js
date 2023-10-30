@@ -16,10 +16,11 @@ import "./page.css";
 import Axios from "axios";
 
 const MyDocument = () => {
-  const { phone_number, id } = useParams();
+  const {id } = useParams();
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [phone_number,setphone_number] = useState("");
 
   const [project_type, setproject_type] = useState("");
   const [room_type, setroom_type] = useState("");
@@ -60,7 +61,8 @@ const MyDocument = () => {
         setdistrict(userData.district);
         setsubdistrict(userData.subdistrict);
         setzipcode(userData.zipcode);
-        setlink(userData.google_maps)
+        setlink(userData.google_maps);
+        setphone_number(userData.phone_number);
       })
       .catch((error) => {
         // Handle any network or server errors here
@@ -75,7 +77,7 @@ const MyDocument = () => {
     })
       .then((response) => {
         const userData = response.data;
-        console.log(userData);
+        console.log("user: "+userData);
         setFirstName(userData.first_name);
         setLastName(userData.last_name);
       })
@@ -91,7 +93,7 @@ const MyDocument = () => {
       <Page size="A4" className="page">
         <View className="section">
         <p style={{ fontSize: 16,marginRight: 10,color: "#e1e1e1" }}>
-                รหัสใบงาน : {id}
+                {"  "}รหัสใบงาน : {id}
               </p>
           <div className="Header">
             <img

@@ -171,8 +171,10 @@ function Project() {
         </div>
         <br />
       </div>
-      <div className="admin-profilebar over">
-        {isProjectClicked && <AllProjects />}
+      <div style={{ height: "500px", overflow: "scroll" }} className="admin-profilebar">
+        {isProjectClicked &&
+         <AllProjects />}
+
         {isUpdateClicked && (
           <div>
             <div className="addcontent">
@@ -183,8 +185,6 @@ function Project() {
 
               <br></br>
             </div>
-            
-
           </div>
         )}
         {isUpdateClicked && <UpdateProject />}

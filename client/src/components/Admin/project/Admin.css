@@ -155,6 +155,7 @@
 @media (max-width: 768px) {
   .Admincontainer {
     flex-direction: column;
+    height: 100%;
     /* Stack items vertically */
   }
 
