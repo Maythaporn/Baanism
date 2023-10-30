@@ -17,17 +17,25 @@ import AllProjects from "../all-projects/All_Projects";
 import Assign_admin from "../assign-project/assign-admin";
 import Content from "../all-projects/all_content";
 import Add_content from "../content/content";
+import UpdateProject from "../update-project/update"
+import EditUpdateContent from "../content/editcontent"
+import { Editestimate } from "../Edit-estimate/Editestimate";
 
 function Project() {
   const [isMobile, setIsMobile] = useState(false);
   const [isProjectClicked, setIsProjectClicked] = useState(true);
   const [isUpdateClicked, setIsUpdateClicked] = useState(false);
   const [isAddClicked, setIsAddClicked] = useState(false);
+  const [isAddcontentClicked, setIsAddcontentClicked] = useState(false);
+  const [isUpdatecontentClicked, setIsUpdatecontentClicked] = useState(false);
+  const [isEditEstimateClicked, setisEditEstimateClicked] = useState(false);
 
   const handleProjectClick = () => {
     setIsProjectClicked(true);
     setIsUpdateClicked(false);
     setIsAddClicked(false);
+    setIsAddcontentClicked(false);
+    setisEditEstimateClicked(false);
   };
 
   // Step 2: Create a click handler function
@@ -36,18 +44,33 @@ function Project() {
     setIsProjectClicked(false);
     setIsUpdateClicked(false);
     setIsAddClicked(false);
+    setisEditEstimateClicked(false);
+
   };
 
   const handleUpdateClick = () => {
     setIsProjectClicked(false);
     setIsUpdateClicked(true);
     setIsAddClicked(false);
+    setIsAddcontentClicked(false);
+    setisEditEstimateClicked(false);
   };
 
   const handleAddClick = () => {
     setIsProjectClicked(false);
     setIsUpdateClicked(false);
     setIsAddClicked(true);
+    setIsAddcontentClicked(false);
+    setisEditEstimateClicked(false);
+
+  };
+
+  const handleEditClick = () => {
+    setIsProjectClicked(false);
+    setIsUpdateClicked(false);
+    setIsAddClicked(false);
+    setIsAddcontentClicked(false);
+    setisEditEstimateClicked(true);
   };
 
   useEffect(() => {
@@ -148,19 +171,20 @@ function Project() {
         </div>
         <br />
       </div>
-
       <div className="admin-profilebar over">
         {isProjectClicked && <AllProjects />}
         {isUpdateClicked && (
           <div>
             <div className="addcontent">
-         
+
                 <div className="adcontent-button" onClick={handleAddContentClick}>
+                  <FaPlus size={10} color="white" /> เพิ่ม Content
                   <FaPlus size={10} color="white" /> เพิ่ม Home GURU Content
                 </div>
-              
+
               <br></br>
             </div>
+            
 
           </div>
         )}
