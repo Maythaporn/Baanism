@@ -8,24 +8,11 @@
   justify-content:space-evenly; 
   display: flex;
 
-  height: 85dvh;
+  height: 82dvh;
 
 
   width: 100%;
 }
-
-.UserHeaderLogo{
-  width: 252px;
-  height: 60px; 
-}
-
-.UserHeader{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background:white;
-}
-
 
 .mim-container{
   padding-top: 20px;
@@ -368,20 +355,6 @@ margin-left: 10px;
   margin-right: 10px;
   margin-top: 5px;
   margin-bottom: 5px;
-}
-
-
-.mim-Userfooter {
-  display: flex;
-  flex-direction: row;
-  padding-top: 40px;
-  height: 100px;
-  background-color: #03128E;
-  justify-content: space-evenly;
-  color: white;
-  font-family: "Prompt", sans-serif;
-  font-size: 15px;
-  flex-wrap: wrap; /* เพิ่ม flex-wrap เพื่อให้รายการแสดงผลเป็นสองแถวหรือมากกว่าก็ได้ */
 }
 
 .profile-gridHvan{
@@ -914,7 +887,9 @@ margin-left: 10px;
 
   .projectUsercontainer {
     flex-direction: column; /* Stack items vertically */
-    height: 100vh;
+    margin-top: 0;
+    margin-bottom: 0;
+    height: 100%;
   }
   .project-sidebar {
     margin-left: 10px;

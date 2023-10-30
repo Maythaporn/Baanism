@@ -73,15 +73,15 @@ const AllProjects = () => {
   return (
     <>
       {data.map((e) => (
-        <div className="admin-project-container" key={e.id}>
-          <div className="info-left">
-            <p className="project-title">{e.project_type}</p>
+        <div className="admin-allproject-container" key={e.id}>
+          <div className="allproject-left">
+            <p className="allproject-title">{e.project_type}</p>
             <p>ประเภทห้อง : {e.room_type}</p>
             <p>สถานที่ : {e.address}</p>
           </div>
-          <div className="info-right">
+          <div className="allproject-right">
             <p>
-              สถานะ : <span class="status"></span>
+              สถานะ : <span class="allproject-status"></span>
               {e.status}
             </p>
             <input
@@ -90,11 +90,11 @@ const AllProjects = () => {
               value={status}
               onChange={(e) => setStatus(e.target.value)}
             />
-            <div className="edit">
-              <button className="edit-btn" onClick={() => updatestatus(e.id,status)}>แก้ไขข้อมูล</button>
-              <span className="space">|</span>
+            <div className="allproject-edit">
+              <button className="allproject-btn" onClick={() => updatestatus(e.id,status)}>แก้ไขข้อมูล</button>
+              <span className="allproject-space">|</span>
               <button
-                className="edit-btn"
+                className="allproject-btn"
                 onClick={() => handleDeleteProject(e.id)}
               >
                 ลบโครงการ

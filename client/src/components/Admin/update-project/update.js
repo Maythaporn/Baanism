@@ -24,7 +24,7 @@ const UpdateProjects = () => {
         Axios.delete(`http://localhost:3001/deletecontent/${id}`).then((response) => {
             setData(
                 data.filter((val) => {
-                    return val.id != id
+                    return val.id !== id
                 })
             )
         })
@@ -41,10 +41,10 @@ const UpdateProjects = () => {
         <>
             {data.map((e) => (
                 <div className="admin-updateproject-container" key={e.id}>
-                    <div className='info-left'>
+                    <div>
                         <p className='project-title'>{e.title}</p>
                     </div>
-                    <div className='info-right'>
+                    <div>
                         <div className='edit'>
                             <button className='edit-btn'>แก้ไขข้อมูล</button>
                             <span className='space'>|</span>

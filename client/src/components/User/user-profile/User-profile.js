@@ -606,41 +606,6 @@ function Project() {
 
   return (
     <div>
-      <div className="UserHeader">
-        <img
-          src={logo}
-          alt="baanism-logo"
-          className="UserHeaderLogo"
-          onClick={logoButton}
-        />
-
-        <div className="mim-container">
-          <Link to="/about">เกี่ยวกับเรา</Link>
-          <hr
-            style={{
-              width: "40px",
-            }}
-          ></hr>
-          <Link to="/homecontent">Home GURU Content</Link>
-          <hr
-            style={{
-              width: "40px",
-            }}
-          ></hr>
-          <Link to="/">ประเมินราคา</Link>
-          <hr
-            style={{
-              width: "40px",
-            }}
-          ></hr>
-          <Link to="/">ติดต่อเรา</Link>
-        </div>
-        <div className="mim-container2">
-          <Link>
-            <FaBell size={30} color="gray" />
-          </Link>
-        </div>
-      </div>
       <div
         className={`projectUsercontainer ${isMobile ? "mobile" : "desktop"}`}
       >
@@ -2155,18 +2120,6 @@ function Project() {
               </div>
             )}
           </div>
-        </div>
-      </div>
-      <div className="mim-Userfooter">
-        <div>Copyright © 2023 BAANISM Co., Ltd. All rights reserved.</div>
-        <div>
-          <Link to="/">นโยบายการใช้งาน</Link>
-        </div>
-        <div>
-          <Link to="/">ติดต่อสอบถาม</Link>
-        </div>
-        <div>
-          <Link to="/">เงื่อนไขการใช้งาน</Link>
         </div>
       </div>
     </div>
