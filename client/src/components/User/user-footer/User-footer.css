@@ -1,26 +1,53 @@
-.mim-Userfooter {
+.mim-Footer {
   display: flex;
   flex-direction: row;
   padding-top: 40px;
-  height: 100vh;
+  height: 100px;
   background-color: #03128E;
   justify-content: space-evenly;
+  text-align: center;
   color: white;
   font-family: "Prompt", sans-serif;
   font-size: 15px;
   flex-wrap: wrap; /* เพิ่ม flex-wrap เพื่อให้รายการแสดงผลเป็นสองแถวหรือมากกว่าก็ได้ */
 }
+.textcopy{
+  color: white;
+  font-family: "Prompt", sans-serif;
+  font-size: 15px;
+}
 
+.textinfofooter{
+  width: 100vh;
+  color: white;
+  font-family: "Prompt", sans-serif;
+  font-size: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
 /* Media query for responsiveness */
 @media screen and (max-width: 768px) {
 
-  .mim-Userfooter {
-    font-size: 13px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    flex-direction: column;
-    align-items: center;
+  .textcopy{
+    color: white;
+    font-family: "Prompt", sans-serif;
+    font-size: 10px;
   }
-  
+
+  .mim-Footer {
+    display: flex;
+    margin-top: 0rem;
+    height: 115px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    align-items: center;
+    background-color: #03128E;
+    justify-content: space-evenly;
+    flex-direction: column;
+    color: white;
+    font-family: "Prompt", sans-serif;
+    font-size: 13px;
+  }
 }

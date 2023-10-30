@@ -189,7 +189,9 @@ function App() {
           path="/user_project"
           element={
             <>
+               <User_header />
               <User_project />
+              <User_footer />
             </>
           }
         />
@@ -198,8 +200,9 @@ function App() {
           path="/user_profile/:phone_number"
           element={
             <>
-            
+             <User_header />
               <User_profile />
+              <User_footer />
             </>
           }
         />
