@@ -20,6 +20,8 @@ please follow this step
 # First, you need to install these dependencies
 npm install react react-dom
 npm install react-responsive-carousel --save
+npm install emailjs-com
+npm install react-paginate --save
 
 # Then, start the project using the following command
 npm start
