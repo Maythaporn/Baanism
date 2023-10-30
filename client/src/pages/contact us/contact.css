@@ -1,56 +1,42 @@
 .background {
     background-color: #03128E;
-    min-height: 100vh;
+    min-height: 92vh;
     /* position: relative; */
     display: flex;
     flex-wrap: wrap;
     z-index: -1;
 }
 
-
 .contact-left {
     margin-top: 50px;
     margin-left: 70px;
     flex: 1;
-    order: 1;
+    order: 0;
     /* กำหนดลำดับเริ่มต้น */
 }
 
 .contact-right {
     flex: 1;
-    order: 2;
+    order: 1;
     margin-top: 50px;
-    margin-left: 70px;
     margin-bottom: 200px;
-    margin-right: 130px;
-}
-
-/* ใช้ media query เพื่อปรับแต่งสไตล์ให้ responsive */
-@media (max-width: 768px) {
-
-    .contact-left,
-    .contact-right {
-        flex: 100%;
-        order: 0;
-        /* เปลี่ยนลำดับ */
-    }
+    margin-right: 150px;
 }
 
 .contact-left h3 {
     color: white;
-    padding-top: 50px;
+    padding-top: 60px;
     font-size: 30px;
     font-family: 'Prompt', sans-serif;
 }
 
 .contact-right h3 {
     color: white;
-    padding-top: 50px;
+    padding-top: 60px;
     font-size: 20px;
     font-family: 'Prompt', sans-serif;
     font-weight: lighter;
 }
-
 
 .icon {
     display: flex;
@@ -65,23 +51,22 @@
     text-decoration: none;
     font-family: 'Prompt', sans-serif;
     font-weight: lighter;
-    margin-left: 15px;
+    margin-left: 20px;
+}
+
+.icon-facebook {
+    width: 30px;
+    height: 30px;
 }
 
 .icon-line {
-    font-size: 30px;
+    width: 32px;
+    height: 30px;
 }
 
-.fa.fa-facebook {
-    color: #fff;
-    font-size: 30px;
-    text-decoration: none;
-}
-
-.fa-brands.fa-line {
-    color: #fff;
-    font-size: 30px;
-    text-decoration: none;
+.icon-tiktok {
+    width: 30px;
+    height: 30px;
 }
 
 .fa.fa-envelope {
@@ -99,6 +84,7 @@
 .icon-social {
     display: flex;
     margin-top: 20px;
+    align-items: center;
 }
 
 .contact-form {
@@ -107,34 +93,19 @@
     text-align: center;
     font-size: 24px;
     border-radius: 20px;
-    position: relative;
     border-left: none;
     overflow: hidden;
     border: 1px solid #D9D9D9;
     box-sizing: border-box;
     margin-top: 20px;
-    max-height: 350px;
+    max-height: 320px;
     max-width: 800px;
     transition: max-height 0.3s ease;
-    /* จัดตำแหน่งแนวนอนตรงกลาง */
 }
-
-/* ใช้ media query เพื่อปรับขนาดให้ responsive */
-@media (max-width: 768px) {
-    .contact-form {
-        max-width: 100%;
-        /* ให้ขนาดเต็มจอเมื่อขนาดหน้าจอเล็กลง */
-    }
-}
-
 
 .contact-form.active {
-    max-height: 500px;
-    /* ปรับขนาดตามที่ต้องการ */
-}
-
-.textform {
-    display: flex;
+    max-height: 450px;
+    transition: max-height 0.3s ease;
 }
 
 .checkbox {
@@ -142,6 +113,14 @@
     flex-direction: column;
     align-items: flex-start;
     margin-left: 40px;
+}
+
+.custom-checkbox {
+    transform: scale(1.5);
+    /* เพิ่มขนาดของ checkbox 1.5 เท่า */
+    margin-right: 10px;
+    margin-top: 20px;
+    margin-left: 10px;
 }
 
 .label-text {
@@ -174,22 +153,13 @@
     /* Change to the desired color */
 }
 
-.custom-checkbox {
-    transform: scale(1.8);
-    /* เพิ่มขนาดของ checkbox 1.5 เท่า */
-    margin-right: 10px;
-    margin-top: 20px;
-}
+
 
 .other-input {
-    margin-top: 10px;
-    /* ขยายระยะห่างระหว่าง checkbox กับ other-input */
     transition: 3s;
     width: 400px;
-    align-self: flex-end;
-    margin-left: auto;
-    /* จัดให้อยู่ด้านขวา */
-    margin-left: 0;
+    margin-top: 5px;
+    margin-left: 50px;
     /* เพิ่มเงื่อนไขการเริ่มต้นเป็น 0 (ไม่มีการขยับ) */
     opacity: 0;
     /* กำหนดค่าเริ่มต้นเป็น 0 (ไม่แสดง) */
@@ -197,15 +167,453 @@
     /* เพิ่มการเปลี่ยนแปลงเมื่อมีการเปลี่ยนค่า */
 }
 
+.row-other-input {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
 .other-input.active {
+    display: flex;
     margin-left: 10px;
     /* เมื่อถูกเลือก (active) ให้ขยับ 10px ไปทางขวา */
     opacity: 1;
     /* เมื่อถูกเลือก (active) ให้แสดงผล */
+    align-items: flex-start;
 }
 
-.row-other-input {
+.textform {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    margin: 30px 20px 10px 30px;
+    /*top right bottom left*/
+    align-items: flex-start;
+}
+
+.text-input-contact {
+    width: 400px;
+    height: 50px;
+    padding-left: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    font-size: 16px;
+    font-family: 'Prompt', sans-serif;
+    margin-right: 10px;
+}
+
+.text-input-contact::placeholder {
+    color: #171010;
+}
+
+.text-input-contact:focus {
+    border-color: #038E7F;
+}
+
+.text-input-contact-other {
+    width: 400px;
+    height: 50px;
+    padding-left: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    font-size: 16px;
+    font-family: 'Prompt', sans-serif;
+    margin-right: 10px;
+}
+
+.text-input-contact-other::placeholder {
+    color: #171010;
+}
+
+.text-input-contact-other:focus {
+    border-color: #038E7F;
+}
+
+/* ใช้ media query เพื่อปรับแต่งสไตล์ให้ responsive */
+@media screen and (max-width: 768px) {
+
+    .contact-left,
+    .contact-right {
+        flex: 100%;
+    }
+}
+
+/* ใช้ media query เพื่อปรับขนาดให้ responsive */
+/* Extra Small Devices */
+@media screen and (max-width: 476px) {
+    .contact-form {
+        max-height: 380px;
+        width: 350px;
+        transition: max-height 0.3s ease;
+    }
+
+    .contact-form.active {
+        max-height: 400px;
+        /* ปรับความสูงสูงสุดเมื่อ active */
+        transition: max-height 0.3s ease;
+    }
+
+    .contact-left,
+    .contact-right {
+        margin-left: 65px;
+    }
+
+    .contact-left h3 {
+        padding-top: 60px;
+        font-size: 25px;
+    }
+
+    .contact-right h3 {
+        font-size: 15px;
+    }
+
+    .custom-checkbox {
+        transform: scale(1.5);
+        /* เพิ่มขนาดของ checkbox 1.5 เท่า */
+        margin-right: 10px;
+        margin-top: 5px;
+        margin-left: 10px;
+    }
+
+    .label-text {
+        font-size: 14px;
+        align-items: center;
+    }
+
+    .textform {
+        display: flex;
+        margin: 30px 20px 10px 30px;
+        /*top right bottom left*/
+        flex-direction: column;
+    }
+
+    .text-input-contact {
+        display: flex;
+        width: 285px;
+        height: 40px;
+        font-size: 14px;
+        margin-bottom: 10px;
+        align-items: flex-start;
+        justify-items: flex-start;
+    }
+
+    .text-input-contact-other {
+        display: flex;
+        width: 265px;
+        height: 40px;
+        font-size: 14px;
+        margin-bottom: 15px;
+        align-items: flex-start;
+        justify-items: flex-start;
+    }
+
+    .icon {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+        height: 150px;
+    }
+
+    .icon-text {
+        color: #fff;
+        font-size: 14px;
+        text-decoration: none;
+        font-weight: lighter;
+        margin-left: 15px;
+    }
+
+    .icon-social {
+        display: flex;
+        margin-top: 10px;
+        align-items: center;
+    }
+
+    .icon-facebook {
+        width: 26px;
+        height: 24px;
+        margin-bottom: 10px;
+    }
+
+    .icon-line {
+        width: 26px;
+        height: 24px;
+        margin-bottom: 10px;
+    }
+
+    .icon-tiktok {
+        width: 26px;
+        height: 24px;
+        margin-bottom: 10px;
+    }
+
+    .fa.fa-envelope {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .fa.fa-phone {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .row-other-input {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/* Small Devices (Tablets): */
+@media screen and (min-width: 476px) and (max-width: 768px) {
+    .contact-form {
+        max-height: 100%;
+        width: 45%;
+    }
+
+    .contact-form.active {
+        max-height: 100%;
+        /* ปรับความสูงสูงสุดเมื่อ active */
+        transition: max-height 0.3s ease;
+    }
+
+    .contact-left,
+    .contact-right {
+        margin-left: 65px;
+    }
+
+    .contact-left h3 {
+        padding-top: 60px;
+        font-size: 25px;
+    }
+
+    .contact-right h3 {
+        font-size: 15px;
+    }
+
+    .custom-checkbox {
+        transform: scale(1.5);
+        /* เพิ่มขนาดของ checkbox 1.5 เท่า */
+        margin-right: 10px;
+        margin-top: 5px;
+        margin-left: 10px;
+    }
+
+    .label-text {
+        font-size: 14px;
+        align-items: center;
+    }
+
+    .textform {
+        display: flex;
+        margin: 30px 20px 10px 30px;
+        /*top right bottom left*/
+        flex-direction: column;
+    }
+
+    .text-input-contact {
+        display: flex;
+        width: 285px;
+        height: 40px;
+        font-size: 14px;
+        margin-bottom: 10px;
+        align-items: flex-start;
+        justify-items: flex-start;
+    }
+
+    .text-input-contact-other {
+        display: flex;
+        width: 265px;
+        height: 40px;
+        font-size: 14px;
+        margin-bottom: 15px;
+        align-items: flex-start;
+        justify-items: flex-start;
+    }
+
+    .icon {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+        height: 180px;
+    }
+
+    .icon-text {
+        color: #fff;
+        font-size: 14px;
+        text-decoration: none;
+        font-weight: lighter;
+        margin-left: 15px;
+    }
+
+    .icon-social {
+        display: flex;
+        margin-top: 10px;
+        align-items: center;
+    }
+
+    .icon-facebook {
+        width: 26px;
+        height: 24px;
+        margin-bottom: 10px;
+    }
+
+    .icon-line {
+        width: 26px;
+        height: 24px;
+        margin-bottom: 10px;
+    }
+
+    .icon-tiktok {
+        width: 26px;
+        height: 24px;
+        margin-bottom: 10px;
+    }
+
+    .fa.fa-envelope {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .fa.fa-phone {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .row-other-input {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/* Medium Devices (Laptops and Desktops): */
+@media screen and (min-width: 768px) and (max-width: 992px) {
+    .contact-form {
+        max-height: 100%;
+        width: 60%;
+    }
+
+    .contact-form.active {
+        max-height: 100%;
+        /* ปรับความสูงสูงสุดเมื่อ active */
+        transition: max-height 0.3s ease;
+    }
+
+    .contact-left,
+    .contact-right {
+        margin-left: 65px;
+    }
+
+    .contact-left h3 {
+        padding-top: 60px;
+        font-size: 27px;
+    }
+
+    .contact-right h3 {
+        font-size: 16px;
+    }
+
+    .custom-checkbox {
+        transform: scale(1.6);
+        /* เพิ่มขนาดของ checkbox 1.5 เท่า */
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 5px;
+    }
+
+    .label-text {
+        font-size: 15px;
+        align-items: center;
+    }
+
+    .textform {
+        display: flex;
+        margin: 30px 20px 10px 30px;
+        /*top right bottom left*/
+        flex-direction: column;
+    }
+
+    .text-input-contact {
+        width: 400px;
+        height: 45px;
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+
+    .text-input-contact-other {
+        display: flex;
+        width: 360px;
+        height: 45px;
+        font-size: 15px;
+        margin-bottom: 15px;
+        margin-left: 20px;
+    }
+
+    .icon {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+        height: 180px;
+    }
+
+    .icon-text {
+        color: #fff;
+        font-size: 14px;
+        text-decoration: none;
+        font-weight: lighter;
+        margin-left: 15px;
+    }
+
+    .icon-social {
+        display: flex;
+        margin-top: 10px;
+        align-items: center;
+    }
+
+    .icon-facebook {
+        width: 26px;
+        height: 24px;
+        margin-bottom: 10px;
+    }
+
+    .icon-line {
+        width: 26px;
+        height: 24px;
+        margin-bottom: 10px;
+    }
+
+    .icon-tiktok {
+        width: 26px;
+        height: 24px;
+        margin-bottom: 10px;
+    }
+
+    .fa.fa-envelope {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .fa.fa-phone {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .row-other-input {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/* Large Devices (Desktops): */
+@media screen and (min-width: 993px) and (max-width: 1200px) {
+    .contact-left,
+    .contact-right {
+        margin-left: 65px;
+    }
+}
+
+/* Extra Large Devices (Desktops): */
+@media screen and (min-width: 1200px) {
+    .contact-left,
+    .contact-right {
+        margin-left: 65px;
+    }
 }
