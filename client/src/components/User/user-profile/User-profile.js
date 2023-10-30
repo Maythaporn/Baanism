@@ -1105,7 +1105,7 @@ function Project() {
                       ชื่อโครงการที่อยู่อาศัย
                       {/* <br /> */}
                       <select
-                        style={{ width: "175px", border:"1px solid blue" }}
+                        style={{ width: "175px", border:"0px solid blue" }}
                         id="dropdown"
                         className="text"
                         value={projectName}
