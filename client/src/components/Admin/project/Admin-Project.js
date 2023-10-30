@@ -178,7 +178,6 @@ function Project() {
             <div className="addcontent">
 
                 <div className="adcontent-button" onClick={handleAddContentClick}>
-                  <FaPlus size={10} color="white" /> เพิ่ม Content
                   <FaPlus size={10} color="white" /> เพิ่ม Home GURU Content
                 </div>
 
@@ -190,12 +189,12 @@ function Project() {
         )}
         {isUpdateClicked && <UpdateProject />}
         {isAddClicked && (
-          <div style={{ height: "550px", overflow: "scroll" }}>
+          <div>
             <Assign_admin />
           </div>
         )}
         {isAddcontentClicked && (
-          <div style={{ height: "550px", overflow: "scroll" }}>
+          <div>
             <Add_content />
           </div>
         )}
@@ -214,7 +213,7 @@ function Project() {
         )}
       </div>
         {isUpdatecontentClicked && (
-          <div style={{ height: "550px", overflow: "scroll" }}>
+          <div>
             <EditUpdateContent />
           </div>
         )}
