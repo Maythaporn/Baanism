@@ -1063,13 +1063,13 @@ function Project() {
                         {"  "}
                         <label
                           htmlFor="fileInput"
-                          style={{ alignItems: "center", marginInline: 10 }}
+                          style={{ alignItems: "center"}}
                         >
                           <FaImage
                             size={30}
                             color="black"
                             className="camera-icon"
-                            style={{ cursor: "pointer" }}
+                            style={{ cursor: "pointer", margin:"0 0 -10px 0" }}
                           />
                         </label>
                       </div>
@@ -1080,13 +1080,24 @@ function Project() {
                       )}
                     </div>
                   </div>
-                  <hr
-                    style={{
-                      height: "50px",
-                    }}
-                  ></hr>
+                  <div class="grid-item" style={{border:"0px solid green"}}>
+                    <div className="linkgoogleInput ">
+                      Link Google Maps
+                      <input
+                        style={{
+                          width: isMobile ? "250px" : "380px",
+                          height: "100px",
+                          border: "0px solid red"
+                        }}
+                        className="text"
+                        type="text"
+                        value={googlelink}
+                        onChange={(e) => setGoogleLink(e.target.value)}
+                      />
+                    </div>
+                  </div>
                   <div class="grid-item">
-                    <div
+                    <div style={{height:"72px"}}
                       className={`dropdown-input${
                         isProjectNameNULLSelected ? "-expanded" : ""
                       }`}
@@ -1094,7 +1105,7 @@ function Project() {
                       ชื่อโครงการที่อยู่อาศัย
                       {/* <br /> */}
                       <select
-                        style={{ width: "175px" }}
+                        style={{ width: "175px", border:"1px solid blue" }}
                         id="dropdown"
                         className="text"
                         value={projectName}
@@ -1133,7 +1144,7 @@ function Project() {
                       )}
                     </div>
                   </div>
-                  <div class="grid-item">
+                  {/* <div class="grid-item">
                     <div className="linkgoogleInput ">
                       Link Google Maps
                       <input
@@ -1147,7 +1158,7 @@ function Project() {
                         onChange={(e) => setGoogleLink(e.target.value)}
                       />
                     </div>
-                  </div>
+                  </div> */}
                 </div>
                 <hr
                   style={{
@@ -1377,7 +1388,7 @@ function Project() {
                             size={30}
                             color="black"
                             className="camera-icon"
-                            style={{ cursor: "pointer" }}
+                            style={{ cursor: "pointer", margin:"0 0 -10px 0" }}
                           />
                         </label>
                       </div>
@@ -1659,7 +1670,7 @@ function Project() {
                             size={30}
                             color="black"
                             className="camera-icon"
-                            style={{ cursor: "pointer" }}
+                            style={{ cursor: "pointer", margin:"0 0 -10px 0" }}
                           />
                         </label>
                       </div>
@@ -1983,7 +1994,7 @@ function Project() {
                             size={30}
                             color="black"
                             className="camera-icon"
-                            style={{ cursor: "pointer" }}
+                            style={{ cursor: "pointer", margin:"0 0 -10px 0" }}
                           />
                         </label>
                       </div>
