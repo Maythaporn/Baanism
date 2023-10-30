@@ -202,6 +202,7 @@ function App() {
             <>
              <User_header />
               <User_profile />
+              {/* <THISISFOOTERJA/> */}
               <User_footer />
             </>
           }

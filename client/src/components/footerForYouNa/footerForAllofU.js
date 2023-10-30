@@ -5,7 +5,7 @@ export default function footerForAllofYou(){
     return(
         <>
             <div className='footerForAllofYouContainer'>
-                <p>Copyright © 2023 BAANISM Co., Ltd. All rights reserved.</p>
+                <p className='paddingForPInFooter'>Copyright © 2023 BAANISM Co., Ltd. All rights reserved.</p>
                 <ul className='footerForAllofYouULStyle'>
                     <li>
                         <Link>
