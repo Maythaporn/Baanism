@@ -66,7 +66,7 @@ export const Editestimate = () => {
         questions.map((e) => (
           <div className="admin-edit-container" key={e.question_id}>
             <div className='info-left'>
-              <p className='project-title' onDoubleClick={toggleModal}>{e.question_text}</p>
+              <p className='question-title' onDoubleClick={toggleModal}>{e.question_text}</p>
               {Modal && (
                 <div className='modal'>
                   <div className='overlay-modal' onClick={toggleModal}></div>
@@ -100,7 +100,7 @@ export const Editestimate = () => {
               return (
                 <div className="subquestion-container" key={e.sub_question_id}>
                   <div className='info-left'>
-                    <button className='project-title' onDoubleClick={toggleModal}>{e.sub_question_text}</button>
+                    <button className='question-title' onDoubleClick={toggleModal}>{e.sub_question_text}</button>
                     {Modal && (
                       <div className='modal'>
                         <div className='overlay-modal' onClick={toggleModal}></div>

@@ -68,10 +68,9 @@
     /* border: 1px solid gray; */
 }
 
-.project-title {
+.question-title {
     font-size: 25px;
-    padding-bottom: 15px;
-    border: none;
+    /* border: 1px solid #000000; */
     background: none;
     cursor: pointer;
 }
