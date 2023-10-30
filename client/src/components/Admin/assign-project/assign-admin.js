@@ -244,7 +244,7 @@ function Assign1(props) {
                       size={30}
                       color="black"
                       className="camera-icon"
-                      style={{ cursor: "pointer" }}
+                      style={{ cursor: "pointer", margin:"0 0 -10px 0" }}
                     />
                   </label>
               </div>
@@ -512,7 +512,7 @@ function Assign1(props) {
                         size={30}
                         color="black"
                         className="camera-icon"
-                        style={{ cursor: "pointer" }}
+                        style={{ cursor: "pointer", margin:"0 0 -10px 0"}}
                       />
                     </label>
                   </div>
@@ -662,7 +662,7 @@ function Assign1(props) {
                         size={30}
                         color="black"
                         className="camera-icon"
-                        style={{ cursor: "pointer" }}
+                        style={{ cursor: "pointer", margin:"0 0 -10px 0" }}
                       />
                     </label>
                   </div>
