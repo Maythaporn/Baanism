@@ -34,6 +34,48 @@ import { FaIdCard } from "react-icons/fa";
 import Axios from "axios";
 
 function Project() {
+  
+  //authen fetch
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const role = localStorage.getItem('role');
+  
+    // ตรวจสอบสถานะการเข้าสู่ระบบและสิทธิ์
+    if (!token) {
+      // ถ้าไม่มี token ให้เปลี่ยนเส้นทางไปยังหน้าเข้าสู่ระบบ
+      window.location = '/login';
+    } else {
+      // ถ้ามี token ให้ส่งคำขอเพื่อตรวจสอบสิทธิ์
+      fetch('http://localhost:3001/authen', {
+        method: 'POST' ,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token,
+        },
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === 'ok' && role === 'user') {
+          } else {
+            
+            window.location = '/login';
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    }
+  }, []);
+  
+  const handleLogout = (event) => {
+    event.preventDefault();
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    localStorage.removeItem('phone');
+    window.location ='/'
+  }
+
+
   const navigate = useNavigate();
   const { phone_number } = useParams();
 
@@ -708,7 +750,7 @@ function Project() {
                 }}
               ></hr>
               <Link to="/">
-                <div onClick={handleInfoClick} className={"Userbutton"}>
+                <div onClick={handleLogout} className={"Userbutton"}>
                   <FaSignOutAlt
                     size={isMobile ? 10 : 17}
                     color={"grey"}

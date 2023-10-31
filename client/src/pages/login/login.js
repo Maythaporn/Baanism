@@ -11,79 +11,59 @@ import { useState, useEffect } from "react";
 function Login() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [LoginAttempts, setIsLoginAttempts] = useState(true);
 
   const navigate = useNavigate();
-  let loginAttempts = 1;
 
-  let timeLeft = 10; // Initial time left
 
-  const startCountdown = () => {
-    const countdownInterval = setInterval(() => {
-      if (timeLeft <= 0) {
-        // Reset login attempts and clear the interval when the countdown ends
-        clearInterval(countdownInterval);
-        loginAttempts = 0;
-        setIsLoginAttempts(true);
-      } else {
-        // Display the countdown alert to the user
-        console.log("Time left: " + timeLeft);
-        setIsLoginAttempts(false);
-        timeLeft--;
-      }
-    }, 1000); // Update the countdown every 1 second
+  const btnForgot = () => {
+    navigate("/forgot"); // put ur page after  /
   };
-
   const btnLogin = () => {
-    if (loginAttempts >= 5) {
-      alert(
-        "เบอร์โทร หรือ รหัสผ่านท่านผิดกรุณาลองใหม่อีกครั้ง ท่านสามารถลองได้อีกครั้งใน 10 วินาที."
-      );
-      startCountdown(); // Start the countdown timer
-    }
-
     Axios.post("http://localhost:3001/login", {
       phone_number: phoneNumber,
       password: password,
     })
       .then((response) => {
         if (response.data === "Invalid phone number or password") {
-          loginAttempts++; // Increment login attempts on failed login
-          console.log("Login : " + loginAttempts);
           alert(
-            "เบอร์โทร หรือ รหัสผ่านท่านผิดกรุณาลองใหม่อีกครั้ง ท่านสามารถลองได้อีก : " +
-              (5 - loginAttempts) +
-              " ครั้ง"
+            "เบอร์โทร หรือ รหัสผ่านท่านผิดกรุณาลองใหม่อีกครั้ง"
           );
-        } else if (response.data === "/admin") {
-          window.location.href = "/admin"; // Redirect to the admin page
-        } else if (response.data === "/changepassword") {
-          alert("รหัสผ่านท่านมีอายุเกิน 90 วันแล้วกรุณาเปลี่ยน");
-          window.location.href = "/forgot";
-        } else if (response.data === "/user") {
-          navigate(`/user/${phoneNumber}`);
         } else {
-          navigate(`/user_profile/${phoneNumber}`);
+          // เข้าสู่ระบบสำเร็จ ตรวจสอบ token และ redirectTo จาก response.data
+          const { token, redirectTo } = response.data;
+  
+          if (redirectTo === "/admin") {
+            window.location.href = redirectTo;
+            const role = "admin";
+            localStorage.setItem('token', token);
+            localStorage.setItem("role", role);
+            localStorage.setItem("phone", phoneNumber)
+
+          } else if (redirectTo === "/user") {
+            navigate(`/user/${phoneNumber}`); 
+            const role = "user";
+            localStorage.setItem('token', token);
+            localStorage.setItem("role", role);
+            localStorage.setItem("phone", phoneNumber)
+
+          } else if (redirectTo === "/changepassword") {
+            alert("รหัสผ่านท่านมีอายุเกิน 90 วันแล้วกรุณาเปลี่ยน");
+            window.location.href = redirectTo;
+
+          } else {
+            navigate(`/user_profile/${phoneNumber}`);
+            const role = "user";
+            localStorage.setItem('token', token);
+            localStorage.setItem("role", role);
+            localStorage.setItem("phone", phoneNumber)
+          }
         }
       })
       .catch((error) => {
-        if (loginAttempts > 5) {
-          loginAttempts = 5; // Limit login attempts to 5
-        }
-
-        alert(
-          "เบอร์โทร หรือ รหัสผ่านท่านผิดกรุณาลองใหม่อีกครั้ง ท่านสามารถลองได้อีก : " +
-            (5 - loginAttempts) +
-            " ครั้ง"
-        );
-
-        loginAttempts++;
+        alert(error);
       });
   };
-
-  const btnForgot = () => {
-    navigate("/forgot"); // put ur page after /
-  };
+  
 
   return (
     <div className="app">
@@ -109,7 +89,6 @@ function Login() {
           <button className="forgot-password-button" onClick={btnForgot}>
             ลืมรหัสผ่าน
           </button>
-        {LoginAttempts && (
           <div>
             <div className="button-container">
               <button className="login-button" onClick={btnLogin}>
@@ -117,7 +96,6 @@ function Login() {
               </button>
             </div>
           </div>
-        )}
       </div>
     </div>
   );

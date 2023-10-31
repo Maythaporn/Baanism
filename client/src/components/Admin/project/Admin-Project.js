@@ -23,6 +23,45 @@ import EditUpdateContent from "../content/editcontent"
 import { Editestimate } from "../Edit-estimate/Editestimate";
 
 function Project() {
+  const handleLogout = (event) => {
+    event.preventDefault();
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    localStorage.removeItem('phone');
+    window.location ='/'
+  }
+    //authen fetch
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const role = localStorage.getItem('role');
+  
+    // ตรวจสอบสถานะการเข้าสู่ระบบและสิทธิ์
+    if (!token) {
+      // ถ้าไม่มี token ให้เปลี่ยนเส้นทางไปยังหน้าเข้าสู่ระบบ
+      window.location = '/login';
+    } else {
+      // ถ้ามี token ให้ส่งคำขอเพื่อตรวจสอบสิทธิ์
+      fetch('http://localhost:3001/authen', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token,
+        },
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === 'ok' && role === 'admin') {
+            console.log('Authentication success for admin');
+          } else {
+            window.location = '/login';
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    }
+  }, []);
+  
   const [isMobile, setIsMobile] = useState(false);
   const [isProjectClicked, setIsProjectClicked] = useState(true);
   const [isUpdateClicked, setIsUpdateClicked] = useState(false);
@@ -158,8 +197,7 @@ function Project() {
           </div>
 
           <br />
-          <Link to = "/">
-            <div className={"admin-botton"}>
+            <div className={"admin-botton"} onClick={handleLogout}>
               <FaSignOutAlt
                 size={isMobile ? 10 : 17}
                 color={"grey"}
@@ -167,7 +205,7 @@ function Project() {
               />{" "}
               ออกจากระบบ
             </div>
-          </Link>
+
         </div>
         <br />
       </div>

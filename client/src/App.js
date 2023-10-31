@@ -21,6 +21,8 @@ import User_footer from "./components/User/user-footer/User-footer";
 import Admin from "./components/Admin/project/Admin-Project";
 import Admin_header from "./components/Admin/header/Admin-header";
 import Admin_footer from "./components/Admin/footer/Admin-footer";
+import Login_header from "./components/User/login_header/login_header";
+
 
 import User_confirm from "./components/User/user_confirm/User_confirm";
 import User_info from "./components/User/user-Info/User-info";
@@ -39,6 +41,8 @@ import THISISFOOTERJA from "./components/footerForYouNa/footerForAllofU";
 import THISISFOOTERNABUTINBLUE from "./components/footerForYouNa/footerForAllofYouButInBlueNa";
 
 function App() {
+  const token = localStorage.getItem('token');
+  const role = localStorage.getItem('role');
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
@@ -48,12 +52,14 @@ function App() {
           path="/"
           element={
             <>
-              <Header />
-              <Intro />
-              <About />
-              <HomeGURU />
-              <LpFooter />
-            </>
+            {!token && <Header />}
+            {role === "admin" && <Admin_header />}
+            {role === "user" && <Login_header />}
+            <Intro />
+            <About />
+            <HomeGURU />
+            <LpFooter />
+          </>
           }
         />
 
@@ -62,7 +68,9 @@ function App() {
           path="/about"
           element={
             <>
-              <Header />
+              {!token && <Header />}
+              {role === "admin" && <Admin_header />}
+              {role === "user" && <Login_header />}
               <About />
               <HomeGURU />
               <LpFooter />
@@ -75,7 +83,9 @@ function App() {
           path="/homecontent"
           element={
             <>
-              <Header />
+              {!token && <Header />}
+              {role === "admin" && <Admin_header />}
+              {role === "user" && <Login_header />}
               <HomeGURU />
               <LpFooter />
             </>
@@ -96,7 +106,9 @@ function App() {
           path="/estimate"
           element={
             <>
-              <Header />
+              {!token && <Header />}
+              {role === "admin" && <Admin_header />}
+              {role === "user" && <Login_header />}
               <Estimate />
               <LpFooter />
             </>
@@ -147,9 +159,11 @@ function App() {
           path="/contact"
           element={
             <>
-              <Header />
+              {!token && <Header />}
+              {role === "admin" && <Admin_header />}
+              {role === "user" && <Login_header />}
               <Contact />
-              <THISISFOOTERNABUTINBLUE />
+              <thisIsLittleFooter/>
             </>
           }
         />
@@ -175,7 +189,7 @@ function App() {
           path="/user/:phone_number"
           element={
             <>
-              <User_header />
+              <Login_header />
               <User_confirm />
               <User_footer />
             </>
@@ -186,7 +200,7 @@ function App() {
           path="/user_edit"
           element={
             <>
-              <User_header />
+              <Login_header />
               <Profile_edit />
               <User_footer />
             </>
@@ -198,7 +212,7 @@ function App() {
           path="/user_project"
           element={
             <>
-              <User_header />
+              <Login_header />
               <User_project />
               <User_footer />
             </>
@@ -209,7 +223,7 @@ function App() {
           path="/user_profile/:phone_number"
           element={
             <>
-              <User_header />
+              <Login_header />
               <User_profile />
               {/* <THISISFOOTERJA/> */}
               <User_footer />
@@ -220,7 +234,7 @@ function App() {
           path="/user_info"
           element={
             <>
-              <User_header />
+              <Login_header />
               <User_info />
               <User_footer />
             </>
@@ -231,7 +245,7 @@ function App() {
           path="/admin"
           element={
             <>
-              <User_header />
+              <Admin_header/>
               <Admin />
               <User_footer />
             </>

@@ -15,6 +15,39 @@ import Thai_provinces from "../../../thai_provinces.js";
 import Thai_district from "../../../thai_amphures.js";
 
 function Confirm(props) {
+  
+  //authen fetch
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const role = localStorage.getItem('role');
+  
+    // ตรวจสอบสถานะการเข้าสู่ระบบและสิทธิ์
+    if (!token) {
+      // ถ้าไม่มี token ให้เปลี่ยนเส้นทางไปยังหน้าเข้าสู่ระบบ
+      window.location = '/login';
+    } else {
+      // ถ้ามี token ให้ส่งคำขอเพื่อตรวจสอบสิทธิ์
+      fetch('http://localhost:3001/authen', {
+        method: 'POST' ,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token,
+        },
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === 'ok' && role === 'user') {
+          } else {
+            
+            window.location = '/login';
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    }
+  }, []);
+
   const [userData, setUserData] = useState({});
   const { phone_number } = useParams();
   const [firstname, setFirstname] = useState("");
