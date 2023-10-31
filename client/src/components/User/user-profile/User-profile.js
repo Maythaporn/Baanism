@@ -669,7 +669,7 @@ function Project() {
             <div className="profile-graps"></div>
             <div className="dropdown-inputProfile">
               <select
-                style={{ width: "190px",height:"30px",textAlign:"center", borderColor:"#038E7F",backgroundColor:"#038E7F",color:"#ffffff",marginTop:"1px",borderRadius:"10px",marginLeft:"3px"}}
+                style={{ width: "190px",height:"30px",textAlign:"center", borderColor:"#fff",backgroundColor:"#fff",color:"black",borderRadius:"10px", margin:"3px auto 0 auto"}}
                 id="dropdown"
                 className="text"
                 onChange={handleImageChange}
@@ -702,7 +702,7 @@ function Project() {
                   color={isProjectClicked ? "white" : "gray"}
                   className="button-icon"
                 />{" "}
-                <p className="profile-graps">โครงการของฉัน</p>
+                <p>โครงการของฉัน</p>
               </div>
               <hr
                 style={{
@@ -721,7 +721,7 @@ function Project() {
                   color={`${isPaymentClicked ? "white" : "gray"}`}
                   className="button-icon"
                 />{" "}
-                <p className="profile-graps">การชำระเงิน</p>
+                <p>การชำระเงิน</p>
               </div>
 
               <hr
@@ -741,7 +741,7 @@ function Project() {
                   color={`${isInfoClicked ? "white" : "grey"}`}
                   className="button-icon"
                 />{" "}
-                <p className="profile-graps">ข้อมูลผู้ใช้งาน</p>
+                <p>ข้อมูลผู้ใช้งาน</p>
               </div>
 
               <hr
@@ -756,7 +756,7 @@ function Project() {
                     color={"grey"}
                     className="button-icon"
                   />{" "}
-                  <p className="profile-graps">ออกจากระบบ</p>
+                  <p>ออกจากระบบ</p>
                 </div>
               </Link>
             </div>
@@ -766,7 +766,7 @@ function Project() {
           <div className="project-profilebar">
             {isProjectClicked && (
               <div
-                style={{ height: "500px", width: "910px", overflow: "hidden" }}
+                style={{ height: "500px", width: "auto", overflow: "hidden" }}
               >
                 <div className="adproject-button" onClick={btnClick}>
                   <FaPlus size={10} color="white" /> เพิ่มโครงการ
@@ -841,7 +841,7 @@ function Project() {
             )}
             {isProjectCreateClicked && (
               <div
-                style={{ height: "500px", width: "910px", overflow: "scroll" }}
+                style={{ height: "500px", width: "910px", overflow: "scroll", overflowX: "hidden"  }}
               >
                 <h1 className="titletext">สร้างโครงการ</h1>
                 <hr
@@ -1192,7 +1192,7 @@ function Project() {
                     height: "60px",
                   }}
                 ></hr>
-                <hr className="new4"></hr>
+                <hr className="hrForUserProfile"></hr>
                 <hr
                   style={{
                     height: "40px",
@@ -1782,7 +1782,7 @@ function Project() {
                     height: "60px",
                   }}
                 ></hr>
-                <div className="new4"></div>
+                <div className="hrForUserProfile"></div>
                 <hr
                   style={{
                     height: "40px",
@@ -2060,7 +2060,7 @@ function Project() {
             )}
 
             {isInfoClicked && (
-              <div style={{ height: "500px", overflow: "hidden" }}>
+              <div style={{ height: "500px"}}>
                 <h1 className="titleConfirm">ข้อมูลผู้ใช้งาน</h1>
                 <hr
                   style={{
@@ -2155,6 +2155,7 @@ function Project() {
                 <Link to={`/user/${phone_number}`}>
                   <div className="assign1-confirm-button">แก้ไขข้อมูล</div>
                 </Link>
+                <span className="ThisIsSpan">&nbsp;</span>
               </div>
             )}
           </div>

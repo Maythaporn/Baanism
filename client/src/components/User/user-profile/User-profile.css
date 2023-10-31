@@ -132,9 +132,9 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-  border: 2px solid ;
-  background-color: #038E7F;
-  border-radius: 20px;
+  border: 2px solid #038E7F;
+  background-color: #fff;
+  border-radius: 14px;
   outline: none;
   align-content: center;
   font-size: 16px;
@@ -142,6 +142,7 @@
   padding-top: 1px;
   font-family: 'Prompt', sans-serif;
   color: #ffffff;
+  
 
 }
 
@@ -588,19 +589,30 @@ margin-left: 10px;
   color: #100F0D;
 }
 
-.new4 {
-  width: 800px;
+.hrForUserProfile {
+  align-items: center;
+  width: 90%;
+  margin: 0 32px 0 20px;
   border: 0.5px solid #e1e1e0;
 }
 
-
+.ThisIsSpan{
+  display: none;
+}
 
 @media (max-width: 768px) {
 
-  .new4 {
-    width: 100px;
+  .ThisIsSpan{
+    display: block;
+  }
+
+  .hrForUserProfile{
+    align-items: center;
+    margin: 0 auto;
+    width: 60%;
     border: 0.5px solid #e1e1e0;
   }
+
   .confiRmbutton{
     border-radius: 10px;
     background-color: #038E7F;
@@ -913,7 +925,7 @@ margin-left: 10px;
     height: 100%;
   }
   .project-sidebar {
-    margin-left: 10px;
+    margin-left: 15px;
     width: 95%; /* Full width */
   }
 
@@ -946,8 +958,10 @@ margin-left: 10px;
   }
 
   .project-profilebar {
-    margin-top: 10px;
-    margin-left: 10px;
+    overflow: scroll;
+    overflow-x: hidden;
+    margin-top: 15px;
+    margin-left: 15px;
     font-size: 10px;
     width: 95%;
     font-size: 30px;
