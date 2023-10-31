@@ -126,6 +126,26 @@
   padding: 0;
 }
 
+.dropdown-inputProfile {
+  width: 200px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  border: 2px solid ;
+  background-color: #038E7F;
+  border-radius: 20px;
+  outline: none;
+  align-content: center;
+  font-size: 16px;
+
+  padding-top: 1px;
+  font-family: 'Prompt', sans-serif;
+  color: #ffffff;
+
+}
+
+
 
 .MimprojectUsercontainer{
   background-image: url("./../../../assets/images/bg-information.png"); 

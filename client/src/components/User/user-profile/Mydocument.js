@@ -38,7 +38,7 @@ const MyDocument = () => {
 
   useEffect(() => {
     console.log(id);
-
+    alert("หากต้องการ save as PDF ให้กดปุ่ม Ctrl + P");
     Axios.get("http://localhost:3001/projectID", {
       params: {
         id: id,

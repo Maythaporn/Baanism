@@ -627,7 +627,7 @@ function Project() {
             <div className="profile-graps"></div>
             <div className="dropdown-inputProfile">
               <select
-                style={{ width: "190px",height:"30px", borderColor:"#038E7F",color:"#000000",marginTop:"1px",borderRadius:"10px",marginLeft:"3px"}}
+                style={{ width: "190px",height:"30px",textAlign:"center", borderColor:"#038E7F",backgroundColor:"#038E7F",color:"#ffffff",marginTop:"1px",borderRadius:"10px",marginLeft:"3px"}}
                 id="dropdown"
                 className="text"
                 onChange={handleImageChange}
@@ -1097,7 +1097,7 @@ function Project() {
                     </div>
                   </div>
                   <div class="grid-item">
-                    <div style={{height:"72px"}}
+                    <div 
                       className={`dropdown-input${
                         isProjectNameNULLSelected ? "-expanded" : ""
                       }`}
