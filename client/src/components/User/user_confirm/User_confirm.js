@@ -112,7 +112,7 @@ function Confirm(props) {
             id="name"
             type="text"
             className="ConfirmInput-info"
-            placeholder={firstname}
+            placeholder={firstname === '' ? 'Please input your firstname' : firstname}
           />
 
           {/* <label htmlFor="surename" className="required-label">*</label> */}
@@ -120,7 +120,7 @@ function Confirm(props) {
             type="text"
             id="surename"
             className="ConfirmInput-info"
-            placeholder={lastname}
+            placeholder={lastname === '' ? 'Please input your lastname' : lastname}
           />
 
           {/* <label htmlFor="phonenumber" className="required-label">*</label> */}

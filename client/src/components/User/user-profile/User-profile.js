@@ -724,7 +724,7 @@ function Project() {
           <div className="project-profilebar">
             {isProjectClicked && (
               <div
-                style={{ height: "500px", width: "910px", overflow: "scroll" }}
+                style={{ height: "500px", width: "910px", overflow: "hidden" }}
               >
                 <div className="adproject-button" onClick={btnClick}>
                   <FaPlus size={10} color="white" /> เพิ่มโครงการ
@@ -2018,7 +2018,7 @@ function Project() {
             )}
 
             {isInfoClicked && (
-              <div style={{ height: "500px", overflow: "scroll" }}>
+              <div style={{ height: "500px", overflow: "hidden" }}>
                 <h1 className="titleConfirm">ข้อมูลผู้ใช้งาน</h1>
                 <hr
                   style={{
