@@ -2,56 +2,13 @@ import React, { useState, useEffect } from "react";
 import "./content.css"; // Import the CSS file for this component
 import "react-icons/fa";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import the styles
-import { Carousel } from "react-responsive-carousel";
-import { Link, useNavigate } from "react-router-dom";
-
-import gallery3 from "../../../assets/images/gallery3.png";
-import gallery5 from "../../../assets/images/gallery5.png";
-
-import {
-  FaCamera,
-  FaImage,
-  FaPhotoVideo,
-  FaPlus,
-  FaUserCircle,
-} from "react-icons/fa";
-import { FaFile } from "react-icons/fa";
-import { FaUser } from "react-icons/fa";
-import { FaCashRegister } from "react-icons/fa";
-import { FaIdCard } from "react-icons/fa";
+import { FaImage, } from "react-icons/fa";
 import Axios from "axios";
 
-function Assign1(props) {
-  const [isMobile, setIsMobile] = useState(false);
-  const [email, setEmail] = useState("");
-
-  const [provinces, setProvinces] = useState([]);
-  const [district, setDistrict] = useState([]);
-  const [selectedProvince, setSelectedProvince] = useState("");
-  const [selectedDistrict, setSelectedDistrict] = useState("");
-  const [selectedSubdistrict, setSelectedSubdistrict] = useState("");
-
-  const [selectedOption, setSelectedOption] = useState(
-    "เลือกประเภทงานที่ท่านต้องการ"
-  ); // State to store the selected option
-  const [additionalField, setAdditionalField] = useState("");
-  const [additionalFieldVisible, setAdditionalFieldVisible] = useState(false);
-  const isOptionNULLSelected = selectedOption === "NULL";
-
-  useEffect(() => {
-    // เรียกใช้งาน API เมื่อคอมโพเนนต์ถูกโหลด
-    Axios.get("http://localhost:3001/provinces")
-      .then((response) => {
-        setProvinces(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching provinces:", error);
-      });
-  }, []);
-
-  const handleChangeThaimaps = (e) => {
-    setSelectedProvince(e.target.value);
-  };
+function Assign1() {
+  const [title, setTitle] = useState('')
+  const [caption, setCaption] = useState('')
+  const [info, setInfo] = useState('')
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
@@ -61,7 +18,6 @@ function Assign1(props) {
 
     if (file) {
       setSelectedFile(file);
-
       // Read the selected file as a data URL and set it as imageUrl
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -71,45 +27,31 @@ function Assign1(props) {
     }
   };
 
-  const handleChange = (event) => {
-    const selectedValue = event.target.value;
-    setSelectedOption(selectedValue);
-
-    // Check if the selected option is "อื่นๆ"
-    if (selectedValue === "NULL") {
-      // Show the additional field
-      setAdditionalFieldVisible(true);
-    } else {
-      // Hide the additional field
-      setAdditionalFieldVisible(false);
-    }
-  };
-
-  const [isChecked, setIsChecked] = useState(false);
-
-  // Function to handle checkbox change
-  const handleCheckboxChange = () => {
-    // Toggle the checked state when the checkbox is clicked
-    setIsChecked(!isChecked);
-  };
+  const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
-    // Add an event listener to track window size changes
-    function handleResize() {
-      setIsMobile(window.innerWidth <= 768); // Adjust the breakpoint as needed
+    const isInputValid = title !== "" && caption !== "" && info !== ""
+    setIsFormValid(isInputValid)
+  }, [title, caption, info, selectedFile])
+
+  const addContent = () => {
+    if (isFormValid) {
+      Axios.post("http://localhost:3001/addcontent", {
+        title: title,
+        caption: caption,
+        info: info,
+      }).then((response) => {
+        setTitle("")
+        setCaption("")
+        setInfo("")
+        setSelectedFile(null)
+        setImageUrl(null)
+      })
+      alert('เพิ่มข้อมูลเรียบร้อยแล้ว');
+    } else {
+      alert("กรุณากรอกข้อมูลให้ครบถ้วน")
     }
-
-    // Initial check
-    handleResize();
-
-    // Add event listener on component mount
-    window.addEventListener("resize", handleResize);
-
-    // Clean up event listener on component unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  }
 
   return (
     <div>
@@ -119,16 +61,15 @@ function Assign1(props) {
           height: "40px",
         }}
       />
-
       <div className="assign-input-container">
         <div className="area-input">
           หัวข้อ Content :
           <input
             style={{ width: "130px" }} // Set the width using inline CSS
             className="text"
-            type="number"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
         </div>
         <div className={selectedFile ? "blueprint2" : "blueprint"}>
@@ -155,10 +96,10 @@ function Assign1(props) {
             <>
               <p className="text1">ไฟล์ที่ท่านเลือก : {selectedFile.name}</p>
               <hr
-        style={{
-          height: "20px",
-        }}
-      />
+                style={{
+                  height: "20px",
+                }}
+              />
 
               <img
                 src={imageUrl}
@@ -175,8 +116,8 @@ function Assign1(props) {
           <textarea
             style={{ width: "385px", height: "100px" }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
             className="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={caption}
+            onChange={(e) => setCaption(e.target.value)}
           />
         </div>
         <div className="address2-input">
@@ -184,14 +125,14 @@ function Assign1(props) {
           <textarea
             style={{ width: "385px", height: "100px" }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
             className="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={info}
+            onChange={(e) => setInfo(e.target.value)}
           />
         </div>
       </div>
 
       <div className="assign-input1-container">
-        <div className="assign1-confirm-button">ยืนยันข้อมูล</div>
+        <div className="assign1-confirm-button" onClick={addContent}>ยืนยันข้อมูล</div>
       </div>
     </div>
   );

@@ -209,7 +209,7 @@ function Project() {
         </div>
         <br />
       </div>
-      <div style={{ height: "500px", overflow: "scroll" }} className="admin-profilebar">
+      <div style={{overflow: "scroll" }} className="admin-profilebar">
         {isProjectClicked &&
          <AllProjects />}
 
@@ -233,6 +233,7 @@ function Project() {
         )}
         {isAddcontentClicked && (
           <div>
+            <button className="content-back" onClick={handleUpdateClick}>ย้อนกลับ</button>
             <Add_content />
           </div>
         )}

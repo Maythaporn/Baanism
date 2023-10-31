@@ -923,7 +923,7 @@ app.post('/authen', function(req, res, next) {
 
 
 app.get('/homecontent', (req, res) => {
-  db.query("SELECT * FROM content", (err, result) => {
+  db.query("SELECT * FROM content ORDER BY id DESC", (err, result) => {
     if (err) {
       console.error(err)
     }
@@ -954,6 +954,20 @@ app.delete('/deletecontent/:id', (req, res) => {
     }
     else {
       res.send(result)
+    }
+  })
+})
+
+app.post('/addcontent', (req, res) => {
+  const cTitle = req.body.title
+  const cCaption = req.body.caption
+  const cInfo = req.body.info
+  db.query("INSERT INTO content (title, caption, info) VALUES(?,?,?)", [cTitle, cCaption, cInfo], (err, result) => {
+    if (err) {
+      console.log(err)
+    }
+    else {
+      res.json("Add Content Success")
     }
   })
 })
