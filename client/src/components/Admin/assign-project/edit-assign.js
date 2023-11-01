@@ -70,7 +70,7 @@ function Assign1(props) {
 
   return (
     <div className="head">
-      <p className="titletext-assign">เพิ่มแบบโครงการที่อยู่อาศัยเข้าระบบ</p>
+      <p className="titletext-assign">แก้ไขแบบโครงการที่อยู่อาศัยเข้าระบบ</p>
       <hr
         style={{
           height: "30px",

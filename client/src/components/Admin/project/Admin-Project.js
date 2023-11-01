@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./Admin.css"; // Import the CSS file for this component
 import "react-icons/fa";
+import Axios from "axios";
 
 import {
   FaCamera,
   FaHistory,
   FaRegAddressBook,
   FaUserCircle,
-  FaSignOutAlt
+  FaSignOutAlt,
 } from "react-icons/fa";
 import { FaFile } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
@@ -18,8 +19,8 @@ import AllProjects from "../all-projects/All_Projects";
 import Assign_admin from "../assign-project/assign-admin";
 import Content from "../all-projects/all_content";
 import Add_content from "../content/content";
-import UpdateProject from "../update-project/update"
-import EditUpdateContent from "../content/editcontent"
+import UpdateProject from "../update-project/update";
+import EditUpdateContent from "../content/editcontent";
 import { Editestimate } from "../Edit-estimate/Editestimate";
 
 function Project() {
@@ -30,6 +31,7 @@ function Project() {
   const [isAddcontentClicked, setIsAddcontentClicked] = useState(false);
   const [isUpdatecontentClicked, setIsUpdatecontentClicked] = useState(false);
   const [isEditEstimateClicked, setisEditEstimateClicked] = useState(false);
+  const [isAddProjectClicked, setIsAddProjectClicked] = useState(false);
 
   const handleProjectClick = () => {
     setIsProjectClicked(true);
@@ -37,6 +39,7 @@ function Project() {
     setIsAddClicked(false);
     setIsAddcontentClicked(false);
     setisEditEstimateClicked(false);
+    setIsAddProjectClicked(false);
   };
 
   // Step 2: Create a click handler function
@@ -46,7 +49,7 @@ function Project() {
     setIsUpdateClicked(false);
     setIsAddClicked(false);
     setisEditEstimateClicked(false);
-
+    setIsAddProjectClicked(false);
   };
 
   const handleUpdateClick = () => {
@@ -55,6 +58,7 @@ function Project() {
     setIsAddClicked(false);
     setIsAddcontentClicked(false);
     setisEditEstimateClicked(false);
+    setIsAddProjectClicked(false);
   };
 
   const handleAddClick = () => {
@@ -63,7 +67,7 @@ function Project() {
     setIsAddClicked(true);
     setIsAddcontentClicked(false);
     setisEditEstimateClicked(false);
-
+    setIsAddProjectClicked(false);
   };
 
   const handleEditClick = () => {
@@ -71,10 +75,32 @@ function Project() {
     setIsUpdateClicked(false);
     setIsAddClicked(false);
     setIsAddcontentClicked(false);
+    setIsAddProjectClicked(false);
     setisEditEstimateClicked(true);
   };
 
+  const handleButtonClick = () => {
+    setIsAddProjectClicked(true);
+    setIsProjectClicked(false);
+    setIsUpdateClicked(false);
+    setIsAddClicked(false);
+    setIsAddcontentClicked(false);
+    setisEditEstimateClicked(false);
+  };
+
+  const [projects, setProjects] = useState([]);
+
   useEffect(() => {
+    Axios.get("http://localhost:3001/getadminproject")
+      .then((response) => {
+        if (response.status === 200) {
+          setProjects(response.data); // Assuming the response contains an array of project data
+          console.log("Project: " + projects);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
     // Add an event listener to track window size changes
     function handleResize() {
       setIsMobile(window.innerWidth <= 768); // Adjust the breakpoint as needed
@@ -101,8 +127,9 @@ function Project() {
         <div>
           <div
             onClick={handleProjectClick}
-            className={`${isProjectClicked ? "admin-select-button" : "admin-botton"
-              }`}
+            className={`${
+              isProjectClicked ? "admin-select-button" : "admin-botton"
+            }`}
           >
             <FaFile
               size={isMobile ? 10 : 17}
@@ -113,11 +140,11 @@ function Project() {
           </div>
           <br />
 
-
           <div
             onClick={handleUpdateClick}
-            className={`${isUpdateClicked ? "admin-select-button" : "admin-botton"
-              }`}
+            className={`${
+              isUpdateClicked ? "admin-select-button" : "admin-botton"
+            }`}
           >
             <FaHistory
               size={isMobile ? 10 : 17}
@@ -128,26 +155,26 @@ function Project() {
           </div>
           <br />
 
-
           <div
             onClick={handleAddClick}
-            className={`${isAddClicked ? "admin-select-button" : "admin-botton"
-              }`}
+            className={`${
+              isAddClicked ? "admin-select-button" : "admin-botton"
+            }`}
           >
             <FaRegAddressBook
               size={isMobile ? 10 : 17}
               color={isAddClicked ? "white" : "gray"}
               className="button-icon"
             />{" "}
-            เพิ่มแบบโครงการเข้าระบบ
+            แบบโครงการเข้าระบบ
           </div>
           <br />
 
-
           <div
             onClick={handleEditClick}
-            className={`${isEditEstimateClicked ? "admin-select-button" : "admin-botton"
-              }`}
+            className={`${
+              isEditEstimateClicked ? "admin-select-button" : "admin-botton"
+            }`}
           >
             <FaRegAddressBook
               size={isMobile ? 10 : 17}
@@ -158,7 +185,7 @@ function Project() {
           </div>
 
           <br />
-          <Link to = "/">
+          <Link to="/">
             <div className={"admin-botton"}>
               <FaSignOutAlt
                 size={isMobile ? 10 : 17}
@@ -171,17 +198,18 @@ function Project() {
         </div>
         <br />
       </div>
-      <div style={{ height: "500px", overflow: "scroll" }} className="admin-profilebar">
-        {isProjectClicked &&
-         <AllProjects />}
+      <div
+        style={{ height: "500px", overflow: "scroll" }}
+        className="admin-profilebar"
+      >
+        {isProjectClicked && <AllProjects />}
 
         {isUpdateClicked && (
           <div>
             <div className="addcontent">
-
-                <div className="adcontent-button" onClick={handleAddContentClick}>
-                  <FaPlus size={10} color="white" /> เพิ่ม Home GURU Content
-                </div>
+              <div className="adcontent-button" onClick={handleAddContentClick}>
+                <FaPlus size={10} color="white" /> เพิ่ม Home GURU Content
+              </div>
 
               <br></br>
             </div>
@@ -189,6 +217,32 @@ function Project() {
         )}
         {isUpdateClicked && <UpdateProject />}
         {isAddClicked && (
+          <div>
+            <div className="adcontent-button" onClick={handleButtonClick}>
+              <FaPlus size={10} color="white" /> เพิ่มแบบโครงการ
+            </div>
+       <div>
+       {projects.map((e) => (
+                <div className="admin-project-container" key={e.id}>
+                    <div className='info-left'>
+                        <p className='project-title'>{e.project_name}</p>
+                        <p>Developer : {e.developer}</p>
+                        <p>สถานที่ : {e.address}</p>
+                    </div>
+                    <div className='info-right'>
+                        <p>สถานะ : <span class="status"></span>รอการติดต่อกลับ</p>
+                        <div className='edit'>
+                            <button className='edit-btn'>แก้ไขข้อมูล</button>
+                            <span className='space'>|</span>
+                            <button className='edit-btn'>ลบโครงการ</button>
+                        </div>
+                    </div>
+                </div>
+            ))}
+       </div>
+          </div>
+        )}
+        {isAddProjectClicked && (
           <div>
             <Assign_admin />
           </div>
@@ -201,8 +255,7 @@ function Project() {
         {isEditEstimateClicked && (
           <div>
             <div className="addcontent">
-
-              <div className="add-question-button" >
+              <div className="add-question-button">
                 <FaPlus size={10} color="white" /> เพิ่มคำถาม
               </div>
 
@@ -212,11 +265,11 @@ function Project() {
           </div>
         )}
       </div>
-        {isUpdatecontentClicked && (
-          <div>
-            <EditUpdateContent />
-          </div>
-        )}
+      {isUpdatecontentClicked && (
+        <div>
+          <EditUpdateContent />
+        </div>
+      )}
     </div>
   );
 }

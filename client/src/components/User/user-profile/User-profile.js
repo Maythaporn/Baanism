@@ -375,23 +375,23 @@ function Project() {
         alert("เกิดข้อผิดพลากกรุณาลองใหม่อีกครั้ง");
       });
 
-      if (selectedImage === "1") {
-        setImage(avatar1);
-        setAvatar("Boss");
-        console.log(image);
-      } else if (selectedImage=== "2") {
-        setImage(avatar2);
-        setAvatar("Woman");
-        console.log(image);
-      } else if (selectedImage === "3") {
-        setImage(avatar3);
-        setAvatar("Baby Boss");
-        console.log(image);
-      } else if (selectedImage === "4") {
-        setImage(avatar4);
-        setAvatar("Baby Girl");
-        console.log(image);
-      }
+    if (selectedImage === "1") {
+      setImage(avatar1);
+      setAvatar("Boss");
+      console.log(image);
+    } else if (selectedImage === "2") {
+      setImage(avatar2);
+      setAvatar("Woman");
+      console.log(image);
+    } else if (selectedImage === "3") {
+      setImage(avatar3);
+      setAvatar("Baby Boss");
+      console.log(image);
+    } else if (selectedImage === "4") {
+      setImage(avatar4);
+      setAvatar("Baby Girl");
+      console.log(image);
+    }
   };
 
   const [project_type_edit, setproject_type] = useState("");
@@ -627,11 +627,21 @@ function Project() {
             <div className="profile-graps"></div>
             <div className="dropdown-inputProfile">
               <select
-                style={{ width: "190px",height:"30px",textAlign:"center", borderColor:"#038E7F",backgroundColor:"#038E7F",color:"#ffffff",marginTop:"1px",borderRadius:"10px",marginLeft:"3px"}}
+                style={{
+                  width: "190px",
+                  height: "30px",
+                  textAlign: "center",
+                  borderColor: "#038E7F",
+                  backgroundColor: "#038E7F",
+                  color: "#ffffff",
+                  marginTop: "1px",
+                  borderRadius: "10px",
+                  marginLeft: "3px",
+                }}
                 id="dropdown"
                 className="text"
                 onChange={handleImageChange}
-              > 
+              >
                 <option value="1" className="text">
                   Boss
                 </option>
@@ -1063,13 +1073,13 @@ function Project() {
                         {"  "}
                         <label
                           htmlFor="fileInput"
-                          style={{ alignItems: "center"}}
+                          style={{ alignItems: "center" }}
                         >
                           <FaImage
                             size={30}
                             color="black"
                             className="camera-icon"
-                            style={{ cursor: "pointer", margin:"0 0 -10px 0" }}
+                            style={{ cursor: "pointer", margin: "0 0 -10px 0" }}
                           />
                         </label>
                       </div>
@@ -1080,14 +1090,14 @@ function Project() {
                       )}
                     </div>
                   </div>
-                  <div class="grid-item" style={{border:"0px solid green"}}>
+                  <div class="grid-item" style={{ border: "0px solid green" }}>
                     <div className="linkgoogleInput ">
                       Link Google Maps
                       <input
                         style={{
                           width: isMobile ? "250px" : "380px",
                           height: "100px",
-                          border: "0px solid red"
+                          border: "0px solid red",
                         }}
                         className="text"
                         type="text"
@@ -1097,7 +1107,7 @@ function Project() {
                     </div>
                   </div>
                   <div class="grid-item">
-                    <div 
+                    <div
                       className={`dropdown-input${
                         isProjectNameNULLSelected ? "-expanded" : ""
                       }`}
@@ -1105,7 +1115,7 @@ function Project() {
                       ชื่อโครงการที่อยู่อาศัย
                       {/* <br /> */}
                       <select
-                        style={{ width: "175px", border:"0px solid blue" }}
+                        style={{ width: "175px", border: "0px solid blue" }}
                         id="dropdown"
                         className="text"
                         value={projectName}
@@ -1165,10 +1175,10 @@ function Project() {
 
                 <div class="grid-container">
                   <div class="grid-item">
-                    <div className="area-input" style={{height:"91px"}}>
+                    <div className="area-input" style={{ height: "91px" }}>
                       กำหนดเริ่มดำเนินโครงการ
                       <input
-                        style={{ width: "130px"}} // Set the width using inline CSS
+                        style={{ width: "130px" }} // Set the width using inline CSS
                         className="text"
                         type="date"
                         value={date}
@@ -1295,33 +1305,7 @@ function Project() {
                       <div class="grid-item2">
                         <p className="text2">ดูแบบบ้านในแต่ละโครงการ</p>
 
-                        <div className="dropdown-input">
-                          รูปแบบบ้าน
-                          <select
-                            style={{ width: "175px" }}
-                            id="dropdown"
-                            className="text"
-                          >
-                            <option value="option1" className="text">
-                              ห้องนอน
-                            </option>
-                            <option value="option2" className="text">
-                              ห้องน้ำ
-                            </option>
-                            <option value="option3" className="text">
-                              ห้องนั่งเล่น
-                            </option>
-                            <option value="option4" className="text">
-                              ห้องครัว
-                            </option>
-                            <option value="option5" className="text">
-                              ห้องอเนกประสงค์
-                            </option>
-                            <option value="NULL" className="text">
-                              อื่นๆ
-                            </option>
-                          </select>
-                        </div>
+        
                       </div>
                       <div class="grid-item2">
                         {" "}
@@ -1373,7 +1357,7 @@ function Project() {
                             size={30}
                             color="black"
                             className="camera-icon"
-                            style={{ cursor: "pointer", margin:"0 0 -10px 0" }}
+                            style={{ cursor: "pointer", margin: "0 0 -10px 0" }}
                           />
                         </label>
                       </div>
@@ -1389,7 +1373,7 @@ function Project() {
                       ข้อมูลเพิ่มเติม
                       <textarea
                         style={{
-                          width: isMobile ? "250px" : "385px",
+                          width: isMobile ? "250px" : "800px",
                           height: "100px",
                         }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
                         className="text"
@@ -1655,7 +1639,7 @@ function Project() {
                             size={30}
                             color="black"
                             className="camera-icon"
-                            style={{ cursor: "pointer", margin:"0 0 -10px 0" }}
+                            style={{ cursor: "pointer", margin: "0 0 -10px 0" }}
                           />
                         </label>
                       </div>
@@ -1755,7 +1739,7 @@ function Project() {
 
                 <div class="grid-container">
                   <div class="grid-item">
-                    <div className="area-input">
+                    <div className="area-inputmim">
                       กำหนดเริ่มดำเนินโครงการ
                       <input
                         style={{ width: "130px" }} // Set the width using inline CSS
@@ -1884,33 +1868,6 @@ function Project() {
                     <div class="grid-container2">
                       <div class="grid-item2">
                         <p className="text2">ดูแบบบ้านในแต่ละโครงการ</p>
-
-                        <div className="dropdown-input">
-                          รูปแบบบ้าน
-                          <select
-                            style={{ width: "175px" }}
-                            id="dropdown"
-                            className="text"
-                          >
-                            <option value="option1" className="text">
-                              ห้องนอน
-                            </option>
-                            <option value="option2" className="text">
-                              ห้องน้ำ
-                            </option>
-                            <option value="option3" className="text">
-                              ห้องนั่งเล่น
-                            </option>
-                            <option value="option4" className="text">
-                              ห้องครัว
-                            </option>
-                            <option value="option5" className="text">
-                              ห้องอเนกประสงค์
-                            </option>
-                            <option value="NULL" className="text">
-                              อื่นๆ
-                            </option>
-                          </select>
                         </div>
                       </div>
                       <div class="grid-item2">
@@ -1953,7 +1910,7 @@ function Project() {
                       </div>
                       <div class="grid-item2"></div>
                     </div>
-                  </div>
+               
                 ) : (
                   <div></div>
                 )}
@@ -1979,7 +1936,7 @@ function Project() {
                             size={30}
                             color="black"
                             className="camera-icon"
-                            style={{ cursor: "pointer", margin:"0 0 -10px 0" }}
+                            style={{ cursor: "pointer", margin: "0 0 -10px 0" }}
                           />
                         </label>
                       </div>
@@ -1995,7 +1952,7 @@ function Project() {
                       ข้อมูลเพิ่มเติม
                       <textarea
                         style={{
-                          width: isMobile ? "250px" : "385px",
+                          width: isMobile ? "250px" : "800px",
                           height: "100px",
                         }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
                         className="text"

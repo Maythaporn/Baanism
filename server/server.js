@@ -3,7 +3,7 @@ const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
 
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 
 app.use(cors());
 app.use(express.json());
@@ -17,8 +17,8 @@ const db = mysql.createConnection({
 
 db.connect((err) => {
   if (err) {
-     console.error("Error connecting to database:", err);
-     return;
+    console.error("Error connecting to database:", err);
+    return;
   }
   console.log("Connected to the database");
 });
@@ -36,26 +36,34 @@ app.get("/getQuestion", (req, res) => {
 
 app.get("/getSubquestion/:id", (req, res) => {
   const qId = req.params.id;
-  db.query(`SELECT * FROM sub_questions WHERE question_id LIKE ?`,[qId], function (err, result) {
-    if (err) {
-      console.error(err);
-      res.status(500).send("เกิดข้อผิดพลาดในการดึงข้อมูลจากฐานข้อมูล");
-    } else {
-      res.send(result);
+  db.query(
+    `SELECT * FROM sub_questions WHERE question_id LIKE ?`,
+    [qId],
+    function (err, result) {
+      if (err) {
+        console.error(err);
+        res.status(500).send("เกิดข้อผิดพลาดในการดึงข้อมูลจากฐานข้อมูล");
+      } else {
+        res.send(result);
+      }
     }
-  });
+  );
 });
 
 app.get("/getOption/:id", (req, res) => {
   const sqId = req.params.id;
-  db.query(`SELECT * FROM options WHERE sub_question_id LIKE ?`,[sqId], function (err, result) {
-    if (err) {
-      console.error(err);
-      res.status(500).send("เกิดข้อผิดพลาดในการดึงข้อมูลจากฐานข้อมูล");
-    } else {
-      res.send(result);
+  db.query(
+    `SELECT * FROM options WHERE sub_question_id LIKE ?`,
+    [sqId],
+    function (err, result) {
+      if (err) {
+        console.error(err);
+        res.status(500).send("เกิดข้อผิดพลาดในการดึงข้อมูลจากฐานข้อมูล");
+      } else {
+        res.send(result);
+      }
     }
-  });
+  );
 });
 
 app.get("/userprofile", (req, res) => {
@@ -106,7 +114,6 @@ app.post("/delete-project", (req, res) => {
   });
 });
 
-
 app.get("/project", (req, res) => {
   const { phone_number } = req.query;
 
@@ -153,35 +160,30 @@ app.get("/project", (req, res) => {
   );
 });
 
-
 app.get("/projectID", (req, res) => {
   const { id } = req.query;
 
   console.log("ID " + id);
 
   // Use the phone_number in the SQL query to retrieve user information
-  db.query(
-    "SELECT * FROM `project` WHERE `id` = ?",
-    [id],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-        return res.status(500).json({ error: "Internal server error" });
-      }
-
-      if (result.length === 0) {
-        return res.status(404).json({ error: "User not found" });
-      }
-
-      const user = result[0];
-
-      // Log the user information
-      console.log("User found: " + user.address + " " + user.provinces);
-
-      // Send the user information as a JSON response
-      res.send(user);
+  db.query("SELECT * FROM `project` WHERE `id` = ?", [id], (err, result) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ error: "Internal server error" });
     }
-  );
+
+    if (result.length === 0) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const user = result[0];
+
+    // Log the user information
+    console.log("User found: " + user.address + " " + user.provinces);
+
+    // Send the user information as a JSON response
+    res.send(user);
+  });
 });
 
 app.get("/project_admin", (req, res) => {
@@ -217,7 +219,6 @@ app.get("/project_admin", (req, res) => {
   });
 });
 
-
 app.post("/updateProject", (req, res) => {
   const {
     project_type,
@@ -235,13 +236,11 @@ app.post("/updateProject", (req, res) => {
     start,
     end,
     etc,
-    id
+    id,
   } = req.body;
 
-
   console.log(project_type);
-  console.log(id
-  );
+  console.log(id);
 
   const selectdateString = selectdate.join(" , ");
   const start_time = start + " - " + end;
@@ -269,7 +268,7 @@ app.post("/updateProject", (req, res) => {
         date,
         start_time,
         etc,
-        id
+        id,
       ],
       (err, result) => {
         if (err) {
@@ -292,7 +291,6 @@ app.post("/updateProject", (req, res) => {
     );
   });
 });
-
 
 app.get("/userinfo", (req, res) => {
   const { phone_number } = req.query;
@@ -330,7 +328,6 @@ app.get("/userinfo", (req, res) => {
 
 const bcrypt = require("bcrypt");
 const saltRounds = 10; // The number of salt rounds, higher is more secure
-
 
 app.post("/createusers", (req, res) => {
   const first_name = req.body.first_name;
@@ -411,7 +408,7 @@ app.post("/createProject", (req, res) => {
     date,
     start,
     end,
-    etc
+    etc,
   } = req.body;
 
   const selectdateString = selectdate.join(", ");
@@ -441,7 +438,7 @@ app.post("/createProject", (req, res) => {
         selectdateString,
         date,
         start_time,
-        etc
+        etc,
       ],
       (err, result) => {
         if (err) {
@@ -498,6 +495,7 @@ app.post("/adduserinfo", (req, res) => {
     );
   });
 });
+
 app.get("/getuserImage", (req, res) => {
   const { phone_number } = req.query;
 
@@ -524,8 +522,8 @@ app.get("/getuserImage", (req, res) => {
 });
 
 app.post("/updateImage", (req, res) => {
-  const { img,phone_number  } = req.body;
-console.log("img " + img);
+  const { img, phone_number } = req.body;
+  console.log("img " + img);
   db.beginTransaction((err) => {
     if (err) {
       console.log(err);
@@ -534,7 +532,7 @@ console.log("img " + img);
 
     db.query(
       "UPDATE `users_info` SET `img`= ? WHERE `phone_number`= ? ",
-      [img,phone_number],
+      [img, phone_number],
       (err, result) => {
         if (err) {
           db.rollback(() => {
@@ -554,6 +552,76 @@ console.log("img " + img);
         });
       }
     );
+  });
+});
+
+app.post("/addproject", (req, res) => {
+  const {
+    project_name,
+    developer,
+    provinces,
+    district,
+    subdistrict,
+    address,
+    zipcode,
+    img,
+  } = req.body;
+
+  db.beginTransaction((err) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send("Internal server error");
+    }
+
+    db.query(
+      "INSERT INTO `admin_project`(`project_name`, `developer`, `provinces`, `district`, `subdistrict`, `address`, `zipcode`, `img`) VALUES (?,?,?,?,?,?,?,?); ",
+      [
+        project_name,
+        developer,
+        provinces,
+        district,
+        subdistrict,
+        address,
+        zipcode,
+        img,
+      ],
+      (err, result) => {
+        if (err) {
+          db.rollback(() => {
+            console.log(err);
+            return res.status(500).send("Internal server error");
+          });
+        }
+
+        db.commit((err) => {
+          if (err) {
+            db.rollback(() => {
+              console.log(err);
+              return res.status(500).send("Internal server error");
+            });
+          }
+          return res.status(200).send("User added successfully");
+        });
+      }
+    );
+  });
+});
+
+app.get("/getadminproject", (req, res) => {
+  db.query("SELECT * FROM `admin_project`", (err, result) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send("Internal server error");
+    }
+
+    if (result.length === 0) {
+      return res.status(404).send("Image not found");
+    }
+
+    // Retrieve and send the image data as a response
+    const project = result[0];
+    console.log(project);
+    res.send(project);
   });
 });
 
@@ -706,7 +774,7 @@ app.post("/checkEmail", (req, res) => {
       }
 
       if (results.length === 0) {
-        return res  
+        return res
           .status(401)
           .send("Invalid email and phone number combination");
       }
@@ -827,41 +895,38 @@ app.post("/login", (req, res) => {
   );
 });
 
-app.get('/homecontent', (req, res) => {
+app.get("/homecontent", (req, res) => {
   db.query("SELECT * FROM content", (err, result) => {
     if (err) {
-      console.error(err)
+      console.error(err);
+    } else {
+      res.json(result);
     }
-    else {
-      res.json(result)
-    }
-  })
-})
+  });
+});
 
-app.get('/homecontent/:id', (req, res) => {
-  const contentId = req.params.id
+app.get("/homecontent/:id", (req, res) => {
+  const contentId = req.params.id;
   db.query("SELECT * FROM content WHERE id = ?", [contentId], (err, result) => {
     if (err) {
-      console.error(err)
+      console.error(err);
+    } else {
+      const contentData = result[0];
+      res.json(contentData);
     }
-    else {
-      const contentData = result[0]
-      res.json(contentData)
-    }
-  })
-})
+  });
+});
 
-app.delete('/deletecontent/:id', (req, res) => {
-  const dId = req.params.id
+app.delete("/deletecontent/:id", (req, res) => {
+  const dId = req.params.id;
   db.query("DELETE FROM content WHERE id = ?", dId, (err, result) => {
     if (err) {
-      console.error(err)
+      console.error(err);
+    } else {
+      res.send(result);
     }
-    else {
-      res.send(result)
-    }
-  })
-})
+  });
+});
 
 app.listen("3001", () => {
   console.log("Server is running on port 3001");

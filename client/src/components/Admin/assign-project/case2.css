@@ -1,10 +1,10 @@
-.Assigncontainer{
+.Assigncontainer {
   background-image: url("./../../../assets/images/bg-information.png"); /* Path to your background image */
   background-size: cover; /* Adjust as needed */
   background-repeat: repeat; /* Adjust as needed */
   /* Other background properties can be added here */
   flex-direction: row;
-  justify-content:space-evenly; 
+  justify-content: space-evenly;
   display: flex;
 
   padding-top: 50px;
@@ -12,24 +12,30 @@
   width: 100%;
 }
 
+.head {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  justify-content: center;
+  width: 980px;
+}
 
-.sidebar{
-    margin-top: 70px;
-    margin-left: 2rem;
+.sidebar {
+  margin-top: 70px;
+  margin-left: 2rem;
 
-    width: 300px;
-    height: 310px;
-    background-color: white;
-    border: 1px solid gray;
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px grey;
+  width: 300px;
+  height: 310px;
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px grey;
 
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
 
-    align-items: center;
-
+  align-items: center;
 }
 
 hr.new4 {
@@ -37,31 +43,30 @@ hr.new4 {
   border: 0.5px solid #e1e1e0;
 }
 
-
-.profile-circle{
+.profile-circle {
   width: 95px;
   height: 95px;
   text-align: center;
 
   background-color: gray;
-  border-radius: 100px
+  border-radius: 100px;
 }
 
-.profile-fix-circle{
+.profile-fix-circle {
   margin-left: 4rem;
   width: 30px;
   height: 30px;
   text-align: center;
 
   background-color: #d9d9d9;
-  border-radius: 100px
+  border-radius: 100px;
 }
 
-.botton{
+.botton {
   border-radius: 10px;
-  background-color: #03128E;
+  background-color: #03128e;
   font-size: 15px;
-  font-family: 'Prompt', sans-serif;
+  font-family: "Prompt", sans-serif;
   color: white;
   width: 200px;
   height: 32px;
@@ -71,86 +76,99 @@ hr.new4 {
   transition: background-color 0.3s; /* Add a smooth transition effect */
 }
 
-.assign1-confirm-button{
-
+.assign1-confirm-button {
   padding-top: 10px;
   border-radius: 10px;
-  background-color: #038E7F;
+  background-color: #038e7f;
   font-size: 16px;
-  font-family: 'Prompt', sans-serif;
+  font-family: "Prompt", sans-serif;
   color: #ffffff;
   width: 150px;
   height: 40px;
   display: flex;
   justify-content: center;
-
 }
 
-.user-icon{
+.user-icon {
   margin-top: 20px;
 }
 
-.camera-icon{
+.camera-icon {
   margin-top: 5px;
 }
 
-.gallery-icon{
+.gallery-icon {
   margin-top: 5px;
 }
 
-.row{
+.row-assign {
   display: flex;
   flex-direction: row;
+  width: 434px;
+  height: 54px;
 }
 
-.button-icon{
+.button-icon {
   margin-left: 10px;
   margin-top: 5px;
 }
 
-.assign-input-container {
+.assign-input3-container {
   width: 910px;
+  height: 54px;
   display: flex;
-  padding-left: 40px;
-
-  justify-content: space-between;
-  flex-direction: row; /* Make it a flex container */
-  margin-bottom: 20px;
-  align-items: flex-start;
-  gap: 5px;
-  /* You can also add other styles like width, background-color, etc. */
-}
-
-.assign-input1-container {
-  width: 910px;
-  display: flex;
-  padding-left: 40px;
 
   justify-content: center;
-  flex-direction: row; /* Make it a flex container */
-  margin-bottom: 20px;
-  /* You can also add other styles like width, background-color, etc. */
+  align-items: center;
 }
 
-.column2 {
-  width: 450px;
+.assign-input4-container {
+  width: 910px;
+  height: 198px;
+  display: flex;
+  margin-top: 21px;
+  margin-bottom: 21px;
+  justify-content: center;
+  align-items: center;
+}
+
+.column3 {
+  width: 830px;
   height: 150px;
   display: flex;
-
+  column-count: 2;
   justify-content: space-between;
   flex-direction: column;
   /* Make it a flex container */
   /* You can also add other styles like width, background-color, etc. */
 }
-.column1 {
-  width: 450px;
-  height: 80px;
+.column {
+  width: 434px;
+  height: 54px;
   display: flex;
+  margin: 10px;
   text-align: left;
-  /* margin-bottom: 10px; */
-  flex: 1;
   flex-direction: column; /* Make it a flex container */
   /* You can also add other styles like width, background-color, etc. */
+}
+
+.column2-assign {
+  width: 434px;
+  height: 54px;
+  display: flex;
+  margin: 10px;
+  text-align: left;
+  flex-direction: column; /* Make it a flex container */
+  /* You can also add other styles like width, background-color, etc. */
+}
+
+.column-address {
+  width: 434px;
+  display: flex;
+  text-align: left;
+  margin: 10px;
+  flex-direction: column;
+  margin-top: 21px;
 }
 
 .text-container {
@@ -160,13 +178,12 @@ hr.new4 {
   flex-direction: column;
   text-align: left;
 
-
   align-content: flex-end;
   font-size: 16px;
   margin-top: 2px;
   margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
 }
 
 .checkbox-container {
@@ -181,8 +198,8 @@ hr.new4 {
   font-size: 14px;
   margin-top: 2px;
   margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
 }
 
 .checkbox1-container {
@@ -198,10 +215,10 @@ hr.new4 {
   margin-top: 2px;
   justify-content: space-between;
   margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
 }
-.text-input{
+.text-input {
   width: 400px;
   height: 80px;
   display: flex;
@@ -213,9 +230,9 @@ hr.new4 {
   align-content: center;
   font-size: 16px;
   margin-top: 2px;
-  margin-bottom: 2px; 
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+  margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
 }
 
 .text-input1 {
@@ -223,7 +240,7 @@ hr.new4 {
   padding-left: 10px;
 
   width: 400px;
-  height: 80px;
+  height: 100px;
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -231,18 +248,18 @@ hr.new4 {
   border-radius: 10px;
   outline: none;
   align-content: center;
-  font-size: 16px;
+  font-size: 12px;
   margin-top: 2px;
   margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
 }
 
-.zip-input {
+.zip-input-assign {
   padding-top: 10px;
   padding-left: 10px;
-  width: 150px;
-  height: 70px;
+  width: 434px;
+  height: 60px;
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -250,11 +267,10 @@ hr.new4 {
   border-radius: 10px;
   outline: none;
   align-content: center;
-  font-size: 16px;
-  margin-top: 2px;
-  margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+  font-size: 12px;
+  margin-top: 19px;
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
 }
 
 .blueprint {
@@ -270,14 +286,15 @@ hr.new4 {
   font-size: 16px;
   margin-top: 2px;
   margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
 }
-.address2-input {
+
+.address3-input {
   padding-top: 10px;
   padding-left: 10px;
-  width: 400px;
-  height: 250px;
+  width: 434px;
+  height: 198px;
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -285,17 +302,15 @@ hr.new4 {
   border-radius: 10px;
   outline: none;
   align-content: center;
-  font-size: 16px;
-  margin-top: 2px;
-  margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+  font-size: 12px;
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
 }
 
 .info-input {
   padding-top: 10px;
   padding-left: 10px;
-  width: 400px;
+  width: 830px;
   height: 150px;
   display: flex;
   flex-direction: column;
@@ -307,15 +322,15 @@ hr.new4 {
   font-size: 16px;
   margin-top: 2px;
   margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
 }
 
-.area-input {
-  padding-top: 10px;
+.area-input-assign {
+  padding-top: 5px;
   padding-left: 10px;
-  width: 400px;
-  height: 70px;
+  width: 434px;
+  height: 54px;
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -323,15 +338,15 @@ hr.new4 {
   border-radius: 10px;
   outline: none;
   align-content: center;
-  font-size: 16px;
+  font-size: 12px;
   margin-top: 2px;
   margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
 }
-.text-input-provinces {
-  width: 275px;
-  height: 70px;
+.text-input-provinces-assign {
+  width: 434px;
+  height: 54px;
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -339,19 +354,18 @@ hr.new4 {
   border-radius: 10px;
   outline: none;
   align-content: center;
-  font-size: 16px;
+  font-size: 12px;
 
   padding-left: 10px;
   padding-top: 10px;
-  margin-top: 2px;
-  margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+  margin-top: 18px;
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
 }
 
-.dropdown-input {
+.dropdown-input-assign {
   width: 200px;
-  height: 65px;
+  height: 54px;
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -359,14 +373,30 @@ hr.new4 {
   border-radius: 10px;
   outline: none;
   align-content: center;
-  font-size: 16px;
+  font-size: 12px;
 
-  margin-right: 10px;
+  margin-right: 35px;
   padding-top: 7px;
   padding-left: 10px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
+}
+.dropdown-input2-assign {
+  width: 200px;
+  height: 54px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  align-content: center;
+  font-size: 12px;
 
+  padding-top: 7px;
+  padding-left: 10px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
 }
 
 .dropdown-input-expanded {
@@ -383,61 +413,171 @@ hr.new4 {
 
   padding-top: 10px;
   padding-left: 10px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
-
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
 }
 
-.text2{
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+.text2 {
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 20px;
 }
 
-.text{
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+.text {
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
   font-size: 15px;
 }
 
-.text1{
-  font-family: 'Prompt', sans-serif;
+.text1 {
+  font-family: "Prompt", sans-serif;
   color: #d9d9d9;
   font-size: 15px;
 }
 
-.titletext{
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+.titletext-assign {
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
   font-size: 30px;
-  padding-right: 33rem;
-  padding-left: 40px;
-  /* white-space: nowrap; */
-  width: 100%;
+  padding-right: 15rem;
 }
 
-.titletext2{
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+.titletext2 {
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
   font-size: 30px;
   padding-right: 33rem;
-  padding-left: 40px;
-  /* white-space: nowrap; */
-  width: 100%;
 }
 
-.text-dropdown{
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+.text-dropdown {
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
   font-size: 10px;
+}
+
+.assign-input5-container {
+  width: 910px;
+  height: 54px;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
 }
 
 
 @media (max-width: 768px) {
+
+  .dropdown-input-assign {
+    width: 130px;
+    height: 54px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    align-content: center;
+    font-size: 12px;
+  
+    margin-right: 35px;
+    padding-top: 7px;
+    padding-left: 10px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+    font-family: "Prompt", sans-serif;
+    color: #100f0d;
+  }
+
+  .text-input-provinces-assign {
+    width: 300px;
+    height: 54px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    align-content: center;
+    font-size: 12px;
+  
+    padding-left: 10px;
+    padding-top: 10px;
+    margin-top: 18px;
+    font-family: "Prompt", sans-serif;
+    color: #100f0d;
+  }
+  
+.area-input-assign {
+  padding-top: 5px;
+  padding-left: 10px;
+  width: 300px;
+  height: 54px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  align-content: center;
+  font-size: 12px;
+  margin-top: 2px;
+  margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
+}
+
+  .assign-input5-container {
+    width: 910px;
+    height: 54px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 8rem;
+    margin-top: 140px;
+    margin-bottom: 50px;
+  }
+
+  .assign-input3-container {
+    width: 910px;
+    height: 54px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 8rem;
+    margin-top: 50px;
+    margin-bottom: 70px;
+  }
+
+  .column-address {
+    width: 434px;
+    display: flex;
+    text-align: left;
+    margin: 10px;
+    flex-direction: column;
+  }
+  
+
+  .assign-input4-container {
+    width: 910px;
+    height: 198px;
+    display: flex;
+    padding-left: 8rem;
+    flex-direction: column;
+    margin-top: 90px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .titletext-assign {
+    font-family: "Prompt", sans-serif;
+    color: #100f0d;
+    font-size: 20px;
+    padding-left: 19rem;
+  }
   .Assigncontainer {
-    flex-direction: column; /* Stack items vertically */
+    flex-direction: column; /*v   Stack items vertically */
   }
   .sidebar {
     margin-left: 10px;
@@ -446,70 +586,70 @@ hr.new4 {
   .assign1-profilebar {
     margin-left: 10px;
     width: 95%;
-   
   }
-  .input-container{
+  .input-container {
     flex-direction: column;
     justify-content: space-evenly;
   }
-
-  p.titletext{
-    padding-left: 30%;
-  }
-
-  p.titletext2{
-    padding-left: 30%;
-  }
-
-  .titletext{
-    font-family: 'Prompt', sans-serif;
-    color: #100F0D;
-    font-size: 30px;
-    padding-right: 0px;
-    padding-left: 50px;
-    width: 100%;
-  }
-
-  .titletext2{
-    font-family: 'Prompt', sans-serif;
-    color: #100F0D;
+  .titletext {
+    font-family: "Prompt", sans-serif;
+    color: #100f0d;
     font-size: 30px;
     padding-right: 0;
-    padding-left: 50px;
-    width: 100%;
   }
 
   .assign-input-container {
     width: 95%;
     display: flex;
     padding-left: 150px;
-  
+
     justify-content: space-between;
     flex-direction: column; /* Make it a flex container */
     margin-bottom: 20px;
     /* You can also add other styles like width, background-color, etc. */
   }
-  
+
   .assign-input1-container {
     width: 95%;
     display: flex;
-   
-  
+
     justify-content: center;
     flex-direction: column; /* Make it a flex container */
     margin-bottom: 20px;
     /* You can also add other styles like width, background-color, etc. */
   }
 
-  
-hr.new4 {
-  width: 95%;
-  border: 0.5px solid #e1e1e0;
-  margin-bottom: 10px;
-}
-  
+  hr.new4 {
+    width: 95%;
+    border: 0.5px solid #e1e1e0;
+    margin-bottom: 10px;
+  }
 
-  .row{
+  .titletext2 {
+    font-family: "Prompt", sans-serif;
+    color: #100f0d;
+    font-size: 30px;
+    padding-right: 0;
+  }
+
+  .address3-input {
+    padding-top: 10px;
+    padding-left: 10px;
+    width: 300px;
+    height: 198px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    align-content: center;
+    font-size: 12px;
+    font-family: "Prompt", sans-serif;
+    color: #100f0d;
+  }
+
+  .row {
     display: flex;
     height: 300px;
     flex-direction: column;
@@ -520,7 +660,7 @@ hr.new4 {
     width: 95%;
 
     display: flex;
-  
+
     justify-content: space-between;
     flex-direction: column;
     margin-bottom: 80px;
@@ -530,9 +670,8 @@ hr.new4 {
   .column1 {
     width: 95%;
     display: flex;
-    /* margin-bottom: 40px; */
+    margin-bottom: 20px;
     flex-direction: column; /* Make it a flex container */
     /* You can also add other styles like width, background-color, etc. */
   }
-  
 }
