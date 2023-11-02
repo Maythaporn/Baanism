@@ -23,7 +23,7 @@ const Paginate = (props) => {
                 {currentItems.map((val) => {
                     return (
                         <div className="content-info" key={val.id} onClick={() => { navigate(`/homecontent/${val.id}`) }}>
-                            <img src={val.img} alt={val.title} />
+                            <img src={'http://localhost:3001/images/'+val.img} alt={val.title} />
                             <h3>{val.title}</h3>
                             <pre>{val.caption}</pre>
                         </div>

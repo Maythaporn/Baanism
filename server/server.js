@@ -2,13 +2,14 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
-
+const multer = require('multer');
 const bodyParser = require('body-parser');
 var jwt = require('jsonwebtoken');
 var secret = 'baanism-login'
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static('public'))
 
 const db = mysql.createConnection({
   user: "root",
@@ -24,6 +25,17 @@ db.connect((err) => {
   }
   console.log("Connected to the database");
 });
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    return cb(null, "./public/images")
+  },
+  filename: function (req, file, cb) {
+    return cb(null, `${Date.now()}_${file.originalname}`)
+  }
+})
+
+const upload = multer({ storage })
 
 app.get("/getQuestion", (req, res) => {
   db.query(`SELECT * FROM questions`, function (err, result) {
@@ -958,11 +970,12 @@ app.delete('/deletecontent/:id', (req, res) => {
   })
 })
 
-app.post('/addcontent', (req, res) => {
+app.post('/addcontent', upload.single('image'),(req, res) => {
   const cTitle = req.body.title
   const cCaption = req.body.caption
   const cInfo = req.body.info
-  db.query("INSERT INTO content (title, caption, info) VALUES(?,?,?)", [cTitle, cCaption, cInfo], (err, result) => {
+  const cImage = req.file.filename
+  db.query("INSERT INTO content (title, img, caption, info) VALUES(?,?,?,?)", [cTitle, cImage, cCaption, cInfo], (err, result) => {
     if (err) {
       console.log(err)
     }

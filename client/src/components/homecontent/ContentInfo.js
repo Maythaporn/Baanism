@@ -27,7 +27,7 @@ const ContentInfo = () => {
         <>
             <div className="content-full">
                 <h2>{title}</h2>
-                <img src={img} alt={title} />
+                <img src={'http://localhost:3001/images/'+img} alt={title} />
                 <pre>{info}</pre>
             </div>
         </>

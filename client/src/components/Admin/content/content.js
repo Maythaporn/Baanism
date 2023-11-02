@@ -35,12 +35,13 @@ function Assign1() {
   }, [title, caption, info, selectedFile])
 
   const addContent = () => {
+    const formData = new FormData()
+    formData.append('title', title)
+    formData.append('image', selectedFile)
+    formData.append('caption', caption)
+    formData.append('info', info)
     if (isFormValid) {
-      Axios.post("http://localhost:3001/addcontent", {
-        title: title,
-        caption: caption,
-        info: info,
-      }).then((response) => {
+      Axios.post("http://localhost:3001/addcontent", formData).then((response) => {
         setTitle("")
         setCaption("")
         setInfo("")
@@ -103,7 +104,7 @@ function Assign1() {
 
               <img
                 src={imageUrl}
-                alt="Selected Image"
+                alt="Selected"
                 className="selected-image"
                 width="400"  // set the width to your desired size in pixels
                 height="300" // set the height to your desired size in pixels
