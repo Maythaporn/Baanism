@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
-const multer = require('multer');
+// const multer = require('multer');
 const bodyParser = require('body-parser');
 var jwt = require('jsonwebtoken');
 var secret = 'baanism-login'
@@ -26,16 +26,16 @@ db.connect((err) => {
   console.log("Connected to the database");
 });
 
-const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    return cb(null, "./public/images")
-  },
-  filename: function (req, file, cb) {
-    return cb(null, `${Date.now()}_${file.originalname}`)
-  }
-})
+// const storage = multer.diskStorage({
+//   destination: function(req, file, cb) {
+//     return cb(null, "./public/images")
+//   },
+//   filename: function (req, file, cb) {
+//     return cb(null, `${Date.now()}_${file.originalname}`)
+//   }
+// })
 
-const upload = multer({ storage })
+// const upload = multer({ storage })
 
 app.get("/getQuestion", (req, res) => {
   db.query(`SELECT * FROM questions`, function (err, result) {
@@ -60,9 +60,10 @@ app.get("/getSubquestion/:id", (req, res) => {
   });
 });
 
-app.get("/getOption/:id", (req, res) => {
-  const sqId = req.params.id;
-  db.query(`SELECT * FROM options WHERE sub_question_id LIKE ?`,[sqId], function (err, result) {
+app.get("/getOption:index/:id", (req, res) => {
+  const id = req.params.id;
+  const index = req.params.index;
+  db.query(`SELECT * FROM options${index} WHERE sub_question_id LIKE ?`,[id], function (err, result) {
     if (err) {
       console.error(err);
       res.status(500).send("เกิดข้อผิดพลาดในการดึงข้อมูลจากฐานข้อมูล");
@@ -970,20 +971,20 @@ app.delete('/deletecontent/:id', (req, res) => {
   })
 })
 
-app.post('/addcontent', upload.single('image'),(req, res) => {
-  const cTitle = req.body.title
-  const cCaption = req.body.caption
-  const cInfo = req.body.info
-  const cImage = req.file.filename
-  db.query("INSERT INTO content (title, img, caption, info) VALUES(?,?,?,?)", [cTitle, cImage, cCaption, cInfo], (err, result) => {
-    if (err) {
-      console.log(err)
-    }
-    else {
-      res.json("Add Content Success")
-    }
-  })
-})
+// app.post('/addcontent', upload.single('image'),(req, res) => {
+//   const cTitle = req.body.title
+//   const cCaption = req.body.caption
+//   const cInfo = req.body.info
+//   const cImage = req.file.filename
+//   db.query("INSERT INTO content (title, img, caption, info) VALUES(?,?,?,?)", [cTitle, cImage, cCaption, cInfo], (err, result) => {
+//     if (err) {
+//       console.log(err)
+//     }
+//     else {
+//       res.json("Add Content Success")
+//     }
+//   })
+// })
 
 app.listen("3001", () => {
   console.log("Server is running on port 3001");

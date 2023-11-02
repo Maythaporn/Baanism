@@ -239,14 +239,6 @@ function Project() {
         )}
         {isEditEstimateClicked && (
           <div>
-            <div className="addcontent">
-
-              <div className="add-question-button" >
-                <FaPlus size={10} color="white" /> เพิ่มคำถาม
-              </div>
-
-              <br></br>
-            </div>
             <Editestimate />
           </div>
         )}
