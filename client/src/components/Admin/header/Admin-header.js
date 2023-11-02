@@ -2,7 +2,7 @@ import logo from './logo-header.png';
 import './Header.css';
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import {FaBell,FaUser} from 'react-icons/fa'
+import { FaBell, FaUser } from 'react-icons/fa'
 
 export default function Header() {
   const navigate = useNavigate();
@@ -12,17 +12,27 @@ export default function Header() {
     setIsNavOpen(!isNavOpen);
   };
 
-  const btnRegister = () => {
-    navigate('/register');
-  };
-
-  const btnLogin = () => {
-    navigate('/login');
-  };
-
   const closeNav = () => {
     setIsNavOpen(false);
   };
+  const btnLD = (event) => {
+    window.location.href = '/';
+  }
+  const btnHomeguru = (event) => {
+    window.location.href = '/homecontent';
+  }
+  const btnAbout = (event) => {
+    window.location.href = '/about';
+  }
+  const btnEstimate = (event) => {
+    window.location.href = '/estimate';
+  }
+  const btnContact = (event) => {
+    window.location.href = '/Contact';
+  }
+  const btnAdmin = (event) => {
+    window.location.href = '/admin';
+  }
 
   useEffect(() => {
     const handleResize = () => {
@@ -55,34 +65,26 @@ export default function Header() {
         <div className={`nav-links ${isNavOpen ? 'open' : ''}`}>
           <ul className='navBar'>
             <li>
-              <Link to="/about">
-                เกี่ยวกับเรา
-              </Link>
+              <button onClick={btnAbout}>เกี่ยวกับเรา</button>
             </li>
             <li>
-              <Link to='/homecontent'>
-                Home GURU Content
-              </Link>
+              <button onClick={btnHomeguru}>Home GURU Content</button>
             </li>
             <li>
-              <Link to='/'>
-                ประเมินราคา
-              </Link>
+              <button onClick={btnEstimate}>ประเมินราคา</button>
             </li>
             <li>
-              <Link to='/'>
-                ติดต่อเรา
-              </Link>
+              <button onClick={btnContact}>ติดต่อเรา</button>
             </li>
             <li>
-              <Link>
-              <FaBell size={20} color="gray" />
-              </Link>
+            <button onClick={btnAdmin}>
+                <FaBell size={20} color="gray" />
+              </button>
             </li>
             <li>
-              <Link>
-              <FaUser size={20} color="gray" />
-              </Link>
+              <button onClick={btnAdmin}>
+                <FaUser size={20} color="gray" />
+              </button>
             </li>
           </ul>
         </div>

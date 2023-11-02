@@ -10,43 +10,21 @@ import { useState } from "react";
 import Button from "../../components/button/button";
 
 function Register() {
-  const [firstName, setFirstName] = useState(""); // Initialize with an empty string
+
+  const navigate = useNavigate();
+
+  // Initialize with an empty string
+  const [firstName, setFirstName] = useState(""); 
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordsMatch, setPasswordsMatch] = useState(true);
-
-  function checkPasswordStrength(password) {
-    // กำหนด regular expressions เพื่อตรวจสอบเงื่อนไขต่างๆ
-    const hasUppercase = /[A-Z]/.test(password);
-    const hasLowercase = /[a-z]/.test(password);
-    const hasNumber = /\d/.test(password);
-    const hasSpecialChar = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password);
-
-    // คำนวณคะแนนตามเงื่อนไขที่ตรวจสอบ
-    let score = 0;
-    if (hasUppercase) score++;
-    if (hasLowercase) score++;
-    if (hasNumber) score++;
-    if (hasSpecialChar) score++;
-
-    // กำหนดระดับความแข็งแรงของรหัสผ่านตามคะแนนที่ได้
-    if (score === 4) {
-      return "มีความแข็งแรง"; // ตรงทุกเงื่อนไข
-    } else if (score >= 2) {
-      return "ค่อนข้างแข็งแรง"; // ตรงบางเงื่อนไข
-    } else {
-      return "อ่อนแอ"; // ไม่ตรงเงื่อนไขเพียงพอ
-    }
-  }
+  //State for checkbox
+  const [isTermsChecked, setIsTermsChecked] = useState(false); 
 
   const specialCharacters = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/;
-
-  const navigate = useNavigate();
-
-  const [isTermsChecked, setIsTermsChecked] = useState(false); // State for checkbox
 
   const btnConfirm = () => {
     if (!isTermsChecked) {
@@ -69,14 +47,12 @@ function Register() {
       console.log("value :" + email);
       console.log("value :" + password);
 
-      // Show a success alert
-      alert("กรุณาใส่ข้อมูลให้ครบถ้วน");
     } else if (password.length < 8) {
-      // ตรวจสอบความยาวของรหัสผ่าน
       alert("รหัสผ่านควรมีความยาวอย่างน้อย 8 ตัวอักษร");
+
     } else if (!specialCharacters.test(password)) {
-      // ตรวจสอบอักขระพิเศษในรหัสผ่าน
       alert("รหัสผ่านควรมีอักขระพิเศษอย่างน้อย 1 ตัว");
+
     } else {
       Axios.post("http://localhost:3001/createusers", {
         first_name: firstName,
@@ -84,6 +60,7 @@ function Register() {
         phone_number: phoneNumber,
         email: email,
         password: password,
+        role: "user"
       })
         .then((response) => {
           if (response.status === 200) {
@@ -94,35 +71,29 @@ function Register() {
             console.log("value :" + phoneNumber);
             console.log("value :" + email);
             console.log("value :" + password);
-
-            // Show a success alert
             alert("ทำการสมัครสมาชิกเรียบร้อยแล้ว");
             navigate('/login');
 
           }else if (response.status === 400) {
-            // User added successfully
             alert("เบอร์โทรศัพท์ นี้ถูกใช้งานแล้ว");
           }
         })
         .catch((error, response) => {
           // Email already in use
           console.error("Phone number already in use");
-
-          // Show an error alert
           alert("เบอร์โทรศัพท์ นี้ถูกใช้งานแล้ว");
         });
     }
-  
   };
+
+  // Check if the passwords match
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-    // Check if the passwords match
     setPasswordsMatch(e.target.value === confirmPassword);
   };
 
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
-    // Check if the passwords match
     setPasswordsMatch(e.target.value === password);
   };
 

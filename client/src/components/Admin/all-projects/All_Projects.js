@@ -126,7 +126,7 @@ const AllProjects = () => {
                 contentLabel="อัพเดตสถานะโครงการ"
                 style={{
                   content: {
-                    width: "400px", // Set the desired width
+                    width: "300px", // Set the desired width
                     height: "300px", // Set the desired height
                     margin: "auto", // Center the modal horizontally
                   },

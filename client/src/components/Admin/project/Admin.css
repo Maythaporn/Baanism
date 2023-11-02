@@ -152,6 +152,17 @@
   overflow-y: scroll;
 }
 
+.content-back{
+  border-radius: 7px;
+  background-color: #038E7F;
+  color: #ffffff;
+  width: 80px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
   .Admincontainer {
     flex-direction: column;

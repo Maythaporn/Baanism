@@ -79,14 +79,14 @@ export default function Header() {
           <div className='rightMenu'>
             <ul className='navBar'>
               <li>
-                <div className='lineButton' onClick={btnLogin} to='/login'>
+              <button className='lineButton' onClick={btnLogin} to='/login'>
                     ลงชื่อเข้าใช้งาน
-                </div>
+                </button>
               </li>
               <li>
-                <div className='solidButton' onClick={btnRegister} to='/register'>
+                <button className='solidButton' onClick={btnRegister} to='/register'>
                     ลงทะเบียน
-                </div>
+                </button>
               </li>
             </ul>
           </div>

@@ -4,6 +4,8 @@ const mysql = require("mysql");
 const cors = require("cors");
 
 const bodyParser = require("body-parser");
+var jwt = require("jsonwebtoken");
+var secret = "baanism-login";
 
 app.use(cors());
 app.use(express.json());
@@ -114,6 +116,20 @@ app.post("/delete-project", (req, res) => {
   });
 });
 
+app.post("/delete-adminproject", (req, res) => {
+  const projectId = req.body.projectId;
+
+  // Use the projectId in a SQL DELETE query to remove the project from the database.
+  db.query("DELETE FROM admin_project WHERE id = ?", [projectId], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Internal server error" });
+    }
+
+    return res.status(200).json({ message: "Project deleted successfully" });
+  });
+});
+
 app.get("/project", (req, res) => {
   const { phone_number } = req.query;
 
@@ -193,29 +209,98 @@ app.get("/project_admin", (req, res) => {
       return res.status(500).json({ error: "Internal server error" });
     }
 
+    // ถ้าไม่พบข้อมูลในตาราง "project"
     if (result.length === 0) {
-      return res.status(404).json({ error: "User not found" });
+      return res.status(404).send("Project data not found");
     }
 
-    // Convert the result (an array of user records) to a list of users
+    // ถ้าพบข้อมูล ส่งผลลัพธ์กลับให้กับไคลเอนต์ในรูปแบบ JSON
+    res.send(result);
+  });
+});
+
+app.get("/project_adminID", (req, res) => {
+  const id = req.query.id; // Change this to use req.query.id to retrieve the query parameter
+
+  console.log("id : " + id);
+  db.query("SELECT * FROM `admin_project` WHERE id=?;", [id], (err, result) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ error: "Internal server error" });
+    }
     const users = result.map((user) => ({
       id: user.id,
-      status: user.status,
-      phone_number: user.phone_number,
-      project_type: user.project_type,
-      room_type: user.room_type,
-      sq_meter: user.sq_meter,
-      address: user.address,
+      project_name: user.project_name,
+      developer: user.developer,
       provinces: user.provinces,
       district: user.district,
       subdistrict: user.subdistrict,
+      address: user.address,
       zipcode: user.zipcode,
-
+      img: user.img,
       // Add more properties as needed
     }));
 
     // Send the list of users as a JSON response
+    console.log(users);
     res.send(users);
+  });
+});
+
+app.post("/edit_adminproject", (req, res) => {
+  const {
+    id,
+    project_name,
+    developer,
+    address,
+    provinces,
+    district,
+    subdistrict,
+    img,
+    zipcode,
+  } = req.body;
+
+
+
+  db.beginTransaction((err) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send("Internal server error");
+    }
+
+    db.query(
+      "UPDATE `admin_project` SET `project_name` = ?, `developer` = ?, `provinces` = ?, `district` = ?, `subdistrict` = ?, `address` = ?, `zipcode` = ?, `img` = ? WHERE id=?;",
+      [
+        project_name,
+        developer,
+        provinces,
+        district,
+        subdistrict,
+        address,
+        zipcode,
+        img,
+        id
+
+      ],
+      (err, result) => {
+        if (err) {
+          db.rollback(() => {
+            console.log(err);
+            return res.status(500).send("Internal server error");
+          });
+        }
+
+        db.commit((err) => {
+          if (err) {
+            db.rollback(() => {
+              console.log(err);
+              return res.status(500).send("Internal server error");
+            });
+          }
+          return res.status(200).send("Project updated successfully");
+        });
+      }
+    );
   });
 });
 
@@ -614,14 +699,23 @@ app.get("/getadminproject", (req, res) => {
       return res.status(500).send("Internal server error");
     }
 
-    if (result.length === 0) {
-      return res.status(404).send("Image not found");
-    }
+    const users = result.map((user) => ({
+      id: user.id,
+      project_name: user.project_name,
+      developer: user.developer,
+      provinces: user.provinces,
+      district: user.district,
+      subdistrict: user.subdistrict,
+      address: user.address,
+      zipcode: user.zipcode,
+      img: user.img,
 
-    // Retrieve and send the image data as a response
-    const project = result[0];
-    console.log(project);
-    res.send(project);
+      // Add more properties as needed
+    }));
+
+    // Send the list of users as a JSON response
+    console.log(users);
+    res.send(users);
   });
 });
 
@@ -808,9 +902,95 @@ app.post("/getUserEmailByPhoneNumber", (req, res) => {
   );
 });
 
+// app.post("/login", (req, res) => {
+//   const { phone_number, password } = req.body;
+
+//   // Check if the provided phone number exists in the database
+//   db.query(
+//     "SELECT * FROM users WHERE phone_number = ?",
+//     [phone_number],
+//     (err, results) => {
+//       if (err) {
+//         console.log(err);
+//         return res.status(500).send("Internal server error");
+//       }
+
+//       if (results.length === 0) {
+//         return res.status(401).send("Invalid phone number or password");
+//       }
+
+//       const user = results[0];
+
+//       // Compare the provided password with the hashed password from the database
+//       bcrypt.compare(password, user.password, (hashErr, passwordMatch) => {
+//         if (hashErr) {
+//           console.log(hashErr);
+//           return res.status(500).send("Internal server error");
+//         }
+
+//         if (!passwordMatch) {
+//           return res.status(401).send("Invalid phone number or password");
+//         }
+//         const currentDate = new Date().toLocaleDateString();
+//         const [day, month, year] = currentDate.split("/").map(Number);
+
+//         console.log(day + " " + month + " " + year);
+
+//         const lastPasswordChangeDate = user.password_date;
+//         const [lastday, lastmonth, lastyear] = lastPasswordChangeDate
+//           .split("/")
+//           .map(Number);
+
+//         // calculate
+//         const total_date = Math.abs(day - lastday);
+//         const total_month = Math.abs(month - lastmonth) * 31;
+//         const total_year = Math.abs(year - lastyear) * 365;
+
+//         console.log(total_date + total_month + total_year);
+
+//         console.log(lastday + " " + lastmonth + " " + lastyear);
+
+//         console.log("Date log : " + lastPasswordChangeDate);
+//         console.log("Date log : " + currentDate);
+
+//         if (total_date + total_month + total_year >= 90) {
+//           // Redirect the user to the password change page
+//           return res.status(200).send("/changepassword");
+//         } else {
+//           if (user.phone_number.toLowerCase() === "admin") {
+//             // Direct the user to the admin page
+//             return res.status(200).send("/admin");
+//           } else {
+//             // Check if the user has a zipcode in users_info
+//             db.query(
+//               "SELECT zipcode FROM users_info WHERE phone_number = ?",
+//               [phone_number],
+//               (err, infoResults) => {
+//                 if (err) {
+//                   console.log(err);
+//                   return res.status(500).send("Internal server error");
+//                 }
+
+//                 const userInfo = infoResults[0];
+
+//                 if (!userInfo || userInfo.zipcode === null) {
+//                   // If there is no zipcode in users_info, direct the user to /user
+//                   return res.status(200).send("/user");
+//                 } else {
+//                   // If there is a zipcode, direct the user to /userprofile
+//                   return res.status(200).send("/userprofile");
+//                 }
+//               }
+//             );
+//           }
+//         }
+//       });
+//     }
+//   );
+// });
+
 app.post("/login", (req, res) => {
   const { phone_number, password } = req.body;
-
   // Check if the provided phone number exists in the database
   db.query(
     "SELECT * FROM users WHERE phone_number = ?",
@@ -820,54 +1000,37 @@ app.post("/login", (req, res) => {
         console.log(err);
         return res.status(500).send("Internal server error");
       }
-
       if (results.length === 0) {
         return res.status(401).send("Invalid phone number or password");
       }
-
       const user = results[0];
-
       // Compare the provided password with the hashed password from the database
       bcrypt.compare(password, user.password, (hashErr, passwordMatch) => {
+        // this line -------------------------------------------------------------
+
         if (hashErr) {
           console.log(hashErr);
           return res.status(500).send("Internal server error");
         }
-
         if (!passwordMatch) {
           return res.status(401).send("Invalid phone number or password");
-        }
-        const currentDate = new Date().toLocaleDateString();
-        const [day, month, year] = currentDate.split("/").map(Number);
-
-        console.log(day + " " + month + " " + year);
-
-        const lastPasswordChangeDate = user.password_date;
-        const [lastday, lastmonth, lastyear] = lastPasswordChangeDate
-          .split("/")
-          .map(Number);
-
-        // calculate
-        const total_date = Math.abs(day - lastday);
-        const total_month = Math.abs(month - lastmonth) * 31;
-        const total_year = Math.abs(year - lastyear) * 365;
-
-        console.log(total_date + total_month + total_year);
-
-        console.log(lastday + " " + lastmonth + " " + lastyear);
-
-        console.log("Date log : " + lastPasswordChangeDate);
-        console.log("Date log : " + currentDate);
-
-        if (total_date + total_month + total_year >= 90) {
-          // Redirect the user to the password change page
-          return res.status(200).send("/changepassword");
         } else {
-          if (user.phone_number.toLowerCase() === "admin") {
-            // Direct the user to the admin page
-            return res.status(200).send("/admin");
-          } else {
-            // Check if the user has a zipcode in users_info
+          // Admin login
+          if (user.role.toLowerCase() === "admin") {
+            const token = jwt.sign(
+              {
+                email: user.email,
+                role: user.role,
+                phone_number: user.phone_number,
+              },
+              secret,
+              { expiresIn: "1h" }
+            );
+            return res.status(200).json({ token, redirectTo: "/admin" });
+          }
+
+          // User login
+          if (user.role.toLowerCase() === "user") {
             db.query(
               "SELECT zipcode FROM users_info WHERE phone_number = ?",
               [phone_number],
@@ -876,15 +1039,31 @@ app.post("/login", (req, res) => {
                   console.log(err);
                   return res.status(500).send("Internal server error");
                 }
-
                 const userInfo = infoResults[0];
-
                 if (!userInfo || userInfo.zipcode === null) {
-                  // If there is no zipcode in users_info, direct the user to /user
-                  return res.status(200).send("/user");
+                  const token = jwt.sign(
+                    {
+                      email: user.email,
+                      role: user.role,
+                      phone_number: user.phone_number,
+                    },
+                    secret,
+                    { expiresIn: "1h" }
+                  );
+                  return res.status(200).json({ token, redirectTo: "/user" });
                 } else {
-                  // If there is a zipcode, direct the user to /userprofile
-                  return res.status(200).send("/userprofile");
+                  const token = jwt.sign(
+                    {
+                      email: user.email,
+                      role: user.role,
+                      phone_number: user.phone_number,
+                    },
+                    secret,
+                    { expiresIn: "1h" }
+                  );
+                  return res
+                    .status(200)
+                    .json({ token, redirectTo: "/userprofile" });
                 }
               }
             );
@@ -895,8 +1074,39 @@ app.post("/login", (req, res) => {
   );
 });
 
+app.post("/authen", function (req, res, next) {
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+    var decoded = jwt.verify(token, secret);
+
+    // เชื่อมต่อกับฐานข้อมูลเพื่อดึงข้อมูลผู้ใช้
+    db.query(
+      "SELECT role FROM users WHERE email = ?",
+      [decoded.email],
+      (err, results) => {
+        if (err) {
+          console.log(err);
+          return res.json({ status: "err", message: err.message });
+        }
+
+        const userRole = results[0] && results[0].role;
+
+        if (!userRole) {
+          return res.json({ status: "err", message: "User not found" });
+        }
+
+        // เพิ่ม role ใน decoded และส่งค่ากลับไปยัง client
+        decoded.role = userRole;
+        res.json({ status: "ok", decoded });
+      }
+    );
+  } catch (err) {
+    res.json({ status: "err", message: err.message });
+  }
+});
+
 app.get("/homecontent", (req, res) => {
-  db.query("SELECT * FROM content", (err, result) => {
+  db.query("SELECT * FROM content ORDER BY id DESC", (err, result) => {
     if (err) {
       console.error(err);
     } else {
@@ -926,6 +1136,23 @@ app.delete("/deletecontent/:id", (req, res) => {
       res.send(result);
     }
   });
+});
+
+app.post("/addcontent", (req, res) => {
+  const cTitle = req.body.title;
+  const cCaption = req.body.caption;
+  const cInfo = req.body.info;
+  db.query(
+    "INSERT INTO content (title, caption, info) VALUES(?,?,?)",
+    [cTitle, cCaption, cInfo],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json("Add Content Success");
+      }
+    }
+  );
 });
 
 app.listen("3001", () => {

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./User-profile.css"; // Import the CSS file for this component
 import "react-icons/fa";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { Carousel } from "react-responsive-carousel";
 
 import gallery3 from "../../../assets/images/gallery3.png";
 import gallery4 from "../../../assets/images/gallery4.png";
@@ -19,6 +18,8 @@ import Thai_provinces from "../../../thai_provinces.js";
 import Thai_district from "../../../thai_amphures.js";
 import Thai_subdistrict from "../../../thai_tambons.js";
 
+import Bluprint from "../../../components/Admin/all-projects/All_blueprintforuser";
+
 import {
   FaCamera,
   FaPlus,
@@ -34,8 +35,49 @@ import { FaIdCard } from "react-icons/fa";
 import Axios from "axios";
 
 function Project() {
+  //authen fetch
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+
+    // ตรวจสอบสถานะการเข้าสู่ระบบและสิทธิ์
+    if (!token) {
+      // ถ้าไม่มี token ให้เปลี่ยนเส้นทางไปยังหน้าเข้าสู่ระบบ
+      window.location = "/login";
+    } else {
+      // ถ้ามี token ให้ส่งคำขอเพื่อตรวจสอบสิทธิ์
+      fetch("http://localhost:3001/authen", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status === "ok" && role === "user") {
+          } else {
+            window.location = "/login";
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
+  }, []);
+
+  const handleLogout = (event) => {
+    event.preventDefault();
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("phone");
+    window.location = "/";
+  };
+
   const navigate = useNavigate();
   const { phone_number } = useParams();
+
+  const [data, setData] = useState([]);
 
   const [isMobile, setIsMobile] = useState(false);
   const [isProjectCreateClicked, setIsProjectCreateClicked] = useState(false);
@@ -213,6 +255,15 @@ function Project() {
 
     setSelectedEditDays(updatedSelectedEditDays);
     console.log(updatedSelectedEditDays);
+  };
+
+  const imageStyle = {
+    width: isMobile ? "300px" : "500px", // Set the width as per your requirement (e.g., '200px')
+    height: "250px", // Set the height as per your requirement (e.g., '150px')
+    margin: "auto", // Center horizontally
+    display: "block", // Remove any default inline styles
+    justifyContent: "center", // Center vertically
+    alignItems: "center", // Center horizontally
   };
 
   const [projectName, setprojectName] = useState("แสนสิริ");
@@ -505,6 +556,16 @@ function Project() {
     setdistrict(Thai_district);
     setSubdistrict(Thai_subdistrict);
 
+    Axios.get("http://localhost:3001/getadminproject")
+      .then((response) => {
+        if (response.status === 200) {
+          setData(response.data); // Assuming the response contains an array of project data
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
+
     Axios.get("http://localhost:3001/getuserImage", {
       params: {
         phone_number: phoneNumber,
@@ -631,12 +692,11 @@ function Project() {
                   width: "190px",
                   height: "30px",
                   textAlign: "center",
-                  borderColor: "#038E7F",
-                  backgroundColor: "#038E7F",
-                  color: "#ffffff",
-                  marginTop: "1px",
+                  borderColor: "#fff",
+                  backgroundColor: "#fff",
+                  color: "black",
                   borderRadius: "10px",
-                  marginLeft: "3px",
+                  margin: "3px auto 0 auto",
                 }}
                 id="dropdown"
                 className="text"
@@ -670,7 +730,7 @@ function Project() {
                   color={isProjectClicked ? "white" : "gray"}
                   className="button-icon"
                 />{" "}
-                <p className="profile-graps">โครงการของฉัน</p>
+                <p>โครงการของฉัน</p>
               </div>
               <hr
                 style={{
@@ -689,7 +749,7 @@ function Project() {
                   color={`${isPaymentClicked ? "white" : "gray"}`}
                   className="button-icon"
                 />{" "}
-                <p className="profile-graps">การชำระเงิน</p>
+                <p>การชำระเงิน</p>
               </div>
 
               <hr
@@ -709,7 +769,7 @@ function Project() {
                   color={`${isInfoClicked ? "white" : "grey"}`}
                   className="button-icon"
                 />{" "}
-                <p className="profile-graps">ข้อมูลผู้ใช้งาน</p>
+                <p>ข้อมูลผู้ใช้งาน</p>
               </div>
 
               <hr
@@ -718,13 +778,13 @@ function Project() {
                 }}
               ></hr>
               <Link to="/">
-                <div onClick={handleInfoClick} className={"Userbutton"}>
+                <div onClick={handleLogout} className={"Userbutton"}>
                   <FaSignOutAlt
                     size={isMobile ? 10 : 17}
                     color={"grey"}
                     className="button-icon"
                   />{" "}
-                  <p className="profile-graps">ออกจากระบบ</p>
+                  <p>ออกจากระบบ</p>
                 </div>
               </Link>
             </div>
@@ -734,7 +794,7 @@ function Project() {
           <div className="project-profilebar">
             {isProjectClicked && (
               <div
-                style={{ height: "500px", width: "910px", overflow: "scroll" }}
+                style={{ height: "500px", width: "auto", overflow: "hidden" }}
               >
                 <div className="adproject-button" onClick={btnClick}>
                   <FaPlus size={10} color="white" /> เพิ่มโครงการ
@@ -809,7 +869,12 @@ function Project() {
             )}
             {isProjectCreateClicked && (
               <div
-                style={{ height: "500px", width: "910px", overflow: "scroll" }}
+                style={{
+                  height: "500px",
+                  width: "910px",
+                  overflow: "scroll",
+                  overflowX: "hidden",
+                }}
               >
                 <h1 className="titletext">สร้างโครงการ</h1>
                 <hr
@@ -1121,21 +1186,11 @@ function Project() {
                         value={projectName}
                         onChange={handleProjectChange}
                       >
-                        <option value="ห้องนอน" className="text">
-                          ห้องนอน
-                        </option>
-                        <option value="ห้องน้ำ" className="text">
-                          ห้องน้ำ
-                        </option>
-                        <option value="ห้องนั่งเล่น" className="text">
-                          ห้องนั่งเล่น
-                        </option>
-                        <option value="ห้องครัว" className="text">
-                          ห้องครัว
-                        </option>
-                        <option value="ห้องอเนกประสงค์" className="text">
-                          ห้องอเนกประสงค์
-                        </option>
+                        {data.map((state) => (
+                          <option key={state.id} value={state.project_name}>
+                            {state.project_name}
+                          </option>
+                        ))}
                         <option value="" className="text">
                           อื่นๆ
                         </option>
@@ -1160,7 +1215,7 @@ function Project() {
                     height: "60px",
                   }}
                 ></hr>
-                <hr className="new4"></hr>
+                <hr className="hrForUserProfile"></hr>
                 <hr
                   style={{
                     height: "40px",
@@ -1175,7 +1230,10 @@ function Project() {
 
                 <div class="grid-container">
                   <div class="grid-item">
-                    <div className="area-input" style={{ height: "91px" }}>
+                    <div
+                      className="linkgoogleInput"
+                      style={{ height: "60 px" }}
+                    >
                       กำหนดเริ่มดำเนินโครงการ
                       <input
                         style={{ width: "130px" }} // Set the width using inline CSS
@@ -1298,36 +1356,22 @@ function Project() {
                   <div>
                     <hr
                       style={{
-                        height: "10px",
+                        height: "20px",
                       }}
                     ></hr>
+                    <div>
+                      <p className="text2">ดูแบบบ้านในแต่ละโครงการ</p>
+                    </div>
                     <div class="grid-container2">
-                      <div class="grid-item2">
-                        <p className="text2">ดูแบบบ้านในแต่ละโครงการ</p>
-
-        
-                      </div>
-                      <div class="grid-item2">
-                        {" "}
-                        <Carousel
-                          showArrows={true} // Show navigation arrows
-                          showThumbs={false} // Hide thumbnail images
-                          infiniteLoop={true} // Enable infinite loop
-                          autoPlay={true} // Auto play the carousel
-                          interval={5000} // Time (in milliseconds) between slides
-                          height="50px"
-                        >
-                          <div>
-                            <img src={gallery3} alt="Image 1" />
-                            <p className="legend">Caption for Image 1</p>
-                          </div>
-                          <div>
-                            <img src={gallery5} alt="Image 2" />
-                            <p className="legend">Caption for Image 2</p>
-                          </div>
-
-                          {/* Add more images as needed */}
-                        </Carousel>
+                      <div
+                        style={{
+                          height: "300px",
+                          width: "auto",
+                          overflow: "auto",
+                          alignItems: "center"
+                        }}
+                      >
+                        <Bluprint />
                       </div>
                       <div class="grid-item2"></div>
                     </div>
@@ -1670,21 +1714,11 @@ function Project() {
                         value={project_name_edit}
                         onChange={handleProjectEditChange}
                       >
-                        <option value="ห้องนอน" className="text">
-                          ห้องนอน
-                        </option>
-                        <option value="ห้องน้ำ" className="text">
-                          ห้องน้ำ
-                        </option>
-                        <option value="ห้องนั่งเล่น" className="text">
-                          ห้องนั่งเล่น
-                        </option>
-                        <option value="ห้องครัว" className="text">
-                          ห้องครัว
-                        </option>
-                        <option value="ห้องอเนกประสงค์" className="text">
-                          ห้องอเนกประสงค์
-                        </option>
+                        {data.map((state) => (
+                          <option key={state.id} value={state.project_name}>
+                            {state.project_name}
+                          </option>
+                        ))}
                         <option value="" className="text">
                           อื่นๆ
                         </option>
@@ -1724,7 +1758,7 @@ function Project() {
                     height: "60px",
                   }}
                 ></hr>
-                <div className="new4"></div>
+                <div className="hrForUserProfile"></div>
                 <hr
                   style={{
                     height: "40px",
@@ -1739,7 +1773,7 @@ function Project() {
 
                 <div class="grid-container">
                   <div class="grid-item">
-                    <div className="area-inputmim">
+                    <div className="linkgoogleInput">
                       กำหนดเริ่มดำเนินโครงการ
                       <input
                         style={{ width: "130px" }} // Set the width using inline CSS
@@ -1868,49 +1902,23 @@ function Project() {
                     <div class="grid-container2">
                       <div class="grid-item2">
                         <p className="text2">ดูแบบบ้านในแต่ละโครงการ</p>
-                        </div>
                       </div>
-                      <div class="grid-item2">
-                        {" "}
-                        <Carousel
-                          showArrows={true}
-                          showThumbs={false}
-                          infiniteLoop={true}
-                          autoPlay={true}
-                          interval={5000}
-                          style={{
-                            width: isMobile ? "200px" : "100%", // Adjust the width based on your requirements
-                            margin: "0 auto", // Center the carousel
-                          }}
-                        >
-                          <div>
-                            <img
-                              src={gallery3}
-                              style={{
-                                width: isMobile ? "200px" : "100%", // Adjust the width based on your requirements
-                                margin: "0 auto", // Center the carousel
-                              }}
-                              alt="Image 1"
-                            />
-                            <p className="legend">Caption for Image 1</p>
-                          </div>
-                          <div>
-                            <img
-                              src={gallery5}
-                              style={{
-                                width: isMobile ? "200px" : "100%", // Adjust the width based on your requirements
-                                margin: "0 auto", // Center the carousel
-                              }}
-                              alt="Image 2"
-                            />
-                            <p className="legend">Caption for Image 2</p>
-                          </div>
-                          {/* Add more images as needed */}
-                        </Carousel>
-                      </div>
-                      <div class="grid-item2"></div>
                     </div>
-               
+                    <div class="grid-item2">
+                      {" "}
+                      <div
+                        style={{
+                          height: "300px",
+                          width: "auto",
+                          overflow: "auto",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Bluprint />
+                      </div>
+                    </div>
+                    <div class="grid-item2"></div>
+                  </div>
                 ) : (
                   <div></div>
                 )}
@@ -1975,7 +1983,7 @@ function Project() {
             )}
 
             {isInfoClicked && (
-              <div style={{ height: "500px", overflow: "scroll" }}>
+              <div style={{ height: "500px" }}>
                 <h1 className="titleConfirm">ข้อมูลผู้ใช้งาน</h1>
                 <hr
                   style={{
@@ -2070,6 +2078,7 @@ function Project() {
                 <Link to={`/user/${phone_number}`}>
                   <div className="assign1-confirm-button">แก้ไขข้อมูล</div>
                 </Link>
+                <span className="ThisIsSpan">&nbsp;</span>
               </div>
             )}
           </div>

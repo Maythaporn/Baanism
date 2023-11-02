@@ -21,9 +21,49 @@ import Content from "../all-projects/all_content";
 import Add_content from "../content/content";
 import UpdateProject from "../update-project/update";
 import EditUpdateContent from "../content/editcontent";
+import Admin_project from "../all-projects/All_blueprint";
 import { Editestimate } from "../Edit-estimate/Editestimate";
 
 function Project() {
+  const handleLogout = (event) => {
+    event.preventDefault();
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("phone");
+    window.location = "/";
+  };
+  //authen fetch
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+
+    // ตรวจสอบสถานะการเข้าสู่ระบบและสิทธิ์
+    if (!token) {
+      // ถ้าไม่มี token ให้เปลี่ยนเส้นทางไปยังหน้าเข้าสู่ระบบ
+      window.location = "/login";
+    } else {
+      // ถ้ามี token ให้ส่งคำขอเพื่อตรวจสอบสิทธิ์
+      fetch("http://localhost:3001/authen", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status === "ok" && role === "admin") {
+            console.log("Authentication success for admin");
+          } else {
+            window.location = "/login";
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
+  }, []);
+
   const [isMobile, setIsMobile] = useState(false);
   const [isProjectClicked, setIsProjectClicked] = useState(true);
   const [isUpdateClicked, setIsUpdateClicked] = useState(false);
@@ -88,19 +128,7 @@ function Project() {
     setisEditEstimateClicked(false);
   };
 
-  const [projects, setProjects] = useState([]);
-
   useEffect(() => {
-    Axios.get("http://localhost:3001/getadminproject")
-      .then((response) => {
-        if (response.status === 200) {
-          setProjects(response.data); // Assuming the response contains an array of project data
-          console.log("Project: " + projects);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching data: ", error);
-      });
     // Add an event listener to track window size changes
     function handleResize() {
       setIsMobile(window.innerWidth <= 768); // Adjust the breakpoint as needed
@@ -185,23 +213,18 @@ function Project() {
           </div>
 
           <br />
-          <Link to="/">
-            <div className={"admin-botton"}>
-              <FaSignOutAlt
-                size={isMobile ? 10 : 17}
-                color={"grey"}
-                className="button-icon"
-              />{" "}
-              ออกจากระบบ
-            </div>
-          </Link>
+          <div className={"admin-botton"} onClick={handleLogout}>
+            <FaSignOutAlt
+              size={isMobile ? 10 : 17}
+              color={"grey"}
+              className="button-icon"
+            />{" "}
+            ออกจากระบบ
+          </div>
         </div>
         <br />
       </div>
-      <div
-        style={{ height: "500px", overflow: "scroll" }}
-        className="admin-profilebar"
-      >
+      <div style={{ overflow: "scroll" }} className="admin-profilebar">
         {isProjectClicked && <AllProjects />}
 
         {isUpdateClicked && (
@@ -221,25 +244,9 @@ function Project() {
             <div className="adcontent-button" onClick={handleButtonClick}>
               <FaPlus size={10} color="white" /> เพิ่มแบบโครงการ
             </div>
-       <div>
-       {projects.map((e) => (
-                <div className="admin-project-container" key={e.id}>
-                    <div className='info-left'>
-                        <p className='project-title'>{e.project_name}</p>
-                        <p>Developer : {e.developer}</p>
-                        <p>สถานที่ : {e.address}</p>
-                    </div>
-                    <div className='info-right'>
-                        <p>สถานะ : <span class="status"></span>รอการติดต่อกลับ</p>
-                        <div className='edit'>
-                            <button className='edit-btn'>แก้ไขข้อมูล</button>
-                            <span className='space'>|</span>
-                            <button className='edit-btn'>ลบโครงการ</button>
-                        </div>
-                    </div>
-                </div>
-            ))}
-       </div>
+            <div>
+              <Admin_project />
+            </div>
           </div>
         )}
         {isAddProjectClicked && (
@@ -249,6 +256,9 @@ function Project() {
         )}
         {isAddcontentClicked && (
           <div>
+            <button className="content-back" onClick={handleUpdateClick}>
+              ย้อนกลับ
+            </button>
             <Add_content />
           </div>
         )}

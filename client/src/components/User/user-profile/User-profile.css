@@ -1,30 +1,28 @@
-.projectUsercontainer{
-  background-image: url("./../../../assets/images/bg-information.png"); 
+.projectUsercontainer {
+  background-image: url("./../../../assets/images/bg-information.png");
   background-repeat: repeat; /* Adjust as needed */
   background-size: cover; /* Cover the entire page */
   background-attachment: fixed; /* Fixed background image */
   background-position: center; /* Center the image horizontally and vertically */
   flex-direction: column;
-  justify-content:space-evenly; 
+  justify-content: space-evenly;
   display: flex;
 
   height: 82dvh;
 
-
   width: 100%;
 }
 
-.mim-container{
+.mim-container {
   padding-top: 20px;
   display: flex;
   width: 900px;
 
   flex-direction: row;
   text-align: left;
-
 }
 
-.mim-container2{
+.mim-container2 {
   padding-top: 20px;
   display: flex;
   width: 150px;
@@ -33,33 +31,32 @@
   justify-content: space-evenly;
 }
 
-
 .titletext-container {
-  display: flex; 
-  align-items: center; 
+  display: flex;
+  align-items: center;
   margin-right: 10px;
 }
-.titletext{
+.titletext {
   display: flex;
   flex-direction: row;
   text-align: center;
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
   font-size: 50px;
   display: inline;
 }
 
-.titletext2{
+.titletext2 {
   display: flex;
   flex-direction: row;
   text-align: left;
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
   font-size: 25px;
 }
 
 .user-project-container {
-  font-family: 'prompt', sans-serif;
+  font-family: "prompt", sans-serif;
   font-size: 16px;
   position: relative;
   display: flex;
@@ -114,7 +111,7 @@
 }
 
 .edit-btn {
-  font-family: 'prompt', sans-serif;
+  font-family: "prompt", sans-serif;
   font-size: 16px;
   border: none;
   background: none;
@@ -132,50 +129,47 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-  border: 2px solid ;
-  background-color: #038E7F;
-  border-radius: 20px;
+  border: 2px solid #038e7f;
+  background-color: #fff;
+  border-radius: 14px;
   outline: none;
   align-content: center;
   font-size: 16px;
 
   padding-top: 1px;
-  font-family: 'Prompt', sans-serif;
+  font-family: "Prompt", sans-serif;
   color: #ffffff;
-
 }
 
-
-
-.MimprojectUsercontainer{
-  background-image: url("./../../../assets/images/bg-information.png"); 
+.MimprojectUsercontainer {
+  background-image: url("./../../../assets/images/bg-information.png");
   background-repeat: repeat; /* Adjust as needed */
   background-size: cover; /* Cover the entire page */
   background-attachment: fixed; /* Fixed background image */
   background-position: center; /* Center the image horizontally and vertically */
   flex-direction: row;
-  justify-content:space-evenly; 
+  justify-content: space-evenly;
   display: flex;
   padding-top: 40px;
-  
+
   width: 100%;
 }
 
-.project-sidebar{
-    margin-left: 2rem;
+.project-sidebar {
+  margin-left: 2rem;
 
-    width: 300px;
-    height: 400px;
-    background-color: white;
-    border: 1px solid gray;
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px grey;
+  width: 300px;
+  height: 400px;
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px grey;
 
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
 
-    align-items: center;
+  align-items: center;
 }
 
 .grid-container {
@@ -191,32 +185,30 @@
 .grid-item {
   width: 400px;
 
-  color:#100F0D;
+  color: #100f0d;
   font-size: 30px;
   justify-content: space-between;
   text-align: center;
   margin-right: 20px;
-
 }
 
 .grid-container2 {
   display: grid;
   row-gap: 10px;
   margin-left: 20px;
-  grid-template-columns: auto ;
+  grid-template-columns: auto;
 
   padding: 10px;
 }
 .grid-item2 {
-
-  padding: 20px;
+  padding-left: 20px;
   font-size: 30px;
   text-align: center;
   justify-content: center;
   align-items: center;
 }
 
-.project-profilebar{
+.project-profilebar {
   margin-bottom: 90px;
   width: 1000px;
   height: 580px;
@@ -231,42 +223,40 @@
   text-align: center;
   padding-top: 40px;
   font-size: 50px;
-  font-family: 'Prompt', sans-serif;
+  font-family: "Prompt", sans-serif;
   color: #e1e1e1;
-
 }
 
-.profile-circle{
+.profile-circle {
   width: 150px;
   height: 150px;
   text-align: center;
 
   background-color: gray;
-  border-radius: 100px
+  border-radius: 100px;
 }
 
-.img-circle{
+.img-circle {
   width: 100px;
   height: 145px;
-  border-radius: 100%
+  border-radius: 100%;
 }
 
-.profile-fix-circle{
+.profile-fix-circle {
   margin-left: 4rem;
   width: 30px;
   height: 30px;
   text-align: center;
 
   background-color: #d9d9d9;
-  border-radius: 100px
+  border-radius: 100px;
 }
 
-
-.Userselect-button{
+.Userselect-button {
   border-radius: 10px;
-  background-color: #03128E;
+  background-color: #03128e;
   font-size: 15px;
-  font-family: 'Prompt', sans-serif;
+  font-family: "Prompt", sans-serif;
   color: white;
   width: 200px;
   height: 32px;
@@ -276,12 +266,12 @@
   flex-direction: row;
 }
 
-.Userbutton{
+.Userbutton {
   border-radius: 10px;
   background-color: white;
   font-size: 15px;
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
   width: 200px;
   height: 32px;
   align-items: center;
@@ -290,12 +280,12 @@
   flex-direction: row;
 }
 
-.assign1-confirm-button{
+.assign1-confirm-button {
   padding-top: 10px;
   border-radius: 10px;
-  background-color: #038E7F;
+  background-color: #038e7f;
   font-size: 16px;
-  font-family: 'Prompt', sans-serif;
+  font-family: "Prompt", sans-serif;
   color: #ffffff;
   width: 150px;
   height: 40px;
@@ -303,21 +293,19 @@
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
-
 }
 
-.align{
+.align {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
 }
 
-
-.adproject-button{
+.adproject-button {
   border-radius: 10px;
-  background-color: #038E7F;
+  background-color: #038e7f;
   font-size: 15px;
-  font-family: 'Prompt', sans-serif;
+  font-family: "Prompt", sans-serif;
   color: white;
   width: 150px;
   height: 32px;
@@ -325,30 +313,29 @@
   text-align: center;
   padding-top: 3px;
   margin-left: 40rem;
-
 }
 
-.icon-space{
-margin-left: 10px;
+.icon-space {
+  margin-left: 10px;
 }
 
-.confirm_contain{
+.confirm_contain {
   display: flex;
   flex-direction: row;
   justify-content: center;
   text-align: center;
   margin-top: 0px;
   margin-bottom: 15px;
-  color: #100F0D;
+  color: #100f0d;
   font-size: 30px;
-  font-family: 'Prompt', sans-serif;
+  font-family: "Prompt", sans-serif;
 }
 
-.confiRmbutton{
+.confiRmbutton {
   border-radius: 10px;
-  background-color: #038E7F;
+  background-color: #038e7f;
   font-size: 15px;
-  font-family: 'Prompt', sans-serif;
+  font-family: "Prompt", sans-serif;
   color: white;
   width: 150px;
   height: 32px;
@@ -357,32 +344,31 @@ margin-left: 10px;
   padding-top: 3px;
   margin-left: 27rem;
   margin-top: 40px;
-
 }
 
-.user-icon{
+.user-icon {
   margin-top: 20px;
 }
 
-.profile-graps{
+.profile-graps {
   margin-top: 10px;
 }
 
-.camera-icon{
+.camera-icon {
   margin-bottom: 5px;
 }
 
-.button-icon{
+.button-icon {
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 5px;
   margin-bottom: 5px;
 }
 
-.profile-gridHvan{
-  position: relative; 
+.profile-gridHvan {
+  position: relative;
   display: grid;
-  grid-template-columns:1fr 1fr; /* สองคอลัมน์ที่มีความกว้างเท่ากัน */
+  grid-template-columns: 1fr 1fr; /* สองคอลัมน์ที่มีความกว้างเท่ากัน */
   gap: 20px; /*ปรับช่องว่างระหว่างรายการ */
   align-items: center; /* จัดตำแหน่งรายการที่ด้านบนของแต่ละคอลัมน์ */
   width: 100%;
@@ -392,10 +378,10 @@ margin-left: 10px;
   width: 100%;
   height: 54px;
   margin: 10px 0;
-  border: 1px solid #D9D9D9;
+  border: 1px solid #d9d9d9;
   border-radius: 10px;
   font-size: 16px;
-  font-family: 'Prompt', sans-serif;
+  font-family: "Prompt", sans-serif;
   padding-left: 35px;
 }
 
@@ -408,9 +394,9 @@ margin-left: 10px;
   border-color: #007bff;
 }
 
-.text-inputHvan{
+.text-inputHvan {
   width: 400px;
-  height:60px;
+  height: 60px;
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -420,8 +406,8 @@ margin-left: 10px;
   align-content: center;
   font-size: 16px;
   margin-top: 2px;
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
   padding-top: 10px;
   padding-left: 10px;
 }
@@ -441,8 +427,8 @@ margin-left: 10px;
   font-size: 16px;
   margin-top: 2px;
   margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
 }
 
 .text-input-provincesHvan {
@@ -460,8 +446,8 @@ margin-left: 10px;
   font-size: 16px;
   margin-top: 2px;
   margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
 }
 
 .district-inputHvan {
@@ -479,11 +465,9 @@ margin-left: 10px;
   margin-right: 10px;
   padding-top: 7px;
   padding-left: 10px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
-
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
 }
-
 
 .phone-inputHvan {
   padding-top: 10px;
@@ -500,13 +484,13 @@ margin-left: 10px;
   font-size: 16px;
   margin-top: 2px;
   margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
 }
 
-.titleConfirm{
+.titleConfirm {
   margin-left: 17rem;
-  color: #100F0D;
+  color: #100f0d;
   display: flex;
   text-align: center;
   flex-direction: row;
@@ -528,8 +512,8 @@ margin-left: 10px;
   font-size: 16px;
   margin-top: 2px;
   margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
 }
 
 .address-inputHvan {
@@ -547,8 +531,8 @@ margin-left: 10px;
   font-size: 16px;
   margin-top: 2px;
   margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
 }
 
 .text-inputProject {
@@ -566,7 +550,7 @@ margin-left: 10px;
   text-align: left;
   margin-top: 2px;
   margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-  font-family: 'Prompt', sans-serif;
+  font-family: "Prompt", sans-serif;
 }
 
 .linkgoogleInput {
@@ -584,28 +568,54 @@ margin-left: 10px;
   font-size: 16px;
   margin-top: 2px;
   margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-  font-family: 'Prompt', sans-serif;
-  color: #100F0D;
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
 }
 
-.new4 {
-  width: 800px;
+.hrForUserProfile {
+  align-items: center;
+  width: 90%;
+  margin: 0 32px 0 20px;
   border: 0.5px solid #e1e1e0;
 }
 
+.ThisIsSpan {
+  display: none;
+}
 
+.text2 {
+  font-size: 20px;
+  font-family: "Prompt", sans-serif;
+  color: #100f0d;
+}
+
+.custom-carousel {
+  margin-right: 200rem;
+  margin-top: 20px;
+}
 
 @media (max-width: 768px) {
+  .custom-carousel {
+    margin-right: 320rem;
+  margin-top: 0rem;
+  }
 
-  .new4 {
-    width: 100px;
+  .ThisIsSpan {
+    display: block;
+  }
+
+  .hrForUserProfile {
+    align-items: center;
+    margin: 0 auto;
+    width: 60%;
     border: 0.5px solid #e1e1e0;
   }
-  .confiRmbutton{
+
+  .confiRmbutton {
     border-radius: 10px;
-    background-color: #038E7F;
+    background-color: #038e7f;
     font-size: 15px;
-    font-family: 'Prompt', sans-serif;
+    font-family: "Prompt", sans-serif;
     color: white;
     width: 150px;
     height: 32px;
@@ -614,27 +624,26 @@ margin-left: 10px;
     padding-top: 3px;
     margin-left: 7rem;
     margin-top: 40px;
-  
   }
 
-  .confirm_contain{
+  .confirm_contain {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     margin-bottom: 15px;
-    color: #100F0D;
-    color: #100F0D;
+    color: #100f0d;
+    color: #100f0d;
     font-size: 20px;
-    font-family: 'Prompt', sans-serif;
+    font-family: "Prompt", sans-serif;
   }
 
-  .text2{
-    margin-right:15rem ;
+  .text2 {
+    margin-top: 7rem;
   }
 
-  .titletext{
+  .titletext {
     margin-right: 20rem;
     display: flex;
     flex-direction: row;
@@ -654,13 +663,13 @@ margin-left: 10px;
     font-size: 16px;
     margin-top: 2px;
     margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-    font-family: 'Prompt', sans-serif;
-    color: #100F0D;
+    font-family: "Prompt", sans-serif;
+    color: #100f0d;
   }
 
-  .text-inputHvan{
+  .text-inputHvan {
     width: 250px;
-    height:60px;
+    height: 60px;
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -670,12 +679,12 @@ margin-left: 10px;
     align-content: center;
     font-size: 16px;
     margin-top: 2px;
-    font-family: 'Prompt', sans-serif;
-    color: #100F0D;
+    font-family: "Prompt", sans-serif;
+    color: #100f0d;
     padding-top: 10px;
     padding-left: 10px;
   }
-  
+
   .zip-inputHvan {
     padding-top: 10px;
     padding-left: 10px;
@@ -691,10 +700,10 @@ margin-left: 10px;
     font-size: 16px;
     margin-top: 2px;
     margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-    font-family: 'Prompt', sans-serif;
-    color: #100F0D;
+    font-family: "Prompt", sans-serif;
+    color: #100f0d;
   }
-  
+
   .text-input-provincesHvan {
     padding-top: 10px;
     padding-left: 10px;
@@ -710,10 +719,10 @@ margin-left: 10px;
     font-size: 16px;
     margin-top: 2px;
     margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-    font-family: 'Prompt', sans-serif;
-    color: #100F0D;
+    font-family: "Prompt", sans-serif;
+    color: #100f0d;
   }
-  
+
   .district-inputHvan {
     width: 250px;
     height: 60px;
@@ -725,15 +734,14 @@ margin-left: 10px;
     outline: none;
     align-content: center;
     font-size: 16px;
-  
+
     margin-right: 10px;
     padding-top: 7px;
     padding-left: 10px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-    font-family: 'Prompt', sans-serif;
-    color: #100F0D;
-  
+    font-family: "Prompt", sans-serif;
+    color: #100f0d;
   }
-  
+
   .phone-inputHvan {
     padding-top: 10px;
     padding-left: 10px;
@@ -749,32 +757,32 @@ margin-left: 10px;
     font-size: 16px;
     margin-top: 2px;
     margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-    font-family: 'Prompt', sans-serif;
-    color: #100F0D;
+    font-family: "Prompt", sans-serif;
+    color: #100f0d;
   }
 
-  .profile-gridHvan{
-    position: relative; 
+  .profile-gridHvan {
+    position: relative;
     display: grid;
-    grid-template-columns:1fr ; /* สองคอลัมน์ที่มีความกว้างเท่ากัน */
+    grid-template-columns: 1fr; /* สองคอลัมน์ที่มีความกว้างเท่ากัน */
     margin-left: 2rem;
     width: 100%;
   }
 
-  .text1{
+  .text1 {
     display: flex;
     flex-direction: column;
     width: 200px;
   }
 
-  .align{
+  .align {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
   }
-  
+
   .user-project-container {
-    font-family: 'prompt', sans-serif;
+    font-family: "prompt", sans-serif;
     font-size: 16px;
     display: flex;
     flex-direction: column;
@@ -788,11 +796,11 @@ margin-left: 10px;
     color: #000;
   }
 
-  .adproject-button{
+  .adproject-button {
     border-radius: 10px;
-    background-color: #038E7F;
+    background-color: #038e7f;
     font-size: 15px;
-    font-family: 'Prompt', sans-serif;
+    font-family: "Prompt", sans-serif;
     color: white;
     width: 150px;
     height: 32px;
@@ -800,14 +808,13 @@ margin-left: 10px;
     text-align: center;
     margin-left: 30rem;
     padding-top: 3px;
-  
   }
 
-  .area-input{
+  .area-input {
     width: 300px;
   }
 
-  .info-input{
+  .info-input {
     width: 310px;
   }
 
@@ -832,8 +839,8 @@ margin-left: 10px;
     font-size: 16px;
     margin-top: 2px;
     margin-bottom: 2px; /* ลบ margin-bottom เพื่อลบระยะห่างระหว่าง TextInput */
-    font-family: 'Prompt', sans-serif;
-    color: #100F0D;
+    font-family: "Prompt", sans-serif;
+    color: #100f0d;
   }
 
   .grid-container {
@@ -848,28 +855,26 @@ margin-left: 10px;
   }
   .grid-item {
     width: 95%;
-  
-    color:#100F0D;
+
+    color: #100f0d;
     font-size: 30px;
     justify-content: space-between;
     text-align: center;
     display: flex;
     flex-direction: column;
     margin-right: 20px;
-  
   }
 
   .grid-container2 {
     display: grid;
     row-gap: 10px;
     margin-left: 20px;
-    grid-template-columns: auto ;
+    grid-template-columns: auto;
     margin-top: 70px;
     margin-left: 17rem;
     padding: 10px;
   }
   .grid-item2 {
-  
     font-size: 30px;
     width: 95%;
     text-align: center;
@@ -877,33 +882,33 @@ margin-left: 10px;
     align-items: center;
   }
 
-  .titletext{
+  .titletext {
     display: flex;
     flex-direction: row;
     text-align: center;
-    font-family: 'Prompt', sans-serif;
-    color: #100F0D;
+    font-family: "Prompt", sans-serif;
+    color: #100f0d;
     font-size: 30px;
     margin-left: 21rem;
   }
 
-  .titleConfirm{
-    color: #100F0D;
+  .titleConfirm {
+    color: #100f0d;
     font-size: 30px;
     display: flex;
     text-align: center;
     flex-direction: row;
     margin-left: 5rem;
   }
-  
-  .titletext2{
+
+  .titletext2 {
     display: flex;
     flex-direction: row;
     text-align: center;
-    font-family: 'Prompt', sans-serif;
-    color: #100F0D;
+    font-family: "Prompt", sans-serif;
+    color: #100f0d;
     font-size: 25px;
-    margin-left: 2rem;
+    margin-left: 19rem;
   }
 
   .projectUsercontainer {
@@ -913,48 +918,48 @@ margin-left: 10px;
     height: 100%;
   }
   .project-sidebar {
-    margin-left: 10px;
+    margin-left: 15px;
     width: 95%; /* Full width */
   }
 
-  .mim-container{
+  .mim-container {
     padding-top: 20px;
     display: flex;
     width: 95%;
 
     flex-direction: row;
     justify-content: space-evenly;
-  
   }
-  
-  .mim-container2{
+
+  .mim-container2 {
     padding-top: 20px;
     display: flex;
     width: 150px;
- 
+
     flex-direction: row;
     justify-content: space-evenly;
   }
 
-  .MimprojectUsercontainer{
+  .MimprojectUsercontainer {
     flex-direction: column;
-    justify-content:space-evenly; 
+    justify-content: space-evenly;
     display: flex;
     padding-top: 40px;
-  
+
     width: 100%;
   }
 
   .project-profilebar {
-    margin-top: 10px;
-    margin-left: 10px;
+    overflow: scroll;
+    overflow-x: hidden;
+    margin-top: 15px;
+    margin-left: 15px;
     font-size: 10px;
     width: 95%;
     font-size: 30px;
     align-items: center; /* Full width */
     text-align: center;
   }
-
 
   /* .dropdown-inputProfile {
     width: 200px;
@@ -975,24 +980,22 @@ margin-left: 10px;
     color: #100F0D;
   
   } */
-  
+
   .dropdown-inputProfile {
     width: 200px;
     height: 100px;
     display: flex;
     flex-direction: column;
     text-align: left;
-    border: 2px solid ;
-    border-color: #038E7F;
+    border: 2px solid;
+    border-color: #038e7f;
     border-radius: 20px;
     outline: none;
     align-content: center;
     font-size: 16px;
-  
+
     padding-top: 1px;
-    font-family: 'Prompt', sans-serif;
-    color: #100F0D;
-  
+    font-family: "Prompt", sans-serif;
+    color: #100f0d;
   }
-  
 }
