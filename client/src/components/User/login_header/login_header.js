@@ -104,8 +104,8 @@ export default function Header() {
                                         <div style={{display:"flex", flexDirection: "row", alignItems:"center"}}>
                                             <Link to={'/user_profile/' + phoneNumber}>
                                                 <FaUser size={30} color="#03128E" />
+                                                <p className='userNameNaJa'>{firstname}</p>
                                             </Link>
-                                            <p className='userNameNaJa'>{firstname}</p>
                                         </div>
                                     </li>
                                 {/* </ul> */}
