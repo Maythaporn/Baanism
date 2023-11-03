@@ -4,7 +4,7 @@ const mysql = require("mysql");
 const cors = require("cors");
 var jwt = require("jsonwebtoken");
 var secret = "baanism-login";
-// const multer = require('multer');
+const multer = require('multer');
 var jwt = require("jsonwebtoken");
 var secret = "baanism-login";
 
@@ -27,16 +27,16 @@ db.connect((err) => {
   console.log("Connected to the database");
 });
 
-// const storage = multer.diskStorage({
-//   destination: function(req, file, cb) {
-//     return cb(null, "./public/images")
-//   },
-//   filename: function (req, file, cb) {
-//     return cb(null, `${Date.now()}_${file.originalname}`)
-//   }
-// })
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    return cb(null, "./public/images")
+  },
+  filename: function (req, file, cb) {
+    return cb(null, `${Date.now()}_${file.originalname}`)
+  }
+})
 
-// const upload = multer({ storage })
+const upload = multer({ storage })
 
 app.get("/getQuestion", (req, res) => {
   db.query(`SELECT * FROM questions`, function (err, result) {
@@ -1154,8 +1154,12 @@ app.delete("/deletecontent/:id", (req, res) => {
   });
 });
 
-app.post("/edit_homecontent", (req, res) => {
-  const { id, title, image, caption, info } = req.body;
+app.post("/edit_homecontent", upload.single('image'),(req, res) => {
+  const id = req.body.id
+  const title = req.body.title
+  const caption = req.body.caption
+  const info = req.body.info
+  const image = req.file.filename
 
   db.beginTransaction((err) => {
     if (err) {
@@ -1194,20 +1198,22 @@ app.post("/edit_homecontent", (req, res) => {
   });
 });
 
-// app.post('/addcontent', upload.single('image'),(req, res) => {
-//   const cTitle = req.body.title
-//   const cCaption = req.body.caption
-//   const cInfo = req.body.info
-//   const cImage = req.file.filename
-//   db.query("INSERT INTO content (title, img, caption, info) VALUES(?,?,?,?)", [cTitle, cImage, cCaption, cInfo], (err, result) => {
-//     if (err) {
-//       console.log(err)
-//     }
-//     else {
-//       res.json("Add Content Success")
-//     }
-//   })
-// })
+
+
+app.post('/addcontent', upload.single('image'),(req, res) => {
+  const cTitle = req.body.title
+  const cCaption = req.body.caption
+  const cInfo = req.body.info
+  const cImage = req.file.filename
+  db.query("INSERT INTO content (title, img, caption, info) VALUES(?,?,?,?)", [cTitle, cImage, cCaption, cInfo], (err, result) => {
+    if (err) {
+      console.log(err)
+    }
+    else {
+      res.json("Add Content Success")
+    }
+  })
+})
 
 app.listen("3001", () => {
   console.log("Server is running on port 3001");
