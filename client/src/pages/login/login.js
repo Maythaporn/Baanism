@@ -9,6 +9,13 @@ import { Link, Routes, Route, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function Login() {
+
+  const [showPassword, setShowPassword] = useState(false); // เพิ่มสถานะ showPassword
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
 
@@ -32,7 +39,7 @@ function Login() {
   //       } else {
   //         // เข้าสู่ระบบสำเร็จ ตรวจสอบ token และ redirectTo จาก response.data
   //         const { token, redirectTo } = response.data;
-  
+
   //         if (redirectTo === "/admin") {
   //           window.location.href = redirectTo;
   //           const role = "admin";
@@ -74,7 +81,7 @@ function Login() {
         if (response.status === 200) {
           // ล็อกอินสำเร็จ
           const { token, redirectTo } = response.data;
-  
+
           if (redirectTo === "/admin") {
             window.location.href = redirectTo;
             const role = "admin";
@@ -107,7 +114,7 @@ function Login() {
         alert("เบอร์โทรหรือรหัสผ่านของคุณไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง");
       });
   };
-  
+
 
   return (
     <div className="app">
@@ -117,29 +124,42 @@ function Login() {
       </div>
       <div className="white-box-login">
         <h1 class="head-login">กรอกข้อมูลเข้าสู่ระบบ</h1>
-          <input
+        <input
           className="tel-input"
-            placeholder="เบอร์โทรศัพท์"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-          />
+          placeholder="เบอร์โทรศัพท์"
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value)}
+        />
+
+
+        <div className="password-input-container">
           <input
-          className="password-input"
-            type="password"
+            className="password-input"
+            type={showPassword ? "text" : "password"}
             placeholder="รหัสผ่าน"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button className="forgot-password-button" onClick={btnForgot}>
-            ลืมรหัสผ่าน
-          </button>
-          <div>
-            <div className="button-container">
-              <button className="login-button" onClick={btnLogin}>
-                เข้าสู่ระบบ
-              </button>
-            </div>
+          {password.length > 0 && (
+            <button
+              className="show-password-button"
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? <i className="material-icons">visibility</i> : <i className="material-icons">visibility_off</i>}
+            </button>
+          )}
+        </div>
+
+        <button className="forgot-password-button" onClick={btnForgot}>
+          ลืมรหัสผ่าน
+        </button>
+        <div>
+          <div className="button-container">
+            <button className="login-button" onClick={btnLogin}>
+              เข้าสู่ระบบ
+            </button>
           </div>
+        </div>
       </div>
     </div>
   );

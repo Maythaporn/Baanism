@@ -97,6 +97,12 @@ function Register() {
     setPasswordsMatch(e.target.value === password);
   };
 
+  const [showPassword, setShowPassword] = useState(false); // เพิ่มสถานะ showPassword
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div className="app">
       <div className="blue-box-register">
@@ -133,13 +139,64 @@ function Register() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         ></input>
-        <input
-          type="password"
-          className="pass-input"
-          placeholder="รหัสผ่าน"
-          value={password}
-          onChange={handlePasswordChange}
-        ></input>
+
+
+
+
+        {/* <div className="password-input-container">
+          <input
+            className="password-input"
+            type={showPassword ? "text" : "password"}
+            placeholder="รหัสผ่าน"
+            value={password}
+            onChange={(e) => handlePasswordChange(e.target.value)}
+          />
+          {password.length > 0 && (
+            <button
+              className="show-password-button"
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? <i className="material-icons">visibility</i> : <i className="material-icons">visibility_off</i>}
+            </button>
+          )}
+        </div>
+        <div className="password-input-container">
+          <input
+            className="password-input"
+            type={showPassword ? "text" : "password"}
+            placeholder="ยืนยันรหัสผ่าน"
+            value={confirmPassword}
+            onChange={(e) => handleConfirmPasswordChange(e.target.value)}
+          />
+          {password.length > 0 && (
+            <button
+              className="show-password-button"
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? <i className="material-icons">visibility</i> : <i className="material-icons">visibility_off</i>}
+            </button>
+          )}
+        </div> */}
+
+
+
+        <div className="password-input-container">
+          <input
+            className="password-input"
+            type={showPassword ? "text" : "password"}
+            placeholder="รหัสผ่าน"
+            value={password}
+            onChange={handlePasswordChange}
+          />
+          {password.length > 0 && (
+            <button
+              className="show-password-button"
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? <i className="material-icons">visibility</i> : <i className="material-icons">visibility_off</i>}
+            </button>
+          )}
+        </div>
         <input
           type="password"
           className="confirm-pass-input"
