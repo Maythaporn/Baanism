@@ -2,6 +2,7 @@
   background-color: #fff;
   height: 60px;
   position: fixed;
+  position: relative;
   width: 100%;
   z-index: 1;
 }
@@ -22,13 +23,14 @@
 }
 
 .posNavUser{
-  border: 5px solid red;
+  /* border: 5px solid red; */
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
 .leftButton {
+  /* background-color: red; */
   padding: 5px 0 0 20px;
   margin-right: 100px;
 }
@@ -194,6 +196,11 @@
 
 /* Responsive */
 @media screen and (max-width: 768px) {
+  .navUser-links.open .user_icon_login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .navUser-toggle {
     display: flex;
   }
