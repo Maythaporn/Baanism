@@ -40,6 +40,8 @@ import ContentInfo from "./components/homecontent/ContentInfo";
 import THISISFOOTERJA from "./components/footerForYouNa/footerForAllofU";
 import THISISFOOTERNABUTINBLUE from "./components/footerForYouNa/footerForAllofYouButInBlueNa";
 
+import NEWADMINJAAAAA from './components/User/login_header/adminHeader'
+
 function App() {
   const token = localStorage.getItem('token');
   const role = localStorage.getItem('role');
@@ -53,7 +55,7 @@ function App() {
           element={
             <>
             {!token && <Header />}
-            {role === "admin" && <Admin_header />}
+            {role === "admin" && <NEWADMINJAAAAA />}
             {role === "user" && <Login_header />}
             <Intro />
             <About />
@@ -69,7 +71,7 @@ function App() {
           element={
             <>
               {!token && <Header />}
-              {role === "admin" && <Admin_header />}
+              {role === "admin" && <NEWADMINJAAAAA />}
               {role === "user" && <Login_header />}
               <About />
               <HomeGURU />
@@ -84,7 +86,7 @@ function App() {
           element={
             <>
               {!token && <Header />}
-              {role === "admin" && <Admin_header />}
+              {role === "admin" && <NEWADMINJAAAAA />}
               {role === "user" && <Login_header />}
               <HomeGURU />
               <LpFooter />
@@ -107,7 +109,7 @@ function App() {
           element={
             <>
               {!token && <Header />}
-              {role === "admin" && <Admin_header />}
+              {role === "admin" && <NEWADMINJAAAAA />}
               {role === "user" && <Login_header />}
               <Estimate />
               <LpFooter />
@@ -160,7 +162,7 @@ function App() {
           element={
             <>
               {!token && <Header />}
-              {role === "admin" && <Admin_header />}
+              {role === "admin" && <NEWADMINJAAAAA />}
               {role === "user" && <Login_header />}
               <Contact />
               <THISISFOOTERJA />
@@ -245,7 +247,7 @@ function App() {
           path="/admin"
           element={
             <>
-              <Admin_header/>
+              <NEWADMINJAAAAA/>
               <Admin />
               <User_footer />
             </>
