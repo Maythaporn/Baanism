@@ -26,52 +26,6 @@ function Login() {
     navigate("/forgot"); // put ur page after  /
   };
 
-  // const btnLogin = () => {
-  //   Axios.post("http://localhost:3001/login", {
-  //     phone_number: phoneNumber,
-  //     password: password,
-  //   })
-  //     .then((response) => {
-  //       if (response.data === "Invalid phone number or password") {
-  //         alert(
-  //           "เบอร์โทร หรือ รหัสผ่านท่านผิดกรุณาลองใหม่อีกครั้ง"
-  //         );
-  //       } else {
-  //         // เข้าสู่ระบบสำเร็จ ตรวจสอบ token และ redirectTo จาก response.data
-  //         const { token, redirectTo } = response.data;
-
-  //         if (redirectTo === "/admin") {
-  //           window.location.href = redirectTo;
-  //           const role = "admin";
-  //           localStorage.setItem('token', token);
-  //           localStorage.setItem("role", role);
-  //           localStorage.setItem("phone", phoneNumber)
-
-  //         } else if (redirectTo === "/user") {
-  //           navigate(`/user/${phoneNumber}`); 
-  //           const role = "user";
-  //           localStorage.setItem('token', token);
-  //           localStorage.setItem("role", role);
-  //           localStorage.setItem("phone", phoneNumber)
-
-  //         } else if (redirectTo === "/changepassword") {
-  //           alert("รหัสผ่านท่านมีอายุเกิน 90 วันแล้วกรุณาเปลี่ยน");
-  //           window.location.href = redirectTo;
-
-  //         } else {
-  //           navigate(`/user_profile/${phoneNumber}`);
-  //           const role = "user";
-  //           localStorage.setItem('token', token);
-  //           localStorage.setItem("role", role);
-  //           localStorage.setItem("phone", phoneNumber)
-  //         }
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       alert("เกิดข้อผิดพลาดในการล็อกอิน: " + error.message)
-  //     });
-  // };
-
   const btnLogin = () => {
     Axios.post("http://localhost:3001/login", {
       phone_number: phoneNumber,
@@ -84,24 +38,21 @@ function Login() {
 
           if (redirectTo === "/admin") {
             window.location.href = redirectTo;
-            const role = "admin";
+            localStorage.setItem('role', 'admin');
             localStorage.setItem('token', token);
-            localStorage.setItem("role", role);
             localStorage.setItem("phone", phoneNumber);
           } else if (redirectTo === "/user") {
             navigate(`/user/${phoneNumber}`);
-            const role = "user";
+            localStorage.setItem('role', 'user');
             localStorage.setItem('token', token);
-            localStorage.setItem("role", role);
             localStorage.setItem("phone", phoneNumber);
           } else if (redirectTo === "/changepassword") {
             alert("รหัสผ่านท่านมีอายุเกิน 90 วันแล้ว กรุณาเปลี่ยนรหัสผ่าน");
             window.location.href = redirectTo;
           } else {
             navigate(`/user_profile/${phoneNumber}`);
-            const role = "user";
+            localStorage.setItem('role', 'user');
             localStorage.setItem('token', token);
-            localStorage.setItem("role", role);
             localStorage.setItem("phone", phoneNumber);
           }
         } else {

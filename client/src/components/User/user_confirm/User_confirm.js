@@ -18,35 +18,30 @@ function Confirm(props) {
   
   //authen fetch
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    const role = localStorage.getItem('role');
-  
-    // ตรวจสอบสถานะการเข้าสู่ระบบและสิทธิ์
+    const token = localStorage.getItem("token");
     if (!token) {
-      // ถ้าไม่มี token ให้เปลี่ยนเส้นทางไปยังหน้าเข้าสู่ระบบ
-      window.location = '/login';
+      window.location = "/login";
     } else {
-      // ถ้ามี token ให้ส่งคำขอเพื่อตรวจสอบสิทธิ์
-      fetch('http://localhost:3001/authen', {
-        method: 'POST' ,
+      fetch("http://localhost:3001/authen", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + token,
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
         },
       })
-        .then(response => response.json())
-        .then(data => {
-          if (data.status === 'ok' && role === 'user') {
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status === "ok" && data.role === "user") {
+            console.log("Authentication success for user");
           } else {
-            
-            window.location = '/login';
+            window.location = "/login";
           }
         })
         .catch((error) => {
-          console.error('Error:', error);
+          console.error("Error:", error);
         });
     }
-  }, []);
+}, []);
 
   const [userData, setUserData] = useState({});
   const { phone_number } = useParams();
