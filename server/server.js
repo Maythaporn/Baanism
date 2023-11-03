@@ -23,10 +23,9 @@ const db = mysql.createConnection({
 db.connect((err) => {
   if (err) {
     console.error("Error connecting to database:", err);
-    console.error("เปลี่ยนรหัสยัง");
     return;
   }
-  console.log("*** Connected to the database ****");
+  console.log("Connected to the database");
 });
 
 // const storage = multer.diskStorage({
@@ -459,7 +458,7 @@ app.post("/createusers", (req, res) => {
               console.log("Password : " + hash);
               db.query(
                 "INSERT INTO `users` (`first_name`, `last_name`, `phone_number`, `email`, `password`,`password_date`,role) VALUES (?,?,?,?,?,?,?)",
-                [first_name, last_name, phone_number, email, hash, currentDate, role],
+                [first_name, last_name, phone_number, email, hash, currentDate,role],
                 (insertErr, result) => {
                   if (insertErr) {
                     console.log(insertErr);
@@ -469,7 +468,18 @@ app.post("/createusers", (req, res) => {
                   }
                 }
               );
-
+              db.query(
+                "INSERT INTO `users_info` (`phone_number`) VALUES (?)",
+                [phone_number],
+                (insertErr, result) => {
+                  if (insertErr) {
+                    console.log(insertErr);
+                    res.status(500).send("Internal server error");
+                  } else {
+                    res.status(200).send("User added successfully");
+                  }
+                }
+              );
             }
           });
         }
@@ -1096,6 +1106,8 @@ app.post("/authen", function (req, res, next) {
         if (!userRole) {
           return res.json({ status: "err", message: "User not found" });
         }
+
+        // เพิ่ม role ใน decoded และส่งค่ากลับไปยัง client
         decoded.role = userRole;
         res.json({ status: "ok", decoded });
       }
@@ -1152,3 +1164,19 @@ app.delete("/deletecontent/:id", (req, res) => {
 //     }
 //   })
 // })
+
+app.listen("3001", () => {
+  console.log("Server is running on port 3001");
+
+  bcrypt.hash("1234", saltRounds, (hashErr, hash) => {
+    if (hashErr) {
+      console.log(hashErr);
+      res.status(500).send("Internal server error");
+    } else {
+      // Insert the new user into the database with the hashed password
+      const currentDate = new Date().toLocaleDateString();
+      console.log("Date : " + currentDate);
+      // console.log("Password Admin : " + hash);
+    }
+  });
+});
