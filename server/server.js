@@ -15,7 +15,7 @@ app.use(express.static("public"));
 const db = mysql.createConnection({
   user: "root",
   host: "localhost",
-  password: "12345678",
+  password: "root1234",
   database: "Baanism",
 });
 

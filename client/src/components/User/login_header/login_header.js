@@ -22,7 +22,7 @@ export default function Header() {
         window.location.href = '/contact'
     }
     const btnEstimate = () => {
-        window.location.href = '/contact'
+        window.location.href = '/estimate'
     }
 
 
@@ -47,35 +47,44 @@ export default function Header() {
 
     return (
         <>
-            <nav className={`navbar ${isNavOpen ? 'active' : ''}`}>
+            <nav className={`rootNavUser${isNavOpen ? 'active' : ''}`}>
                 <Link to="/">
                     <img src={logo} alt="baanism-logo" className="logoStyle" />
                 </Link>
 
-                <div className="nav-toggle" onClick={toggleNav}>
-                    <div className="bar"></div>
-                    <div className="bar"></div>
-                    <div className="bar"></div>
+                <div className="navUser-toggle" onClick={toggleNav}>
+                    <div className="barUser"></div>
+                    <div className="barUser"></div>
+                    <div className="barUser"></div>
                 </div>
 
-                <div className={`nav-links ${isNavOpen ? 'open' : ''}`}>
-                    <ul className='navBar'>
-
-
-                        <button className="btn_header_login" onClick={btnAbout}>เกี่ยวกับเรา</button>
-                        <button className="btn_header_login" onClick={btnHomeguru}>Home GURU Content</button>
-                        <button className="btn_header_login" onClick={btnEstimate}>ประเมินราคา</button>
-                        <button className="btn_header_login" onClick={btnContact}>ติดต่อเรา</button>
-                        <div className='user_icon_login'>
-                        <Link to={'/user_profile/' + phoneNumber}>
-                            <FaBell size={20} color="gray" />
-                        </Link>
-
-                        <Link to={'/user_profile/' + phoneNumber}>
-                            <FaUser size={20} color="gray" />
-                        </Link> 
-                        </div>
-                    </ul>
+                <div className={`navUser-links ${isNavOpen ? 'open' : ''}`}>
+                    <div className='leftButton'>
+                        <ul className='navBarUser'>
+                            <li>
+                                <button className="btn_header_login" onClick={btnAbout}>เกี่ยวกับเรา</button>
+                            </li>
+                            <li>
+                                <button className="btn_header_login" onClick={btnHomeguru}>Home GURU Content</button>
+                            </li>
+                            <li>
+                                <button className="btn_header_login" onClick={btnEstimate}>ประเมินราคา</button>
+                            </li>
+                            <li>
+                                <button className="btn_header_login" onClick={btnContact}>ติดต่อเรา</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className='rightButton' >
+                            <div className='user_icon_login' style={{alignItems:'center'}}>
+                                <li>
+                                    <Link to={'/user_profile/' + phoneNumber}>
+                                        <FaUser size={30} color="#03128E" />
+                                    </Link>
+                                </li>
+                            </div>
+                    
+                    </div>
                 </div>
             </nav>
         </>

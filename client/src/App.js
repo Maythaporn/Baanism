@@ -163,7 +163,7 @@ function App() {
               {role === "admin" && <Admin_header />}
               {role === "user" && <Login_header />}
               <Contact />
-              <thisIsLittleFooter/>
+              <THISISFOOTERJA />
             </>
           }
         />
@@ -226,7 +226,7 @@ function App() {
               <Login_header />
               <User_profile />
               {/* <THISISFOOTERJA/> */}
-              <User_footer />
+              <THISISFOOTERJA />
             </>
           }
         />

@@ -10,6 +10,7 @@
 
   height: 82dvh;
 
+
   width: 100%;
 }
 
@@ -907,8 +908,8 @@
 
   .projectUsercontainer {
     flex-direction: column; /* Stack items vertically */
-    margin-top: 0rem;
-    margin-bottom: 0rem;
+    margin-top: 0;
+    margin-bottom: 0;
     height: 100%;
   }
   .project-sidebar {
@@ -955,6 +956,7 @@
     text-align: center;
   }
 
+
   /* .dropdown-inputProfile {
     width: 200px;
     height: 65px;
@@ -974,7 +976,7 @@
     color: #100F0D;
   
   } */
-
+  
   .dropdown-inputProfile {
     width: 200px;
     height: 100px;
