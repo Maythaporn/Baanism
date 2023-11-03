@@ -5,13 +5,12 @@ const cors = require("cors");
 var jwt = require("jsonwebtoken");
 var secret = "baanism-login";
 // const multer = require('multer');
-var jwt = require('jsonwebtoken');
-var secret = 'baanism-login'
-
+var jwt = require("jsonwebtoken");
+var secret = "baanism-login";
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public'))
+app.use(express.static("public"));
 
 const db = mysql.createConnection({
   user: "root",
@@ -69,14 +68,18 @@ app.get("/getSubquestion/:id", (req, res) => {
 app.get("/getOption:index/:id", (req, res) => {
   const id = req.params.id;
   const index = req.params.index;
-  db.query(`SELECT * FROM options${index} WHERE sub_question_id LIKE ?`,[id], function (err, result) {
-    if (err) {
-      console.error(err);
-      res.status(500).send("เกิดข้อผิดพลาดในการดึงข้อมูลจากฐานข้อมูล");
-    } else {
-      res.send(result);
+  db.query(
+    `SELECT * FROM options${index} WHERE sub_question_id LIKE ?`,
+    [id],
+    function (err, result) {
+      if (err) {
+        console.error(err);
+        res.status(500).send("เกิดข้อผิดพลาดในการดึงข้อมูลจากฐานข้อมูล");
+      } else {
+        res.send(result);
+      }
     }
-  });
+  );
 });
 
 app.get("/userprofile", (req, res) => {
@@ -131,14 +134,18 @@ app.post("/delete-adminproject", (req, res) => {
   const projectId = req.body.projectId;
 
   // Use the projectId in a SQL DELETE query to remove the project from the database.
-  db.query("DELETE FROM admin_project WHERE id = ?", [projectId], (err, result) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).json({ error: "Internal server error" });
-    }
+  db.query(
+    "DELETE FROM admin_project WHERE id = ?",
+    [projectId],
+    (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Internal server error" });
+      }
 
-    return res.status(200).json({ message: "Project deleted successfully" });
-  });
+      return res.status(200).json({ message: "Project deleted successfully" });
+    }
+  );
 });
 
 app.get("/project", (req, res) => {
@@ -271,8 +278,6 @@ app.post("/edit_adminproject", (req, res) => {
     zipcode,
   } = req.body;
 
-
-
   db.beginTransaction((err) => {
     if (err) {
       console.log(err);
@@ -290,8 +295,7 @@ app.post("/edit_adminproject", (req, res) => {
         address,
         zipcode,
         img,
-        id
-
+        id,
       ],
       (err, result) => {
         if (err) {
@@ -1146,6 +1150,46 @@ app.delete("/deletecontent/:id", (req, res) => {
     } else {
       res.send(result);
     }
+  });
+});
+
+app.post("/edit_homecontent", (req, res) => {
+  const { id, title, image, caption, info } = req.body;
+
+  db.beginTransaction((err) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send("Internal server error");
+    }
+
+    db.query(
+      "UPDATE `content` SET `title` = ?, `img` = ?, `caption` = ?, `info` = ? WHERE id=?;",
+      [
+        title,
+        image,
+        caption,
+        info,
+        id,
+      ],
+      (err, result) => {
+        if (err) {
+          db.rollback(() => {
+            console.log(err);
+            return res.status(500).send("Internal server error");
+          });
+        }
+
+        db.commit((err) => {
+          if (err) {
+            db.rollback(() => {
+              console.log(err);
+              return res.status(500).send("Internal server error");
+            });
+          }
+          return res.status(200).send("Project updated successfully");
+        });
+      }
+    );
   });
 });
 

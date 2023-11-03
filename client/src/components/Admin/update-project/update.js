@@ -1,61 +1,200 @@
-import { useEffect, useState } from 'react'
-import './update.css'
-import Axios from 'axios'
+import { useEffect, useState } from "react";
+import "./update.css";
+import Axios from "axios";
+import Modal from "react-modal";
 
 const UpdateProjects = () => {
-    const [data, setData] = useState([])
-    // const data = [
-    //     { id: 1, title: "ไม้ฝา เฌอร่า คืออะไร?" },
-    //     { id: 2, title: "ไม้ฝา เฌอร่า คืออะไร?" },
-    // ]
+  const [title, setTitle] = useState("");
+  const [caption, setCaption] = useState("");
+  const [info, setInfo] = useState("");
+  const [imageUrl, setImageUrl] = useState(null);
+  const [data, setData] = useState([]);
+  // const data = [
+  //     { id: 1, title: "ไม้ฝา เฌอร่า คืออะไร?" },
+  //     { id: 2, title: "ไม้ฝา เฌอร่า คืออะไร?" },
+  // ]
 
-    useEffect(() => {
-        Axios.get('http://localhost:3001/homecontent')
-            .then((response) => {
-                setData(response.data)
-                // console.log(response.data)
-            })
-            .catch((error) => {
-                console.error(error)
-            })
-    }, [])
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
-    const deleteContent = (id) => {
-        Axios.delete(`http://localhost:3001/deletecontent/${id}`).then((response) => {
-            setData(
-                data.filter((val) => {
-                    return val.id !== id
-                })
-            )
-        })
-    }
+  const handleEditProject = (projectId) => {
+    // Send an HTTP DELETE request to the server to delete the project.
+    console.log(projectId);
 
-    const handleDelete = (id) => {
-        const isConfirmed = window.confirm("คุณแน่ใจที่ต้องการลบหรือไม่?");
-        if (isConfirmed) {
-            deleteContent(id)
+    Axios.post("http://localhost:3001/edit_homecontent", {
+      id: projectId,
+      title: title,
+      image: imageUrl,
+      caption: caption,
+      info: info,
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          alert("ดำเนินการเสร็จสิ้น");
+          window.location.href = `/admin`;
         }
+      })
+      .catch((error) => {
+        alert("เกิดข้อผิดพลากกรุณาลองใหม่อีกครั้ง");
+      }); // put ur page after /
+  };
+
+  const openModal = (id) => {
+    Axios.get(`http://localhost:3001/homecontent/${id}`)
+      .then((response) => {
+        setTitle(response.data.title);
+        setImageUrl(response.data.img);
+        setCaption(response.data.caption);
+        setInfo(response.data.info);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  useEffect(() => {
+    Axios.get("http://localhost:3001/homecontent")
+      .then((response) => {
+        setData(response.data);
+        // console.log(response.data)
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const deleteContent = (id) => {
+    Axios.delete(`http://localhost:3001/deletecontent/${id}`).then(
+      (response) => {
+        setData(
+          data.filter((val) => {
+            return val.id !== id;
+          })
+        );
       }
+    );
+  };
 
-    return (
-        <>
-            {data.map((e) => (
-                <div className="admin-updateproject-container" key={e.id}>
-                    <div>
-                        <p className='project-title'>{e.title}</p>
-                    </div>
-                    <div>
-                        <div className='edit'>
-                            <button className='edit-btn'>แก้ไขข้อมูล</button>
-                            <span className='space'>|</span>
-                            <button className='edit-btn' onClick={() => { handleDelete(e.id) }}>ลบ Content</button>
-                        </div>
-                    </div>
+  const handleDelete = (id) => {
+    const isConfirmed = window.confirm("คุณแน่ใจที่ต้องการลบหรือไม่?");
+    if (isConfirmed) {
+      deleteContent(id);
+    }
+  };
+
+  return (
+    <>
+      {data.map((e) => (
+        <div className="admin-updateproject-container" key={e.id}>
+          <div>
+            <p className="project-title">{e.title}</p>
+          </div>
+          <div>
+            <div className="edit">
+              <button className="edit-btn" onClick={() => openModal(e.id)}>
+                แก้ไขข้อมูล
+              </button>
+              <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                contentLabel="แก้ไข"
+                style={{
+                  content: {
+                    width: "320px", // Set the desired width
+                    height: "400px", // Set the desired height
+                    margin: "auto", // Center the modal horizontally
+                  },
+                }}
+              >
+                <button onClick={closeModal}>X</button>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <br></br>
+                  แก้ไข Home guru Content
+                  <br></br>
+                  <br></br>
+                  <div className="inputMim">
+                    หัวข้อ Content :
+                    <input
+                      type="text"
+                      placeholder={title}
+                      value={title}
+                      onChange={(e) => setTitle(e.target.value)}
+                    />
+                  </div>
+                  <div className="inputMim">
+                    ภาพ Content (URL) :
+                    <input
+                      type="text"
+                      placeholder={imageUrl}
+                      value={imageUrl}
+                      onChange={(e) => setImageUrl(e.target.value)}
+                    />
+                  </div>
+                  <br></br>
+                  <img
+                    src={imageUrl}
+                    alt="Selected"
+                    className="selected-image"
+                    width="200px" // set the width to your desired size in pixels
+                    height="200px" // set the height to your desired size in pixels
+                  />
+                  <br></br>
+                  <div className="inputMim-address">
+                    Content Caption :
+                    <textarea
+                      style={{ width: "230px", height: "205px" }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
+                      className="text"
+                      placeholder={caption}
+                      value={caption}
+                      onChange={(e) => setCaption(e.target.value)}
+                    />
+                  </div>
+                  <div className="inputMim-address">
+                    รายละเอียด content :
+                    <textarea
+                      style={{ width: "230px", height: "205px" }} // กำหนดความกว้างและความสูงในรูปแบบ inline CSS
+                      className="text"
+                      placeholder={info}
+                      value={info}
+                      onChange={(e) => setInfo(e.target.value)}
+                    />
+                  </div>
+                  <br></br>
+                  <div
+                    className="model-button"
+                    onClick={() => handleEditProject(e.id)}
+                  >
+                    ยืนยัน
+                  </div>
                 </div>
-            ))}
-        </>
-    )
-}
+              </Modal>
+              <span className="space">|</span>
+              <button
+                className="edit-btn"
+                onClick={() => {
+                  handleDelete(e.id);
+                }}
+              >
+                ลบ Content
+              </button>
+            </div>
+          </div>
+        </div>
+      ))}
+    </>
+  );
+};
 
-
-export default UpdateProjects
+export default UpdateProjects;
