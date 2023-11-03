@@ -58,7 +58,7 @@ export default function Header() {
                     <div className="barUser"></div>
                 </div>
 
-                <div className={`navUser-links ${isNavOpen ? 'open' : ''}`}>
+                <div className={`navUser-links ${isNavOpen ? 'open' : ''} posNavUser` }>
                     <div className='leftButton'>
                         <ul className='navBarUser'>
                             <li>
@@ -76,12 +76,15 @@ export default function Header() {
                         </ul>
                     </div>
                     <div className='rightButton' >
-                            <div className='user_icon_login' style={{alignItems:'center'}}>
-                                <li>
-                                    <Link to={'/user_profile/' + phoneNumber}>
-                                        <FaUser size={30} color="#03128E" />
-                                    </Link>
-                                </li>
+                        <div className='user_icon_login' >
+                            {/* <div className='user_icon_login' style={{alignItems:'center'}}> */}
+                                {/* <ul className='navBarUser'> */}
+                                    <li>
+                                        <Link to={'/user_profile/' + phoneNumber}>
+                                            <FaUser size={30} color="#03128E" />
+                                        </Link>
+                                    </li>
+                                {/* </ul> */}
                             </div>
                     
                     </div>
