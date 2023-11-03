@@ -145,7 +145,7 @@ export const Editestimate = () => {
     axios.delete(`http://localhost:3001/deleteOption${index}/${id}`)
       .then(response => {
         if (response.status === 200) {
-          console.log("ลบข้อมูลสำเร็จ");
+          console.log("ลบข้อมูลสำเร็จClient");
           setOptions(options.filter(Option => Option.option_id !== id));
         } else {
           console.error("เกิดข้อผิดพลาดในการลบข้อมูล");

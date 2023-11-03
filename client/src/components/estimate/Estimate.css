@@ -1,28 +1,37 @@
-* {
+.est-main * {
    font-family: "Prompt", sans-serif;
    box-sizing: border-box;
 }
 
-button {
+.est-main button {
    display: flex;
    align-items: center;
    justify-content: center;
+   cursor: pointer;
 }
 
 .est-main {
    box-sizing: border-box;
-   margin: 0;
-   padding: 0;
    min-height: 100vh;
    display: flex;
-   flex-direction: column;
    align-items: center;
+   justify-content: center;
    background-image: url(../../assets/images/bg-landing.png);
    background-size: cover;
 }
+
+.est-info {
+   background-color: rgba(255, 255, 255, 0.7);
+   margin: 100px 0 45px 0;
+   padding: 25px 0;
+   width: 70%;
+   border-radius: 15px;
+}
+
 .question-choice button {
+   font-size: 15px;
    height: 50px;
-   width: 200px;
+   width: 250px;
    padding: 10px;
    margin: 10px;
    border: 2px solid #038e7f;
@@ -37,10 +46,16 @@ button {
    color: #038e7f;
 }
 
+.choice-button {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+}
+
 .choice button {
    background-color: #03128e;
+   font-size: 15px;
    height: 50px;
-   width: 200px;
+   width: 250px;
    padding: 10px;
    margin: 10px;
    border: 2px solid #03128e;
@@ -48,6 +63,7 @@ button {
    color: white;
    transition: 0.3s ease-out;
 }
+
 .choice button:hover {
    background-color: #ffffff;
    color: #03128e;
@@ -56,7 +72,7 @@ button {
 .choice button.active {
    background-color: #ffffff;
    height: 50px;
-   width: 200px;
+   width: 250px;
    padding: 10px;
    margin: 10px;
    border: 2px solid #03128e;
@@ -65,13 +81,30 @@ button {
    transition: 0.3s ease-out;
 }
 
+.choice-input {
+   width: 250px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.choice-input input {
+   width: 100%;
+   font-size: 15px;
+   padding: 10px 10px;
+   margin: 10px;
+   border: 2px solid #038e7f;
+   border-radius: 10px;
+}
+
 .nav-btn {
    display: flex;
 }
 
 .nav-btn button {
+   font-size: 15px;
    height: 50px;
-   width: 200px;
+   width: 250px;
    padding: 10px;
    margin: 10px;
    border: 2px solid #038e7f;
@@ -87,6 +120,7 @@ button {
 }
 
 .show-answer button {
+   font-size: 15px;
    height: 50px;
    width: 200px;
    padding: 10px;
@@ -101,18 +135,6 @@ button {
 .show-answer button:hover {
    background-color: white;
    color: #038e7f;
-}
-.est-info {
-   background-color: rgba(255, 255, 255, 0.7);
-   margin: auto 0;
-   padding: 50px 0;
-   width: 60%;
-   min-height: auto;
-   border-radius: 15px;
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
 }
 
 .est-question {
@@ -142,19 +164,9 @@ button {
 }
 
 .est-choice img {
-   width: 50%;
+   width: 45%;
    object-fit: cover;
    margin: 10px;
-}
-
-.choice {
-   display: grid;
-   grid-template-columns: 1fr 1fr;
-}
-
-.choice-btn {
-   display: grid;
-   grid-template-columns: 1fr 1fr;
 }
 
 .show-answer {
@@ -165,28 +177,35 @@ button {
    flex-direction: column;
 }
 
+.show-answer h2 {
+   color: #03128e;
+}
+
 .answer {
    width: 70%;
    display: flex;
    align-items: center;
-   justify-content: space-between;
-   padding: 10px;
+   margin: 10px;
+   padding: 5px;
+   border-radius: 10px;
+   padding-left: 20px;
+   background-color: rgba(0, 0, 0, 0.05);
 }
+
 .answer-left {
    width: 100%;
-   display: block;
-   justify-content: start;
+   display: flex;
 }
 .answer-right {
-   width: 50%;
-   display: block;
-   justify-content: start;
+   width: 70%;
+   display: flex;
+   justify-content: space-between;
+}
+.answer-right h3 {
+   color: #038e7f;
 }
 .answer ul {
    list-style-type: none;
-}
-.answer h4 {
-   color: #038e7f;
 }
 
 /* Extra Small Devices */
@@ -206,36 +225,61 @@ button {
       width: 150px;
    }
    .est-choice h2 {
-      font-size: 15px;
+      font-size: 20px;
    }
    .est-choice img {
       width: 70%;
    }
+   .choice-input {
+      width: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+   .choice-input input {
+      width: 100%;
+      font-size: 12px;
+      padding: 5px 10px;
+      margin: 5px;
+      border: 2px solid #038e7f;
+      border-radius: 10px;
+   }
    .choice button {
-      font-size: 10px;
-      width: 100px;
+      font-size: 12px;
+      width: 120px;
       height: 40px;
    }
    .choice button:hover {
-      font-size: 10px;
-      width: 100px;
+      font-size: 12px;
+      width: 120px;
       height: 40px;
+   }
+   .choice button.active {
+      background-color: #ffffff;
+      height: 40px;
+      width: 120px;
+      padding: 10px;
+      margin: 10px;
+      border: 2px solid #03128e;
+      border-radius: 10px;
+      color: #03128e;
+      transition: 0.3s ease-out;
    }
    .nav-btn button {
-      font-size: 10px;
-      width: 100px;
+      font-size: 12px;
+      width: 120px;
       height: 40px;
-   }
-   .answer {
-      width: 80%;
    }
    .show-answer h1,
    h2 {
       font-size: 20px;
+      text-align: center;
    }
-   .show-answer h3,
-   h4 {
-      font-size: 15px;
+   .show-answer h3 {
+      font-size: 13px;
+   }
+   .answer {
+      width: 80%;
    }
    .answer-left {
       margin: 0 30px 0 0;
@@ -254,7 +298,7 @@ button {
    }
    .question-choice button {
       font-size: 12px;
-      width: 130px;
+      width: 140px;
    }
    .est-choice h2 {
       font-size: 25px;
@@ -262,22 +306,102 @@ button {
    .est-choice img {
       width: 70%;
    }
+   .choice button {
+      background-color: #03128e;
+      font-size: 15px;
+      height: 50px;
+      width: 150px;
+      padding: 10px;
+      margin: 10px;
+      border: 2px solid #03128e;
+      border-radius: 10px;
+      color: white;
+      transition: 0.3s ease-out;
+   }
+
+   .choice button:hover {
+      background-color: #ffffff;
+      color: #03128e;
+   }
+
+   .choice button.active {
+      background-color: #ffffff;
+      height: 50px;
+      width: 150px;
+      padding: 10px;
+      margin: 10px;
+      border: 2px solid #03128e;
+      border-radius: 10px;
+      color: #03128e;
+      transition: 0.3s ease-out;
+   }
+   .nav-btn button {
+      font-size: 15px;
+      height: 50px;
+      width: 150px;
+      padding: 10px;
+      margin: 10px;
+      border: 2px solid #038e7f;
+      border-radius: 10px;
+      background-color: #038e7f;
+      color: white;
+      transition: 0.3s ease-out;
+   }
+
+   .nav-btn button:hover {
+      background-color: #ffffff;
+      color: #038e7f;
+   }
+   .choice-input {
+      width: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+   .choice-input input {
+      width: 100%;
+      font-size: 12px;
+      padding: 10px 10px;
+      margin: 10px 0;
+      border: 2px solid #038e7f;
+      border-radius: 10px;
+   }
+
+   .answer-left {
+      width: 100%;
+      display: flex;
+      font-size: 12px;
+   }
+   .answer-right {
+      width: 70%;
+      display: flex;
+      font-size: 12px;
+      justify-content: space-between;
+   }
 }
 /* Medium Devices (Laptops and Desktops): */
 @media screen and (min-width: 768px) and (max-width: 992px) {
    .est-info {
       width: 90%;
    }
+   .est-choice img {
+      width: 60%;
+   }
+   .answer-left {
+      width: 100%;
+      display: flex;
+      font-size: 13px;
+   }
+   .answer-right {
+      width: 70%;
+      display: flex;
+      font-size: 13px;
+      justify-content: space-between;
+   }
 }
 /* Large Devices (Desktops): */
 @media screen and (min-width: 993px) and (max-width: 1200px) {
    .est-info {
       width: 90%;
-   }
-}
-/* Extra Large Devices (Desktops): */
-@media screen and (min-width: 1200px) {
-   .est-info {
-      width: 70%;
    }
 }

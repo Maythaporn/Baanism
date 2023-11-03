@@ -144,9 +144,54 @@ app.delete("/deleteOption:index/:option_id", (req, res) => {
       console.error(err);
       res.status(500).send("เกิดข้อผิดพลาดในการลบข้อมูล");
     } else {
-      res.send("ลบข้อมูลสำเร็จ");
+      res.send("ลบข้อมูลสำเร็จServer");
     }
   });
+});
+
+app.get("/question", (req, res) => {
+  db.query(`SELECT * FROM questions`, (err, result) => {
+     if (err) {
+        console.log(err);
+     } else {
+        res.send(result);
+        console.log("Get data from table questions");
+     }
+  });
+});
+
+app.get("/subquestion:index/:id", (req, res) => {
+  const id = req.params.id;
+  const index = req.params.index;
+  db.query(
+     `SELECT * FROM sub_question${index} WHERE question_id LIKE ?`,
+     [id],
+     (err, result) => {
+        if (err) {
+           console.log(err);
+        } else {
+           res.send(result);
+           console.log("Get data from table sub_questions");
+        }
+     }
+  );
+});
+
+app.get("/option:index/:id", (req, res) => {
+  const id = req.params.id;
+  const index = req.params.index;
+  db.query(
+     `SELECT * FROM option${index} WHERE question_id LIKE ?`,
+     [id],
+     (err, result) => {
+        if (err) {
+           console.log(err);
+        } else {
+           res.send(result);
+           console.log(`Get data from table options${index}`);
+        }
+     }
+  );
 });
 
 app.get("/userprofile", (req, res) => {
