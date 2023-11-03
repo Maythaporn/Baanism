@@ -2,17 +2,12 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
-<<<<<<< HEAD
-
-const bodyParser = require("body-parser");
 var jwt = require("jsonwebtoken");
 var secret = "baanism-login";
-=======
 // const multer = require('multer');
-const bodyParser = require('body-parser');
 var jwt = require('jsonwebtoken');
 var secret = 'baanism-login'
->>>>>>> 765d763c5e52602611ce9a9cc51e11a83437bccc
+
 
 app.use(cors());
 app.use(express.json());
@@ -81,7 +76,7 @@ app.get("/getOption:index/:id", (req, res) => {
     } else {
       res.send(result);
     }
-  );
+  });
 });
 
 app.get("/userprofile", (req, res) => {
