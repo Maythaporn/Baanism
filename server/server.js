@@ -15,7 +15,7 @@ app.use(express.static("public"));
 const db = mysql.createConnection({
   user: "root",
   host: "localhost",
-  password: "root1234",
+  password: "12345678",
   database: "Baanism",
 });
 
@@ -435,6 +435,7 @@ app.post("/createusers", (req, res) => {
   const phone_number = req.body.phone_number;
   const email = req.body.email;
   const password = req.body.password;
+  const role = req.body.role;
 
   // Check if the phone number already exists in the database
   db.query(
@@ -460,8 +461,8 @@ app.post("/createusers", (req, res) => {
               console.log("Date : " + currentDate);
               console.log("Password : " + hash);
               db.query(
-                "INSERT INTO `users` (`first_name`, `last_name`, `phone_number`, `email`, `password`,`password_date`) VALUES (?,?,?,?,?,?)",
-                [first_name, last_name, phone_number, email, hash, currentDate],
+                "INSERT INTO `users` (`first_name`, `last_name`, `phone_number`, `email`, `password`,`password_date`,role) VALUES (?,?,?,?,?,?,?)",
+                [first_name, last_name, phone_number, email, hash, currentDate,role],
                 (insertErr, result) => {
                   if (insertErr) {
                     console.log(insertErr);
@@ -1013,7 +1014,7 @@ app.post("/login", (req, res) => {
     (err, results) => {
       if (err) {
         console.log(err);
-        return res.status(500).send("Internal server error");
+        return res.status(500).send("เซิฟพัง");
       }
       if (results.length === 0) {
         return res.status(401).send("Invalid phone number or password");
@@ -1219,7 +1220,7 @@ app.listen("3001", () => {
       // Insert the new user into the database with the hashed password
       const currentDate = new Date().toLocaleDateString();
       console.log("Date : " + currentDate);
-      console.log("Password Admin : " + hash);
+      // console.log("Password Admin : " + hash);
     }
   });
 });

@@ -9,6 +9,13 @@ import { Link, Routes, Route, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function Login() {
+
+  const [showPassword, setShowPassword] = useState(false); // เพิ่มสถานะ showPassword
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,52 +25,96 @@ function Login() {
   const btnForgot = () => {
     navigate("/forgot"); // put ur page after  /
   };
+
+  // const btnLogin = () => {
+  //   Axios.post("http://localhost:3001/login", {
+  //     phone_number: phoneNumber,
+  //     password: password,
+  //   })
+  //     .then((response) => {
+  //       if (response.data === "Invalid phone number or password") {
+  //         alert(
+  //           "เบอร์โทร หรือ รหัสผ่านท่านผิดกรุณาลองใหม่อีกครั้ง"
+  //         );
+  //       } else {
+  //         // เข้าสู่ระบบสำเร็จ ตรวจสอบ token และ redirectTo จาก response.data
+  //         const { token, redirectTo } = response.data;
+
+  //         if (redirectTo === "/admin") {
+  //           window.location.href = redirectTo;
+  //           const role = "admin";
+  //           localStorage.setItem('token', token);
+  //           localStorage.setItem("role", role);
+  //           localStorage.setItem("phone", phoneNumber)
+
+  //         } else if (redirectTo === "/user") {
+  //           navigate(`/user/${phoneNumber}`); 
+  //           const role = "user";
+  //           localStorage.setItem('token', token);
+  //           localStorage.setItem("role", role);
+  //           localStorage.setItem("phone", phoneNumber)
+
+  //         } else if (redirectTo === "/changepassword") {
+  //           alert("รหัสผ่านท่านมีอายุเกิน 90 วันแล้วกรุณาเปลี่ยน");
+  //           window.location.href = redirectTo;
+
+  //         } else {
+  //           navigate(`/user_profile/${phoneNumber}`);
+  //           const role = "user";
+  //           localStorage.setItem('token', token);
+  //           localStorage.setItem("role", role);
+  //           localStorage.setItem("phone", phoneNumber)
+  //         }
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       alert("เกิดข้อผิดพลาดในการล็อกอิน: " + error.message)
+  //     });
+  // };
+
   const btnLogin = () => {
     Axios.post("http://localhost:3001/login", {
       phone_number: phoneNumber,
       password: password,
     })
       .then((response) => {
-        if (response.data === "Invalid phone number or password") {
-          alert(
-            "เบอร์โทร หรือ รหัสผ่านท่านผิดกรุณาลองใหม่อีกครั้ง"
-          );
-        } else {
-          // เข้าสู่ระบบสำเร็จ ตรวจสอบ token และ redirectTo จาก response.data
+        if (response.status === 200) {
+          // ล็อกอินสำเร็จ
           const { token, redirectTo } = response.data;
-  
+
           if (redirectTo === "/admin") {
             window.location.href = redirectTo;
             const role = "admin";
             localStorage.setItem('token', token);
             localStorage.setItem("role", role);
-            localStorage.setItem("phone", phoneNumber)
-
+            localStorage.setItem("phone", phoneNumber);
           } else if (redirectTo === "/user") {
-            navigate(`/user/${phoneNumber}`); 
+            navigate(`/user/${phoneNumber}`);
             const role = "user";
             localStorage.setItem('token', token);
             localStorage.setItem("role", role);
-            localStorage.setItem("phone", phoneNumber)
-
+            localStorage.setItem("phone", phoneNumber);
           } else if (redirectTo === "/changepassword") {
-            alert("รหัสผ่านท่านมีอายุเกิน 90 วันแล้วกรุณาเปลี่ยน");
+            alert("รหัสผ่านท่านมีอายุเกิน 90 วันแล้ว กรุณาเปลี่ยนรหัสผ่าน");
             window.location.href = redirectTo;
-
           } else {
             navigate(`/user_profile/${phoneNumber}`);
             const role = "user";
             localStorage.setItem('token', token);
             localStorage.setItem("role", role);
-            localStorage.setItem("phone", phoneNumber)
+            localStorage.setItem("phone", phoneNumber);
           }
+        } else {
+          // ล็อกอินไม่สำเร็จ
+          alert("เบอร์โทรหรือรหัสผ่านของคุณไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง");
         }
       })
       .catch((error) => {
-        alert(error);
+        console.error("เกิดข้อผิดพลาดในการล็อกอิน:", error);
+        alert("เบอร์โทรหรือรหัสผ่านของคุณไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง");
       });
   };
-  
+
 
   return (
     <div className="app">
@@ -73,29 +124,42 @@ function Login() {
       </div>
       <div className="white-box-login">
         <h1 class="head-login">กรอกข้อมูลเข้าสู่ระบบ</h1>
-          <input
+        <input
           className="tel-input"
-            placeholder="เบอร์โทรศัพท์"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-          />
+          placeholder="เบอร์โทรศัพท์"
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value)}
+        />
+
+
+        <div className="password-input-container">
           <input
-          className="password-input"
-            type="password"
+            className="password-input"
+            type={showPassword ? "text" : "password"}
             placeholder="รหัสผ่าน"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button className="forgot-password-button" onClick={btnForgot}>
-            ลืมรหัสผ่าน
-          </button>
-          <div>
-            <div className="button-container">
-              <button className="login-button" onClick={btnLogin}>
-                เข้าสู่ระบบ
-              </button>
-            </div>
+          {password.length > 0 && (
+            <button
+              className="show-password-button"
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? <i className="material-icons">visibility</i> : <i className="material-icons">visibility_off</i>}
+            </button>
+          )}
+        </div>
+
+        <button className="forgot-password-button" onClick={btnForgot}>
+          ลืมรหัสผ่าน
+        </button>
+        <div>
+          <div className="button-container">
+            <button className="login-button" onClick={btnLogin}>
+              เข้าสู่ระบบ
+            </button>
           </div>
+        </div>
       </div>
     </div>
   );
