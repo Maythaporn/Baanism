@@ -97,7 +97,9 @@ function App() {
           path="/homecontent/:id"
           element={
             <>
-              <Header />
+              {!token && <Header />}
+              {role === "admin" && <NEWADMINJAAAAA />}
+              {role === "user" && <Login_header />}
               <ContentInfo />
               <LpFooter />
             </>
