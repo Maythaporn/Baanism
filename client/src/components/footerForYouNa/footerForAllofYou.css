@@ -41,6 +41,9 @@
 }
 
 @media screen and (max-width: 768px) {
+    .paddingForPInFooter{
+        padding: 0;
+    }
     p{
         padding: 0;
     }
