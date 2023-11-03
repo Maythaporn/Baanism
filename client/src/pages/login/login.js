@@ -3,6 +3,7 @@ import "./login.css";
 import Axios from "axios";
 
 import logoIcon from "../../assets/images/logo_withbg.png";
+import logoMobile from "../../assets/images/logo-header.png";
 import TextInput from "../../components/textinput/textinput.js";
 import Button from "../../components/button/button.js";
 import { Link, Routes, Route, useNavigate } from "react-router-dom";
@@ -71,7 +72,8 @@ function Login() {
     <div className="app">
       <div className="blue-box-login">
         {/* กล่องสีน้ำเงิน */}
-        <img src={logoIcon} alt="ต่อเติมบ้าน" width="100" height="100" />
+        <img src={logoIcon} alt="ต่อเติมบ้าน" className="logo-pc"/>
+        <img src={logoMobile} alt="ต่อเติมบ้าน" className="logo-mb"/>
       </div>
       <div className="white-box-login">
         <h1 class="head-login">กรอกข้อมูลเข้าสู่ระบบ</h1>

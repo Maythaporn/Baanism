@@ -1,6 +1,6 @@
 .background {
     background-color: #03128E;
-    min-height: 92vh;
+    min-height: 100vh;
     /* position: relative; */
     display: flex;
     flex-wrap: wrap;
@@ -19,8 +19,8 @@
     flex: 1;
     order: 1;
     margin-top: 50px;
-    margin-bottom: 200px;
     margin-right: 150px;
+    margin-bottom: 100px;
 }
 
 .contact-left h3 {
@@ -153,8 +153,6 @@
     /* Change to the desired color */
 }
 
-
-
 .other-input {
     transition: 3s;
     width: 400px;
@@ -229,21 +227,12 @@
     border-color: #038E7F;
 }
 
-/* ใช้ media query เพื่อปรับแต่งสไตล์ให้ responsive */
-@media screen and (max-width: 768px) {
-
-    .contact-left,
-    .contact-right {
-        flex: 100%;
-    }
-}
-
 /* ใช้ media query เพื่อปรับขนาดให้ responsive */
 /* Extra Small Devices */
 @media screen and (max-width: 476px) {
     .contact-form {
-        max-height: 380px;
-        width: 350px;
+        max-height: 350px;
+        width: 300px;
         transition: max-height 0.3s ease;
     }
 
@@ -253,17 +242,21 @@
         transition: max-height 0.3s ease;
     }
 
-    .contact-left,
+    .contact-left {
+        margin-left: 30px;
+    }
+
     .contact-right {
-        margin-left: 65px;
+        margin-left: 30px;
     }
 
     .contact-left h3 {
-        padding-top: 60px;
+        padding-top: 40px;
         font-size: 25px;
     }
 
     .contact-right h3 {
+        margin-top: 0px;
         font-size: 15px;
     }
 
@@ -289,7 +282,7 @@
 
     .text-input-contact {
         display: flex;
-        width: 285px;
+        width: 245px;
         height: 40px;
         font-size: 14px;
         margin-bottom: 10px;
@@ -299,7 +292,7 @@
 
     .text-input-contact-other {
         display: flex;
-        width: 265px;
+        width: 200px;
         height: 40px;
         font-size: 14px;
         margin-bottom: 15px;
@@ -329,31 +322,26 @@
     }
 
     .icon-facebook {
-        width: 26px;
-        height: 24px;
-        margin-bottom: 10px;
+        width: 22px;
+        height: 22px;
     }
 
     .icon-line {
-        width: 26px;
-        height: 24px;
-        margin-bottom: 10px;
+        width: 22px;
+        height: 22px;
     }
 
     .icon-tiktok {
-        width: 26px;
-        height: 24px;
-        margin-bottom: 10px;
+        width: 22px;
+        height: 20px;
     }
 
     .fa.fa-envelope {
-        font-size: 20px;
-        margin-bottom: 10px;
+        font-size: 16px;
     }
 
     .fa.fa-phone {
-        font-size: 24px;
-        margin-bottom: 10px;
+        font-size: 20px;
     }
 
     .row-other-input {
@@ -604,6 +592,7 @@
 
 /* Large Devices (Desktops): */
 @media screen and (min-width: 993px) and (max-width: 1200px) {
+
     .contact-left,
     .contact-right {
         margin-left: 65px;
@@ -612,6 +601,7 @@
 
 /* Extra Large Devices (Desktops): */
 @media screen and (min-width: 1200px) {
+
     .contact-left,
     .contact-right {
         margin-left: 65px;

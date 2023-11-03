@@ -1,93 +1,100 @@
 body {
-    font-family: 'Prompt', sans-serif;
-  }
-  
-  html {
-      height: 100%;
-      margin: 0;
-  }
-  
-  .app {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-  }
-  
-  .blue-box-login {
-      width: 500px;
-      height: 500px;
-      background-color: #03128E;
-      color: #fff;
-      text-align: center;
-      line-height: 200px;
-      font-size: 24px;
-      border-radius: 20px 0 0 20px;
-      position: relative;
-      overflow: hidden;
-      border-right: none;
-      border: 1px solid #D9D9D9;
-      box-sizing: border-box;
-  }
-  
-  .white-box-login {
-    width: 500px;
-    height: 500px;
-    background-color: #fff; 
-    color: #000;
-    text-align: center;
-    font-size: 24px;
-    border-radius: 0 20px 20px 0;
-    position: relative;
-    border-left: none;
-    overflow: hidden;
-    border: 1px solid #D9D9D9;
-    box-sizing: border-box;
-  }
-  
-  .blue-box-login img {
-      position: absolute;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 600px;
-      height: 600px;
-  }
-  
-  .head-login {
-      font-family: 'Prompt', sans-serif;
-      font-size: 24px;
-      text-align: left;
-      margin-left: 50px;
-      font-weight: lighter;
-      display: block;
-      margin-top: 70px;
-      line-height: 3.5;
-  }
-  
-  .forgot-password-button {
-    font-family: 'Prompt', sans-serif;
-    background-color: transparent;
-    color: #ccc;
-    border: none;
-    font-size: 14px;
-    text-decoration: underline; 
-    cursor: pointer;
-    margin-right: 30px;
-    position: absolute;
-    right: 15px;
-    width: auto; 
-    padding: 5px 10px;
-    margin-bottom: 150px;
-    margin-top: 10px;
+  font-family: 'Prompt', sans-serif;
+}
+
+html {
+  height: 100%;
+  margin: 0;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.blue-box-login {
+  width: 500px;
+  height: 500px;
+  background-color: #03128E;
+  color: #fff;
+  text-align: center;
+  line-height: 200px;
+  font-size: 24px;
+  border-radius: 20px 0 0 20px;
+  position: relative;
+  overflow: hidden;
+  border-right: none;
+  border: 1px solid #D9D9D9;
+  box-sizing: border-box;
+}
+
+.white-box-login {
+  width: 500px;
+  height: 500px;
+  background-color: #fff;
+  color: #000;
+  text-align: center;
+  font-size: 24px;
+  border-radius: 0 20px 20px 0;
+  position: relative;
+  border-left: none;
+  overflow: hidden;
+  border: 1px solid #D9D9D9;
+  box-sizing: border-box;
+}
+
+.logo-mb {
+  top: 50%;
+  width: 200px;
+  height: 100px;
+  display: none;
+}
+
+.logo-pc {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+}
+
+.head-login {
+  font-family: 'Prompt', sans-serif;
+  font-size: 24px;
+  text-align: left;
+  margin-left: 50px;
+  font-weight: lighter;
+  display: block;
+  margin-top: 70px;
+  line-height: 3.5;
+}
+
+.forgot-password-button {
+  font-family: 'Prompt', sans-serif;
+  background-color: transparent;
+  color: #ccc;
+  border: none;
+  font-size: 14px;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-right: 30px;
+  position: absolute;
+  right: 15px;
+  width: auto;
+  padding: 5px 10px;
+  margin-bottom: 150px;
+  margin-top: 10px;
 }
 
 .forgot-password-button:hover {
-    font-family: 'Prompt', sans-serif;
-    text-decoration: none; 
-    color: #999; 
+  font-family: 'Prompt', sans-serif;
+  text-decoration: none;
+  color: #999;
 }
 
-  /*เพิ่มจากหวาน*/
+/*เพิ่มจากหวาน*/
 
 .login-button {
   font-family: 'Prompt', sans-serif;
@@ -99,18 +106,23 @@ body {
   height: 40px;
   margin: auto;
   margin-top: 80px;
+<<<<<<< HEAD
+  display: flex;
+
+=======
   
   
+>>>>>>> 318ea9e35b8e93f181b3a6c73b05a3abf3081500
 }
 
 .login-button:hover {
   color: #038E7F;
   background-color: #fff;
   border: 3px solid #038E7F;
-  
+
 }
 
-.tel-input{
+.tel-input {
   margin-top: 2px;
   margin-bottom: 2px;
   width: 400px;
@@ -122,15 +134,21 @@ body {
   font-size: 16px;
   font-family: 'Prompt', sans-serif;
 }
-.tel-input:focus,.password-input:focus  {
+
+.tel-input:focus,
+.password-input:focus {
   border-color: #007bff;
 }
-.tel-input::placeholder, .password-input::placeholder {
-  color: #999; /* สีที่คุณต้องการ */
-  opacity: 1;  /* ความโปร่งใสของ placeholder (1 คือ 100%) */
+
+.tel-input::placeholder,
+.password-input::placeholder {
+  color: #999;
+  /* สีที่คุณต้องการ */
+  opacity: 1;
+  /* ความโปร่งใสของ placeholder (1 คือ 100%) */
 }
 
- .password-input-container {
+.password-input-container {
   position: relative;
   display: flex;
   align-items: center;
@@ -138,6 +156,7 @@ body {
   height: 50px;
   margin: auto;
 }
+
 .password-input {
   margin-top: 2px;
   margin-bottom: 2px;
@@ -159,4 +178,253 @@ body {
   padding: 0;
   cursor: pointer;
   font-size: 20px;
-} 
+}
+
+/* ใช้ media query เพื่อปรับขนาดให้ responsive */
+/* Extra Small Devices */
+@media screen and (max-width: 476px) {
+  .white-box-login {
+    width: 80%;
+    height: 260px;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .app {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo-mb {
+    display: flex;
+    width: 200px;
+    height: 60px;
+  }
+
+  .logo-pc {
+    display: none;
+  }
+
+  .blue-box-login {
+    display: flex;
+    width: 80%;
+    height: 70px;
+    border-radius: 20px 20px 0 0;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .head-login {
+    font-size: 16px;
+    margin-left: 0px;
+    margin-top: 0px;
+    text-align: center;
+  }
+
+  .forgot-password-button {
+    font-size: 12px;
+    right: 0;
+  }
+
+  .login-button {
+    font-size: 14px;
+    width: 300px;
+    height: 40px;
+    margin-top: 60px;
+  }
+
+  .tel-input {
+    width: 300px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .password-input-container {
+    width: 300px;
+    height: 40px;
+  }
+
+  .password-input {
+    width: 300px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .show-password-button {
+    font-size: 14px;
+  }
+
+}
+
+/* Small Devices (Tablets): */
+@media screen and (min-width: 477px) and (max-width: 768px) {
+  .white-box-login {
+    width: 60%;
+    height: 280px;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .app {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo-mb {
+    display: flex;
+    width: 200px;
+    height: 60px;
+
+  }
+
+  .logo-pc {
+    display: none;
+  }
+
+  .blue-box-login {
+    display: flex;
+    width: 60%;
+    height: 70px;
+    border-radius: 20px 20px 0 0;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .head-login {
+    font-size: 16px;
+    margin-left: 0px;
+    margin-top: 0px;
+    text-align: center;
+  }
+
+  .forgot-password-button {
+    font-size: 12px;
+    right: 40px;
+  }
+
+  .login-button {
+    font-size: 14px;
+    width: 300px;
+    height: 40px;
+    margin-top: 60px;
+  }
+
+  .tel-input {
+    width: 300px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .password-input-container {
+    width: 300px;
+    height: 40px;
+  }
+
+  .password-input {
+    width: 300px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .show-password-button {
+    font-size: 14px;
+  }
+}
+
+/* Medium Devices (Laptops and Desktops): */
+@media screen and (min-width: 769px) and (max-width: 992px) {
+  .blue-box-login {
+    width: 350px;
+    height: 500px;
+  }
+
+  .white-box-login {
+    width: 350px;
+    height: 500px;
+  }
+
+  .logo-mb {
+    top: 50%;
+    width: 200px;
+    height: 100px;
+    display: none;
+  }
+
+  .logo-pc {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+  }
+
+  .head-login {
+    font-size: 24px;
+    margin-top: 60px;
+  }
+
+  .forgot-password-button {
+    margin-right: 30px;
+    right: 0;
+    width: auto;
+    padding: 5px 10px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+  }
+
+  .login-button {
+    width: 250px;
+    height: 40px;
+    margin: auto;
+    margin-top: 100px;
+  }
+
+  .tel-input {
+    width: 300px;
+    height: 50px;
+  }
+
+  .password-input-container {
+    width: 300px;
+    height: 50px;
+  }
+
+  .password-input {
+    width: 300px;
+    height: 50px;
+  }
+
+  .show-password-button {
+    right: 10px;
+    position: absolute;
+    background: none;
+    font-size: 20px;
+  }
+}
+
+/* Large Devices (Desktops): */
+@media screen and (min-width: 993px) and (max-width: 1200px) {
+  .blue-box-login {
+    width: 450px;
+    height: 400px;
+  }
+
+  .white-box-login {
+    width: 450px;
+    height: 400px;
+  }
+
+  .head-login {
+    font-size: 24px;
+    margin-top: 30px;
+    margin-left: 25px;
+  }
+
+  .forgot-password-button {
+    margin-right: 30px;
+    right: 0;
+    width: auto;
+    padding: 5px 10px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    right: 0px;
+  }
+}

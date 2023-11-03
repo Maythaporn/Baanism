@@ -1,6 +1,7 @@
 import React from "react";
 import "./forgot.css";
 import logoIcon from "../../assets/images/logo_withbg.png";
+import logoMobile from "../../assets/images/logo-header.png";
 import Axios from "axios";
 import emailjs from 'emailjs-com'
 import { useNavigate } from "react-router-dom";
@@ -129,7 +130,8 @@ function Forgot() {
     <div className="app">
       <div className="blue-box-forgot">
         {/* กล่องสีน้ำเงิน */}
-        <img src={logoIcon} alt="ต่อเติมบ้าน" width="100" height="100" />
+        <img src={logoIcon} alt="ต่อเติมบ้าน" className="logo-pc-forgot"/>
+        <img src={logoMobile} alt="ต่อเติมบ้าน" className="logo-mb-forgot"/>
       </div>
       <div className="white-box-forgot">
         {isreset && (
@@ -140,7 +142,7 @@ function Forgot() {
             <br></br>
             <input
               type="text"
-              className="pass-input"
+              className="pass-input-forgot"
               placeholder="เบอร์โทรศัพท์"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
@@ -166,7 +168,7 @@ function Forgot() {
             <br></br>
             <input
               type="text"
-              className="pass-input"
+              className="pass-input-forgot"
               placeholder="OTP"
               value={OTPinput.join("")} // ใช้ค่ารหัส OTP จาก OTPinput
               onChange={(e) => setOTPinput(e.target.value.split(""))} // อัปเดต OTPinput เมื่อผู้ใช้ป้อนข้อมูล
@@ -189,14 +191,14 @@ function Forgot() {
 
             <input
               type="password"
-              className="pass-input"
+              className="pass-input-forgot"
               placeholder="รหัสผ่าน"
               value={password}
               onChange={handlePasswordChange}
             ></input>
             <input
               type="password"
-              className="confirm-pass-input"
+              className="confirm-pass-input-forgot"
               placeholder="ยืนยันรหัสผ่าน"
               value={confirmPassword}
               onChange={handleConfirmPasswordChange}

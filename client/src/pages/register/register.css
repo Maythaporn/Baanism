@@ -53,12 +53,19 @@ html {
     /* ให้ขอบอยู่ภายในขนาดกล่อง */
 }
 
-.blue-box-register img {
+.logo-mb-register {
+    top: 50%;
+    width: 200px;
+    height: 100px;
+    display: none;
+}
+
+.logo-pc-register {
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 600px;
-    height: 600px;
+    width: 500px;
+    height: 500px;
 }
 
 .head-register {
@@ -114,7 +121,7 @@ html {
 .surname-input,
 .tele-input,
 .email-input,
-.pass-input,
+.password-input-register,
 .confirm-pass-input {
     width: 400px;
     height: 50px;
@@ -133,7 +140,7 @@ html {
 .surname-input::placeholder,
 .tele-input::placeholder,
 .email-input::placeholder,
-.pass-input::placeholder,
+.password-input-register::placeholder,
 .confirm-pass-input::placeholder {
     color: #999;
 }
@@ -142,7 +149,252 @@ html {
 .surname-input:focus,
 .tele-input:focus,
 .email-input:focus,
-.pass-input:focus,
+.password-input-register:focus,
 .confirm-pass-input:focus {
     border-color: #007bff;
+}
+
+/* ใช้ media query เพื่อปรับขนาดให้ responsive */
+/* Extra Small Devices */
+@media screen and (max-width: 476px) {
+    .white-box-register {
+        width: 80%;
+        height: 450px;
+        border-radius: 0 0 20px 20px;
+    }
+
+    .app {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .logo-mb-register {
+        display: flex;
+        max-width: 200px;
+        max-height: 60px;
+    }
+
+    .logo-pc-register {
+        display: none;
+    }
+
+    .blue-box-register {
+        display: flex;
+        width: 80%;
+        height: 70px;
+        border-radius: 20px 20px 0 0;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .head-register {
+        font-size: 16px;
+        margin-left: 0px;
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    .name-input,
+    .surname-input,
+    .tele-input,
+    .email-input {
+        width: 250px;
+        height: 40px;
+    }
+
+    .password-input-register,
+    .confirm-pass-input {
+        width: 250px;
+        height: 40px;
+        margin-top: 6px;
+    }
+
+    .show-password-button {
+        width: 80px;
+        height: 40px;
+        margin-top: 6px;
+    }
+
+    .password-input-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2px;
+    }
+
+    .confirm-button {
+        display: flex;
+        font-size: 14px;
+        width: 150px;
+        height: 40px;
+        margin-top: 20px;
+    }
+}
+
+/* Small Devices (Tablets): */
+@media screen and (min-width: 477px) and (max-width: 768px) {
+    .white-box-register {
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+        height: 450px;
+        border-radius: 0 0 20px 20px;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .app {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .logo-mb-register {
+        display: flex;
+        max-width: 200px;
+        max-height: 60px;
+    }
+
+    .logo-pc-register {
+        display: none;
+    }
+
+    .blue-box-register {
+        display: flex;
+        width: 60%;
+        height: 70px;
+        border-radius: 20px 20px 0 0;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .head-register {
+        font-size: 16px;
+        margin-left: 0px;
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    .name-input,
+    .surname-input,
+    .tele-input,
+    .email-input {
+        width: 250px;
+        height: 40px;  
+    }
+
+    .password-input-register,
+    .confirm-pass-input {
+        width: 250px;
+        height: 40px;
+    }
+
+    .show-password-button {
+        width: 80px;
+        height: 40px;
+    }
+
+    .password-input-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .confirm-button {
+        display: flex;
+        font-size: 14px;
+        width: 150px;
+        height: 40px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+}
+
+/* Medium Devices (Laptops and Desktops): */
+@media screen and (min-width: 769px) and (max-width: 992px) {
+
+    .blue-box-register{
+        width: 450px;
+        height: 600px;
+        margin-left: 30px;
+    }
+    .white-box-register {
+        width: 450px;
+        height: 600px;
+        margin-right: 30px;
+    }
+
+    .head-register {
+        font-size: 20px;
+        margin-left: 0px;
+        margin-top: 50px;
+        text-align: center;
+    }
+
+    .name-input,
+    .surname-input,
+    .tele-input,
+    .email-input {
+        width: 300px;
+        height: 45px;  
+    }
+
+    .password-input-register,
+    .confirm-pass-input {
+        width: 300px;
+        height: 45px;  
+    }
+
+    .show-password-button {
+        width: 30px;
+        height: 45px;
+    }
+
+    .password-input-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .confirm-button {
+        display: flex;
+        font-size: 14px;
+        width: 150px;
+        height: 40px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+}
+
+/* Large Devices (Desktops): */
+@media screen and (min-width: 993px) and (max-width: 1200px) {
+
+    .blue-box-register,
+    .white-box-register {
+        width: 450px;
+        height: 600px;
+    }
+
+    .head-text {
+        font-size: 24px;
+        margin-top: 60px;
+        margin-left: 25px;
+    }
+
+    .content-text {
+        font-size: 24px;
+        margin-left: 25px;
+    }
+
+    .confirm-button {
+        margin-right: 30px;
+        right: 0;
+        width: 390px;
+        padding: 5px 10px;
+        margin-bottom: 0px;
+        margin-top: 15px;
+        right: 0px;
+    }
 }

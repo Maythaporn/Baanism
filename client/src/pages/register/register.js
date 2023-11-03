@@ -3,6 +3,7 @@ import "./register.css";
 import Axios from "axios";
 
 import logoIcon from "../../assets/images/logo_withbg.png";
+import logoMobile from "../../assets/images/logo-header.png";
 import TextInput from "../../components/textinput/textinput.js";
 // import Button from '../../components/button/button.js';
 import { useNavigate } from "react-router-dom";
@@ -14,7 +15,7 @@ function Register() {
   const navigate = useNavigate();
 
   // Initialize with an empty string
-  const [firstName, setFirstName] = useState(""); 
+  const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
@@ -22,7 +23,7 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordsMatch, setPasswordsMatch] = useState(true);
   //State for checkbox
-  const [isTermsChecked, setIsTermsChecked] = useState(false); 
+  const [isTermsChecked, setIsTermsChecked] = useState(false);
 
   const specialCharacters = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/;
 
@@ -74,7 +75,7 @@ function Register() {
             alert("ทำการสมัครสมาชิกเรียบร้อยแล้ว");
             navigate('/login');
 
-          }else if (response.status === 400) {
+          } else if (response.status === 400) {
             alert("เบอร์โทรศัพท์ นี้ถูกใช้งานแล้ว");
           }
         })
@@ -107,7 +108,8 @@ function Register() {
     <div className="app">
       <div className="blue-box-register">
         {/* กล่องสีน้ำเงิน */}
-        <img src={logoIcon} alt="ต่อเติมบ้าน" width="100" height="100" />
+        <img src={logoIcon} alt="ต่อเติมบ้าน" className="logo-pc-register" />
+        <img src={logoMobile} alt="ต่อเติมบ้าน" className="logo-mb-register" />
       </div>
       <div className="white-box-register">
         <h1 className="head-register">สมัครสมาชิก</h1>
@@ -182,7 +184,7 @@ function Register() {
 
         <div className="password-input-container">
           <input
-            className="password-input"
+            className="password-input-register"
             type={showPassword ? "text" : "password"}
             placeholder="รหัสผ่าน"
             value={password}
