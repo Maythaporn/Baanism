@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./update.css";
 import Axios from "axios";
 import Modal from "react-modal";
+import { FaImage, } from "react-icons/fa";
 
 const UpdateProjects = () => {
   const [title, setTitle] = useState("");
@@ -9,6 +10,23 @@ const UpdateProjects = () => {
   const [info, setInfo] = useState("");
   const [imageUrl, setImageUrl] = useState(null);
   const [data, setData] = useState([]);
+  const [cID, setCID] = useState();
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedIMG, setSelectedIMG] = useState(null);
+
+  const handleFileInputChange = (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      setSelectedFile(file);
+      // Read the selected file as a data URL and set it as imageUrl
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setSelectedIMG(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
   // const data = [
   //     { id: 1, title: "ไม้ฝา เฌอร่า คืออะไร?" },
   //     { id: 2, title: "ไม้ฝา เฌอร่า คืออะไร?" },
@@ -19,14 +37,14 @@ const UpdateProjects = () => {
   const handleEditProject = (projectId) => {
     // Send an HTTP DELETE request to the server to delete the project.
     console.log(projectId);
+    const formData = new FormData()
+    formData.append('id', projectId)
+    formData.append('title', title)
+    formData.append('image', selectedFile)
+    formData.append('caption', caption)
+    formData.append('info', info)
 
-    Axios.post("http://localhost:3001/edit_homecontent", {
-      id: projectId,
-      title: title,
-      image: imageUrl,
-      caption: caption,
-      info: info,
-    })
+    Axios.post("http://localhost:3001/edit_homecontent", formData)
       .then((response) => {
         if (response.status === 200) {
           alert("ดำเนินการเสร็จสิ้น");
@@ -49,12 +67,13 @@ const UpdateProjects = () => {
       .catch((error) => {
         console.error(error);
       });
-
+    setCID(id)
     setModalIsOpen(true);
   };
 
   const closeModal = () => {
     setModalIsOpen(false);
+    setSelectedFile(null)
   };
 
   useEffect(() => {
@@ -133,23 +152,40 @@ const UpdateProjects = () => {
                       onChange={(e) => setTitle(e.target.value)}
                     />
                   </div>
-                  <div className="inputMim">
-                    ภาพ Content (URL) :
+                  <div className="inputIMG">
+                    แนบรูปภาพ :
                     <input
-                      type="text"
-                      placeholder={imageUrl}
-                      value={imageUrl}
-                      onChange={(e) => setImageUrl(e.target.value)}
+                      type="file"
+                      id="fileInput"
+                      style={{ display: "none" }}
+                      onChange={handleFileInputChange}
                     />
+                    <label htmlFor="fileInput">
+                      <FaImage
+                        size={25}
+                        color="black"
+                        className="camera-icon"
+                        style={{ cursor: "pointer" }}
+                      />
+                    </label>
                   </div>
                   <br></br>
-                  <img
-                    src={imageUrl}
-                    alt="Selected"
-                    className="selected-image"
-                    width="200px" // set the width to your desired size in pixels
-                    height="200px" // set the height to your desired size in pixels
-                  />
+                  {selectedFile ? (
+                    <img
+                      src={selectedIMG}
+                      alt="Selected"
+                      className="selected-image"
+                      width="200px" // set the width to your desired size in pixels
+                      height="200px" // set the height to your desired size in pixels
+                    />) : (
+                    <img
+                      src={'http://localhost:3001/images/' + imageUrl}
+                      alt="Selected"
+                      className="selected-image"
+                      width="200px" // set the width to your desired size in pixels
+                      height="200px" // set the height to your desired size in pixels
+                    />)}
+
                   <br></br>
                   <div className="inputMim-address">
                     Content Caption :
@@ -174,7 +210,7 @@ const UpdateProjects = () => {
                   <br></br>
                   <div
                     className="model-button"
-                    onClick={() => handleEditProject(e.id)}
+                    onClick={() => handleEditProject(cID)}
                   >
                     ยืนยัน
                   </div>
