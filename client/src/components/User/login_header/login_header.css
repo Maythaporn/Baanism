@@ -37,7 +37,7 @@
 
 .rightButton {
   background-color: #fff;
-  margin-left: 300px;
+  /* margin-left: 300px; */
   margin-bottom: 5px;
   margin-top: 15px;
 }
@@ -193,9 +193,19 @@
   align-items: center;
 }
 
+.userNameNaJa{
+  margin: 6px 0 0 10px;
+  font-size: 1.3rem;
+  color: #100F0D;
+  display: none;
+}
+
 
 /* Responsive */
 @media screen and (max-width: 768px) {
+  .userNameNaJa{
+    display: block;
+  }
   .navUser-links.open .user_icon_login{
     display: flex;
     align-items: center;

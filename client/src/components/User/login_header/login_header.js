@@ -2,7 +2,10 @@ import logo from './logo-header.png';
 import './login_header.css';
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+
 import { FaBell, FaUser } from 'react-icons/fa'
+
+import Axios from "axios";
 
 export default function Header() {
     const phoneNumber = localStorage.getItem('phone');
@@ -45,6 +48,24 @@ export default function Header() {
         };
     }, []);
 
+    const [firstname, setFirstname] = useState("");
+    Axios.get("http://localhost:3001/userprofile", {
+        params: {
+        phone_number: phoneNumber,
+        },
+    })
+        .then((response) => {
+        const userData = response.data;
+        console.log(userData);
+        console.log("success");
+        setFirstname(userData.first_name);
+        })
+        .catch((error) => {
+        // Handle any network or server errors here
+        console.error("Error fetching user data: ", error);
+        // You might want to display a user-friendly error message to the user
+        });
+
     return (
         <>
             <nav className={`rootNavUser${isNavOpen ? 'active' : ''}`}>
@@ -80,9 +101,12 @@ export default function Header() {
                             {/* <div className='user_icon_login' style={{alignItems:'center'}}> */}
                                 {/* <ul className='navBarUser'> */}
                                     <li>
-                                        <Link to={'/user_profile/' + phoneNumber}>
-                                            <FaUser size={30} color="#03128E" />
-                                        </Link>
+                                        <div style={{display:"flex", flexDirection: "row", alignItems:"center"}}>
+                                            <Link to={'/user_profile/' + phoneNumber}>
+                                                <FaUser size={30} color="#03128E" />
+                                            </Link>
+                                            <p className='userNameNaJa'>{firstname}</p>
+                                        </div>
                                     </li>
                                 {/* </ul> */}
                             </div>
