@@ -15,22 +15,26 @@ export const Editestimate = () => {
   const [EditModal, setEditmodal] = useState(false);
   const [AddModal, setAddmodal] = useState(false);
   const [Editing, setEditing] = useState();
+  const [Input, setInput] = useState("");
+  const [Type, setType] = useState("");
+  const sub_q_id = sub_questions.length + 1;
+  const op_id = options.length + 1;
   const DropdownOptions = [
-    'Button', 'Text'
+    'button', 'text'
   ];
-  const defaultOption = DropdownOptions[0];
 
 
 
-  const OnEditquestionClicked = (id) => {
+  const OnEditquestionClicked = (index, id) => {
     setSelectedQuestion(id);
-    axios.get(`http://localhost:3001/getSubquestion/${id}`)
+    axios.get(`http://localhost:3001/getSubquestion${index}/${id}`)
       .then((response) => {
         setSubQuestions(response.data)
         console.log(response.data)
       })
       .catch((error) => {
         console.error('เกิดข้อผิดพลาดในการดึงข้อมูล', error);
+        console.log(index, id);
       });
   }
 
@@ -48,6 +52,110 @@ export const Editestimate = () => {
       });
   };
 
+  const OnAddSubquestionClicked = () => {
+    axios
+      .post(`http://localhost:3001/addSubquestion${SelectedQuestion}`, 
+      { 
+        question_id: SelectedQuestion,
+        sub_question_id: sub_q_id,
+        sub_question_text: Input,
+        sub_question_type: Type })
+      .then((response) => {
+        CloseAddModal()
+        setSubQuestions([
+          ...sub_questions,
+          {
+            question_id: SelectedQuestion,
+            sub_question_id: sub_q_id,
+            sub_question_text: Input,
+            sub_question_type: Type
+          }
+        ])
+        // window.location.reload();
+        console.log(response, SelectedQuestion, Input, Type);
+      })
+      .catch((error) => {
+        console.error("เกิดข้อผิดพลาดในการดึงข้อมูล", error);
+        console.error(Input)
+        console.error(Type)
+      });
+  }
+
+  const OnDeleteSubQclicked = (index, id) => {
+    axios.delete(`http://localhost:3001/deleteSubquestion${index}/${id}`)
+      .then(response => {
+        if (response.status === 200) {
+          console.log("ลบข้อมูลสำเร็จ");
+          setSubQuestions(sub_questions.filter(subQuestion => subQuestion.sub_question_id !== id));
+        } else {
+          console.error("เกิดข้อผิดพลาดในการลบข้อมูล");
+        }
+      })
+      .catch(error => {
+        console.error("เกิดข้อผิดพลาดในการเรียก API:", error);
+      });
+  }
+
+  const OnUpdateSubQclicked = (index, id) => {
+    axios.put(`http://localhost:3001/UpdateSubquestion${index}/${id}`,
+    {
+      sub_question_text: Input
+    })
+    .then(response => {
+      CloseEditModal()
+      window.location.reload();
+      if (response.status === 200) {
+        console.log("อัพเดทข้อมูลสำเร็จ");
+      } else {
+        console.error("เกิดข้อผิดพลาดในการอัพเดทข้อมูล");
+      }
+    })
+    .catch(error => {
+      console.error("เกิดข้อผิดพลาดในการเรียก API:", error);
+    });
+  }
+
+  const OnAddOptionClicked = () => {
+    axios
+      .post(`http://localhost:3001/addOption${SelectedQuestion}`, 
+      { 
+        question_id: SelectedQuestion,
+        sub_question_id: SelectedSubquestion,
+        option_text: Input })
+      .then((response) => {
+        CloseAddModal()
+        setOptions([
+          ...options,
+          {
+            question_id: SelectedQuestion,
+            sub_question_id: SelectedSubquestion,
+            option_text: Input
+          }
+        ])
+        // window.location.reload();
+        console.log(response, SelectedQuestion, SelectedSubquestion, Input);
+      })
+      .catch((error) => {
+        console.error("เกิดข้อผิดพลาดในการดึงข้อมูล", error);
+        console.error( SelectedQuestion, SelectedSubquestion, Input)
+      });
+  }
+
+  const OnDeleteOptionclicked = (index, id) => {
+    axios.delete(`http://localhost:3001/deleteOption${index}/${id}`)
+      .then(response => {
+        if (response.status === 200) {
+          console.log("ลบข้อมูลสำเร็จ");
+          setOptions(options.filter(Option => Option.option_id !== id));
+        } else {
+          console.error("เกิดข้อผิดพลาดในการลบข้อมูล");
+        }
+      })
+      .catch(error => {
+        console.error("เกิดข้อผิดพลาดในการเรียก API:", error);
+      });
+  }
+
   const ClearQuestionSelected = () => {
     setSelectedQuestion('');
   }
@@ -62,10 +170,9 @@ export const Editestimate = () => {
     console.log("OpenEdit" + id)
   };
 
-  const CloseEditModal = (id) => {
+  const CloseEditModal = () => {
     setEditmodal(false);
     setEditing();
-    console.log("CloseEdit" + id)
   };
 
   const OpenAddModal = (id) => {
@@ -74,10 +181,9 @@ export const Editestimate = () => {
     console.log("OpenAdd" + id)
   };
 
-  const CloseAddModal = (id) => {
+  const CloseAddModal = () => {
     setAddmodal(false);
     setEditing();
-    console.log("CloseAdd" + id)
   };
 
   useEffect(() => {
@@ -89,6 +195,14 @@ export const Editestimate = () => {
       .catch((error) => {
         console.error('เกิดข้อผิดพลาดในการดึงข้อมูล', error);
       });
+    // axios.get(`http://localhost:3001/getSubquestion`)
+    //   .then((response) => {
+    //     setAllsubquestions(response.data)
+    //     console.log(response.data)
+    //   })
+    //   .catch((error) => {
+    //     console.error('เกิดข้อผิดพลาดในการดึงข้อมูล', error);
+    //   });
   }, []);
 
   return (
@@ -97,7 +211,7 @@ export const Editestimate = () => {
         questions.map((e) => (
           <div className="admin-edit-container" key={e.question_id}>
             <div className="info-left">
-              <p className="question-title" onDoubleClick={() => OpenEditModal(e.question_id)}>
+              <p className="question-title">
                 {e.question_text}
               </p>
               {EditModal && (
@@ -124,18 +238,9 @@ export const Editestimate = () => {
               <div className="edit">
                 <button
                   className="edit-btn"
-                  onClick={() => OnEditquestionClicked(e.question_id)}
+                  onClick={() => OnEditquestionClicked(e.question_id,e.question_id)}
                 >
                   แก้ไขข้อมูล
-                </button>
-                <span className="space">|</span>
-                <button
-                  className="edit-btn"
-                  onClick={() => {
-                    console.log(SelectedQuestion);
-                  }}
-                >
-                  ลบ
                 </button>
               </div>
             </div>
@@ -178,14 +283,24 @@ export const Editestimate = () => {
                             type="text"
                             className="edit-title"
                             placeholder='คำถาม'
+                            onChange={(e) => setInput(e.target.value)}
+                            value={Input}
                           />
                           <h3>ชนิดของคำถาม</h3>
-                          <Dropdown className="dropdown" options={DropdownOptions} value={defaultOption} placeholder="Select an option" />
-                          <br/>
+                          <Dropdown
+                            className="dropdown"
+                            options={DropdownOptions}
+                            value={Type}
+                            placeholder="Select an option"
+                            onChange={(option) => {
+                              setType(option.value)
+                            }}
+                          />
+                          <br />
                           <button className="close-modal" onClick={CloseAddModal}>
                             ปิด
                           </button>
-                          <button className="confirm-btn" onClick={CloseAddModal}>
+                          <button className="confirm-btn" onClick={() => OnAddSubquestionClicked()}>
                             ยืนยัน
                           </button>
                         </div>
@@ -203,11 +318,13 @@ export const Editestimate = () => {
                             type="text"
                             className="edit-title"
                             placeholder={sub_questions[Editing - 1].sub_question_text}
+                            onChange={(e) => setInput(e.target.value)}
+                            value={Input}
                           />
                           <button className="close-modal" onClick={CloseEditModal}>
                             ปิด
                           </button>
-                          <button className="confirm-btn" onClick={CloseEditModal}>
+                          <button className="confirm-btn" onClick={()=>{OnUpdateSubQclicked(e.question_id,e.sub_question_id)}}>
                             ยืนยัน
                           </button>
                         </div>
@@ -223,6 +340,7 @@ export const Editestimate = () => {
                             SelectedQuestion,
                             e.sub_question_id
                           )
+                          // {console.log(SelectedQuestion,e.sub_question_id)}
                         }
                       >
                         แก้ไขข้อมูล
@@ -230,9 +348,7 @@ export const Editestimate = () => {
                       <span className="space">|</span>
                       <button
                         className="edit-btn"
-                        onClick={() => {
-                          console.log(SelectedQuestion);
-                        }}
+                        onClick={() => { OnDeleteSubQclicked(e.question_id,e.sub_question_id) }}
                       >
                         ลบ
                       </button>
@@ -252,7 +368,7 @@ export const Editestimate = () => {
             >
               ย้อนกลับ
             </div>
-            <div className="add-question-button">
+            <div className="add-question-button" onClick={() => OpenAddModal(SelectedQuestion)}>
               <FaPlus size={10} color="white" /> เพิ่มคำถาม
             </div>
           </div>
@@ -264,10 +380,33 @@ export const Editestimate = () => {
                   <div className="info-left">
                     <button
                       className="question-title"
-                      onDoubleClick={() => OpenEditModal(e.option_id)}
                     >
                       {e.option_text}
                     </button>
+                    {AddModal && (
+                      <div className="modal">
+                        <div
+                          className="overlay-modal"
+                          onClick={CloseAddModal}
+                        ></div>
+                        <div className="modal-content">
+                          <h2>เพิ่มคำถาม</h2>
+                          <input
+                            type="text"
+                            className="edit-title"
+                            placeholder='คำถาม'
+                            onChange={(e) => setInput(e.target.value)}
+                            value={Input}
+                          />
+                          <button className="close-modal" onClick={CloseAddModal}>
+                            ปิด
+                          </button>
+                          <button className="confirm-btn" onClick={() => OnAddOptionClicked()}>
+                            ยืนยัน
+                          </button>
+                        </div>
+                      </div>
+                    )}
                     {EditModal && (
                       <div className="modal">
                         <div
@@ -295,9 +434,7 @@ export const Editestimate = () => {
                     <div className="edit">
                       <button
                         className="edit-btn"
-                        onClick={() => {
-                          console.log(SelectedQuestion);
-                        }}
+                        onClick={() => { OnDeleteOptionclicked(e.question_id,e.option_id) }}
                       >
                         ลบ
                       </button>

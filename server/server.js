@@ -49,12 +49,10 @@ app.get("/getQuestion", (req, res) => {
   });
 });
 
-app.get("/getSubquestion/:id", (req, res) => {
+app.get("/getSubquestion:index/:id", (req, res) => {
   const qId = req.params.id;
-  db.query(
-    `SELECT * FROM sub_questions WHERE question_id LIKE ?`,
-    [qId],
-    function (err, result) {
+  const index = req.params.index;
+  db.query(`SELECT * FROM sub_question${index} WHERE question_id LIKE ?`,[qId],function (err, result) {
       if (err) {
         console.error(err);
         res.status(500).send("เกิดข้อผิดพลาดในการดึงข้อมูลจากฐานข้อมูล");
@@ -68,18 +66,87 @@ app.get("/getSubquestion/:id", (req, res) => {
 app.get("/getOption:index/:id", (req, res) => {
   const id = req.params.id;
   const index = req.params.index;
-  db.query(
-    `SELECT * FROM options${index} WHERE sub_question_id LIKE ?`,
-    [id],
-    function (err, result) {
-      if (err) {
-        console.error(err);
-        res.status(500).send("เกิดข้อผิดพลาดในการดึงข้อมูลจากฐานข้อมูล");
-      } else {
-        res.send(result);
-      }
+  db.query(`SELECT * FROM option${index} WHERE sub_question_id LIKE ?`,[id], function (err, result) {
+    if (err) {
+      console.error(err);
+      res.status(500).send("เกิดข้อผิดพลาดในการดึงข้อมูลจากฐานข้อมูล");
+    } else {
+      res.send(result);
     }
-  );
+  });
+});
+
+app.post("/addSubquestion:index", (req, res) => {
+  const qID = req.body.question_id
+  const sqID = req.body.sub_question_id
+  const sqText = req.body.sub_question_text
+  const sqType = req.body.sub_question_type
+  const index = req.params.index;
+  db.query(`INSERT INTO sub_question${index} (question_id,sub_question_id,sub_question_text,sub_question_type) VALUES (?,?,?,?)`,[qID,sqID,sqText,sqType],function (err, result) {
+    if (err) {
+      console.error(err);
+      res.status(500).send("เกิดข้อผิดพลาดในการดึงข้อมูลจากฐานข้อมูล");
+    } else {
+      res.send("Add SubQuestion Success");
+    }
+  });
+});
+
+app.delete("/deleteSubquestion:index/:sub_question_id", (req, res) => {
+  const subQuestionId = req.params.sub_question_id;
+  const index = req.params.index;
+  db.query(`DELETE FROM sub_question${index} WHERE sub_question_id = ?`, [subQuestionId], function (err, result) {
+    if (err) {
+      console.error(err);
+      res.status(500).send("เกิดข้อผิดพลาดในการลบข้อมูล");
+    } else {
+      res.send("ลบข้อมูลสำเร็จ");
+    }
+  });
+});
+
+app.put("/UpdateSubquestion:index/:id", (req, res) => {
+  const sqText = req.body.sub_question_text
+  const index = req.params.index;
+  const ID = req.params.id
+  const sql = `UPDATE sub_question${index} set sub_question_text = ? WHERE sub_question_id = ? `
+
+  db.query(sql,[sqText,ID],function (err, result) {
+    if (err) {
+      console.error(err);
+      res.status(500).send("เกิดข้อผิดพลาดในการดึงข้อมูลจากฐานข้อมูล");
+    } else {
+      res.send("Add SubQuestion Success");
+    }
+  });
+});
+
+app.post("/addOption:index", (req, res) => {
+  const qID = req.body.question_id
+  const sqID = req.body.sub_question_id
+  const opText = req.body.option_text
+  const index = req.params.index;
+  db.query(`INSERT INTO option${index} (question_id,sub_question_id,option_text) VALUES (?,?,?)`,[qID,sqID,opText],function (err, result) {
+    if (err) {
+      console.error(err);
+      res.status(500).send("เกิดข้อผิดพลาดในการดึงข้อมูลจากฐานข้อมูล");
+    } else {
+      res.send("Add Option Success");
+    }
+  });
+});
+
+app.delete("/deleteOption:index/:option_id", (req, res) => {
+  const OptionId = req.params.option_id;
+  const index = req.params.index;
+  db.query(`DELETE FROM Option${index} WHERE option_id = ?`, [OptionId], function (err, result) {
+    if (err) {
+      console.error(err);
+      res.status(500).send("เกิดข้อผิดพลาดในการลบข้อมูล");
+    } else {
+      res.send("ลบข้อมูลสำเร็จ");
+    }
+  });
 });
 
 app.get("/userprofile", (req, res) => {
