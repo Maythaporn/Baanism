@@ -75,6 +75,7 @@
     /* border: 1px solid #000000; */
     background: none;
     cursor: pointer;
+    font-family: 'prompt', sans-serif;
 }
 
 .info-left p {
