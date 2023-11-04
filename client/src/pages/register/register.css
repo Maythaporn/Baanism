@@ -156,7 +156,86 @@ html {
 
 /* ใช้ media query เพื่อปรับขนาดให้ responsive */
 /* Extra Small Devices */
-@media screen and (max-width: 476px) {
+@media screen and (max-width: 280px) {
+    .white-box-register {
+        width: 80%;
+        height: 450px;
+        border-radius: 20px;
+    }
+
+    .app {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .logo-mb-register {
+        display: flex;
+        max-width: 200px;
+        max-height: 60px;
+    }
+
+    .logo-pc-register {
+        display: none;
+    }
+
+    .blue-box-register {
+        display: none;
+        width: 80%;
+        height: 70px;
+        border-radius: 20px 20px 0 0;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .head-register {
+        font-size: 16px;
+        margin-left: 0px;
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    .name-input,
+    .surname-input,
+    .tele-input,
+    .email-input {
+        width: 200px;
+        height: 40px;
+    }
+
+    .password-input-register,
+    .confirm-pass-input {
+        width: 200px;
+        height: 40px;
+        margin-top: 6px;
+    }
+
+    .show-password-button {
+        width: 80px;
+        height: 40px;
+        margin-top: 6px;
+    }
+
+    .password-input-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2px;
+    }
+
+    .confirm-button {
+        display: flex;
+        font-size: 14px;
+        width: 100px;
+        height: 40px;
+        margin-top: 20px;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media screen and (min-width: 476px) and (max-width: 476px) {
     .white-box-register {
         width: 80%;
         height: 450px;
@@ -280,7 +359,7 @@ html {
     .tele-input,
     .email-input {
         width: 250px;
-        height: 40px;  
+        height: 40px;
     }
 
     .password-input-register,
@@ -308,17 +387,20 @@ html {
         height: 40px;
         margin-top: 30px;
         margin-bottom: 20px;
+        align-items: center;
+        justify-content: center;
     }
 }
 
 /* Medium Devices (Laptops and Desktops): */
 @media screen and (min-width: 769px) and (max-width: 992px) {
 
-    .blue-box-register{
+    .blue-box-register {
         width: 450px;
         height: 600px;
         margin-left: 30px;
     }
+
     .white-box-register {
         width: 450px;
         height: 600px;
@@ -337,13 +419,13 @@ html {
     .tele-input,
     .email-input {
         width: 300px;
-        height: 45px;  
+        height: 45px;
     }
 
     .password-input-register,
     .confirm-pass-input {
         width: 300px;
-        height: 45px;  
+        height: 45px;
     }
 
     .show-password-button {
@@ -359,7 +441,6 @@ html {
     }
 
     .confirm-button {
-        display: flex;
         font-size: 14px;
         width: 150px;
         height: 40px;

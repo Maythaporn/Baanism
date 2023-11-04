@@ -106,13 +106,9 @@ html {
   height: 40px;
   margin: auto;
   margin-top: 80px;
-<<<<<<< HEAD
   display: flex;
-
-=======
-  
-  
->>>>>>> 318ea9e35b8e93f181b3a6c73b05a3abf3081500
+  align-items: center;
+  justify-content: center;
 }
 
 .login-button:hover {
@@ -182,7 +178,80 @@ html {
 
 /* ใช้ media query เพื่อปรับขนาดให้ responsive */
 /* Extra Small Devices */
-@media screen and (max-width: 476px) {
+@media screen and (max-width: 280px) {
+  .white-box-login {
+    width: 80%;
+    height: 260px;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .app {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo-mb {
+    display: flex;
+    width: 200px;
+    height: 60px;
+  }
+
+  .logo-pc {
+    display: none;
+  }
+
+  .blue-box-login {
+    display: flex;
+    width: 80%;
+    height: 70px;
+    border-radius: 20px 20px 0 0;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .head-login {
+    font-size: 16px;
+    margin-left: 0px;
+    margin-top: 0px;
+    text-align: center;
+  }
+
+  .forgot-password-button {
+    font-size: 12px;
+    right: 0;
+  }
+
+  .login-button {
+    font-size: 14px;
+    width: 200px;
+    height: 40px;
+    margin-top: 60px;
+  }
+
+  .tel-input {
+    width: 200px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .password-input-container {
+    width: 200px;
+    height: 40px;
+  }
+
+  .password-input {
+    width: 200px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .show-password-button {
+    font-size: 14px;
+  }
+
+}
+
+@media screen and (min-width: 281px) and (max-width: 476px) {
   .white-box-login {
     width: 80%;
     height: 260px;
